@@ -3,14 +3,18 @@ require 'spec_helper'
 describe "Static Pages" do
   
   describe "Home" do
-    it "should have the content 'Pject.us'" do
+    it "should have the h1 'Home'" do
         visit '/static_pages/home'
-        page.should have_selector('h1', :text => 'Pject.us')
+        page.should have_selector('h1', :text => 'Home')
     end
-    it "should have the title 'Home'" do
+    it "should have the base title" do
       visit '/static_pages/home'
       page.should have_selector('title', 
-                    :text => "Pject.us | Home")
+                    :text => "Pject.us")
+    end
+    it "should not have a custom page title" do
+      visit '/static_pages/home'
+      page.should_not have_selector('title',:text => '| Home')
     end
   end
 
