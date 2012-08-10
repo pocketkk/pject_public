@@ -1,5 +1,5 @@
 def full_title(page_title)
-  base_title = "Pject.us"
+  base_title = "Work Order Machine"
   if page_title.empty?
     base_title
   else
