@@ -44,5 +44,13 @@ describe "User pages" do
       end
     end
   end
-  
-end
+  describe "edit" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { visit edit_user_path(user) }
+
+      
+
+
+      
+        end
+      end
