@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
      @workorder = current_user.workorders.build if signed_in?
-     @workorders = current_user.workorders.paginate(page: params[:page])
+     @workorders = current_user.workorders.paginate(page: params[:page]) if signed_in?
      
    end
 
