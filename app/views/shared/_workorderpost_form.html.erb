@@ -1,0 +1,8 @@
+<h2>Start new workorder</h2>
+<%= form_for(@workorder) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :customer, placeholder: "Name of customer..." %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>

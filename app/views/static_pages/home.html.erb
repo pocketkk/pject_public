@@ -1,3 +1,17 @@
+
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/workorderpost_form' %>
+      </section>
+    </aside>
+		<%= render 'shared/workorders_display' %>
+  </div>  
+<% else %>
 <div class="center hero-unit">
 	<h1>Work Order Machine</h1>
 		<p>
@@ -6,3 +20,4 @@
 		</p>
 	<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
+<% end %> 

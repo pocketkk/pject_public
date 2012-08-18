@@ -16,4 +16,14 @@
 	  </table>
     </section>
   </aside>
+  <div class="span4">
+    <% if @user.workorders.any? %>
+      <h3>Workorders(<%= @user.workorders.count %>)</h3>
+      <ol class="workorders">
+        <%= render @workorders %>
+      </ol>
+      <%= will_paginate @workorders %>
+    <% end %>
+  </div>
+</div>
 </div>
