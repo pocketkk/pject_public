@@ -10,10 +10,15 @@ class WorkordersController < ApplicationController
         flash[:success] = "Workorder created!"
         redirect_to root_url
       else
-        render 'static_pages/home'
+        flash[:error] = 'All fields must be filled to create a new workorder'
+        redirect_to root_url
       end
     end
   
   def destroy
   end
+  def show
+    @workorder=Workorder.find(params[:id])
+  end
+
 end

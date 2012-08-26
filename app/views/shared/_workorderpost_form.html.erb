@@ -1,8 +1,17 @@
+<br/>
 <h2>Start new workorder</h2>
-<%= form_for(@workorder) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= form_for @workorder, :html => { :class => 'form-vertical' }  do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :customer, placeholder: "Name of customer..." %>
+	<%= f.text_field :street, placeholder: "Street Address" %>
+	<%= f.text_field :city, placeholder: "City" %>
+	<%= f.text_field :state, placeholder: "State" %>
+	<%= f.text_field :phonenumber, placeholder: "Phone Number" %>
+	<%= f.text_field :contact, placeholder: "Name of Contact" %>
+	<%= f.text_field :chronic_wo_date, placeholder: "Type in the date and time" %>
+	<%= f.text_field :wo_duration, placeholder:  "Estimated duration in hours" %>
+	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %>
+  	<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
   </div>
-  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 <% end %>

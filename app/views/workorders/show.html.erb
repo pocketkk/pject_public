@@ -1,0 +1,31 @@
+
+<% provide(:title, @workorder.customer) %>
+	<h1><%= @workorder.customer %></h1>
+			<hr>
+	<div class="row">
+	  <div class="span4">
+		<section>	<h3>Customer Information</h3><br/>
+					<%= @workorder.street %><br/>
+					<%= @workorder.city%>, <%= @workorder.state%><br/>
+					<br/>
+					<%= @workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%><br/>
+					The workorder is expected to take <b><%=@workorder.wo_duration%> hours</b>.<br/>
+					</br/>
+					The on-site contact is:
+					<%= @workorder.contact%><br/>
+					Phone Number: 
+					<%= number_to_phone(@workorder.phonenumber)%>
+					<br/>
+					<br/>
+					<b><u>Additional Notes:</u></b>
+					<%=@workorder.misc_notes%>
+		</section>
+	  </div>
+	  <div class="span8">
+			<section><h3>Equipment Information</h3>
+			</section>
+	    
+
+	   </div>
+	</div>
+	<section align="right">Started by <%=@workorder.user.name%> <%= time_ago_in_words(@workorder.created_at) %> ago.</section>

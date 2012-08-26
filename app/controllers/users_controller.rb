@@ -49,8 +49,6 @@ class UsersController < ApplicationController
   -Remove password from updated fields when edited by admin
 =end    
     private
-
-     
    
       def correct_user
         @user=User.find(params[:id])

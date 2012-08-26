@@ -1,5 +1,5 @@
 <li>
-  <span class="customer"><%= workorder.customer %></span>
+  <span class="customer"><%= link_to workorder.customer, workorder %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(workorder.created_at) %> ago.
   </span>
