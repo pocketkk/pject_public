@@ -25,7 +25,7 @@ namespace :db do
           street = "12908 Washington Blvd"
           city = "Oakland"
           state = "CA"
-          phone = "5106631259"
+          phone = 5106631259
           contact = "Joseph Black"
           date = Time.now + 5.days
           duration = "4"
