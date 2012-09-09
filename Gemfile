@@ -11,6 +11,7 @@ gem 'chronic'
 gem 'simple_form'
 gem 'nested_form'
 gem 'css3-progress-bar-rails'
+gem 'simple_calendar','~> 0.0.5'
 
 
 # Bundle edge Rails instead:

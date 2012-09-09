@@ -8,6 +8,8 @@ class Workorder < ActiveRecord::Base
   has_many :assets
   accepts_nested_attributes_for :assets, :allow_destroy => true
   
+  has_calendar :start_time => :wo_date
+  
  
   validates :user_id, presence: true
   validates :customer, presence: true

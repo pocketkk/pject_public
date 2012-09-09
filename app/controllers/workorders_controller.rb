@@ -2,6 +2,10 @@ class WorkordersController < ApplicationController
   before_filter :signed_in_user
   
   def index
+    @old_workorders=Workorder.all(:order => 'wo_date ASC')
+    @workorders=current_user.workorders.all(:order => 'wo_date ASC')
+    @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
   
   def create

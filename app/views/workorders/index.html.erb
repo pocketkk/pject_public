@@ -1,0 +1,23 @@
+
+<div id="articles">
+	<h2 id="month">
+	  <%= link_to "<", date: @date.prev_month %>
+	  <%= @date.strftime("%B %Y") %>   
+	  <%= link_to ">", date: @date.next_month %>
+	</h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @workorders_by_date[date] %>
+      <% @workorders_by_date[date].each do |workorder| %>
+		<div class="calendar_event_time">
+			<%= workorder.wo_date.strftime("%I:%M %p")%> <em><%=workorder.wo_duration%> hr est.</em>
+		</div>
+		<div class="calendar_event">
+			<%= link_to workorder.customer, workorder %>
+		</div>
+      <% end %>
+    </ul>
+    <% end %>
+  <% end %>
+</div>
+

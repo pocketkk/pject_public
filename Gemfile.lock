@@ -142,6 +142,8 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    simple_calendar (0.0.7)
+      rails (>= 3.0)
     simple_form (2.0.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -186,6 +188,7 @@ DEPENDENCIES
   rails (= 3.2.7)
   rspec-rails (= 2.10.0)
   sass-rails (~> 3.2.3)
+  simple_calendar (~> 0.0.5)
   simple_form
   sqlite3 (= 1.3.5)
   uglifier (= 1.2.3)
