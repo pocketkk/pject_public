@@ -8,6 +8,9 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'bootstrap-datepicker-rails'
 gem 'chronic'
+gem 'simple_form'
+gem 'nested_form'
+gem 'css3-progress-bar-rails'
 
 
 # Bundle edge Rails instead:
@@ -16,6 +19,7 @@ gem 'chronic'
 group :development do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails','2.10.0'
+  gem 'nifty-generators'
 end
 
 gem 'annotate', '2.5.0', group: :development
@@ -56,3 +60,5 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+gem "mocha", :group => :test

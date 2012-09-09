@@ -1,0 +1,19 @@
+<% title "Options" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Asset</th>
+  </tr>
+  <% for option in @options %>
+    <tr>
+      <td><%= option.name %></td>
+      <td><%= option.asset_id %></td>
+      <td><%= link_to "Show", option %></td>
+      <td><%= link_to "Edit", edit_option_path(option) %></td>
+      <td><%= link_to "Destroy", option, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Option", new_option_path %></p>

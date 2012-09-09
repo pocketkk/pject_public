@@ -56,6 +56,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    css3-progress-bar-rails (0.4.0)
+      rails (>= 3.1)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -81,8 +83,13 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.1)
     mime-types (1.19)
+    mocha (0.12.3)
+      metaclass (~> 0.0.1)
     multi_json (1.3.6)
+    nested_form (0.2.3)
+    nifty-generators (0.4.6)
     nokogiri (1.5.5)
     pg (0.12.2)
     polyglot (0.3.3)
@@ -135,6 +142,9 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    simple_form (2.0.2)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -165,13 +175,18 @@ DEPENDENCIES
   capybara (= 1.1.2)
   chronic
   coffee-rails (~> 3.2.2)
+  css3-progress-bar-rails
   factory_girl_rails (= 1.4.0)
   faker (= 1.0.1)
   jquery-rails (= 2.0.0)
+  mocha
+  nested_form
+  nifty-generators
   pg (= 0.12.2)
   rails (= 3.2.7)
   rspec-rails (= 2.10.0)
   sass-rails (~> 3.2.3)
+  simple_form
   sqlite3 (= 1.3.5)
   uglifier (= 1.2.3)
   will_paginate (= 3.0.3)

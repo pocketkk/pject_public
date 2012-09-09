@@ -1,8 +1,13 @@
 require 'chronic'
 
 class Workorder < ActiveRecord::Base
-  attr_accessible :customer, :street, :city, :state, :wo_date, :wo_duration, :chronic_wo_date, :phonenumber, :contact, :misc_notes
+  attr_accessible :customer, :street, :city, :state, :wo_date, 
+                  :wo_duration, :chronic_wo_date, :phonenumber, 
+                  :contact, :misc_notes, :assets_attributes
   belongs_to :user
+  has_many :assets
+  accepts_nested_attributes_for :assets, :allow_destroy => true
+  
  
   validates :user_id, presence: true
   validates :customer, presence: true
@@ -22,5 +27,6 @@ class Workorder < ActiveRecord::Base
  def chronic_wo_date=(s)
    self.wo_date = Chronic.parse(s) if s
  end
+
 
 end

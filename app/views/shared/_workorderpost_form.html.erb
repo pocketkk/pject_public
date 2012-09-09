@@ -1,17 +1,46 @@
-<br/>
-<h2>Start new workorder</h2>
-<%= form_for @workorder, :html => { :class => 'form-vertical' }  do |f| %>
+<%= nested_form_for @workorder, :html => { :class => 'form-vertical' }  do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :customer, placeholder: "Name of customer..." %>
-	<%= f.text_field :street, placeholder: "Street Address" %>
-	<%= f.text_field :city, placeholder: "City" %>
-	<%= f.text_field :state, placeholder: "State" %>
-	<%= f.text_field :phonenumber, placeholder: "Phone Number" %>
-	<%= f.text_field :contact, placeholder: "Name of Contact" %>
-	<%= f.text_field :chronic_wo_date, placeholder: "Type in the date and time" %>
-	<%= f.text_field :wo_duration, placeholder:  "Estimated duration in hours" %>
-	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %>
-  	<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-  </div>
+    <%= f.label :customer, "Customer:" %>
+	<%= f.text_field :customer %>
+	<%= f.label :street, "Street Address:" %>
+	<%= f.text_field :street %>
+	<%= f.label :city, "City:" %>
+	<%= f.text_field :city %>
+	<%= f.label :state, "State:"%>
+	<%= f.text_field :state %>
+	<%= f.label :phonenumber, "Phone Number:" %>
+	<%= f.text_field :phonenumber %>
+	<%= f.label :contact, "Contact:"%>
+	<%= f.text_field :contact %>
+	<%= f.label :chronic_wo_date, "Date and Time:" %>
+	<%= f.text_field :chronic_wo_date %>
+	<%= f.label :wo_duration, "Estimated duration in hours:" %>
+	<%= f.text_field :wo_duration %>
+	<%= f.label :misc_notes, "Additional notes:"%>
+	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br /><br />
+	<h3>Equipment & Chemicals</h3><hr />
+	<%= f.fields_for :assets do |m| %>
+		<%= m.label :name, "Model Number/Machine type"%>
+		<%= m.text_field :name %>
+		<%= m.label :serial, "Serial Number (if known)" %>
+		<%= m.text_field :serial %>
+		<center><%= m.link_to_remove "Remove Equipment" %></center>
+		<%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>
+			<%= o.label :name, "Equipment Option" %>
+			<%= o.select :name, Option::EQUIPMENT_OPTIONS %>
+			<center><%= o.link_to_remove "Remove Option" %></center>
+		<% end %>
+		<br /><%= m.link_to_add "Add Equipment Option", :options%>
+		<%= m.fields_for :chemicals, :html => {:class => "chemical_post"} do |c| %>
+			<%= c.label :name, "Product" %>
+			<%= c.text_field :name %>
+			<%= c.label :quantity, "Quantity" %>
+			<%= c.text_field :quantity %>
+			<center><%= c.link_to_remove "Remove Product"%></center>
+		<% end %>
+		  <br /><%= m.link_to_add "Add Product", :chemicals%>
+	<% end %>
+<%=f.link_to_add "Add Equipment", :assets %>
+	<br /><br />
+  	<center><%= f.submit "Submit", class: "btn btn-large btn-primary" %></center>
 <% end %>

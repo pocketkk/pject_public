@@ -1,10 +1,10 @@
-
+<%= link_to "Edit", edit_workorder_path(@workorder) %>
 <% provide(:title, @workorder.customer) %>
 	<h1><%= @workorder.customer %></h1>
 			<hr>
 	<div class="row">
 	  <div class="span4">
-		<section>	<h3>Customer Information</h3><br/>
+		<section>	<h3 align="center">Customer Information</h3><hr/>
 					<%= @workorder.street %><br/>
 					<%= @workorder.city%>, <%= @workorder.state%><br/>
 					<br/>
@@ -14,15 +14,43 @@
 					The on-site contact is:
 					<%= @workorder.contact%><br/>
 					Phone Number: 
-					<%= number_to_phone(@workorder.phonenumber)%>
+					<%= number_to_phone(@workorder.phonenumber, :area_code => true)%>
 					<br/>
 					<br/>
 					<b><u>Additional Notes:</u></b>
 					<%=@workorder.misc_notes%>
 		</section>
 	  </div>
-	  <div class="span8">
-			<section><h3>Equipment Information</h3>
+	  <div class="span4">
+			<section><h3 align="center">Equipment Information</h3><hr />
+				<table width=100%>
+					<tr>
+						<td>Model</td>
+						<td>Serial Number</td>
+						<td>Options</td>
+					</tr>
+					<% @workorder.assets.each do |m| %>
+					<tr>
+						<td valign="top">
+							<%=m.name%>
+						</td>
+						<td valign="top">
+							<%=m.serial%>
+						</td>
+						<td>
+							<table>
+								<% m.options.each do |o| %>
+								<tr>
+									<td>
+										<%= o.name %>
+									</td>
+								</tr>
+								<% end %>
+							</table>
+						</td>
+					</tr>
+					<% end %>
+				</table>
 			</section>
 	    
 

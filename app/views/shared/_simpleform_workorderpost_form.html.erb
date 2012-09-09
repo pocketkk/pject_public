@@ -1,0 +1,18 @@
+<br/>
+<h2>Start new workorder</h2>
+<%= simple_form_for @workorder, :html => { :class => 'form-vertical' }  do |f| %>
+	
+	<%= f.input :customer %>
+	<%= f.input :street %>
+	<%= f.input :city %>
+	<%= f.input :state %>
+	<%= f.input :phonenumber %>
+	<%= f.input :contact %>
+	<%= f.input :chronic_wo_date %>
+	<%= f.input :wo_duration %>
+	<%= f.input :misc_notes %>
+	<%= f.association :machines %>
+	<%= f.button :submit %>
+<% end %>
+	
+	

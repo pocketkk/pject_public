@@ -1,0 +1,16 @@
+<% title "Option" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @option.name %>
+</p>
+<p>
+  <strong>Asset:</strong>
+  <%= @option.asset_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_option_path(@option) %> |
+  <%= link_to "Destroy", @option, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", options_path %>
+</p>

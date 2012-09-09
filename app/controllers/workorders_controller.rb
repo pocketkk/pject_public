@@ -16,9 +16,23 @@ class WorkordersController < ApplicationController
     end
   
   def destroy
+    Workorder.find(params[:id]).destroy
+    flash[:success] = "Workorder Deleted"
+    redirect_to root_path
   end
   def show
     @workorder=Workorder.find(params[:id])
+  end
+  def edit
+    @workorder=Workorder.find(params[:id])
+  end
+  def update
+    @workorder= Workorder.find(params[:id])
+    if @workorder.update_attributes(params[:workorder])
+      redirect_to @workorder, :notice  => "Successfully updated workorder."
+    else
+      render :action => 'edit'
+    end
   end
 
 end

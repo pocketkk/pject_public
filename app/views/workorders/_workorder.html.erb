@@ -1,6 +1,32 @@
 <li>
-  <span class="customer"><%= link_to workorder.customer, workorder %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(workorder.created_at) %> ago.
-  </span>
+	<span class="lead">
+		<%= link_to workorder.customer.titleize, workorder %>
+	</span><br />
+	
+	<span class="timestamp">
+		<%= workorder.street.titleize%>,  <%= workorder.city.titleize%>, <%= workorder.state.upcase%>
+	</span><br />
+	
+	<span class="timestamp">
+    	Contact:  <%= workorder.contact %>  |  
+		Phone:  <%= number_to_phone(workorder.phonenumber, :area_code => true) %>
+  	</span><br />
+
+	<span class="timestamp">
+    	<%= workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
+	</span><br />
+	
+		<% workorder.assets.each do |a| %>
+				<div id="equipment"><%= a.name %></div>
+				<div><%= progress_bar(33, :color => 'blue', :rounded => true, :tiny => true) %></div>
+		<% end %>
+		<br />
+  	<span class="edit_or_delete">
+		<center>
+			<%= link_to "Edit", edit_workorder_path(workorder) %>  |  
+  			<%= link_to "Remove", workorder, :confirm => 'Are you sure?', :method => :delete %>
+		</center>
+	</span>
 </li>
+
+

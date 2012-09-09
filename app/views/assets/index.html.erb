@@ -1,0 +1,25 @@
+<% provide(:title, "Equipment") %>
+
+<table width="100%">
+  <tr>
+    <th>Name</th>
+    <th>Serial</th>
+    <th>Workorder</th>
+    <th>Status</th>
+    <th>Ready?</th>
+  </tr>
+  <% for asset in @assets %>
+    <tr>
+      <td><%= asset.name %></td>
+      <td><%= asset.serial %></td>
+      <td><%= asset.workorder_id %></td>
+      <td><%= asset.status %></td>
+      <td><%= asset.ready? %></td>
+      <td><%= link_to "Show", asset %></td>
+      <td><%= link_to "Edit", edit_asset_path(asset) %></td>
+      <td><%= link_to "Destroy", asset, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Asset", new_asset_path %></p>

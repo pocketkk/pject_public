@@ -11,7 +11,50 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120826042941) do
+ActiveRecord::Schema.define(:version => 20120909040528) do
+
+  create_table "assets", :force => true do |t|
+    t.string   "name"
+    t.string   "serial"
+    t.integer  "workorder_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "status"
+    t.boolean  "ready"
+  end
+
+  create_table "chemicals", :force => true do |t|
+    t.string   "name"
+    t.integer  "quantity"
+    t.integer  "asset_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "fulfillments", :force => true do |t|
+    t.integer  "machine_id"
+    t.integer  "workorder_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "machines", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "machines_workorders", :id => false, :force => true do |t|
+    t.integer "workorder_id"
+    t.integer "machine_id"
+  end
+
+  create_table "options", :force => true do |t|
+    t.string   "name"
+    t.integer  "asset_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

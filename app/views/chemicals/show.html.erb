@@ -1,0 +1,20 @@
+<% title "Chemical" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @chemical.name %>
+</p>
+<p>
+  <strong>Quantity:</strong>
+  <%= @chemical.quantity %>
+</p>
+<p>
+  <strong>Asset:</strong>
+  <%= @chemical.asset_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_chemical_path(@chemical) %> |
+  <%= link_to "Destroy", @chemical, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", chemicals_path %>
+</p>

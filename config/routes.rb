@@ -1,8 +1,14 @@
 Pject::Application.routes.draw do
 
+  resources :options
+
+  resources :chemicals
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :workorders
+  resources :assets
+
 
   root to: 'static_pages#home'
   
