@@ -13,7 +13,7 @@
 			<%= workorder.wo_date.strftime("%I:%M %p")%> <em><%=workorder.wo_duration%> hr est.</em>
 		</div>
 		<div class="calendar_event">
-			<%= link_to workorder.customer, workorder %>
+			<%= link_to workorder.customer, edit_workorder_path(workorder) %>
 		</div>
       <% end %>
     </ul>

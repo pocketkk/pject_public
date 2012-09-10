@@ -1,7 +1,9 @@
 <div class="span4"><br/>
-     <h2>Workorders Feed</h2><hr />
-     <ol class="workorders">
-       
+     <h2>Workorders Feed</h2>
+     <ol class="users">
+       	<% @updates.each do |a| %>
+				<li><span class="timestamp"><%= a.feed_item %> < <%=time_ago_in_words(a.created_at) %> ago. ></span></li>
+		<% end %>
      </ol>
 
 

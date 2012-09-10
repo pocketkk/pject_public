@@ -1,0 +1,12 @@
+<% title "Update" %>
+
+<p>
+  <strong>Feed Item:</strong>
+  <%= @update.feed_item %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_update_path(@update) %> |
+  <%= link_to "Destroy", @update, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", updates_path %>
+</p>

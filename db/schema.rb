@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120909040528) do
+ActiveRecord::Schema.define(:version => 20120909232956) do
 
   create_table "assets", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(:version => 20120909040528) do
   create_table "options", :force => true do |t|
     t.string   "name"
     t.integer  "asset_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "updates", :force => true do |t|
+    t.string   "feed_item"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -11,6 +11,9 @@ class WorkordersController < ApplicationController
   def create
       @workorder = current_user.workorders.build(params[:workorder])
       if @workorder.save
+        @update=Update.new
+        @update.feed_item=current_user.name << " created a new workorder for " << @workorder.customer.titleize << "."
+        @update.save
         flash[:success] = "Workorder created!"
         redirect_to root_url
       else
@@ -20,7 +23,11 @@ class WorkordersController < ApplicationController
     end
   
   def destroy
-    Workorder.find(params[:id]).destroy
+    @workorder=Workorder.find(params[:id])
+    @update=Update.new
+    @update.feed_item=current_user.name << " deleted the workorder for " << @workorder.customer.titleize << "."
+    @workorder.destroy
+    @update.save
     flash[:success] = "Workorder Deleted"
     redirect_to root_path
   end
@@ -33,7 +40,10 @@ class WorkordersController < ApplicationController
   def update
     @workorder= Workorder.find(params[:id])
     if @workorder.update_attributes(params[:workorder])
-      redirect_to @workorder, :notice  => "Successfully updated workorder."
+      redirect_to root_url, :notice  => "Successfully updated workorder."
+      @update=Update.new
+      @update.feed_item=current_user.name << " updated the workorder for " << @workorder.customer.titleize << "."
+      @update.save
     else
       render :action => 'edit'
     end

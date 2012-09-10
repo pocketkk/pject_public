@@ -1,5 +1,7 @@
 Pject::Application.routes.draw do
 
+  resources :updates
+
   resources :options
 
   resources :chemicals
