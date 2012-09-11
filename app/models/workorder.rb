@@ -27,6 +27,7 @@ class Workorder < ActiveRecord::Base
  end
  
  def chronic_wo_date=(s)
+   Chronic.time_class=Time.zone
    self.wo_date = Chronic.parse(s) if s
  end
 
