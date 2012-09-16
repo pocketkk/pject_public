@@ -2,7 +2,17 @@
 
 /* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
+$grayDarkest: #696969;
+$grayMedium: #adadad;
+$grayLightest: #e3e3e3;
+
+
+$grayMediumLight: #cccccc;
+$grayDark: #333333;
+$grayLight: #eaeaea;
+$blueDark:  3486D0; 
+
+
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -13,9 +23,24 @@ $grayMediumLight: #eaeaea;
 html {
 	overflow-y: scroll;
 }
+.container#window {
+	background: $grayLightest;
+	margin-top: -20px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-left: 2px solid #000;
+	border-right: 2px solid #000;
+}
+
+
 body {
 	padding-top:  60px;
+	background: $grayDarkest;
+	background-image:url(/titanium-texture.jpg);
+
 }
+
 section {
 	overflow: auto;
 }
@@ -34,18 +59,26 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1;
 }
 h1 {
-	font-size: 3em;
+	font-family: 'Electrolize', sans-serif;
+	font-size: 1em;
 	letter-spacing: -2px;
 	margin-bottom:  30px;
 	text-align: center;
 }
+.sign_in {
+	font-size: 2em;
+}
 h2{
 	font-size: 1.7em;
-	letter-spacing: -1px;
-	margin-bottom: 30px;
+	font-family: 'Electrolize', sans-serif;
+	margin-bottom: 10px;
 	text-align: center;
 	font-weight: normal;
-	color: #999;
+	color: $grayDarkest;
+}
+
+#role_type {
+	font-family: 'Electrolize', sans-serif;
 }
 
 P{
@@ -57,6 +90,7 @@ P{
 
 #logo {
 	float: left;
+	font-family: 'Electrolize', sans-serif;
 	margin-right: 10px;
 	font-size: 1.7em;
 	color:  #fff;
@@ -72,13 +106,20 @@ P{
 	text-decoration:  none;
 }
 
+#lower_header {
+	margin-top: -10px;
+	margin-left: 3px;
+	padding-top: 20px;
+	padding-bottom: 11px;
+
+}
 /* Footer */
 
 footer {
 	margin-top: 45px;
 	padding-top: 5px;
-	border-top: 1px solid #eaeaea;
-	color: #999
+	border-top: 1px solid $grayDarkest;
+	color: #999;
 }
 
 footer a {
@@ -171,13 +212,26 @@ input, textarea, select, .uneditable-input {
   margin: 0;
   li {
     overflow: auto;
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    padding: 5px 0;
+    border-top: 1px solid $grayDarkest;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $grayDarkest;
     }
   }
 }
+
+.updates_feed {
+	list-style: none;
+	margin: 0;
+	li {
+		padding: 10px 0;	
+		margin-bottom: -10px;
+		border-top: 1px solid $grayDarkest;
+	
+	}
+
+}
+
 /* workorders */
 
 .workorders {
@@ -186,14 +240,32 @@ input, textarea, select, .uneditable-input {
 
   li {
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    border-top: 1px solid $grayDarkest;
   }
+}
+.workorder_today {
+	text-align: right;
+	color: green;
+	margin-bottom: -30px;
+
+}
+.workorder_tomorrow {
+	text-align: right;
+	color: blue;
+	margin-bottom: -30px;
+
+}
+.workorder_pastdue {
+	text-align: right;
+	color: red;
+	margin-bottom: -30px;
+
 }
 .customer {
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+/*  color: $grayLight; */
 }
 .gravatar {
   float: left;
@@ -213,9 +285,10 @@ aside {
 div.fields {
 	-moz-border-radius: 15px;
 	border-radius: 15px;
+	border: 1px solid #bbb;
 	padding: 10px;
 	margin-bottom: 10px;
-	background-color: #f0f0f0;
+	background-color: #fafafa;
 	textarea: #c0c0c0;
 	}
 #workorder_assets_attributes_0_chemicals_attributes_new_chemicals_name {
@@ -293,4 +366,21 @@ div.fields {
   padding-left: 20px;
 }
 
+.wororder_feed_time {
+	font-size: 9px;
+	padding-left: 4px;
+	text-align: right;
+	
+
+}
+.workorder_feed_item {
+	margin-top: -5px;
+
+}
+
+.gravatar_workorder_feed {
+	padding-left: 10px;
+	padding-right: 500px;
+	margin-top: 100px;
+}	
 

@@ -1,8 +1,16 @@
 <div class="span4"><br/>
      <h2>Workorders Feed</h2>
-     <ol class="users">
+     <ol class="updates_feed">
        	<% @updates.each do |a| %>
-				<li><span class="timestamp"><%= a.feed_item %> < <%=time_ago_in_words(a.created_at) %> ago. ></span></li>
+				<li>
+					<div class="workorder_feed">
+						<a href="<%= user_path(current_user) %>">
+						  <%= gravatar_for a.user, size: 25%> 
+						</a>
+						<div class="work_order_feed_item"><%= a.feed_item %></div>
+					</div>
+				<div class="wororder_feed_time"><%=time_ago_in_words(a.created_at) %> ago.</div>
+					</li>
 		<% end %>
      </ol>
 

@@ -4,9 +4,9 @@
 <h1>
   <%= current_user.name %>
 </h1>
-<span>
+<span id="role_title">
   <%= current_user.role.titleize%>
 </span>
-<span>
+<span id="role_title">
   <%= pluralize(current_user.workorders.count, " Workorders") %>
 </span>

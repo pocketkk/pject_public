@@ -13,6 +13,7 @@ class WorkordersController < ApplicationController
       if @workorder.save
         @update=Update.new
         @update.feed_item=current_user.name << " created a new workorder for " << @workorder.customer.titleize << "."
+        @update.user_id=current_user.id
         @update.save
         flash[:success] = "Workorder created!"
         redirect_to root_url
@@ -26,6 +27,7 @@ class WorkordersController < ApplicationController
     @workorder=Workorder.find(params[:id])
     @update=Update.new
     @update.feed_item=current_user.name << " deleted the workorder for " << @workorder.customer.titleize << "."
+    @update.user_id=current_user.id
     @workorder.destroy
     @update.save
     flash[:success] = "Workorder Deleted"
@@ -43,6 +45,7 @@ class WorkordersController < ApplicationController
       redirect_to root_url, :notice  => "Successfully updated workorder."
       @update=Update.new
       @update.feed_item=current_user.name << " updated the workorder for " << @workorder.customer.titleize << "."
+      @update.user_id=current_user.id
       @update.save
     else
       render :action => 'edit'

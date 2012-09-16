@@ -1,3 +1,5 @@
+<ol class="users">
+	<li>
 <%= nested_form_for @workorder, :html => { :class => 'form-vertical' }  do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
     <%= f.label :customer, "Customer:" %>
@@ -18,7 +20,7 @@
 	<%= f.text_field :wo_duration %>
 	<%= f.label :misc_notes, "Additional notes:"%>
 	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br /><br />
-	<h3>Equipment & Chemicals</h3><hr />
+	<h3>Equipment & Chemicals</h3><br />
 	<%= f.fields_for :assets do |m| %>
 		<%= m.label :name, "Model Number/Machine type"%>
 		<%= m.text_field :name %>
@@ -44,3 +46,6 @@
 	<br /><br />
   	<center><%= f.submit "Submit", class: "btn btn-large btn-primary" %></center>
 <% end %>
+
+	</li>
+</ol>

@@ -1,8 +1,17 @@
 <li>
+	<% if workorder.wo_date.to_date == Date.today %>
+		<div class="workorder_today">**Today**</div><br />
+	<% end %>
+	<% if workorder.wo_date.to_date-1 == Date.today %>
+		<div class="workorder_tomorrow">**Tomorrow**</div><br />
+	<% end %>
+	<% if workorder.wo_date.to_date < Date.today %>
+		<div class="workorder_pastdue">**Past Due**</div><br />
+	<% end %>
 	<span class="lead">
-		<%= link_to workorder.customer.titleize, workorder %>
-	</span><br />
-	
+		<%= link_to workorder.customer.titleize, workorder %><br />	
+	</span>
+
 	<span class="timestamp">
 		<%= workorder.street.titleize%>,  <%= workorder.city.titleize%>, <%= workorder.state.upcase%>
 	</span><br />
@@ -18,7 +27,7 @@
 	
 		<% workorder.assets.each do |a| %>
 				<div id="equipment"><%= a.name %></div>
-				<div><%= progress_bar(33, :color => 'blue', :rounded => true, :tiny => true) %></div>
+				<div><%= progress_bar(a.workorder.wo_duration, :color => 'blue', :rounded => true, :tiny => true) %></div>
 		<% end %>
 		<br />
   	<span class="edit_or_delete">
