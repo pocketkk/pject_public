@@ -12,7 +12,7 @@ namespace :db do
                   name: "Logan Crump",
                   role: "Rebuilder",
                   password: "testing",
-                  password_confirmation: "testing"
+                  password_confirmation: "testing",
                   current_branch: "350")
   5.times do |n|
       name  = Faker::Name.name
