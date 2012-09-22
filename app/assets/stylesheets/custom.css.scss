@@ -304,6 +304,9 @@ div.fields {
 	font-size: .75em;
 	text-align: right;
 	margin-bottom: -1px;
+	em {
+		color: green;
+	}
 }
 
 .calendar_event_time {
@@ -384,3 +387,7 @@ div.fields {
 	margin-top: 100px;
 }	
 
+.asset_options {
+	margin-left: 20px;
+
+}

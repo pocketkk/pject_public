@@ -12,10 +12,14 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :role, :password, :password_confirmation
+  attr_accessible :email, :name, :role, :password, :password_confirmation, :current_branch
   has_secure_password
   has_many :workorders
   has_many :updates
+  
+  attr_accessor :updating_password
+  
+  USER_ROLES = ['Regional Manager', 'Branch Manager', 'Sales', 'SSR', 'Supervisor', 'Rebuild', 'Office','Installer', 'Production']
   
   before_save { |user| user.email = email.downcase }
 
@@ -26,8 +30,12 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, 
                     uniqueness: { case_sensitive: false }
   validates :role, presence: true
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, :if => :should_validate_password?
+  validates :password_confirmation, presence: true, :if => :should_validate_password?
+  
+  def should_validate_password?
+    updating_password || new_record?
+  end
   
   private
       def create_remember_token

@@ -1,0 +1,17 @@
+<% provide(:title, @machine.model_number) %>
+	<h1><%= @machine.model_number %> | <%= @machine.serial_number %></h1>
+			<hr>
+	<div class="row">
+	  <div class="span4">
+
+	  </div>
+	  <div class="span8">
+			<section><h2>Equipment Information</h2>
+				<%=@machine.model_number%><br/>
+				<%=@machine.serial_number%><br/>
+				Assigned to: <%=@machine.workorders.first.customer%><br/>
+			</section>
+	    
+
+	   </div>
+	</div>

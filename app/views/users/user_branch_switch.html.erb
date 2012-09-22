@@ -1,0 +1,16 @@
+<% provide(:title, "Switch Branch") %> 
+<h1>Switch Branch</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+	  <%= f.label :name %>
+
+	  <%= f.label :current_branch, "Branch" %>
+      <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -3,11 +3,12 @@ class WorkordersController < ApplicationController
   
   def index
     @old_workorders=Workorder.all(:order => 'wo_date ASC')
-    @workorders=current_user.workorders.all(:order => 'wo_date ASC')
+    @workorders=Workorder.wo_current_branch(current_user.current_branch).ascending
+  # workorder lookup for calendar    
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
-  
+    
   def create
       @workorder = current_user.workorders.build(params[:workorder])
       if @workorder.save
@@ -38,6 +39,14 @@ class WorkordersController < ApplicationController
   end
   def edit
     @workorder=Workorder.find(params[:id])
+    @asset_status_options = { "New - Ordered"    => "0" ,
+                               "New - On Site"    => "10" ,
+                               "New - Tested"     => "99" ,
+                               "Used - Ordered"   => "1"  ,
+                               "Used - On Site"   => "11" ,
+                               "Used - Torn Down" => "25" ,
+                               "Used - Rebuilt"   => "76" ,
+                               "Used - Tested"    => "100"}
   end
   def update
     @workorder= Workorder.find(params[:id])

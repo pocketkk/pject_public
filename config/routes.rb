@@ -17,6 +17,9 @@ Pject::Application.routes.draw do
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/rebuild', to: 'static_pages#rebuilder_view'
+  
+  match '/switchbranch', to: 'users#user_branch_switch'
   
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'

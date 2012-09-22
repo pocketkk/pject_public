@@ -21,6 +21,11 @@
       <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
 
+	  <%= f.label :current_branch, "Branch" %>
+      <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
+
+	  <% @user.updating_password = true %>
+
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
 

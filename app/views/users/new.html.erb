@@ -13,7 +13,10 @@
       <%= f.text_field :email %>
 
       <%= f.label :role %>
-      <%= f.text_field :role %>
+      <%= f.select :name, User::USER_ROLES %>
+
+	  <%= f.label :current_branch %>
+	  <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
 
       <%= f.label :password %>
       <%= f.password_field :password %>

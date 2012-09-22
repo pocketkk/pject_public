@@ -1,0 +1,24 @@
+<div class="span4">
+	<h2>Workorders needing serial numbers</h2>
+	<ol class="workorders">
+		<% for asset in @assets_without_serials %>
+			<li>
+				<span>
+					<%= link_to asset.name, edit_workorder_path(asset.workorder) %>  -Serial#:  
+					<% if asset.serial==""%>
+					<%= link_to "Add Serial Number", edit_workorder_path(asset.workorder)%>
+					<% else %>
+					<%= asset.serial %>
+					<% end %>
+				</span>
+					<% asset.options.each do |o|%>
+					<span class="asset_options">
+						 - <%= o.name %>
+					</span>	
+					<% end %>
+				<span>Customer:  <%= asset.workorder.customer %></span>
+				<span>Due:  <%= asset.workorder.wo_date.strftime("%B %d, %Y at %I:%M %p") %></span>
+			</li>
+		<% end %>
+	</ol>
+</div>

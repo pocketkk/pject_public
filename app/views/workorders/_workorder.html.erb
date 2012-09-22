@@ -26,8 +26,8 @@
 	</span><br />
 	
 		<% workorder.assets.each do |a| %>
-				<div id="equipment"><%= a.name %></div>
-				<div><%= progress_bar(a.workorder.wo_duration, :color => 'blue', :rounded => true, :tiny => true) %></div>
+				<div id="equipment"><%= a.name %><% if a.ready==true%> <em>Complete</em><%end%></div>
+				<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
 		<% end %>
 		<br />
   	<span class="edit_or_delete">

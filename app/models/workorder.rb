@@ -3,12 +3,16 @@ require 'chronic'
 class Workorder < ActiveRecord::Base
   attr_accessible :customer, :street, :city, :state, :wo_date, 
                   :wo_duration, :chronic_wo_date, :phonenumber, 
-                  :contact, :misc_notes, :assets_attributes
+                  :contact, :misc_notes, :assets_attributes, :branch
   belongs_to :user
   has_many :assets
   accepts_nested_attributes_for :assets, :allow_destroy => true
   
-
+  #scope :current_branch, where("branch=350").order("wo_date ASC")
+  scope :wo_current_branch, lambda{ |branch_number| where('branch = ?', branch_number)  }
+  scope :ascending, order("wo_date ASC")
+  
+  BRANCH_OPTIONS = ['340','350','360']
  
   validates :user_id, presence: true
   validates :customer, presence: true

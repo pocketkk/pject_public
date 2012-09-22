@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user, only: :destroy
+  
   def show
     @user = User.find(params[:id])
     @workorders = @user.workorders.paginate(page: params[:page])
@@ -31,13 +32,18 @@ class UsersController < ApplicationController
   def edit
       @user = User.find(params[:id])
   end
+  
+  def user_branch_switch
+      @user = User.find(current_user)
+  end
+  
   def update
         @user = User.find(params[:id])
         if @user.update_attributes(params[:user]) || current_user.admin?
           flash[:success] = "Profile updated"
           if @user=current_user  
-            sign_in @user
-            redirect_to @user
+            sign_in (current_user)
+            redirect_to signin_path
           end
         else
           render 'edit'

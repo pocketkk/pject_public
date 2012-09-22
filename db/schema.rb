@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120915043211) do
+ActiveRecord::Schema.define(:version => 20120921033116) do
 
   create_table "assets", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120915043211) do
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "current_branch"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20120915043211) do
     t.integer  "phonenumber", :limit => 255
     t.string   "contact"
     t.string   "misc_notes"
+    t.string   "branch"
   end
 
 end

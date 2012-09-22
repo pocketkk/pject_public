@@ -4,37 +4,28 @@
 	<%= render 'shared/error_messages', object: f.object %>
     <%= f.label :customer, "Customer:" %>
 	<%= f.text_field :customer %>
-	<%= f.label :street, "Street Address:" %>
-	<%= f.text_field :street %>
-	<%= f.label :city, "City:" %>
-	<%= f.text_field :city %>
-	<%= f.label :state, "State:"%>
-	<%= f.text_field :state %>
-	<%= f.label :phonenumber, "Phone Number:" %>
-	<%= f.text_field :phonenumber %>
-	<%= f.label :contact, "Contact:"%>
-	<%= f.text_field :contact %>
 	<%= f.label :chronic_wo_date, "Date and Time:" %>
 	<%= f.text_field :chronic_wo_date %>
-	<%= f.label :wo_duration, "Estimated duration in hours:" %>
-	<%= f.text_field :wo_duration %>
 	<%= f.label :misc_notes, "Additional notes:"%>
 	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
-	<%= f.label :branch, "Branch"%>
-	<%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
-	<h3>Equipment & Chemicals</h3><br />
+	<h3>Equipment</h3><br />
 	<%= f.fields_for :assets do |m| %>
 		<%= m.label :name, "Model Number/Machine type"%>
 		<%= m.text_field :name %>
-		<%= m.label :serial, "Serial Number (if known)" %>
+		<%= m.label :serial, "Serial Number" %>
 		<%= m.text_field :serial %>
+		<%= m.label :status, "Equipment Status"%>
+		<%= m.select :status, options_for_select(@asset_status_options, m.object.status) %>		
+		<%= m.label :ready, "Ready for Install?"%>
+		<%= m.select :ready, {"Yes" => true, "No" => false}%>
 		<center><%= m.link_to_remove "Remove Equipment" %></center>
 		<%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>
 			<%= o.label :name, "Equipment Option" %>
 			<%= o.select :name, Option::EQUIPMENT_OPTIONS %>
 			<center><%= o.link_to_remove "Remove Option" %></center>
 		<% end %>
-		<br /><%= m.link_to_add "Add Equipment Option", :options%>
+		<br />
+		<%= m.link_to_add "Add Equipment Option", :options%>
 		<%= m.fields_for :chemicals, :html => {:class => "chemical_post"} do |c| %>
 			<%= c.label :name, "Product" %>
 			<%= c.text_field :name %>

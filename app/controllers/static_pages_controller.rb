@@ -1,9 +1,29 @@
 class StaticPagesController < ApplicationController
   def home
      @workorder = current_user.workorders.build if signed_in?
-     @workorders = current_user.workorders.paginate(page: params[:page], :order => 'wo_date ASC') if signed_in?
+     @workorders=Workorder.wo_current_branch(current_user.current_branch).ascending.paginate(page: params[:page]) if signed_in?
+     @old_workorders = current_user.workorders.paginate(page: params[:page], :order => 'wo_date ASC') if signed_in?
      @updates = Update.all(:order => 'created_at DESC')
    end
+
+   def rebuilder_view
+     @all_workorders=Workorder.wo_current_branch(current_user.current_branch).ascending
+     @workorders=Workorder.wo_current_branch(current_user.current_branch).ascending.paginate(page: params[:page])
+     @updates = Update.all(:order => 'created_at DESC')
+     @assets = Asset.joins(:workorder).where('workorders.branch=350').order('workorders.wo_date ASC')
+
+     
+     @assets_without_serials = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).needs_serial.order('workorders.wo_date ASC')
+   
+     @asset_status_options =[{ "New - Ordered" => ""},
+                             { "New - On Site" => "10"},
+                             { "New - Tested" => "99"},
+                             { "Used - Ordered" => ""},
+                             { "Used - On Site" => "11"},
+                             { "Used - Torn Down" => "25"},
+                             { "Used - Rebuilt" => "76"},
+                             { "Used - Tested" => "100"}]
+   end                        
 
   def help
   end

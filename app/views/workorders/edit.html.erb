@@ -15,7 +15,11 @@
   </aside>
 		<aside class="span4">
 			<h2>Edit Workorder</h2>
+			<% if current_user.role=="Branch Manager" %>
+			<%= render 'shared/workorderpost_form_rebuild'%>
+			<% else %>
 			<%= render 'shared/workorderpost_form' %>
-		</aside>
+			<% end %>
+	</aside>
 		
 </div>
