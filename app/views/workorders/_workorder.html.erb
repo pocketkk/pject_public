@@ -25,6 +25,9 @@
     	<%= workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
 	</span><br />
 	
+	<span class="tiny">
+			Workorder opened by <%= workorder.user.name.titleize %>
+	</span>
 		<% workorder.assets.each do |a| %>
 				<div id="equipment"><%= a.name %><% if a.ready==true%> <em>Complete</em><%end%></div>
 				<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
@@ -36,6 +39,7 @@
   			<%= link_to "Remove", workorder, :confirm => 'Are you sure?', :method => :delete %>
 		</center>
 	</span>
+
 </li>
 
 

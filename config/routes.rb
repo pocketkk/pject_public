@@ -1,5 +1,7 @@
 Pject::Application.routes.draw do
 
+  resources :assetnotes
+
   resources :updates
 
   resources :options

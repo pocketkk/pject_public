@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :workorders
   has_many :updates
+  has_many :assetnotes
   
   attr_accessor :updating_password
   

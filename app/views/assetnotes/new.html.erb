@@ -1,0 +1,13 @@
+<% title "New Assetnote" %>
+
+<%= form_for @assetnote do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+
+<p><%= link_to "Back to List", assetnotes_path %></p>

@@ -17,7 +17,7 @@
 		<%= m.label :status, "Equipment Status"%>
 		<%= m.select :status, options_for_select(@asset_status_options, m.object.status) %>		
 		<%= m.label :ready, "Ready for Install?"%>
-		<%= m.select :ready, {"Yes" => true, "No" => false}%>
+		<%= m.select :ready, { "No" => false, "Yes" => true}%>
 		<center><%= m.link_to_remove "Remove Equipment" %></center>
 		<%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>
 			<%= o.label :name, "Equipment Option" %>
@@ -34,6 +34,12 @@
 			<center><%= c.link_to_remove "Remove Product"%></center>
 		<% end %>
 		  <br /><%= m.link_to_add "Add Product", :chemicals%>
+		<%= m.fields_for :assetnotes, :html => {:class => "chemical_post"} do |n| %>
+			<%= n.label :content, "Equipment Note" %>
+			<%= n.text_area :content %>
+			<center><%= n.link_to_remove "Remove Note"%></center>
+		<% end %>
+		  <br /><%= m.link_to_add "Add Equipment Note", :assetnotes%>
 	<% end %>
 <%=f.link_to_add "Add Equipment", :assets %>
 	<br /><br />

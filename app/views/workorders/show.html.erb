@@ -1,35 +1,42 @@
-<%= link_to "Edit", edit_workorder_path(@workorder) %>
 <% provide(:title, @workorder.customer) %>
-	<h1><%= @workorder.customer %></h1>
+	<h1 class="show_workorder"><%= @workorder.customer %></h1>
 			<hr>
 	<div class="row">
-	  <div class="span4">
-		<section>	<h3 align="center">Customer Information</h3><hr/>
+		
+	  <div class="span4" id="workorder_left">
+			<h3 align="center">Customer Information</h3><hr/>
+					<address>
+					<strong><%= @workorder.customer.titleize%></strong><br/>
 					<%= @workorder.street %><br/>
 					<%= @workorder.city%>, <%= @workorder.state%><br/>
-					<br/>
+					</address>
+
 					<%= @workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%><br/>
-					The workorder is expected to take <b><%=@workorder.wo_duration%> hours</b>.<br/>
+					Time estimate: <b><%=@workorder.wo_duration%> hours</b><br/>
 					</br/>
-					The on-site contact is:
+					On-site contact:
 					<%= @workorder.contact%><br/>
 					Phone Number: 
 					<%= number_to_phone(@workorder.phonenumber, :area_code => true)%>
 					<br/>
 					<br/>
 					<b><u>Additional Notes:</u></b>
-					<%=@workorder.misc_notes%>
-		</section>
+					<%=@workorder.misc_notes%><br /><br />
+					<center><%= link_to "Edit", edit_workorder_path(@workorder) %></center>
+
 	  </div>
-	  <div class="span4">
-			<section><h3 align="center">Equipment Information</h3><hr />
-				<table width=100%>
+	
+	  <div class="span6" id="workorder_left">
+		<h3 align="center">Equipment Information</h3><hr />
+				<% @workorder.assets.each do |m| %>
+				<table class="table table-bordered table-condensed">
 					<tr>
-						<td>Model</td>
-						<td>Serial Number</td>
-						<td>Options</td>
+						<th>Model</th>
+						<th>Serial Number</th>
+						<th>Options</th>
+						<th>Chemicals</th>
 					</tr>
-					<% @workorder.assets.each do |m| %>
+					
 					<tr>
 						<td valign="top">
 							<%=m.name%>
@@ -38,22 +45,46 @@
 							<%=m.serial%>
 						</td>
 						<td>
-							<table>
+							<table class="table table-bordered table-condensed">
 								<% m.options.each do |o| %>
 								<tr>
 									<td>
 										<%= o.name %>
+									</td>	
+								</tr>
+								<% end %>
+							</table>	
+						</td>
+						<td>
+							<table class="table table-bordered table-condensed">
+								<tr><th>Product</th><th>Qty</th></tr>
+								<% m.chemicals.each do |c| %>
+								<tr>
+									<td>
+										<%= c.name.titleize %>
 									</td>
+									<td>
+										<%= c.quantity %>
+									</td>	
 								</tr>
 								<% end %>
 							</table>
-						</td>
+						</td>	
 					</tr>
-					<% end %>
-				</table>
-			</section>
+					</table>
+
+					<table class="table">
+							<thead><tr><th>Notes</th></tr></thead>
+							<% m.assetnotes.each do |n| %>
+							<tr class="info"><td class="table info"><%= n.content %></td></tr>
+							<%end%>
+								
+					
+					</table>
+				<% end %>
+				<center><%= link_to "Edit", edit_workorder_path(@workorder) %></center>
 	    
 
 	   </div>
 	</div>
-	<section align="right">Started by <%=@workorder.user.name%> <%= time_ago_in_words(@workorder.created_at) %> ago.</section>
+	

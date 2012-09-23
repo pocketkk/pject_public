@@ -43,6 +43,12 @@
 			<center><%= c.link_to_remove "Remove Product"%></center>
 		<% end %>
 		  <br /><%= m.link_to_add "Add Product", :chemicals%>
+		<%= m.fields_for :assetnotes, :html => {:class => "chemical_post"} do |n| %>
+			<%= n.label :content, "Equipment Note" %>
+			<%= n.text_area :content %>
+			<center><%= n.link_to_remove "Remove Note"%></center>
+		<% end %>
+		  <br /><%= m.link_to_add "Add Equipment Note", :assetnotes%>
 	<% end %>
 <%=f.link_to_add "Add Equipment", :assets %>
 	<br /><br />

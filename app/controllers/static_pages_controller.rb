@@ -14,16 +14,7 @@ class StaticPagesController < ApplicationController
 
      
      @assets_without_serials = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).needs_serial.order('workorders.wo_date ASC')
-   
-     @asset_status_options =[{ "New - Ordered" => ""},
-                             { "New - On Site" => "10"},
-                             { "New - Tested" => "99"},
-                             { "Used - Ordered" => ""},
-                             { "Used - On Site" => "11"},
-                             { "Used - Torn Down" => "25"},
-                             { "Used - Rebuilt" => "76"},
-                             { "Used - Tested" => "100"}]
-   end                        
+  end 
 
   def help
   end

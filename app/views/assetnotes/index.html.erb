@@ -1,0 +1,14 @@
+<% title "Assetnotes" %>
+
+<table>
+  <tr>
+    <th>Content</th>
+  </tr>
+  <% for assetnote in @assetnotes %>
+    <tr>
+      <td><%= assetnote.content %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Assetnote", new_assetnote_path %></p>
