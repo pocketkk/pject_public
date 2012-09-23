@@ -1,0 +1,11 @@
+<%= form_for @before_photo, :html => {:multipart => true}  do |f| %>
+
+  <p>
+    <%= f.hidden_field :workorder_id %>
+  </p>
+  <p>
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

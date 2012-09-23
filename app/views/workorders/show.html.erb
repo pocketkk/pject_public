@@ -87,4 +87,17 @@
 
 	   </div>
 	</div>
-	
+	<div class="row">
+		<div class="span5" id="workorder_left">
+			<h3 align="center">Before Photos</h3><hr/>
+			<% @workorder.before_photos.each do |photo| %>
+				<%= image_tag photo.photo_url(:thumb).to_s%>
+			<% end %>
+		</div>
+		<div class="span5" id="workorder_left">
+			<h3 align="center">After Photos</h3><hr/>
+			<% @workorder.before_photos.each do |photo| %>
+				<%= image_tag photo.photo_url(:thumb).to_s%>
+			<% end %>
+		</div>
+	</div>	

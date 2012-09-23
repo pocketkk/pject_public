@@ -1,0 +1,19 @@
+<% title "Before Photos" %>
+
+<table>
+  <tr>
+    <th>Workorder</th>
+    <th>Photo</th>
+  </tr>
+  <% for before_photo in @before_photos %>
+    <tr>
+      <td><%= before_photo.workorder_id %></td>
+      <td><%= before_photo.photo %></td>
+      <td><%= link_to "Show", before_photo %></td>
+      <td><%= link_to "Edit", edit_before_photo_path(before_photo) %></td>
+      <td><%= link_to "Destroy", before_photo, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Before Photo", new_before_photo_path %></p>

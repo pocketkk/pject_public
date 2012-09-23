@@ -1,0 +1,16 @@
+
+
+<p>
+  <strong>Workorder:</strong>
+  <%= @before_photo.workorder_id %>
+</p>
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @before_photo.photo_url.to_s %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_before_photo_path(@before_photo) %> |
+  <%= link_to "Destroy", @before_photo, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", before_photos_path %>
+</p>

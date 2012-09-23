@@ -1,6 +1,6 @@
 <ol class="users">
 	<li>
-<%= nested_form_for @workorder, :html => { :class => 'form-vertical' }  do |f| %>
+<%= nested_form_for @workorder, :html => { :class => 'form-vertical', :multipart => true }  do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
     <%= f.label :customer, "Customer:" %>
 	<%= f.text_field :customer %>
@@ -22,6 +22,15 @@
 	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
 	<%= f.label :branch, "Branch"%>
 	<%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
+	
+	<%= f.fields_for :before_photos do |p|%>
+		<%= image_tag(p.object.photo_url) if p.object.photo? %>
+		<%= p.file_field :photo %>
+		<%= p.hidden_field :photo_cache%>
+		<%= p.link_to_remove "Remove Before-Photo" %>
+	<% end %>
+	<%=f.link_to_add "Add Before-Photo", :before_photos %>
+	
 	<h3>Equipment & Chemicals</h3><br />
 	<%= f.fields_for :assets do |m| %>
 		<%= m.label :name, "Model Number/Machine type"%>
