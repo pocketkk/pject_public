@@ -1,0 +1,19 @@
+<% title "After Photos" %>
+
+<table>
+  <tr>
+    <th>Workorder</th>
+    <th>Photo</th>
+  </tr>
+  <% for after_photo in @after_photos %>
+    <tr>
+      <td><%= after_photo.workorder_id %></td>
+      <td><%= after_photo.photo %></td>
+      <td><%= link_to "Show", after_photo %></td>
+      <td><%= link_to "Edit", edit_after_photo_path(after_photo) %></td>
+      <td><%= link_to "Destroy", after_photo, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New After Photo", new_after_photo_path %></p>

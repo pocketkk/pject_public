@@ -1,0 +1,12 @@
+<%= form_for @after_photo do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :workorder_id %><br />
+    <%= f.number_field :workorder_id %>
+  </p>
+  <p>
+    <%= f.label :photo %><br />
+    <%= f.text_field :photo %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

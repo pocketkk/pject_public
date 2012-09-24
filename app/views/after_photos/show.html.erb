@@ -1,0 +1,16 @@
+<% title "After Photo" %>
+
+<p>
+  <strong>Workorder:</strong>
+  <%= @after_photo.workorder_id %>
+</p>
+<p>
+  <strong>Photo:</strong>
+  <%= @after_photo.photo %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_after_photo_path(@after_photo) %> |
+  <%= link_to "Destroy", @after_photo, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", after_photos_path %>
+</p>

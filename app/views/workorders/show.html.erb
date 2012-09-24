@@ -96,7 +96,7 @@
 		</div>
 		<div class="span5 fields">
 			<h3 align="center">After Photos</h3><hr/>
-			<% @workorder.before_photos.each do |photo| %>
+			<% @workorder.after_photos.each do |photo| %>
 				<%= image_tag photo.photo_url(:thumb).to_s%>
 			<% end %>
 		</div>
