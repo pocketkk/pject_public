@@ -3,7 +3,7 @@
 			<hr>
 	<div class="row">
 		
-	  <div class="span4" id="workorder_left">
+	  <div class="span4 fields" >
 			<h3 align="center">Customer Information</h3><hr/>
 					<address>
 					<strong><%= @workorder.customer.titleize%></strong><br/>
@@ -26,7 +26,7 @@
 			</div>
 
 	
-	  <div class="span6" id="workorder_left">
+	  <div class="span6 fields">
 		<h3 align="center">Equipment Information</h3><hr />
 				<% @workorder.assets.each do |m| %>
 				<table class="table table-bordered table-condensed">
@@ -88,7 +88,7 @@
 			</div>
 	</div>
 	<div class="row">
-		<div class="span5" id="workorder_left">
+		<div class="span5 fields" >
 			<h3 align="center">Before Photos</h3><hr/>
 			<% @workorder.before_photos.each do |photo| %>
 				<%= image_tag photo.photo_url(:thumb).to_s%>
