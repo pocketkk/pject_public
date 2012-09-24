@@ -23,10 +23,11 @@
 					<b><u>Additional Notes:</u></b>
 					<%=@workorder.misc_notes%><br /><br />
 					<center><%= link_to "Edit", edit_workorder_path(@workorder) %></center>
-
+			</div>
 	  </div>
 	
-	  <div class="span6" id="workorder_left">
+	  <div class="span6">
+		<div class="workorder_left">
 		<h3 align="center">Equipment Information</h3><hr />
 				<% @workorder.assets.each do |m| %>
 				<table class="table table-bordered table-condensed">
