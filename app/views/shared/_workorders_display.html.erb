@@ -1,6 +1,6 @@
 <div class="span4"><br/>
-   <% if @workorders.any? %>
-     <h2>Open Workorders (<%= @workorders.count %>)</h2>
+    <h2>Open Workorders (<%= @workorders.count %>)</h2>
+	<% if @workorders.any? %>
      <ol class="workorders">
        <%= render @workorders %>
      </ol>
