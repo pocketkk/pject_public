@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   attr_accessor :updating_password
   
-  USER_ROLES = ['Regional Manager', 'Branch Manager', 'Sales', 'SSR', 'Supervisor', 'Rebuild', 'Office','Installer', 'Production']
+  USER_ROLES = ['Regional Manager', 'Branch Manager', 'Sales', 'SSR', 'Supervisor', 'Rebuilder', 'Office','Installer', 'Production']
   
   before_save { |user| user.email = email.downcase }
 
