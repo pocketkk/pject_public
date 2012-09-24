@@ -33,7 +33,7 @@
 		<%= bp.link_to_remove "Remove Before-Photo" %>
 	<% end %>
 	<%=f.link_to_add "Add Before-Photo", :before_photos %>
-	<br />
+	<br /><br />
 	<%= f.fields_for :after_photos do |ap|%>
 		<%= image_tag(ap.object.photo_url) if ap.object.photo? %>
 		<%= ap.file_field :photo %>
@@ -41,7 +41,7 @@
 		<%= ap.link_to_remove "Remove After-Photo" %>
 	<% end %>
 	<%=f.link_to_add "Add After-Photo", :after_photos %>
-	<br />
+	<br /><br />
 	
 	
 	<h3>Equipment & Chemicals</h3><br />

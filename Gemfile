@@ -14,6 +14,7 @@ gem 'google-webfonts'
 gem 'carrierwave'
 gem 'fog', '~> 1.3.1'
 gem 'rmagick'
+gem 'rubylight'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
