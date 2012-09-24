@@ -12,8 +12,8 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 
-	  <%= f.label :role %>
-      <%= f.text_field :role %>
+      <%= f.label :role %>
+      <%= f.select :role, User::USER_ROLES %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>
