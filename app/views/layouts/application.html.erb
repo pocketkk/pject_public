@@ -3,9 +3,7 @@
 	<head>
   		<title><%= full_title(yield(:title))%></title>
   		<%= stylesheet_link_tag    "application", :media => "all" %>
-		<%= javascript_include_tag "application" %>
-		<%= javascript_include_tag "http://gettopup.com/releases/latest/top_up-min.js" %>
-		
+		<%= javascript_include_tag "application" %>		
   		<%= csrf_meta_tags %>
 		<%= render 'layouts/shim' %>
 		<%= google_webfonts_link_tag :electrolize %>
