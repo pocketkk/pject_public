@@ -29,10 +29,14 @@
 			Workorder opened by <%= workorder.user.name.titleize %>
 	</span>
 		<% workorder.assets.each do |a| %>
-				<div id="equipment"><%= a.name %><% if a.ready==true%> <em>Complete</em><%end%></div>
+				<div id="equipment"></div>
+				<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em>Complete</em><%end%></div>
 				<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
+				
 		<% end %>
+		
 		<br />
+	
   	<span class="edit_or_delete">
 		<center>
 			<%= link_to "Edit", edit_workorder_path(workorder) %>  |  

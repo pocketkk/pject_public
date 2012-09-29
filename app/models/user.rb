@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   USER_ROLES = ['Regional Manager', 'Branch Manager', 'Sales', 'SSR', 'Supervisor', 'Rebuilder', 'Office','Installer', 'Production']
   
   before_save { |user| user.email = email.downcase }
+  
 
   before_save :create_remember_token
   

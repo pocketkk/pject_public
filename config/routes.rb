@@ -18,12 +18,14 @@ Pject::Application.routes.draw do
   resources :assets
 
 
-  root to: 'static_pages#home'
+  root to: 'passthrough#index'
   
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
-  match '/rebuild', to: 'static_pages#rebuilder_view'
+  match '/rebuilder', to: 'static_pages#rebuilder_view'
+  match '/branchmanager', to: 'static_pages#home'
+  match '/welcome', to: 'static_pages#home'
   
   match '/switchbranch', to: 'users#user_branch_switch'
   
