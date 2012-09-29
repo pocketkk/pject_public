@@ -2,7 +2,7 @@ class WorkordersController < ApplicationController
   before_filter :signed_in_user
   
   def index
-    @workorders=Workorder.wo_current_branch(current_user.current_branch).ascending
+    @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.ascending
     
     ### workorder lookup for calendar    
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
@@ -20,7 +20,8 @@ class WorkordersController < ApplicationController
         redirect_to root_url
       else
         flash[:error] = 'All fields must be filled to create a new workorder'
-        redirect_to root_url
+        #redirect_to :back
+        render :action => 'new'
       end
     end
   
@@ -49,6 +50,31 @@ class WorkordersController < ApplicationController
                                "Used - Rebuilt"   => "76" ,
                                "Used - Tested"    => "100"}
   end
+  def new
+    @workorder=Workorder.new
+    @asset_status_options = {  "" => "",
+                               "New - Ordered"    => "0" ,
+                               "New - On Site"    => "10" ,
+                               "New - Tested"     => "99" ,
+                               "Used - Ordered"   => "1"  ,
+                               "Used - On Site"   => "11" ,
+                               "Used - Torn Down" => "25" ,
+                               "Used - Rebuilt"   => "76" ,
+                               "Used - Tested"    => "100"}
+  end
+  def complete
+    @workorder = Workorder.find(params[:id])
+    if @workorder.update_attributes(:completed => true)
+      redirect_to root_path, :notice => "Workorder Completed!"
+      @update=Update.new
+      @update.feed_item="The workorder for " << @workorder.customer.titleize << " has been completed."
+      @update.user_id=current_user.id
+      @update.save
+    else 
+      redirect_to root_path, :error => "Workorder status not updated."
+    end
+  end
+  
   def update
     @workorder= Workorder.find(params[:id])
     if @workorder.update_attributes(params[:workorder])

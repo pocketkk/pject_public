@@ -29,6 +29,8 @@ Pject::Application.routes.draw do
   
   match '/switchbranch', to: 'users#user_branch_switch'
   
+  match 'workorders/:id/complete', to: 'workorders#complete', :as => "complete_workorder"
+  
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

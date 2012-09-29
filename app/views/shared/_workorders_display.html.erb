@@ -6,4 +6,12 @@
      </ol>
      <%= will_paginate @workorders %>
    <% end %>
+	<br />
+	<h2>Recently Completed</h2>
+	<% if @completed_workorders.any? %>
+	<ol class="workorders">
+       <%= render @completed_workorders %>
+     </ol>
+     <%= will_paginate @workorders %>
+   <% end %>
  </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924012428) do
+ActiveRecord::Schema.define(:version => 20120929203727) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -61,14 +61,12 @@ ActiveRecord::Schema.define(:version => 20120924012428) do
   end
 
   create_table "machines", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "machines_workorders", :id => false, :force => true do |t|
-    t.integer "workorder_id"
-    t.integer "machine_id"
+    t.string   "model_number"
+    t.string   "serial_number"
+    t.integer  "option_id"
+    t.string   "misc_notes"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "options", :force => true do |t|
@@ -103,18 +101,19 @@ ActiveRecord::Schema.define(:version => 20120924012428) do
   create_table "workorders", :force => true do |t|
     t.string   "customer"
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.datetime "wo_date"
     t.time     "wo_start"
     t.integer  "wo_duration"
-    t.integer  "phonenumber", :limit => 255
     t.string   "contact"
+    t.integer  "phonenumber"
     t.string   "misc_notes"
-    t.string   "branch"
+    t.integer  "branch"
+    t.boolean  "completed"
   end
 
 end

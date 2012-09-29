@@ -4,7 +4,7 @@ class Workorder < ActiveRecord::Base
   attr_accessible :customer, :street, :city, :state, :wo_date, 
                   :wo_duration, :chronic_wo_date, :phonenumber, :raw_phonenumber, 
                   :contact, :misc_notes, :assets_attributes, :branch, 
-                  :before_photos_attributes, :after_photos_attributes
+                  :before_photos_attributes, :after_photos_attributes, :completed
   belongs_to :user
   has_many :assets
   has_many :before_photos
@@ -16,6 +16,8 @@ class Workorder < ActiveRecord::Base
   #scope :current_branch, where("branch=350").order("wo_date ASC")
   scope :wo_current_branch, lambda{ |branch_number| where('branch = ?', branch_number)  }
   scope :ascending, order("wo_date ASC")
+  scope :wo_completed, where('completed = ?', true)
+  scope :wo_not_completed, where('completed = ?', false)
     
   BRANCH_OPTIONS = ['340','350','360']
   ASSET_STATUS_OPTIONS =  {  "" => "",

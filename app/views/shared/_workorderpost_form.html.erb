@@ -22,7 +22,8 @@
 	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
 	<%= f.label :branch, "Branch"%>
 	<%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
-	
+	<%= f.label :completed, "Completed?"%>
+	<%= f.select :completed, { "No" => false, "Yes" => true}%>
 
 	<br />
 	<h3>Photos</h3><br />
