@@ -11,10 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require bootstrap
+//= require lightbox
 //= require jquery
 //= require jquery_ujs
-//= require lightbox
-//= require_tree
-//= require jquery_nested_form
+//= require_tree .
+
 
 
