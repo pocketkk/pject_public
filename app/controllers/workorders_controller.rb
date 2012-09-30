@@ -2,6 +2,12 @@ class WorkordersController < ApplicationController
   before_filter :signed_in_user
   
   def index
+    @search=Workorder.search(params[:q])
+    @workorders = params[:distinct].to_i.zero? ? @search.result : @search.result(distinct: true)
+   
+  end
+  
+  def calendar
     @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.ascending
     
     ### workorder lookup for calendar    

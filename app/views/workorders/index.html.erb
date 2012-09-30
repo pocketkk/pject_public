@@ -1,42 +1,28 @@
+  <%= render :partial => 'shared/lower_header' %>
 
-<div id="articles">
-	<h2 id="month">
-	  <%= link_to "<", date: @date.prev_month %>
-	  <%= @date.strftime("%B %Y") %>   
-	  <%= link_to ">", date: @date.next_month %>
-	</h2>
-  <%= calendar @date do |date| %>
-    <%= date.day %>
-    <% if @workorders_by_date[date] %>
-      <% @workorders_by_date[date].each do |workorder| %>
-		<div class= "work_wrapper_small">
-			<% if workorder.wo_type == 'New Install' %>
-				<div class="work_bar_new_small">	</div>
-			<% end %>
-			<% if workorder.wo_type == 'Pull'%>
-				<div class='work_bar_pull_small'>	</div>
-			<% end %>
-			<% if workorder.wo_type == 'Swap'%>
-				<div class='work_bar_swap_small'>	</div>
-			<% end %>
-			<% if workorder.wo_type == 'Follow Up'%>
-				<div class='work_bar_follow_up_small'>	</div>
-			<% end %>
-		<div class="calendar_event">
-			<%= link_to workorder.customer.titleize, edit_workorder_path(workorder) %>
-		</div>
-		<div class="calendar_event_time">
-			<%= workorder.wo_date.strftime("%I:%M %p")%> <em><%=workorder.wo_duration%> hr est.</em>
-		</div>
-		<div class="calendar_event">  
-			<% workorder.assets.each do |asset| %>
-				|  <%=asset.name%> |
-			<% end %>
-		</div>
-		</div>
-      <% end %>
-    </ul>
-    <% end %>
-  <% end %>
+<div class="workorder_search_wrapper row">
+	<h1>Search Workorders</h1>
+	<div class="workorder_search_content span4"><br />
+		<h2>Search</h2>
+		<%= search_form_for @search do |f| %>
+  			<div class="field">
+    			<%= f.label :customer_cont, "Customer" %>
+    			<%= f.text_field :customer_cont %>
+				<%= f.label :contact_cont, "Contact" %>
+    			<%= f.text_field :contact_cont %>
+				<%= f.label :street_cont, "Street" %>
+    			<%= f.text_field :street_cont %>
+				<%= f.label :city_cont, "City" %>
+    			<%= f.text_field :city_cont %>
+  			</div>
+
+  			<center>
+				<%= f.submit "Search", class: "btn btn-large btn-primary" %>
+			</center>
+		<% end %>
+	</div>
+	<div class="span5">
+		<%= render 'results' %>
+	</div>
 </div>
 

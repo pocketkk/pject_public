@@ -16,6 +16,7 @@ gem 'fog', '~> 1.3.1'
 gem 'rmagick'
 gem 'rubylight'
 gem 'jquery-rails', '2.1.3'
+gem 'ransack'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

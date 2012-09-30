@@ -28,6 +28,7 @@ Pject::Application.routes.draw do
   match '/rebuilder', to: 'static_pages#rebuilder_view'
   match '/branchmanager', to: 'static_pages#home'
   match '/welcome', to: 'static_pages#home'
+  match '/calendar', to: 'workorders#calendar'
   
   match '/switchbranch', to: 'users#user_branch_switch'
   
@@ -36,6 +37,7 @@ Pject::Application.routes.draw do
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  match '/search', to: 'workorders#index'
   
 
   
