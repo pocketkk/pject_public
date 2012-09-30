@@ -1,8 +1,23 @@
 <% provide(:title, @workorder.customer) %>
-	<h1 class="show_workorder"><%= @workorder.customer %></h1>
+<div class="workorder_show_wrapper">
+	<% if @workorder.wo_type == 'New Install' %>
+		<div class="work_bar_new">	</div>
+	<% end %>
+	<% if @workorder.wo_type == 'Pull'%>
+		<div class='work_bar_pull'>	</div>
+	<% end %>
+	<% if @workorder.wo_type == 'Swap'%>
+		<div class='work_bar_swap'>	</div>
+	<% end %>
+	<% if @workorder.wo_type == 'Follow Up'%>
+		<div class='work_bar_follow_up'>	</div>
+	<% end %>
+		
+	<h1 class="show_workorder"><%= @workorder.customer %></h1><h2 class="show_workorder2"><%= @workorder.wo_type %></h2>
 			<hr>
+	<div class="workorder_show_content">
 	<div class="row-fluid">
-	  <div class="span4 fields" >
+	  <div class="span5 workorder_show" >
 			<h3 align="center">Customer Information</h3><hr/>
 					<address>
 					<strong><%= @workorder.customer.titleize%></strong><br/>
@@ -25,7 +40,7 @@
 		</div>
 
 	
-	  <div class="span6 fields">
+	  <div class="span6 workorder_show">
 		<h3 align="center">Equipment Information</h3><hr />
 				<% @workorder.assets.each do |m| %>
 				<table class="table table-bordered table-condensed">
@@ -87,17 +102,19 @@
 			</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span5 fields" >
+		<div class="span5 workorder_show" >
 			<h3 align="center">Before Photos</h3><hr/>
 			<% @workorder.before_photos.each do |photo| %>
 				<%= lightbox_tag(photo.photo_url(:thumb).to_s, photo.photo_url(:screen).to_s, collection="#{@workorder.customer.titleize}  |  Before")%>
 				
 			<% end %>
 		</div>
-		<div class="span5 fields">
+		<div class="span5 workorder_show">
 			<h3 align="center">After Photos</h3><hr/>
 			<% @workorder.after_photos.each do |photo| %>
 				<%= lightbox_tag(photo.photo_url(:thumb).to_s, photo.photo_url(:screen).to_s, collection="#{@workorder.customer.titleize}  |  After")%>
 			<% end %>
 		</div>
-	</div>	
+	</div>
+	</div>
+</div>

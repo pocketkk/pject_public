@@ -32,7 +32,7 @@
 		<%= image_tag(bp.object.photo_url) if bp.object.photo? %>
 		<%= bp.file_field :photo %>
 		<%= bp.hidden_field :photo_cache%>
-		<%= bp.link_to_remove "Remove Before-Photo" %>
+		<center><%= bp.link_to_remove "Remove Before-Photo" %></center>
 	<% end %>
 	<%=f.link_to_add "Add Before-Photo", :before_photos %>
 	<br /><br />
@@ -40,7 +40,7 @@
 		<%= image_tag(ap.object.photo_url) if ap.object.photo? %>
 		<%= ap.file_field :photo %>
 		<%= ap.hidden_field :photo_cache%>
-		<%= ap.link_to_remove "Remove After-Photo" %>
+		<center><%= ap.link_to_remove "Remove After-Photo" %><center>
 	<% end %>
 	<%=f.link_to_add "Add After-Photo", :after_photos %>
 	<br /><br />

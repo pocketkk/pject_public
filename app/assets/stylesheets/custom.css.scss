@@ -31,7 +31,7 @@ html {
 	height: 100%;
 }
 .container#window {
-	background: $graySuperLight;
+	background: white;
 	margin-top: -20px;
 	padding-top: 20px;
 	padding-left: 20px;
@@ -75,6 +75,10 @@ h1 {
 }
 .show_workorder {
 	font-size: 3em;
+}
+.show_workorder2 {
+	margin-top:-20px;
+	margin-bottom: -10px;
 }
 .sign_in {
 	font-size: 2em;
@@ -284,8 +288,21 @@ input, textarea, select, .uneditable-input {
 	background-color: #fafafa;
 	textarea: #c0c0c0;
 }
+.signin_page_wrapper {
+	h1{font-size: 3em;}
 
+}
 
+.signin_page {
+	margin-left: 300px;
+	width: 350px;
+	background-color: white;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 1px solid $grayMedium;
+	padding: 10px;	
+
+}
 
 .customer {
   display: block;
@@ -320,6 +337,37 @@ div.fields {
 	}
 #workorder_assets_attributes_0_chemicals_attributes_new_chemicals_name {
 	background-color: #000;
+}
+
+.workorder_show_wrapper {
+	position: relative;
+	margin: 5px;
+	background-color: white;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	padding: 10px;
+}
+
+.workorder_show_content {
+	height: 100%;
+	margin-left: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.workorder_show{
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 1px solid #bbb;
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+	textarea: #c0c0c0;
+	height: 100%;
+
+
 }
 
 .workorder_form {
