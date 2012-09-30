@@ -13,8 +13,9 @@
 		<div class='work_bar_follow_up'>	</div>
 	<% end %>
 		
-	<h1 class="show_workorder"><%= @workorder.customer %></h1><h2 class="show_workorder2"><%= @workorder.wo_type %></h2>
-			<hr>
+	<h1 class="show_workorder"><%= @workorder.customer %></h1>
+	<h2 class="show_workorder2"><%= @workorder.wo_type %></h2>
+			<hr />
 	<div class="workorder_show_content">
 	<div class="row-fluid">
 	  <div class="span5 workorder_show" >
@@ -43,6 +44,7 @@
 	  <div class="span6 workorder_show">
 		<h3 align="center">Equipment Information</h3><hr />
 				<% @workorder.assets.each do |m| %>
+				<div class="workorder_show">
 				<table class="table table-bordered table-condensed">
 					<tr>
 						<th>Model</th>
@@ -86,7 +88,22 @@
 						</td>	
 					</tr>
 					</table>
-
+					
+					<table class="table">
+							<thead>
+								<tr>
+									<th>Water</th>
+									<th>Drain</th>
+									<th>Electrical</th>
+								</tr>
+							</thead>
+							<tr class="info">
+								<td ><%=m.water_plumbing%></td>
+								<td><%=m.drain_plumbing%></td>
+								<td><%=m.electrical_option%></td>
+							</tr>	
+					</table>
+					
 					<table class="table">
 							<thead><tr><th>Notes</th></tr></thead>
 							<% m.assetnotes.each do |n| %>
@@ -95,6 +112,7 @@
 								
 					
 					</table>
+					</div>
 				<% end %>
 				<center><%= link_to "Edit", edit_workorder_path(@workorder) %></center>
 	    

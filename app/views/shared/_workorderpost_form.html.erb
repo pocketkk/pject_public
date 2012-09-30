@@ -49,9 +49,13 @@
 	<h3>Equipment & Chemicals</h3><br />
 	<%= f.fields_for :assets do |m| %>
 		<%= m.label :name, "Model Number/Machine type"%>
-		<%= m.text_field :name %>
-		<%= m.label :serial, "Serial Number (if known)" %>
-		<%= m.text_field :serial %>
+		<%= m.select :name, Option::EQUIPMENT_MODELS %>
+		<%= m.label :water_plumbing, "Water Connection"%>
+		<%= m.select :water_plumbing, Option::WATER_PLUMBING %>
+		<%= m.label :drain_plumbing, "Drain Connection"%>
+		<%= m.select :drain_plumbing, Option::DRAIN_PLUMBING %>
+		<%= m.label :electrical_option, "Electrical Connection"%>
+		<%= m.select :electrical_option, Option::ELECTRICAL_OPTIONS %>
 
 		<center><%= m.link_to_remove "Remove Equipment" %></center>
 		<%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>

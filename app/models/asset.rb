@@ -1,6 +1,7 @@
 class Asset < ActiveRecord::Base
   attr_accessible :name, :serial, :workorder_id, :chemicals_attributes, 
-                  :options_attributes, :status, :ready, :assetnotes_attributes
+                  :options_attributes, :status, :ready, :assetnotes_attributes,
+                  :water_plumbing,:drain_plumbing,:electrical_option
   belongs_to :workorder
   has_many :chemicals
   has_many :options
