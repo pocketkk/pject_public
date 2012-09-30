@@ -1,13 +1,15 @@
-<div class="span4"><br/>
+<div class="span3"><br/>
      <h2>Recent Activity</h2>
      <ol class="updates_feed">
        	<% @updates.each do |a| %>
 				<li>
 					<div class="workorder_feed">
-						<a href="<%= user_path(current_user) %>">
-						  <%= gravatar_for a.user, size: 25%> 
-						</a>
-						<div class="work_order_feed_item"><%= a.feed_item %></div>
+						<div class="gravatar_workorder_feed">
+							<a href="<%= user_path(a.user) %>">
+							  <%= gravatar_for a.user, size: 25%> 
+							</a>
+						</div>
+						<div class="workorder_feed_item"><%= a.feed_item %></div>
 					</div>
 				<div class="workorder_feed_time"><%=time_ago_in_words(a.created_at) %> ago.</div>
 					</li>

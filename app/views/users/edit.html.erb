@@ -1,5 +1,6 @@
 <% provide(:title, "Edit user") %> 
-<h1>Update your profile</h1>
+<div class="signin_page_wrapper">
+<h1 "show_workorder">Update your profile</h1>
 
 <div class="row">
   <div class="span6 offset3">
@@ -26,10 +27,11 @@
 
 	  <% @user.updating_password = true %>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <center><%= f.submit "Save changes", class: "btn btn-large btn-primary" %></center>
     <% end %>
 
     <%= gravatar_for @user %>
     <a href="http://gravatar.com/emails">change</a>
   </div>
+</div>
 </div>

@@ -22,12 +22,18 @@
 			<% if workorder.wo_type == 'Follow Up'%>
 				<div class='work_bar_follow_up_small'>	</div>
 			<% end %>
+		<div class="calendar_event">
+			<%= link_to workorder.customer.titleize, edit_workorder_path(workorder) %>
+		</div>
 		<div class="calendar_event_time">
 			<%= workorder.wo_date.strftime("%I:%M %p")%> <em><%=workorder.wo_duration%> hr est.</em>
 		</div>
-		<div class="calendar_event">
-			<%= link_to workorder.customer.titleize, edit_workorder_path(workorder) %>
-		</div></div>
+		<div class="calendar_event">  
+			<% workorder.assets.each do |asset| %>
+				|  <%=asset.name%> |
+			<% end %>
+		</div>
+		</div>
       <% end %>
     </ul>
     <% end %>

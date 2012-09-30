@@ -36,7 +36,7 @@
 	</span><br />
 	
 	<span class="timestamp">
-    	Contact:  <%= workorder.contact %>  |  
+    	Contact:  <%= workorder.contact.titleize %>  |  
 		Phone:  <%= number_to_phone(workorder.phonenumber, :area_code => true) %>
   	</span><br />
 

@@ -557,10 +557,13 @@ div.fields {
 }
 
 .calendar_event_time {
+	margin-left: 5px;
+	margin-top: -5px;
 	font-size: .60em;
 	
 }
 .calendar_event {
+	margin-top: -5px;
 	font-size: .60em;
 	margin-left: 5px;
 	
@@ -619,18 +622,20 @@ div.fields {
 
 .workorder_feed_time {
 	font-size: 9px;
+	color: $grayDarkest;
 	padding-left: 40px;
 	text-align: right;
 }
 
 .workorder_feed_item {
-	margin-top: -5px;
+	margin-top: -1px;
+	font-size: 11px;
+	color: $grayDarkest;
 }
 
 .gravatar_workorder_feed {
-	padding-left: 10px;
-	padding-right: 500px;
-	margin-top: 100px;
+	padding-top: 0px;
+	margin-top: 1px;
 }	
 
 .asset_options {
