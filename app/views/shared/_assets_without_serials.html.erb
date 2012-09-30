@@ -1,8 +1,8 @@
-<div class="span4">
+
 	<h2>Equipment Needed</h2>
-	<ol class="workorders">
+	<div class="workorder_form">
 		<% for asset in @assets_without_serials %>
-			<li>
+		<div>
 				<span>
 					<%= link_to asset.name, edit_workorder_path(asset.workorder) %>  -Serial#:  
 					<% if asset.serial==""%>
@@ -18,7 +18,7 @@
 					<% end %>
 				<span>Customer:  <%= asset.workorder.customer %></span>
 				<span>Due:  <%= asset.workorder.wo_date.strftime("%B %d, %Y at %I:%M %p") %></span>
-			</li>
+				<br /></div>
 		<% end %>
-	</ol>
-</div>
+		</div>
+

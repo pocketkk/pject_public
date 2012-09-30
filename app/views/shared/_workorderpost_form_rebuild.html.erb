@@ -1,5 +1,4 @@
-<ol class="users">
-	<li>
+<div class="workorder_form">
 <%= nested_form_for @workorder, :html => { :class => 'form-vertical' }  do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
     <%= f.label :customer, "Customer:" %>
@@ -45,6 +44,4 @@
 	<br /><br />
   	<center><%= f.submit "Submit", class: "btn btn-large btn-primary" %></center>
 <% end %>
-
-	</li>
-</ol>
+</div>

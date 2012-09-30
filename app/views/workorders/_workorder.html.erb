@@ -49,7 +49,7 @@
 	</span>
 		<% workorder.assets.each do |a| %>
 				<div id="equipment"></div>
-				<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em>Complete</em><%end%></div>
+				<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em> : Ready!</em><%end%></div>
 				<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
 				
 		<% end %>

@@ -5,6 +5,7 @@
 $grayDarkest: #696969;
 $grayMedium: #adadad;
 $grayLightest: #e3e3e3;
+$graySuperLight: #fafafa;
 
 
 $grayMediumLight: #cccccc;
@@ -30,7 +31,7 @@ html {
 	height: 100%;
 }
 .container#window {
-	background: $grayLightest;
+	background: $graySuperLight;
 	margin-top: -20px;
 	padding-top: 20px;
 	padding-left: 20px;
@@ -313,7 +314,7 @@ div.fields {
 	border: 1px solid #bbb;
 	padding: 10px;
 	margin-bottom: 10px;
-	background-color: #fafafa;
+	background-color: white;
 	textarea: #c0c0c0;
 	height: 100%;
 	}
