@@ -12,9 +12,9 @@
 //
 //= require bootstrap
 //= require jquery
-//= require_tree
 //= require jquery_ujs
 //= require lightbox
-
+//= require_tree
+//= require jquery_nested_form
 
 
