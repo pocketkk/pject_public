@@ -12,6 +12,11 @@ $grayDark: #333333;
 $grayLight: #eaeaea;
 $blueDark:  3486D0; 
 
+$workorderRed: #9d261d;
+$workorderBlue: #049cdb;
+$workorderBlack: black;
+$workorderGreen: #45a546;
+
 
 
 @mixin box_sizing {
@@ -22,6 +27,7 @@ $blueDark:  3486D0;
 
 html {
 	overflow-y: scroll;
+	height: 100%;
 }
 .container#window {
 	background: $grayLightest;
@@ -43,6 +49,7 @@ body {
 
 section {
 	overflow: auto;
+	height: 100%;
 }
 textarea {
 	resize: vertical;
@@ -216,10 +223,7 @@ input, textarea, select, .uneditable-input {
   li {
     overflow: auto;
     padding: 5px 0;
-    border-top: 1px solid $grayDarkest;
-    &:last-child {
-      border-bottom: 1px solid $grayDarkest;
-    }
+
   }
 }
 
@@ -229,7 +233,7 @@ input, textarea, select, .uneditable-input {
 	li {
 		padding: 10px 0;	
 		margin-bottom: -10px;
-		border-top: 1px solid $grayDarkest;
+
 	
 	}
 
@@ -240,27 +244,23 @@ input, textarea, select, .uneditable-input {
 .workorders {
   list-style: none;
   margin: 10px 0 0 0;
-
-  li {
-    padding: 10px 0;
-    border-top: 1px solid $grayDarkest;
-  }
+ 
 }
 .workorder_today {
 	text-align: right;
-	color: green;
+	color: $workorderGreen;
 	margin-bottom: -30px;
 
 }
 .workorder_tomorrow {
 	text-align: right;
-	color: blue;
+	color: $workorderBlue;
 	margin-bottom: -30px;
 
 }
 .workorder_pastdue {
 	text-align: right;
-	color: red;
+	color: $workorderRed;
 	margin-bottom: -30px;
 
 }
@@ -309,6 +309,7 @@ div.fields {
 	margin-bottom: 10px;
 	background-color: #fafafa;
 	textarea: #c0c0c0;
+	height: 100%;
 	}
 #workorder_assets_attributes_0_chemicals_attributes_new_chemicals_name {
 	background-color: #000;
@@ -316,6 +317,172 @@ div.fields {
 
 .edit_or_delete {
 
+
+}
+.work_wrapper {
+	position: relative;
+	margin: 5px;
+	background-color: white;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	padding: 10px;
+
+}
+
+.work_bar_new{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 15px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderGreen;
+}
+.work_bar_swap{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 15px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderBlack;
+}
+.work_bar_follow_up{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 15px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderBlue;
+}
+.work_bar_pull{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 15px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderRed;
+}
+
+/* Calendar Workorders Display */
+.work_wrapper_small {
+	position: relative;
+	margin: 2px;
+
+	background-color: $grayLightest;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	padding: 7px;
+
+}
+
+.work_bar_new_small{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 5px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderGreen;
+}
+.work_bar_swap_small{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 5px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderBlack;
+}
+.work_bar_follow_up_small{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 5px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderBlue;
+}
+.work_bar_pull_small{
+	float: left;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 5px;
+	height: 100%;
+	-moz-border-top-right-radius: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: $workorderRed;
+}
+
+
+.work_content{
+	height: 100%;
+	margin-left: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
 
 }
 #equipment {
@@ -389,7 +556,7 @@ div.fields {
   padding-left: 20px;
 }
 
-.wororder_feed_time {
+.workorder_feed_time {
 	font-size: 9px;
 	padding-left: 4px;
 	text-align: right;

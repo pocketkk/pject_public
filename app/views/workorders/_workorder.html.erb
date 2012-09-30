@@ -1,4 +1,21 @@
-<li>
+
+<div class="work_wrapper">	
+
+		<% if workorder.wo_type == 'New Install' %>
+			<div class="work_bar_new">	</div>
+		<% end %>
+		<% if workorder.wo_type == 'Pull'%>
+			<div class='work_bar_pull'>	</div>
+		<% end %>
+		<% if workorder.wo_type == 'Swap'%>
+			<div class='work_bar_swap'>	</div>
+		<% end %>
+		<% if workorder.wo_type == 'Follow Up'%>
+			<div class='work_bar_follow_up'>	</div>
+		<% end %>
+
+	<div class="work_content">
+	
 	<% unless workorder.completed?%>
 		<% if workorder.wo_date.to_date == Date.today %>
 			<div class="workorder_today">**Today**</div><br />
@@ -51,7 +68,7 @@
 			<% end %>
 		</center>
 	</span>
-
-</li>
+</div>
+</div>
 
 

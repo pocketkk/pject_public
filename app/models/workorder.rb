@@ -4,7 +4,7 @@ class Workorder < ActiveRecord::Base
   attr_accessible :customer, :street, :city, :state, :wo_date, 
                   :wo_duration, :chronic_wo_date, :phonenumber, :raw_phonenumber, 
                   :contact, :misc_notes, :assets_attributes, :branch, 
-                  :before_photos_attributes, :after_photos_attributes, :completed
+                  :before_photos_attributes, :after_photos_attributes, :completed, :wo_type
   belongs_to :user
   has_many :assets
   has_many :before_photos
@@ -20,6 +20,7 @@ class Workorder < ActiveRecord::Base
   scope :wo_not_completed, where('completed = ?', false)
     
   BRANCH_OPTIONS = ['340','350','360']
+  WORKORDER_TYPES = ['New Install','Pull','Swap','Follow Up']
   ASSET_STATUS_OPTIONS =  {  "" => "",
                              "New - Ordered"    => "0" ,
                              "New - On Site"    => "10" ,
@@ -30,6 +31,7 @@ class Workorder < ActiveRecord::Base
                              "Used - Rebuilt"   => "76" ,
                              "Used - Tested"    => "100"}
  
+  validates :wo_type, presence: true
   validates :user_id, presence: true
   validates :customer, presence: true
   validates :street, presence: true

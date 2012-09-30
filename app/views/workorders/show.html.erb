@@ -1,7 +1,7 @@
 <% provide(:title, @workorder.customer) %>
 	<h1 class="show_workorder"><%= @workorder.customer %></h1>
 			<hr>
-	<div class="row">
+	<div class="row-fluid">
 	  <div class="span4 fields" >
 			<h3 align="center">Customer Information</h3><hr/>
 					<address>
@@ -22,7 +22,7 @@
 					<b><u>Additional Notes:</u></b>
 					<%=@workorder.misc_notes%><br /><br />
 					<center><%= link_to "Edit", edit_workorder_path(@workorder) %></center>
-			</div>
+		</div>
 
 	
 	  <div class="span6 fields">
@@ -86,7 +86,7 @@
 
 			</div>
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span5 fields" >
 			<h3 align="center">Before Photos</h3><hr/>
 			<% @workorder.before_photos.each do |photo| %>

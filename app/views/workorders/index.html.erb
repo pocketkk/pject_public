@@ -9,12 +9,25 @@
     <%= date.day %>
     <% if @workorders_by_date[date] %>
       <% @workorders_by_date[date].each do |workorder| %>
+		<div class= "work_wrapper_small">
+			<% if workorder.wo_type == 'New Install' %>
+				<div class="work_bar_new_small">	</div>
+			<% end %>
+			<% if workorder.wo_type == 'Pull'%>
+				<div class='work_bar_pull_small'>	</div>
+			<% end %>
+			<% if workorder.wo_type == 'Swap'%>
+				<div class='work_bar_swap_small'>	</div>
+			<% end %>
+			<% if workorder.wo_type == 'Follow Up'%>
+				<div class='work_bar_follow_up_small'>	</div>
+			<% end %>
 		<div class="calendar_event_time">
 			<%= workorder.wo_date.strftime("%I:%M %p")%> <em><%=workorder.wo_duration%> hr est.</em>
 		</div>
 		<div class="calendar_event">
-			<%= link_to workorder.customer, edit_workorder_path(workorder) %>
-		</div>
+			<%= link_to workorder.customer.titleize, edit_workorder_path(workorder) %>
+		</div></div>
       <% end %>
     </ul>
     <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929203727) do
+ActiveRecord::Schema.define(:version => 20120929221400) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20120929203727) do
     t.string   "misc_notes"
     t.integer  "branch"
     t.boolean  "completed"
+    t.string   "wo_type"
   end
 
 end

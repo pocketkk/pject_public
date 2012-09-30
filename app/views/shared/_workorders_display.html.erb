@@ -1,17 +1,15 @@
 <div class="span4"><br/>
     <h2>Open Workorders (<%= @workorders.count %>)</h2>
 	<% if @workorders.any? %>
-     <ol class="workorders">
        <%= render @workorders %>
-     </ol>
      <%= will_paginate @workorders %>
    <% end %>
 	<br />
 	<h2>Recently Completed</h2>
 	<% if @completed_workorders.any? %>
-	<ol class="workorders">
+
        <%= render @completed_workorders %>
-     </ol>
-     <%= will_paginate @workorders %>
+
+     <%= will_paginate @completed_workorders %>
    <% end %>
  </div>
