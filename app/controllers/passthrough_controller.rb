@@ -2,6 +2,7 @@ class PassthroughController < ApplicationController
   
   def index
     path=welcome_path
+    flash.keep
     unless current_user.nil?
         path = case current_user.role 
               when 'Regional Manager'

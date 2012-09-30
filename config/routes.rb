@@ -1,5 +1,7 @@
 Pject::Application.routes.draw do
 
+  resources :bugs
+
   resources :after_photos
 
   resources :before_photos

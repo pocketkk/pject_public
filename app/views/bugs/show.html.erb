@@ -1,0 +1,24 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @bug.name %>
+</p>
+<p>
+  <strong>Type:</strong>
+  <%= @bug.request_type %>
+</p>
+<p>
+  <strong>Fixed:</strong>
+  <%= @bug.fixed %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @bug.user_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_bug_path(@bug) %> |
+  <%= link_to "Destroy", @bug, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", bugs_path %>
+</p>

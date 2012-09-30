@@ -4,4 +4,10 @@
       <%= render 'shared/user_info' %>
     </section>
 	</aside>
+
 </div>
+<div class="row" id="flash_row">
+	<% flash.each do |key, value| %>
+     <div class="alert alert-<%= key %>"><a class="close" data-dismiss="alert">×</a><%= value %></div>
+      <% end %>
+	</div>
