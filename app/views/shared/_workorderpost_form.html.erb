@@ -1,5 +1,4 @@
-<ol class="users">
-	<li>
+<div class="workorder_form">
 <%= nested_form_for @workorder, :html => { :class => 'form-vertical', :multipart => true }  do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.label :wo_type, "Workorder Category:"%>
@@ -53,7 +52,7 @@
 		<%= m.text_field :name %>
 		<%= m.label :serial, "Serial Number (if known)" %>
 		<%= m.text_field :serial %>
-		
+
 		<center><%= m.link_to_remove "Remove Equipment" %></center>
 		<%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>
 			<%= o.label :name, "Equipment Option" %>
@@ -82,5 +81,4 @@
   	<center><%= f.submit "Submit", class: "btn btn-large btn-primary" %></center>
 <% end %>
 
-	</li>
-</ol>
+</div>
