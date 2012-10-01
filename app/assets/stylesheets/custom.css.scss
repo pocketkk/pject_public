@@ -343,6 +343,22 @@ div.fields {
 	background-color: #000;
 }
 
+.part_wrapper{
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 1px solid #bbb;
+	padding: 5px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+}
+.part_user {
+	font-size: 9px;
+	color: $grayDarkest;
+	padding-left: 40px;
+	text-align: left;
+}
+
 .workorder_search_wrapper {
 	h1{font-size: 2em;}
 	width: 100%;

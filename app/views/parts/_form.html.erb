@@ -1,0 +1,21 @@
+<%= form_for @part do |f| %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :qty %><br />
+    <%= f.text_field :qty %>
+  </p>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.label :branch %><br />
+    <%= f.select :branch, Workorder::BRANCH_OPTIONS %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+

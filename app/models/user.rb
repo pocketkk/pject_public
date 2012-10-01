@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :updates
   has_many :assetnotes
   has_many :bugs
+  has_many :parts
   
   attr_accessor :updating_password
   

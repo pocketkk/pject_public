@@ -1,0 +1,28 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @part.name.titleize %>
+</p>
+<p>
+  <strong>Qty:</strong>
+  <%= @part.qty %>
+</p>
+<p>
+  <strong>Comment:</strong>
+  <%= @part.comment %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @part.user.name.titleize %>
+</p>
+<p>
+  <strong>Branch:</strong>
+  <%= @part.branch %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_part_path(@part) %> |
+  <%= link_to "Destroy", @part, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", parts_path %>
+</p>

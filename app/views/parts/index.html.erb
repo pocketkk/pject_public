@@ -1,0 +1,32 @@
+<%= render :partial => 'shared/lower_header' %>
+
+<div class="workorder_search_wrapper row">
+	<h1>Request Parts</h1>
+	<div class="workorder_search_content span4">
+		<h2>Add Parts</h2>
+		<%= form_for @part do |f| %>
+  			<div class="field">
+    			<%= f.label :name, "Part Name" %>
+    			<%= f.text_field :name %>
+				<%= f.label :qty, "Quantity" %>
+    			<%= f.text_field :qty %>
+				<%= f.label :comment, "Comment" %>
+    			<%= f.text_field :comment %>
+				<%= f.label :branch %><br />
+			    <%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
+  			</div>
+
+  			<center>
+				<%= f.submit "Add Part", class: "btn btn-large btn-primary" %>
+			</center>
+		<% end %>
+	</div>
+	<div class="span5">
+		<h2>Parts Needed (<%= @parts.count %>)</h2>
+		<% if @parts.any? %>
+	       <%= render @parts %>
+	   <% end %>
+		<br />
+	</div>
+</div>
+

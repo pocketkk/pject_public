@@ -12,7 +12,7 @@ class BugsController < ApplicationController
   end
 
   def create
-    @bug = Bug.new(params[:bug])
+    @bug = current_user.bugs.build(params[:bug])
     if @bug.save
       redirect_to root_path, :notice => "Successfully reported a bug."
     else
