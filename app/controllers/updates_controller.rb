@@ -12,7 +12,7 @@ class UpdatesController < ApplicationController
   end
 
   def create
-    @update = Update.new(params[:update])
+    @update = current_user.update.build(params[:update])
     if @update.save
       redirect_to @update, :notice => "Successfully created update."
     else

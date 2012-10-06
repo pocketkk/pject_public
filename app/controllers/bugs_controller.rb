@@ -15,7 +15,11 @@ class BugsController < ApplicationController
   def create
     @bug = current_user.bugs.build(params[:bug])
     if @bug.save
-      redirect_to root_path, :notice => "Successfully reported a bug."
+      redirect_to root_path, :notice => "Bug or feature request added to the list!"
+      @update=Update.new
+      @update.feed_item=current_user.name << " added a bug/feature request!"
+      @update.user_id=current_user.id
+      @update.save
     else
       render :action => 'new'
     end

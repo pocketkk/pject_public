@@ -16,6 +16,7 @@ class Workorder < ActiveRecord::Base
   #scope :current_branch, where("branch=350").order("wo_date ASC")
   scope :wo_current_branch, lambda{ |branch_number| where('branch = ?', branch_number)  }
   scope :ascending, order("wo_date ASC")
+  scope :descending, order("wo_date DESC")
   scope :wo_completed, where('completed = ?', true)
   scope :wo_not_completed, where('completed = ?', false)
     
