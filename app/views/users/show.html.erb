@@ -1,21 +1,5 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <table>
-		<tr>
-			<td>
-        		<%= gravatar_for @user %>
-        	</td>
-			<td>
-						<h1><%= @user.name %></h1>
-						<address><i><%= @user.role %></i></address>
-				
-			</td>
-		</tr>
-	  </table>
-    </section>
-  </aside>
+
   <div class="span4">
     <% if @user.workorders.any? %>
       <h3>Workorders(<%= @user.workorders.count %>)</h3>

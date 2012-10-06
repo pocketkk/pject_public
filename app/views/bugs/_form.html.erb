@@ -8,6 +8,8 @@
 
 	    <%= f.label :name, "Describe the issue or feature.  The more detail the better." %><br />
 	    <%= f.text_area :name %>
+		
+		<%= f.hidden_field :complete, :value => false%>
 
 	<center><%= f.submit "Submit", class: "btn btn-large btn-primary" %></center>
 	<% end %>

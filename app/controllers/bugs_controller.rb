@@ -1,6 +1,7 @@
 class BugsController < ApplicationController
   def index
-    @bugs = Bug.all
+    @bugs = Bug.where("complete=?",false)
+    @completed_bugs = Bug.where("complete=?",true)
   end
 
   def show
@@ -27,7 +28,7 @@ class BugsController < ApplicationController
   def update
     @bug = Bug.find(params[:id])
     if @bug.update_attributes(params[:bug])
-      redirect_to @bug, :notice  => "Successfully updated bug."
+      redirect_to bugs_path, :notice  => "Successfully updated bug."
     else
       render :action => 'edit'
     end
@@ -38,4 +39,18 @@ class BugsController < ApplicationController
     @bug.destroy
     redirect_to bugs_url, :notice => "Successfully destroyed bug."
   end
+  
+  def complete
+    @bug = Bug.find(params[:id])
+    if @bug.update_attributes(:complete => true)
+      redirect_to bugs_path, :notice => "Bug squashed!"
+      @update=Update.new
+      @update.feed_item="Squashed a bug!"
+      @update.user_id=current_user.id
+      @update.save
+    else 
+      redirect_to bugs_path, :error => "Oops something went wrong, bug is still alive and kicking."
+    end
+  end
+  
 end

@@ -1,21 +1,38 @@
-
-<table>
+<% provide(:title, "Bugs") %>
+<h1 class="show_workorder">Bugs</h1>
+<h2>Open</h2>
+<table class="table table-bordered table-striped">
   <tr>
     <th>Type</th>
 	<th>Name</th>
-    <th>Fixed</th>
+    <th>Actions</th>
   </tr>
   <% for bug in @bugs %>
     <tr>
       <td><%= bug.request_type %></td>
 	  <td><%= bug.name %></td>
-
-      <td><%= bug.fixed %></td>
-      <td><%= link_to "Show", bug %></td>
-      <td><%= link_to "Edit", edit_bug_path(bug) %></td>
-      <td><%= link_to "Destroy", bug, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Edit", edit_bug_path(bug) %>  |  
+	  <%= link_to "Complete", complete_bug_path(bug)%>  |  
+      <%= link_to "Destroy", bug, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
+<h2>Completed</h2>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Type</th>
+	<th>Name</th>
+    <th>Actions</th>
+  </tr>
+  <% for bug in @completed_bugs %>
+    <tr>
+      <td><%= bug.request_type %></td>
+	  <td><%= bug.name %></td>
+      <td><%= link_to "Edit", edit_bug_path(bug) %>  |  
+	  <%= link_to "Complete", complete_bug_path(bug)%>  |  
+      <%= link_to "Destroy", bug, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
 <p><%= link_to "New Bug", new_bug_path %></p>

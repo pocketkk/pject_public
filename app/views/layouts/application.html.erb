@@ -12,6 +12,10 @@
 	<body>
 		<%= render 'layouts/header' %>
 		<div class="container" id="window">
+			
+			<% if signed_in? %>
+			  <%= render :partial => 'shared/lower_header' %>
+			<% end %>
 		
 			<%= yield %>
 			<%= render 'layouts/footer' %>

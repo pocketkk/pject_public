@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930234308) do
+ActiveRecord::Schema.define(:version => 20121006041021) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120930234308) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.text     "request_type"
+    t.boolean  "complete"
   end
 
   create_table "chemicals", :force => true do |t|
