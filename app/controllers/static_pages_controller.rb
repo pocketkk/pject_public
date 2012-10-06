@@ -12,8 +12,8 @@ class StaticPagesController < ApplicationController
      @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.ascending.paginate(page: params[:page])
      @completed_workorders=Workorder.wo_current_branch(current_user.current_branch).wo_completed.ascending.paginate(page: params[:page]) if signed_in?
      @updates = Update.all(:order => 'created_at DESC', :limit => "15")
-     @assets = Asset.joins(:workorder).where('workorders.branch=350').where('workorders.completed=?',false).order('workorders.wo_date ASC')
-     @assets_without_serials = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).needs_serial.order('workorders.wo_date ASC')
+     @assets = Asset.joins(:workorder).where('workorders.branch=?', current_user.current_branch).where('workorders.completed=?',false).order('workorders.wo_date ASC')
+     @assets_without_serials = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).serial_blank.order('workorders.wo_date ASC')
   end 
 
   def help

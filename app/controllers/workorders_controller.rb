@@ -8,7 +8,7 @@ class WorkordersController < ApplicationController
   end
   
   def calendar
-    @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.ascending
+    @workorders=Workorder.wo_current_branch(current_user.current_branch).ascending
     
     ### workorder lookup for calendar    
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
@@ -47,10 +47,11 @@ class WorkordersController < ApplicationController
   def edit
     @workorder=Workorder.find(params[:id])
     @asset_status_options = {  "" => "",
-                               "New - Ordered"    => "0" ,
+                               "Need to Order" => "0",
+                               "New - Ordered"    => "1" ,
                                "New - On Site"    => "10" ,
                                "New - Tested"     => "99" ,
-                               "Used - Ordered"   => "1"  ,
+                               "Used - Ordered"   => "2"  ,
                                "Used - On Site"   => "11" ,
                                "Used - Torn Down" => "25" ,
                                "Used - Rebuilt"   => "76" ,
@@ -59,10 +60,11 @@ class WorkordersController < ApplicationController
   def new
     @workorder=Workorder.new
     @asset_status_options = {  "" => "",
-                               "New - Ordered"    => "0" ,
+                               "Need to Order" => "0",
+                               "New - Ordered"    => "1" ,
                                "New - On Site"    => "10" ,
                                "New - Tested"     => "99" ,
-                               "Used - Ordered"   => "1"  ,
+                               "Used - Ordered"   => "2"  ,
                                "Used - On Site"   => "11" ,
                                "Used - Torn Down" => "25" ,
                                "Used - Rebuilt"   => "76" ,

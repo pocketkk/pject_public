@@ -50,6 +50,8 @@
 	<%= f.fields_for :assets do |m| %>
 		<%= m.label :name, "Model Number/Machine type"%>
 		<%= m.select :name, Option::EQUIPMENT_MODELS %>
+		<%= m.label :serial, "Serial Number (If known)" %>
+		<%= m.text_field :serial %>
 		<%= m.label :water_plumbing, "Water Connection"%>
 		<%= m.select :water_plumbing, Option::WATER_PLUMBING %>
 		<%= m.label :drain_plumbing, "Drain Connection"%>

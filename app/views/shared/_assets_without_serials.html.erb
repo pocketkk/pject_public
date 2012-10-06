@@ -5,11 +5,7 @@
 		<div>
 				<span>
 					<%= link_to asset.name, edit_workorder_path(asset.workorder) %>  -Serial#:  
-					<% if asset.serial==""%>
 					<%= link_to "Add Serial Number", edit_workorder_path(asset.workorder)%>
-					<% else %>
-					<%= asset.serial %>
-					<% end %>
 				</span>
 					<% asset.options.each do |o|%>
 					<span class="asset_options">

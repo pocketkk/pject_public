@@ -16,6 +16,8 @@
     			<%= f.text_field :city_cont %>
 				<%= f.label :branch_eq, "Branch"%>
 				<%= f.text_field :branch_eq%>
+				<%= f.label :wo_type_cont, "Type of Workorder"%>
+				<%= f.select :wo_type_cont, Workorder::WORKORDER_TYPES%>
 				<%= f.label :wo_date_gt, "Workorders after date:"%>
 				<%= f.text_field :wo_date_gt%>
 				<%= f.label :wo_date_lt, "Workorders before date:"%>

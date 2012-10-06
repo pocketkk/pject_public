@@ -10,7 +10,8 @@ class Asset < ActiveRecord::Base
   accepts_nested_attributes_for :options, :allow_destroy => true
   accepts_nested_attributes_for :assetnotes, :allow_destroy => true
   
-  scope :needs_serial, where(:serial => "")
+  scope :serial_nil, where(:serial => nil)
+  scope :serial_blank, where(:serial => "")
   
   
   validates :name, presence: true

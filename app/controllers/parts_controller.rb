@@ -33,7 +33,7 @@ class PartsController < ApplicationController
   def update
     @part = Part.find(params[:id])
     if @part.update_attributes(params[:part])
-      redirect_to @part, :notice  => "Successfully updated part."
+      redirect_to root_path, :notice  => "Successfully updated part."
     else
       render :action => 'edit'
     end
