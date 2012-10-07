@@ -52,6 +52,12 @@
 		<%= m.select :name, Option::EQUIPMENT_MODELS %>
 		<%= m.label :serial, "Serial Number (If known)" %>
 		<%= m.text_field :serial %>
+		<% if current_user.role=="Branch Manager"||"Regional Manager"%>
+			<%= m.label :status, "Equipment Status"%>
+			<%= m.select :status, options_for_select(Workorder::ASSET_STATUS_OPTIONS, m.object.status) %>		
+			<%= m.label :ready, "Ready for Install?"%>
+			<%= m.select :ready, { "No" => false, "Yes" => true}%>
+		<% end %>
 		<%= m.label :water_plumbing, "Water Connection"%>
 		<%= m.select :water_plumbing, Option::WATER_PLUMBING %>
 		<%= m.label :drain_plumbing, "Drain Connection"%>

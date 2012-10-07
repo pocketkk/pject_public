@@ -25,10 +25,11 @@ class Workorder < ActiveRecord::Base
   BRANCH_OPTIONS = ['340','350','360']
   WORKORDER_TYPES = ['New Install','Pull','Swap','Follow Up']
   ASSET_STATUS_OPTIONS =  {  "" => "",
-                             "New - Ordered"    => "0" ,
+                             "Need to Order" => "0",
+                             "New - Ordered"    => "1" ,
                              "New - On Site"    => "10" ,
                              "New - Tested"     => "99" ,
-                             "Used - Ordered"   => "1"  ,
+                             "Used - Ordered"   => "2"  ,
                              "Used - On Site"   => "11" ,
                              "Used - Torn Down" => "25" ,
                              "Used - Rebuilt"   => "76" ,

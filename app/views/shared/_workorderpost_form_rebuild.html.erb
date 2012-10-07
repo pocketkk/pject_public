@@ -14,7 +14,7 @@
 		<%= m.label :serial, "Serial Number" %>
 		<%= m.text_field :serial %>
 		<%= m.label :status, "Equipment Status"%>
-		<%= m.select :status, options_for_select(@asset_status_options, m.object.status) %>		
+		<%= m.select :status, options_for_select(Workorder::ASSET_STATUS_OPTIONS, m.object.status) %>		
 		<%= m.label :ready, "Ready for Install?"%>
 		<%= m.select :ready, { "No" => false, "Yes" => true}%>
 		<center><%= m.link_to_remove "Remove Equipment" %></center>

@@ -65,35 +65,18 @@ class WorkordersController < ApplicationController
   def show
     @workorder=Workorder.find(params[:id])
     @json=@workorder.to_gmaps4rails
+    @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
   end
   
   def edit
     @workorder=Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
-    @asset_status_options = {  "" => "",
-                               "Need to Order" => "0",
-                               "New - Ordered"    => "1" ,
-                               "New - On Site"    => "10" ,
-                               "New - Tested"     => "99" ,
-                               "Used - Ordered"   => "2"  ,
-                               "Used - On Site"   => "11" ,
-                               "Used - Torn Down" => "25" ,
-                               "Used - Rebuilt"   => "76" ,
-                               "Used - Tested"    => "100"}
+
   end
   
   def new
     @workorder=Workorder.new
-    @asset_status_options = {  "" => "",
-                               "Need to Order" => "0",
-                               "New - Ordered"    => "1" ,
-                               "New - On Site"    => "10" ,
-                               "New - Tested"     => "99" ,
-                               "Used - Ordered"   => "2"  ,
-                               "Used - On Site"   => "11" ,
-                               "Used - Torn Down" => "25" ,
-                               "Used - Rebuilt"   => "76" ,
-                               "Used - Tested"    => "100"}
+
   end
   
   def complete
