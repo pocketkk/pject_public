@@ -69,6 +69,7 @@ class WorkordersController < ApplicationController
   
   def edit
     @workorder=Workorder.find(params[:id])
+    @workorder_comparison=Workorder.find(params[:id])
     @asset_status_options = {  "" => "",
                                "Need to Order" => "0",
                                "New - Ordered"    => "1" ,
@@ -140,11 +141,21 @@ class WorkordersController < ApplicationController
   
   def update
     @workorder= Workorder.find(params[:id])
+    @workorder_comparison=Workorder.find(params[:id])
     if @workorder.update_attributes(params[:workorder])
-      redirect_to root_url, :notice  => "Successfully updated workorder."
-      @update=current_user.updates.new
-      @update.feed_item=current_user.name << " updated the workorder for " << @workorder.customer.titleize << "."
-      @update.save
+      @workorder_changes=@workorder.differs_from @workorder_comparison, :ignore_attributes=>['id', 'created_at', 'updated_at']
+      
+      
+   
+      
+      @workorder_changes.each do |key, value|
+        @update=current_user.updates.new
+        @update.feed_item=current_user.name << " changed " << @workorder.customer.titleize << " from #{value.first} to #{value.last}." 
+        @update.save
+      end
+
+
+      redirect_to root_url, :notice  => "Successfully updated workorder."      
     else
       render :action => 'edit'
     end

@@ -20,6 +20,7 @@ gem 'ransack'
 gem 'twilio-ruby'
 gem 'gmaps4rails'
 gem 'thin'
+gem 'difference'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
