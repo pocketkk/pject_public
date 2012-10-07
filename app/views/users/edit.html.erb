@@ -16,6 +16,12 @@
       <%= f.label :role %>
       <%= f.select :role, User::USER_ROLES %>
 
+	  <%= f.label :raw_phonenumber, "Phone Number (Used to send text message alerts)" %>
+	  <%= f.text_field :raw_phonenumber %>
+	
+	  <%= f.label :texts, "Do you wish to receive text message alerts?"%>
+	  <%= f.select :texts, { "No" => false, "Yes" => true}%>
+
       <%= f.label :password %>
       <%= f.password_field :password %>
 

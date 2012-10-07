@@ -17,6 +17,7 @@ gem 'rmagick'
 gem 'rubylight'
 gem 'jquery-rails', '2.1.3'
 gem 'ransack'
+gem 'twilio-ruby'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

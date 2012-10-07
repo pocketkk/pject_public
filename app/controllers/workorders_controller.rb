@@ -18,11 +18,31 @@ class WorkordersController < ApplicationController
   def create
       @workorder = current_user.workorders.build(params[:workorder])
       if @workorder.save
+        
         @update=Update.new
         @update.feed_item=current_user.name << " created a new workorder for " << @workorder.customer.titleize << "."
         @update.user_id=current_user.id
         @update.save
+        
+        @users_rebuilders=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Rebuilder')
+        @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
+        @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
+        @users_to_text=@users_rebuilders + @users_branchmanagers + @users_regionalmanagers
         flash[:success] = "Workorder created!"
+        
+        
+        @users_to_text.each do |user|
+            client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+              unless user.phone_number.nil?
+                 # Create and send an SMS message
+                 client.account.sms.messages.create(
+                   from: TWILIO_CONFIG['from'],
+                   to: user.phone_number,
+                   body: "A workorder for " << @workorder.customer.titleize << " has been created! www.workordermachine.com"
+                 )
+              end
+        end
+        
         redirect_to root_url
       else
         flash[:error] = 'All fields must be filled to create a new workorder'
@@ -78,6 +98,36 @@ class WorkordersController < ApplicationController
       @update.feed_item="The workorder for " << @workorder.customer.titleize << " has been completed."
       @update.user_id=current_user.id
       @update.save
+      
+      @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
+      @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
+      
+      if @workorder.user.texts == true 
+        client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+
+             # Create and send an SMS message
+             client.account.sms.messages.create(
+               from: TWILIO_CONFIG['from'],
+               to: @workorder.user.phone_number,
+               body: @workorder.customer.titleize << "'s workorder has been completed! www.workordermachine.com"
+             )
+      end
+      
+      @users_to_text=@users_branchmanagers + @users_regionalmanagers
+      
+      @users_to_text.each do |user|
+          unless user==@workorder.user
+              client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+
+                   # Create and send an SMS message
+                   client.account.sms.messages.create(
+                     from: TWILIO_CONFIG['from'],
+                     to: user.phone_number,
+                     body: @workorder.customer.titleize << "'s workorder has been completed! www.workordermachine.com"
+                   )
+          end
+      end
+      
     else 
       redirect_to root_path, :error => "Workorder status not updated."
     end

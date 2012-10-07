@@ -12,7 +12,8 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :role, :password, :password_confirmation, :current_branch
+  attr_accessible :email, :name, :role, :password, :password_confirmation, 
+                  :current_branch, :phone_number, :raw_phonenumber, :texts
   has_secure_password
   has_many :workorders
   has_many :updates
@@ -40,6 +41,15 @@ class User < ActiveRecord::Base
   def should_validate_password?
     updating_password || new_record?
   end
+  
+  def raw_phonenumber
+    self.phone_number
+  end
+
+  def raw_phonenumber=(s)
+    self.phone_number=s.gsub(/\D/, '')
+  end
+  
   
   private
       def create_remember_token

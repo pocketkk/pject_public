@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121006041021) do
+ActiveRecord::Schema.define(:version => 20121007014008) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -111,11 +111,13 @@ ActiveRecord::Schema.define(:version => 20121006041021) do
     t.string   "email"
     t.boolean  "admin"
     t.string   "role"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.integer  "current_branch"
+    t.string   "phone_number"
+    t.boolean  "texts",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
