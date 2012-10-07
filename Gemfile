@@ -19,6 +19,7 @@ gem 'jquery-rails', '2.1.3'
 gem 'ransack'
 gem 'twilio-ruby'
 gem 'gmaps4rails'
+gem 'thin'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

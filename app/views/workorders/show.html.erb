@@ -39,10 +39,8 @@
 					<%=@workorder.misc_notes%><br /><br />
 					<center><%= link_to "Edit", edit_workorder_path(@workorder) %></center>
 					
-		<%= gmaps({
-					  "map_options" => {"auto_adjust" => true, "auto_zoom" => false,
-					                       "zoom" => 14},
-					  "markers"     => {"data" => @json }}) %>			
+		<%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
+					  "markers"=> {"data" => @json }}) %>			
 		</div>
 
 	
