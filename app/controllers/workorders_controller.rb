@@ -64,6 +64,7 @@ class WorkordersController < ApplicationController
   
   def show
     @workorder=Workorder.find(params[:id])
+    @json=@workorder.to_gmaps4rails
   end
   
   def edit

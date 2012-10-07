@@ -13,6 +13,8 @@ class Workorder < ActiveRecord::Base
   accepts_nested_attributes_for :before_photos, :allow_destroy => true
   accepts_nested_attributes_for :after_photos, :allow_destroy => true
   
+  acts_as_gmappable
+  
   #scope :current_branch, where("branch=350").order("wo_date ASC")
   scope :wo_current_branch, lambda{ |branch_number| where('branch = ?', branch_number)  }
   scope :ascending, order("wo_date ASC")
@@ -42,6 +44,11 @@ class Workorder < ActiveRecord::Base
   validates :contact, presence: true
   validates :wo_date, presence: true
   validates :wo_duration, presence: true
+ 
+ def gmaps4rails_address
+   "#{self.street}, #{self.city}, #{self.state}"
+ end
+ 
  
  def chronic_wo_date
    self.wo_date

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121007014008) do
+ActiveRecord::Schema.define(:version => 20121007044558) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -140,6 +140,9 @@ ActiveRecord::Schema.define(:version => 20121007014008) do
     t.integer  "branch"
     t.boolean  "completed"
     t.string   "wo_type"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
 end

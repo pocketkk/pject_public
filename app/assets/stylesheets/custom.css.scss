@@ -673,3 +673,15 @@ div.fields {
 	margin-left: 20px;
 
 }
+
+// For Google Maps //
+.map_container img{
+	max-width: none;
+	}
+
+#map img { 
+	max-width: none;
+	}
+#map label { 
+	width: auto; display:inline; 
+	}
