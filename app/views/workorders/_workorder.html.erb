@@ -64,7 +64,7 @@
 			<%= link_to "Remove", workorder, :confirm => 'Are you sure?', :method => :delete %><% end %>
 			<% unless workorder.completed?%>
 			  |  
-			<%= link_to "Complete", complete_workorder_path(workorder)%>
+			<%= link_to "Complete", complete_workorder_path(workorder), :confirm => "Don't forget to add After Photos to completed workorders."%>
 			<% end %>
 		</center>
 	</span>

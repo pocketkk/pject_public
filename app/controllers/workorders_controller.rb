@@ -19,9 +19,8 @@ class WorkordersController < ApplicationController
       @workorder = current_user.workorders.build(params[:workorder])
       if @workorder.save
         
-        @update=Update.new
-        @update.feed_item=current_user.name << " created a new workorder for " << @workorder.customer.titleize << "."
-        @update.user_id=current_user.id
+        @update=current_user.updates.new
+        @update.feed_item=current_user.name << " created a " << @workorder.wo_type.downcase <<  " workorder for " << @workorder.customer.titleize << "."
         @update.save
         
         @users_rebuilders=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Rebuilder')
@@ -38,7 +37,7 @@ class WorkordersController < ApplicationController
                  client.account.sms.messages.create(
                    from: TWILIO_CONFIG['from'],
                    to: user.phone_number,
-                   body: "A workorder for " << @workorder.customer.titleize << " has been created! www.workordermachine.com"
+                   body: "A " << @workorder.wo_type.downcase << " workorder for " << @workorder.customer.titleize << " has been created! www.workordermachine.com"
                  )
               end
         end
@@ -53,17 +52,20 @@ class WorkordersController < ApplicationController
   
   def destroy
     @workorder=Workorder.find(params[:id])
-    @update=Update.new
+   
+    @update=current_user.updates.new
     @update.feed_item=current_user.name << " deleted the workorder for " << @workorder.customer.titleize << "."
-    @update.user_id=current_user.id
+    
     @workorder.destroy
     @update.save
     flash[:success] = "Workorder Deleted"
     redirect_to root_path
   end
+  
   def show
     @workorder=Workorder.find(params[:id])
   end
+  
   def edit
     @workorder=Workorder.find(params[:id])
     @asset_status_options = {  "" => "",
@@ -77,6 +79,7 @@ class WorkordersController < ApplicationController
                                "Used - Rebuilt"   => "76" ,
                                "Used - Tested"    => "100"}
   end
+  
   def new
     @workorder=Workorder.new
     @asset_status_options = {  "" => "",
@@ -90,6 +93,7 @@ class WorkordersController < ApplicationController
                                "Used - Rebuilt"   => "76" ,
                                "Used - Tested"    => "100"}
   end
+  
   def complete
     @workorder = Workorder.find(params[:id])
     if @workorder.update_attributes(:completed => true)
@@ -123,7 +127,7 @@ class WorkordersController < ApplicationController
                    client.account.sms.messages.create(
                      from: TWILIO_CONFIG['from'],
                      to: user.phone_number,
-                     body: @workorder.customer.titleize << "'s workorder has been completed! www.workordermachine.com"
+                     body: @workorder.customer.titleize << "'s " << @workorder.wo_type.downcase << " workorder has been completed! www.workordermachine.com"
                    )
           end
       end
@@ -137,9 +141,8 @@ class WorkordersController < ApplicationController
     @workorder= Workorder.find(params[:id])
     if @workorder.update_attributes(params[:workorder])
       redirect_to root_url, :notice  => "Successfully updated workorder."
-      @update=Update.new
+      @update=current_user.updates.new
       @update.feed_item=current_user.name << " updated the workorder for " << @workorder.customer.titleize << "."
-      @update.user_id=current_user.id
       @update.save
     else
       render :action => 'edit'
