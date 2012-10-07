@@ -143,7 +143,8 @@ class WorkordersController < ApplicationController
     @workorder= Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
     if @workorder.update_attributes(params[:workorder])
-      @workorder_changes=@workorder.differs_from @workorder_comparison, :ignore_attributes=>['id', 'created_at', 'updated_at']
+      @workorder_changes=@workorder.differs_from @workorder_comparison, 
+              :ignore_attributes=>['id', 'created_at', 'updated_at', 'latitude','longitude','gmaps']
       
       
    
