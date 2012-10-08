@@ -134,7 +134,7 @@ class WorkordersController < ApplicationController
       
       @workorder_changes.each do |key, value|
         @update=current_user.updates.new
-        @update.feed_item=current_user.name << " changed " << @workorder.customer.titleize << " from #{value.first} to #{value.last}." 
+        @update.feed_item=current_user.name << " changed " << @workorder.customer.titleize << " from #{value.last} to #{value.first}." 
         @update.save
       end
 
