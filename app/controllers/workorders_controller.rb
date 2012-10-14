@@ -122,24 +122,46 @@ class WorkordersController < ApplicationController
     end
   end
   
+  def update_on_calendar
+     @workorder= Workorder.find(params[:id])
+      @workorder_comparison=Workorder.find(params[:id])
+      if @workorder.update_attributes(params[:workorder])
+        @workorder_changes=@workorder.differs_from @workorder_comparison, 
+                :ignore_attributes=>['id', 'created_at', 'updated_at', 'latitude','longitude','gmaps']
+        @workorder_changes.each do |key, value|
+          @update=current_user.updates.new
+          @update.feed_item=current_user.name << " changed " << @workorder.customer.titleize << " from #{value.last} to #{value.first}." 
+          @update.save
+        end
+        respond_to do |format|
+          format.html { redirect_to calendar_url, :notice  => "Successfully updated workorder." }
+          format.js
+        end
+
+
+      else
+        render :action => 'edit'
+      end
+    
+  end
+  
   def update
     @workorder= Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
     if @workorder.update_attributes(params[:workorder])
       @workorder_changes=@workorder.differs_from @workorder_comparison, 
               :ignore_attributes=>['id', 'created_at', 'updated_at', 'latitude','longitude','gmaps']
-      
-      
-   
-      
       @workorder_changes.each do |key, value|
         @update=current_user.updates.new
         @update.feed_item=current_user.name << " changed " << @workorder.customer.titleize << " from #{value.last} to #{value.first}." 
         @update.save
       end
-
-
-      redirect_to root_url, :notice  => "Successfully updated workorder."      
+      respond_to do |format|
+        format.html { redirect_to root_url, :notice  => "Successfully updated workorder." }
+        format.js
+      end
+     
+       
     else
       render :action => 'edit'
     end
