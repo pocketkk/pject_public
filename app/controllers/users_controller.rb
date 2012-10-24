@@ -21,15 +21,15 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(params[:user])
+    @admin_user = User.where('texts=?', true).where('admin=?', true)
       if @user.save
         sign_in @user
         flash[:success] = "Welcome to Pject.us"
         redirect_to @user
         
-      ## send text message to admin to notify of a new user
-      ## this is a protection against unauthorized access
-        
-      @admin.each do |admin|
+        ## send text message to admin to notify of a new user
+        ## this is a protection against unauthorized access
+      @admin_user.each do |admin|
         unless admin.phone_number.nil?
           client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
 
@@ -40,8 +40,7 @@ class UsersController < ApplicationController
                  body: @user.name << " has signed up for the www.workordermachine.com"
                )
         end
-      end
-        
+      end  
       else
         render 'new'
     end

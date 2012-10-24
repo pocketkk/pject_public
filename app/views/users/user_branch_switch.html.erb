@@ -1,12 +1,13 @@
 <% provide(:title, "Switch Branch") %> 
-<h1>Switch Branch</h1>
+<h1 class="show_workorder">Switch Branch</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-	  <%= f.label :name %>
-
+	  <h2>
+		<%= @user.name.titleize %>
+	  </h2>
 	  <%= f.label :current_branch, "Branch" %>
       <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
 
