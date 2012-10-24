@@ -13,7 +13,7 @@
 		<div class='work_bar_follow_up'>	</div>
 	<% end %>
 		
-	<h1 class="show_workorder"><%= @workorder.customer %></h1>
+	<h1 class="show_workorder"><%= @workorder.customer.titleize %></h1>
 	<h2 class="show_workorder2"><%= @workorder.wo_type %></h2>
 			<hr />
 	<div class="workorder_show_content">
@@ -39,8 +39,11 @@
 					<%=@workorder.misc_notes%><br /><br />
 					<br />
 					
-		<%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
-					  "markers"=> {"data" => @json }}) %>			
+					<%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
+					  "markers"=> {"data" => @json }}) %>
+					<a "<%=@workorder.googlemaps_link%>"> Directions  </a>
+				<%=@workorder.gmaps4rails_address.gsub(" ", "%20").html_safe%><br/>
+				<%=@workorder.googlemaps_link%>
 		</div>
 
 	

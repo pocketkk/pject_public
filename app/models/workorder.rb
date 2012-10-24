@@ -45,6 +45,12 @@ class Workorder < ActiveRecord::Base
   validates :contact, presence: true
   validates :wo_date, presence: true
   validates :wo_duration, presence: true
+  validates_length_of :misc_notes, :maximum => 200
+  
+ def googlemaps_link
+   "http://maps.apple.com/maps?q=#{self.gmaps4rails_address.gsub(" ", "%20")}"
+ end
+     
  
  def gmaps4rails_address
    "#{self.street}, #{self.city}, #{self.state}"
