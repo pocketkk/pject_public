@@ -24,6 +24,7 @@ class Workorder < ActiveRecord::Base
     
   BRANCH_OPTIONS = ['340','350','360']
   WORKORDER_TYPES = ['New Install','Pull','Swap','Follow Up']
+  WORKORDER_TYPES_SEARCH = ['','New Install','Pull','Swap','Follow Up']
   ASSET_STATUS_OPTIONS =  {  "" => "",
                              "Need to Order" => "0",
                              "New - Ordered"    => "1" ,

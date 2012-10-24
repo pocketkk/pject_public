@@ -25,6 +25,23 @@ class UsersController < ApplicationController
         sign_in @user
         flash[:success] = "Welcome to Pject.us"
         redirect_to @user
+        
+      ## send text message to admin to notify of a new user
+      ## this is a protection against unauthorized access
+        
+      @admin.each do |admin|
+        unless admin.phone_number.nil?
+          client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+
+               # Create and send an SMS message
+               client.account.sms.messages.create(
+                 from: TWILIO_CONFIG['from'],
+                 to: admin.phone_number,
+                 body: @user.name << " has signed up for the www.workordermachine.com"
+               )
+        end
+      end
+        
       else
         render 'new'
     end
