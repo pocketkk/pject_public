@@ -40,10 +40,9 @@
 					<br />
 					
 					<%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
-					  "markers"=> {"data" => @json }}) %>
-					<a "<%=@workorder.googlemaps_link%>"> Directions  </a>
-				<%=@workorder.gmaps4rails_address.gsub(" ", "%20").html_safe%><br/>
-				<%=@workorder.googlemaps_link%>
+					  "markers"=> {"data" => @json }}) %><br />
+					<center><%=link_to "Get Directions", @workorder.googlemaps_link%></center>
+				
 		</div>
 
 	
