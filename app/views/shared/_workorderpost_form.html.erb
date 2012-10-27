@@ -87,6 +87,18 @@
 			<center><%= n.link_to_remove "Remove Note"%></center>
 		<% end %>
 		  <br /><%= m.link_to_add "Add Equipment Note", :assetnotes%>
+		
+		<%= m.fields_for :asset_photos do |ap| %>
+			<%= image_tag(ap.object.photo_url) if ap.object.photo? %>
+			<%= ap.file_field :photo %>
+			<%= ap.hidden_field :photo_cache%>
+			<center><%= ap.link_to_remove "Remove Photo" %><center>
+		<% end %>
+		<br /><%=m.link_to_add "Add Photo of Current Equipment", :asset_photos %>
+			
+		
+		
+		
 	<% end %>
 <%=f.link_to_add "Add Equipment", :assets %>
 	<br /><br />

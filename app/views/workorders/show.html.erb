@@ -117,6 +117,16 @@
 								
 					
 					</table>
+					<table class="table">
+							<thead><tr><th>Photos</th></tr></thead>
+							<% m.asset_photos.each do |photo| %>
+							<tr class="info"><td class="table info">
+							<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
+							</td></tr>
+							<%end%>
+								
+					
+					</table>
 					</div>
 				<% end %>
 
@@ -128,14 +138,14 @@
 		<div class="span5 workorder_show" >
 			<h3 align="center">Before Photos</h3><hr/>
 			<% @workorder.before_photos.each do |photo| %>
-				<%= lightbox_tag(photo.photo_url(:thumb).to_s, photo.photo_url(:screen).to_s, collection="#{@workorder.customer.titleize}  |  Before")%>
+				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
 				
 			<% end %>
 		</div>
 		<div class="span5 workorder_show">
 			<h3 align="center">After Photos</h3><hr/>
 			<% @workorder.after_photos.each do |photo| %>
-				<%= lightbox_tag(photo.photo_url(:thumb).to_s, photo.photo_url(:screen).to_s, collection="#{@workorder.customer.titleize}  |  After")%>
+				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
 			<% end %>
 		</div>
 	</div>
