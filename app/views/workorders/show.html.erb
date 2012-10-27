@@ -121,7 +121,7 @@
 							<thead><tr><th>Photos</th></tr></thead>
 							<% m.asset_photos.each do |photo| %>
 							<tr class="info"><td class="table info">
-							<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
+							<%= link_to(image_tag(photo.photo_url(:thumb).to_s, {:class=>"dropshadow"}), photo.photo_url(:screen) )%>
 							</td></tr>
 							<%end%>
 								

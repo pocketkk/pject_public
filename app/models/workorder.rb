@@ -21,6 +21,7 @@ class Workorder < ActiveRecord::Base
   scope :descending, order("wo_date DESC")
   scope :wo_completed, where('completed = ?', true)
   scope :wo_not_completed, where('completed = ?', false)
+  scope :wo_recently_completed, where('completed = ?', true).limit(4).order("wo_date DESC")
     
   BRANCH_OPTIONS = ['340','350','360']
   WORKORDER_TYPES = ['New Install','Pull','Swap','Follow Up']
