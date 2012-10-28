@@ -21,7 +21,8 @@ class Workorder < ActiveRecord::Base
   scope :ascending, order("wo_date ASC")
   scope :descending, order("wo_date DESC")
   scope :wo_completed, where('completed = ?', true)
-  scope :wo_not_completed, where('completed = ?', false)
+  scope :wo_not_completed, where('completed = ?', false).where('wo_date IS NOT NULL')
+  scope :wo_no_date, where('wo_date IS NULL')
   scope :wo_recently_completed, where('completed = ?', true).limit(4).order("wo_date DESC")
     
   BRANCH_OPTIONS = ['340','350','360']
@@ -46,7 +47,7 @@ class Workorder < ActiveRecord::Base
   validates :state, presence: true
   validates :phonenumber, presence: true
   validates :contact, presence: true
-  validates :wo_date, presence: true
+#  validates :wo_date, presence: true
   validates :wo_duration, presence: true
   validates_length_of :misc_notes, :maximum => 200
   

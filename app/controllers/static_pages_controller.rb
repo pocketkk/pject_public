@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
      @completed_workorders=Workorder.wo_current_branch(current_user.current_branch).wo_recently_completed if signed_in?
      @updates = Update.all(:order => 'created_at DESC', :limit => "15") if signed_in?
      @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0') if signed_in?
+     @workorders_without_dates=Workorder.wo_current_branch(current_user.current_branch).wo_no_date.ascending if signed_in?
      @parts = Part.all if signed_in?
    end
 

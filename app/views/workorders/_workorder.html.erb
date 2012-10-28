@@ -16,7 +16,7 @@
 
 	<div class="work_content">
 	
-	<% unless workorder.completed?%>
+	<% unless workorder.completed? || workorder.wo_date.nil? %>
 		<% if workorder.wo_date.to_date == Date.today %>
 			<div class="workorder_today">**Today**</div><br />
 		<% end %>
@@ -41,7 +41,9 @@
   	</span><br />
 
 	<span class="timestamp">
+		<% unless workorder.wo_date.nil? %>
     	<%= workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
+		<% end %>
 	</span><br />
 	
 	<span class="tiny">

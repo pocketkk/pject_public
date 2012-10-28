@@ -1,3 +1,5 @@
+<%= render :partial => 'shared/unscheduled_workorders' %>
+
 
 <div id="articles">
 	<h2 id="month">
@@ -26,7 +28,9 @@
 			<%= link_to workorder.customer.titleize, workorder %>
 		</div>
 		<div class="calendar_event_time">
-			<%= link_to workorder.wo_date.strftime("%I:%M %p"), edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %>
+
+				<%= link_to workorder.wo_date.strftime("%I:%M %p"), edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %>
+
  <em><%=workorder.wo_duration%> hr est.</em>
 		</div>
 		<div class="calendar_event">  
