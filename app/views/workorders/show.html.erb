@@ -1,178 +1,50 @@
 <% provide(:title, @workorder.customer) %>
 <div class="workorder_show_wrapper">
+	
 	<% if @workorder.wo_type == 'New Install' %>
-		<div class="work_bar_new">	</div>
+		<div class="work_bar_new"></div>
 	<% end %>
 	<% if @workorder.wo_type == 'Pull'%>
-		<div class='work_bar_pull'>	</div>
+		<div class='work_bar_pull'></div>
 	<% end %>
 	<% if @workorder.wo_type == 'Swap'%>
-		<div class='work_bar_swap'>	</div>
+		<div class='work_bar_swap'></div>
 	<% end %>
 	<% if @workorder.wo_type == 'Follow Up'%>
-		<div class='work_bar_follow_up'>	</div>
+		<div class='work_bar_follow_up'></div>
 	<% end %>
 		
-	<h1 class="show_workorder"><%= @workorder.customer.titleize %></h1>
-	<h2 class="show_workorder2"><%= @workorder.wo_type %></h2>
-			<hr />
+	<h1 class="show_workorder">
+	  <%= @workorder.customer.titleize %>
+	</h1>
+	
+	<h2 class="show_workorder2">
+	  <%= @workorder.wo_type %>
+	</h2>
+	
+	<hr />
+	
 	<div class="workorder_show_content">
-	<div class="row-fluid">
-	  <div class="span5 workorder_show" >
-			<h3 align="center">Customer Information</h3><hr/>
-					<address>
-					<strong><%= @workorder.customer.titleize%></strong><br/>
-					<%= @workorder.street %><br/>
-					<%= @workorder.city%>, <%= @workorder.state%><br/>
-					</address>
-
-					<%= @workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%><br/>
-					Time estimate: <b><%=@workorder.wo_duration%> hours</b><br/>
-					</br/>
-					On-site contact:
-					<%= @workorder.contact%><br/>
-					Phone Number: 
-					<%= number_to_phone(@workorder.phonenumber, :area_code => true)%>
-					<br/>
-					<br/>
-					<b><u>Additional Notes:</u></b>
-					<%=@workorder.misc_notes%><br /><br />
-					<br />
-					
-					<%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
-					  "markers"=> {"data" => @json }}) %><br />
-					<center><%=link_to "Get Directions", @workorder.googlemaps_link%></center>
-				
+		<div class="row-fluid">
+			<table class="table table-bordered table-striped">
+			  <tr>
+			    <th width="50%">CUSTOMER INFORMATION</th>
+			    <th>EQUIPMENT INFORMATION</th>
+			  </tr>
+			  <tr>
+			    <td><%= render :partial => 'customer_information' %></td>
+				<td><%= render :partial => 'equipment_information' %></td>
+			  </tr>
+			</table>
 		</div>
-
-	
-	  <div class="span6 workorder_show">
-		<h3 align="center">Equipment Information</h3><hr />
-				<% @workorder.assets.each do |m| %>
-				<div class="workorder_show">
-				<table class="table table-bordered table-condensed">
-					<tr>
-						<th>Model</th>
-						<th>Serial Number</th>
-						<th>Options</th>
-						<th>Chemicals</th>
-					</tr>
-					
-					<tr>
-						<td valign="top">
-							<%=m.name%>
-						</td>
-						<td valign="top">
-							<%=m.serial%>
-						</td>
-						<td>
-							<table class="table table-bordered table-condensed">
-								<% m.options.each do |o| %>
-								<tr>
-									<td>
-										<%= o.name %>
-									</td>	
-								</tr>
-								<% end %>
-							</table>	
-						</td>
-						<td>
-							<table class="table table-bordered table-condensed">
-								<tr><th>Product</th><th>Qty</th></tr>
-								<% m.chemicals.each do |c| %>
-								<tr>
-									<td>
-										<%= c.name.titleize %>
-									</td>
-									<td>
-										<%= c.quantity %>
-									</td>	
-								</tr>
-								<% end %>
-							</table>
-						</td>	
-					</tr>
-					</table>
-					
-					<table class="table">
-							<thead>
-								<tr>
-									<th>Water</th>
-									<th>Drain</th>
-									<th>Electrical</th>
-								</tr>
-							</thead>
-							<tr class="info">
-								<td ><%=m.water_plumbing%></td>
-								<td><%=m.drain_plumbing%></td>
-								<td><%=m.electrical_option%></td>
-							</tr>	
-					</table>
-					
-					<table class="table">
-							<thead><tr><th>Notes</th></tr></thead>
-							<% m.assetnotes.each do |n| %>
-							<tr class="info"><td class="table info"><%= n.content %></td></tr>
-							<%end%>
-								
-					
-					</table>
-					<table class="table">
-							<thead><tr><th>Photos</th></tr></thead>
-							<% m.asset_photos.each do |photo| %>
-							<tr class="info"><td class="table info">
-							<%= link_to(image_tag(photo.photo_url(:thumb).to_s, {:class=>"dropshadow"}), photo.photo_url(:screen) )%>
-							</td></tr>
-							<%end%>
-								
-					
-					</table>
-					</div>
-				<% end %>
-
-	    
-
-			</div>
+		<div class="row-fluid">
+		  <%= render :partial => 'before_after_photos' %>
+		</div>
+		<div class="row-fluid">
+		  <%= render :partial => 'workorder_comments' %>
+	    </div>
 	</div>
 	
-	
-
-	
-
-	
-	<div class="row-fluid">
-		<table class="table table-bordered table-striped">
-		  <tr>
-		    <th width="50%">Before Photos</th>
-		    <th>After Photos</th>
-		  </tr>
-		  <tr>
-		    <td><% @workorder.before_photos.each do |photo| %>
-				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
-			<% end %></td>
-			  <td><% @workorder.after_photos.each do |photo| %>
-				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
-			<% end %></td>
-		    </tr>
-		</table>
-	</div>
-	
-	
-	<div class="row-fluid">
-		<table class="table table-bordered table-striped">
-		  <tr>
-		    <th width=260>New Comment</th>
-		    <th>Comments</th>
-		  </tr>
-		  <tr>
-		    <td><%= render "comments/form" %></td>
-			  <td><%= render "comments/comments" %></td>
-		    </tr>
-		</table>
-	</div>
-	
-	
-	</div>
 	<br />
 	<center><%= link_to "Edit Workorder", edit_workorder_path(@workorder) %></center>
 </div>

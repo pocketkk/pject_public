@@ -1,0 +1,55 @@
+				
+<table class="table table-bordered table-striped">
+  <tr>
+ 		<td width="35%">
+	  	RESTAURANT NAME:
+		</td>
+		<td>
+			<%= @workorder.customer.titleize%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			STREET:
+		</td>
+		<td>
+			<%= @workorder.street %>
+		</td>
+	</tr>
+	<tr>
+  	<td>
+			CITY/STATE:
+		</td>
+		<td>
+			<%= @workorder.city.titleize%>, <%= @workorder.state.upcase%>
+		</td>
+	</tr>
+	<tr>
+  	<td>
+			CONTACT:
+		</td>
+		<td>
+			<%= @workorder.contact.titleize%>
+		</td>
+	</tr>
+	<tr>
+  	<td>
+			PHONE:
+		</td>
+		<td>
+			<%= number_to_phone(@workorder.phonenumber, :area_code => true)%>
+		</td>
+	</tr>
+	<tr>
+  	<td>
+			MISC NOTES:
+		</td>
+		<td>
+			<%=@workorder.misc_notes%>
+		</td>
+	</tr>
+
+</table>
+<%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
+  "markers"=> {"data" => @json }}) %><br />
+<center><%=link_to "Get Directions", @workorder.googlemaps_link%></center>

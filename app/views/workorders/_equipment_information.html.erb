@@ -1,0 +1,81 @@
+
+				<% @workorder.assets.each do |m| %>
+				<div class="workorder_show">
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<th>Model</th>
+						<th>Serial Number</th>
+						<th>Options</th>
+						<th>Chemicals</th>
+					</tr>
+					
+					<tr>
+						<td valign="top">
+							<%=m.name%>
+						</td>
+						<td valign="top">
+							<%=m.serial%>
+						</td>
+						<td>
+							<table class="table table-bordered table-condensed">
+								<% m.options.each do |o| %>
+								<tr>
+									<td>
+										<%= o.name %>
+									</td>	
+								</tr>
+								<% end %>
+							</table>	
+						</td>
+						<td>
+							<table class="table table-bordered table-condensed">
+								<tr><th>Product</th><th>Qty</th></tr>
+								<% m.chemicals.each do |c| %>
+								<tr>
+									<td>
+										<%= c.name.titleize %>
+									</td>
+									<td>
+										<%= c.quantity %>
+									</td>	
+								</tr>
+								<% end %>
+							</table>
+						</td>	
+					</tr>
+					</table>
+					
+					<table class="table">
+							<thead>
+								<tr>
+									<th>Water</th>
+									<th>Drain</th>
+									<th>Electrical</th>
+								</tr>
+							</thead>
+							<tr class="info">
+								<td ><%=m.water_plumbing%></td>
+								<td><%=m.drain_plumbing%></td>
+								<td><%=m.electrical_option%></td>
+							</tr>	
+					</table>
+					
+					<table class="table">
+							<thead><tr><th>Notes</th></tr></thead>
+							<% m.assetnotes.each do |n| %>
+							<tr class="info"><td class="table info"><%= n.content %></td></tr>
+							<%end%>
+								
+					
+					</table>
+					<table class="table">
+							<thead><tr><th>Photos</th></tr></thead>
+							<% m.asset_photos.each do |photo| %>
+							<tr class="info"><td class="table info">
+							<%= link_to(image_tag(photo.photo_url(:thumb).to_s, {:class=>"dropshadow"}), photo.photo_url(:screen) )%>
+							</td></tr>
+							<%end%>
+					</table>
+					</div>
+				<% end %>
+
