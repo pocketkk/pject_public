@@ -1,0 +1,25 @@
+<h2>Need to Order</h2>
+<table class="table table-bordered table-condensed">
+	<th>Machines</th>
+  			<% @assets_need_to_order.each do |asset| %>
+	<tr>	
+		<td><%=link_to asset.workorder.customer.titleize, workorder_path(asset.workorder)%></td>
+		<td><%=asset.name%></td>
+	</tr>
+	<% end %>
+</table>
+<table class="table table-bordered table-condensed">
+	<tr>
+		<th>Parts</th>
+	</tr>
+	<% @parts.each do |part|%>
+	<tr>
+		<td>
+		<%=part.name%>
+		</td>
+		<td>
+		<%=part.qty%>
+		</td>
+	</tr>	
+	<% end %>
+</table>
