@@ -1,0 +1,16 @@
+<div class="part_wrapper">
+	<div class="gravatar_parts">
+		<a href="<%= user_path(comment.user) %>">
+		  <%= gravatar_for comment.user, size: 25%> 
+		</a>
+	</div>	
+	<div class="part_item"><%=comment.content%>
+		
+		<% if current_user.role=='Branch Manager' || 'Regional Manager' %> 
+			  |  <%= link_to "Remove", comment, :confirm => 'Are you sure?', :method => :delete %>
+		<% end %>
+	<div class="comment_user">
+		- <%=comment.user.name.titleize%> posted <%= time_ago_in_words(comment.created_at)%> ago.
+	</div>
+	</div>
+</div>

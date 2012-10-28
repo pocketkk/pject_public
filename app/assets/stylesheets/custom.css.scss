@@ -127,10 +127,10 @@ P{
 	margin-right: -10px;
 	padding-top: 20px;
 	padding-bottom: 11px;
-	-moz-border-bottom-left-radius: 15px;
-	border-bottom-left-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-bottom-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid $grayMedium;
 	background-color: white;
 
@@ -288,8 +288,8 @@ input, textarea, select, .uneditable-input {
 }
 
 #workorder_left {
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -305,8 +305,8 @@ input, textarea, select, .uneditable-input {
 	margin-left: 300px;
 	width: 350px;
 	background-color: white;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid $grayMedium;
 	padding: 10px;	
 
@@ -334,8 +334,8 @@ aside {
 	background-color: #000;
 }
 div.fields {
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -348,8 +348,8 @@ div.fields {
 }
 
 .part_wrapper{
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 5px;
 	padding-left: 10px;
@@ -377,10 +377,10 @@ div.fields {
 	position: relative;
 	margin: 5px;
 	background-color: white;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 10px;
 }
@@ -392,8 +392,8 @@ div.fields {
 	padding-right: 5px;
 }
 .workorder_show{
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -408,8 +408,8 @@ div.fields {
 	position: relative;
 	margin: 5px;
 	background-color: white;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid $grayMedium;
 	padding: 10px;
 
@@ -418,10 +418,10 @@ div.fields {
 	position: relative;
 	margin: 5px;
 	background-color: white;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 10px;
 
@@ -436,10 +436,10 @@ div.fields {
 	right: 0;
 	width: 15px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderGreen;
 }
@@ -452,10 +452,10 @@ div.fields {
 	right: 0;
 	width: 15px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderBlack;
 }
@@ -468,10 +468,10 @@ div.fields {
 	right: 0;
 	width: 15px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderBlue;
 }
@@ -484,10 +484,10 @@ div.fields {
 	right: 0;
 	width: 15px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderRed;
 }
@@ -498,10 +498,10 @@ div.fields {
 	margin: 2px;
 
 	background-color: white;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 7px;
 
@@ -516,10 +516,10 @@ div.fields {
 	right: 0;
 	width: 5px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderGreen;
 }
@@ -532,10 +532,10 @@ div.fields {
 	right: 0;
 	width: 5px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderBlack;
 }
@@ -548,10 +548,10 @@ div.fields {
 	right: 0;
 	width: 5px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderBlue;
 }
@@ -564,10 +564,10 @@ div.fields {
 	right: 0;
 	width: 5px;
 	height: 100%;
-	-moz-border-top-right-radius: 15px;
-	border-top-right-radius: 15px;
-	-moz-border-bottom-right-radius: 15px;
-	border-bottom-right-radius: 15px;
+	-moz-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	background-color: $workorderRed;
 }
@@ -700,5 +700,13 @@ div.fields {
 #image_border a img, #image_border a          { border: none; float: left; }
 #image_border a                               { margin: 3px; }
 #image_border a:hover                         { outline: 3px solid black; }
+
+.comment_user {
+	font-size: 9px;
+	color: $grayDarkest;
+	padding-left: 40px;
+	padding-right: 10px;
+	text-align: right;
+}
 
 

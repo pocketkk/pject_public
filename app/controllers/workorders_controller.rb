@@ -66,6 +66,11 @@ class WorkordersController < ApplicationController
     @workorder=Workorder.find(params[:id])
     @json=@workorder.to_gmaps4rails
     @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
+    
+    @commentable = @workorder
+    @comments = @commentable.comments
+    @comment = Comment.new
+
   end
   
   def edit

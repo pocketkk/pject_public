@@ -9,6 +9,7 @@ class Workorder < ActiveRecord::Base
   has_many :assets
   has_many :before_photos
   has_many :after_photos
+  has_many :comments, as: :commentable
   accepts_nested_attributes_for :assets, :allow_destroy => true
   accepts_nested_attributes_for :before_photos, :allow_destroy => true
   accepts_nested_attributes_for :after_photos, :allow_destroy => true

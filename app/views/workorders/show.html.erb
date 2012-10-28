@@ -134,21 +134,44 @@
 
 			</div>
 	</div>
+	
+	
+
+	
+
+	
 	<div class="row-fluid">
-		<div class="span5 workorder_show" >
-			<h3 align="center">Before Photos</h3><hr/>
-			<% @workorder.before_photos.each do |photo| %>
+		<table class="table table-bordered table-striped">
+		  <tr>
+		    <th>Before Photos</th>
+		    <th>After Photos</th>
+		  </tr>
+		  <tr>
+		    <td><% @workorder.before_photos.each do |photo| %>
 				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
-				
-			<% end %>
-		</div>
-		<div class="span5 workorder_show">
-			<h3 align="center">After Photos</h3><hr/>
-			<% @workorder.after_photos.each do |photo| %>
+			<% end %></td>
+			  <td><% @workorder.after_photos.each do |photo| %>
 				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
-			<% end %>
-		</div>
+			<% end %></td>
+		    </tr>
+		</table>
 	</div>
+	
+	
+	<div class="row-fluid">
+		<table class="table table-bordered table-striped">
+		  <tr>
+		    <th width=260>New Comment</th>
+		    <th>Comments</th>
+		  </tr>
+		  <tr>
+		    <td><%= render "comments/form" %></td>
+			  <td><%= render "comments/comments" %></td>
+		    </tr>
+		</table>
+	</div>
+	
+	
 	</div>
 	<br />
 	<center><%= link_to "Edit Workorder", edit_workorder_path(@workorder) %></center>

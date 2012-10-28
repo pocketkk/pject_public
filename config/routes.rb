@@ -1,25 +1,17 @@
 Pject::Application.routes.draw do
 
   resources :parts
-
   resources :bugs
-
-  resources :after_photos
-
-  resources :before_photos
-
-  resources :assetnotes
-
   resources :updates
-
   resources :options
-
-  resources :chemicals
-
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :workorders
-  resources :assets
+  resources :comments
+  
+  resources :workorders do
+    resources :comments
+  end
 
 
   root to: 'passthrough#index'
