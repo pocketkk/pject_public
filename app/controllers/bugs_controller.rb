@@ -1,7 +1,8 @@
 class BugsController < ApplicationController
   def index
-    @bugs = Bug.where("complete=?",false)
+    @bugs = Bug.where("complete=?",false).where("request_type=?","Bug")
     @completed_bugs = Bug.where("complete=?",true)
+    @feature_bugs = Bug.where("complete=?", false).where("request_type=?", "Feature Request")
   end
 
   def show
