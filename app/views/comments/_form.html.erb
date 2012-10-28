@@ -1,7 +1,7 @@
 <%= form_for [@commentable, @comment] do |f| %>
 
   <div class="field">
-    <%= f.text_area :content, rows: 2 %>
+    <%= f.text_area :content, rows: 3 %>
   </div>
   <div class="actions">
     <center><%= f.submit "Submit", class: "btn btn-small" %></center>

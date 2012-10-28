@@ -45,14 +45,12 @@
 					</tr>
 					</table>
 					
-					<table class="table">
-							<thead>
+					<table class="table table-bordered table-condensed">
 								<tr>
 									<th>Water</th>
 									<th>Drain</th>
 									<th>Electrical</th>
 								</tr>
-							</thead>
 							<tr class="info">
 								<td ><%=m.water_plumbing%></td>
 								<td><%=m.drain_plumbing%></td>
@@ -60,22 +58,35 @@
 							</tr>	
 					</table>
 					
-					<table class="table">
-							<thead><tr><th>Notes</th></tr></thead>
+					<table class="table table-bordered table-condensed">
+							<tr>
+								<th>
+									Notes
+								</th>
+							</tr>
 							<% m.assetnotes.each do |n| %>
-							<tr class="info"><td class="table info"><%= n.content %></td></tr>
+							<tr class="info">
+								<td class="table info">
+									<%= n.content %>
+								</td>
+							</tr>
 							<%end%>
-								
-					
 					</table>
-					<table class="table">
-							<thead><tr><th>Photos</th></tr></thead>
-							<% m.asset_photos.each do |photo| %>
-							<tr class="info"><td class="table info">
-							<%= link_to(image_tag(photo.photo_url(:thumb).to_s, {:class=>"dropshadow"}), photo.photo_url(:screen) )%>
-							</td></tr>
+					
+					<table class="table table-bordered table-condensed">
+						<tr>
+							<th>
+								Photos
+							</th>
+						</tr>
+						<% m.asset_photos.each do |photo| %>
+							<tr class="info">
+								<td class="table info">
+									<%= link_to(image_tag(photo.photo_url(:thumb).to_s, 
+												{:class=>"dropshadow"}), photo.photo_url(:screen) )%>
+								</td>
+							</tr>
 							<%end%>
 					</table>
 					</div>
-				<% end %>
-
+					<% end %>
