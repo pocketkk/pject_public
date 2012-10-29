@@ -1,5 +1,7 @@
 Pject::Application.routes.draw do
 
+  resources :documents
+
   resources :parts
   resources :bugs
   resources :updates

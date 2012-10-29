@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028143353) do
+ActiveRecord::Schema.define(:version => 20121028225404) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(:version => 20121028143353) do
     t.string   "commentable_type"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "documents", :force => true do |t|
+    t.string   "pdfdoc"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "fulfillments", :force => true do |t|

@@ -695,13 +695,6 @@ div.fields {
 	 box-shadow: 1px 1px 2px $grayMedium;
 	 -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";
 	}
-	
-
-
-#image_border a
-#image_border a img, #image_border a          { border: none; float: left; }
-#image_border a                               { margin: 3px; }
-#image_border a:hover                         { outline: 3px solid black; }
 
 .comment_user {
 	font-size: 9px;
@@ -711,4 +704,9 @@ div.fields {
 	text-align: right;
 }
 
+.documents {
+	float: left;
+	padding: 10px;
+
+}
 

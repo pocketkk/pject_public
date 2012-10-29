@@ -1,0 +1,27 @@
+<div class="row-fluid">
+<% @documents.each do |doc| %>
+
+	<div class="documents">
+	<table>
+	    	<tr>
+					<td>
+						<%= link_to(image_tag(doc.pdfdoc_url(:thumb).to_s, :class=>"dropshadow"), doc.pdfdoc_url)%>
+					</td>
+				<tr>
+					<td>
+						<%= doc.description.titleize %>
+					</td>
+				</tr>
+				<% if current_user.admin?%>
+				<tr>
+					<td>
+						<%= link_to "Show", doc %> | <%= link_to "Edit", edit_document_path(doc) %> | <%= link_to "Destroy", doc, :confirm => 'Are you sure?', :method => :delete %>
+					</td>
+				</tr>
+				<% end %>
+	</table>
+	</div>
+	
+<% end %>
+</div>
+<center><%= link_to "New Document", new_document_path %></center>

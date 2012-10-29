@@ -38,7 +38,7 @@ class WorkordersController < ApplicationController
                  client.account.sms.messages.create(
                    from: TWILIO_CONFIG['from'],
                    to: user.phone_number,
-                   body: "A " << @workorder.wo_type.downcase << " workorder for " << @workorder.customer.titleize << " has been created! www.workordermachine.com"
+                   body: "A " << @workorder.wo_type.downcase << " workorder for " << @workorder.customer.titleize << " has been created! " << url_for(@workorder)
                  )
               end
         end
@@ -104,7 +104,7 @@ class WorkordersController < ApplicationController
              client.account.sms.messages.create(
                from: TWILIO_CONFIG['from'],
                to: @workorder.user.phone_number,
-               body: @workorder.customer.titleize << "'s workorder has been completed! www.workordermachine.com"
+               body: @workorder.customer.titleize << "'s workorder has been completed! " << url_for(@workorder)
              )
       end
       
