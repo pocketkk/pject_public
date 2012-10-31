@@ -13,7 +13,7 @@
 					</span>	
 					<% end %>
 				<span>Customer:  <%= asset.workorder.customer %></span>
-				<span>Due:  <%= asset.workorder.wo_date.strftime("%B %d, %Y at %I:%M %p") %></span>
+				<span>Due:  <% unless asset.workorder.wo_date.nil? %><%= asset.workorder.wo_date.strftime("%B %d, %Y at %I:%M %p") %><% else %> Unscheduled<% end %></span>
 				<br /></div>
 		<% end %>
 		</div>
