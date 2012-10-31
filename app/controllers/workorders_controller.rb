@@ -9,7 +9,7 @@ class WorkordersController < ApplicationController
   
   def calendar
     @workorders=Workorder.wo_current_branch(current_user.current_branch).where('wo_date IS NOT NULL').ascending
-    @workorders_without_dates=Workorder.wo_current_branch(current_user.current_branch).wo_no_date.ascending if signed_in?
+    @workorders_without_dates=Workorder.wo_current_branch(current_user.current_branch).wo_no_date.wo_not_completed.ascending if signed_in?
     
     ### workorder lookup for calendar    
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
