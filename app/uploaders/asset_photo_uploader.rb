@@ -36,7 +36,14 @@ class AssetPhotoUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+  
+  # Autoorients image according to exif
+    def auto_orient
+      manipulate! {|img| img.auto_orient! || img }
+    end
+  
   version :thumb do
+     process :auto_orient
      process :resize_to_limit=> [100, 100]
   end
   version :screen do

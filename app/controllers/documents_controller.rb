@@ -1,6 +1,13 @@
 class DocumentsController < ApplicationController
   def index
-    @documents = Document.all
+    @search = Document.search(params[:q])
+    if params[:tag]
+        @documents = Document.tagged_with(params[:tag])
+    elsif params[:q]
+      @documents=@search.result
+    else
+      @documents = Document.recently_added
+    end
   end
 
   def show

@@ -1,12 +1,33 @@
-<footer class="footer">
-	<small>
-		<a href="http://www.workordermachine.com">Work Order Machine</a>
-	</small>
-	<nav>
-		<ul>
-			<li><%= link_to "Report a Bug", new_bug_path %></li>
-			<li><%= link_to "Feature Request", new_bug_path %></li>
-			<li><%= link_to "Blog", '#' %></li>
-		</ul>
-	</nav>
+<footer class="footer2">
+	<div class="secondary_nav">
+		<table>
+		 <tr><td>Workorders					  </td></tr>
+		 <tr><td><%= link_to "Home", root_path %>						  </td></tr>
+		 <tr><td><%= link_to "Calendar", calendar_path %>		  </td></tr>
+		 <tr><td><%= link_to "Search", workorders_path %>		  </td></tr>
+    </table>
+	</div>
+	<div class="secondary_nav">
+		<table>
+		 <tr><td>Part Needs</td></tr>
+		 <tr><td><%= link_to "Parts", parts_path %>					  </td></tr>
+    </table>
+	</div>
+	<div class="secondary_nav">
+		<table>
+		 <tr><td>Knowledge</td></tr>
+		 <tr><td><%= link_to "Documents", documents_path %>	  </td></tr>
+		 <tr><td><%= link_to "Articles", "#" %>								</td></tr>
+		 <tr><td><%= link_to "Videos", "#" %>		  						</td></tr>
+    </table>
+	</div>
+	<div class="secondary_nav">
+		<table>
+		 <tr><td>Support</td></tr>
+		 <tr><td><%= link_to "Blog", "#" %>		  									</td></tr>
+		 <tr><td><%= link_to "Help", "#" %>					  						</td></tr>
+		 <tr><td><%= link_to "Request a Feature", new_bug_path %>	</td></tr>
+		 <tr><td><%= link_to "Report a Bug", new_bug_path %>			</td></tr>
+    </table>
+	</div>
 </footer>

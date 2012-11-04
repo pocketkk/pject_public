@@ -1,6 +1,7 @@
 Pject::Application.routes.draw do
 
   resources :documents
+  get 'tags/:tag', to: 'documents#index', as: :tag
 
   resources :parts
   resources :bugs

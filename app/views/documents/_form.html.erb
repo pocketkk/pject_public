@@ -6,8 +6,12 @@
 		<%= f.hidden_field :pdfdoc_cache%>
   </p>
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label "Title" %><br />
+    <%= f.text_field :description %>
   </p>
+	<p>
+		<%= f.label :tag_list, "Tags (separated by commas)" %><br />
+		<%= f.text_field :tag_list %>
+	</p>	
   <p><%= f.submit %></p>
 <% end %>
