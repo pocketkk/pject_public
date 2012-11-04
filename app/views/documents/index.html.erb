@@ -16,11 +16,11 @@
 	<div class="documents">
 	<table>
 	    	<tr>
-					<td>
+					<td width=100>
 						<%= link_to(image_tag(doc.pdfdoc_url(:thumb).to_s, :class=>"dropshadow"), doc.pdfdoc_url)%>
 					</td>
 				<tr>
-					<td>
+					<td width=100>
 						 <%= doc.description.upcase %>
 					</td>
 				</tr>
@@ -31,7 +31,7 @@
 				</tr>
 				<% if current_user.admin?%>
 				<tr>
-					<td>
+					<td width=100>
 						<%= link_to "Show", doc %> | <%= link_to "Edit", edit_document_path(doc) %> | <%= link_to "Destroy", doc, :confirm => 'Are you sure?', :method => :delete %>
 					</td>
 				</tr>
