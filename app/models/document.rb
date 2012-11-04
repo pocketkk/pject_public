@@ -4,6 +4,6 @@ class Document < ActiveRecord::Base
   mount_uploader :pdfdoc, PdfdocUploader
   acts_as_taggable
   
-  scope :recently_added, limit(8).order("created_at DESC")
+  scope :recently_added, limit(10).order("created_at DESC")
   
 end

@@ -2,11 +2,14 @@ class DocumentsController < ApplicationController
   def index
     @search = Document.search(params[:q])
     if params[:tag]
-        @documents = Document.tagged_with(params[:tag])
+      @documents = Document.tagged_with(params[:tag])
+      @page_title="Documents by Tag (" << params[:tag].upcase << ")"
     elsif params[:q]
       @documents=@search.result
+      @page_title="Documents by Search Result"
     else
       @documents = Document.recently_added
+      @page_title = "Recent Documents"
     end
   end
 
