@@ -33,12 +33,14 @@ class Workorder < ActiveRecord::Base
                              "Need to Order" => "0",
                              "New - Ordered"    => "1" ,
                              "New - On Site"    => "10" ,
-                             "New - Tested"     => "99" ,
+                             "New - Tested"     => "97" ,
                              "Used - Ordered"   => "2"  ,
                              "Used - On Site"   => "11" ,
                              "Used - Torn Down" => "25" ,
                              "Used - Rebuilt"   => "76" ,
-                             "Used - Tested"    => "100"}
+                             "Used - Tested"    => "98" ,
+                             "Delivered/Not Installed" => "99",
+                             "Machine Installed" => "100"}
  
   validates :wo_type, presence: true
   validates :user_id, presence: true

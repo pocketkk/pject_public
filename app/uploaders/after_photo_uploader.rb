@@ -5,7 +5,7 @@ class AfterPhotoUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-
+  include ImageManipulators
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
   # include Sprockets::Helpers::IsolatedHelper
@@ -37,9 +37,11 @@ class AfterPhotoUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
+     process :auto_orient
      process :resize_to_limit=> [100, 100]
   end
   version :screen do
+     process :auto_orient
      process :resize_to_limit => [640, 480]
   end
 
