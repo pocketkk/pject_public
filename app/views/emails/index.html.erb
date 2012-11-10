@@ -1,0 +1,10 @@
+<table width="100%"> 
+  <% for asset in @emails %>
+    <tr>
+      <td><%= asset.address %></td>
+      <td><%= link_to "Show", asset %></td>
+      <td><%= link_to "Destroy", asset, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

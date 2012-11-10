@@ -14,24 +14,34 @@
 <% @documents.each do |doc| %>
 
 	<div class="documents">
-	<table height=310>
+	<table height=400 class="table-bordered table-condensed table-striped">
 	    	<tr>
-					<td width=200>
-						<%= link_to(image_tag(doc.pdfdoc_url(:thumb).to_s, :class=>"dropshadow"), doc.pdfdoc_url)%>
+					<td width=175 align="center">
+						<%= link_to(image_tag(doc.pdfdoc_url(:thumb).to_s, :class=>"dropshadow", :size => "150x225"), doc.pdfdoc_url)%>
 					</td>
 				<tr>
-					<td width=200>
+					<td align="center">
 						 <%= doc.description.upcase %>
 					</td>
 				</tr>
 				<tr>
-					<td width=200 class="tags">
+					<td width=175 class="tags">
 						Tags: <%= raw doc.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 					</td>
 				</tr>
+				
+					<tr>
+						<td class="#" align="center">
+							<%= nested_form_for doc do |f| %>
+								<%= f.fields_for :emails %>
+								<%= f.link_to_add "Email Document", :emails %>
+							<% end %>
+						</td>
+					</tr>
+				
 				<% if current_user.admin?%>
 				<tr>
-					<td width=200>
+					<td align="center">
 						<%= link_to "Show", doc %> | <%= link_to "Edit", edit_document_path(doc) %> | <%= link_to "Destroy", doc, :confirm => 'Are you sure?', :method => :delete %>
 					</td>
 				</tr>
@@ -42,4 +52,4 @@
 <% end %>
 </div>
 </div>
-<center><%= link_to "New Document", new_document_path %></center>
+<center><%#= link_to "New Document", new_document_path %></center>

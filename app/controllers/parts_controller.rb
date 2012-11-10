@@ -20,7 +20,6 @@ class PartsController < ApplicationController
       @update.user_id=current_user.id
       @update.save
       flash[:success] = "Added to Parts List!"
-      PdfMailer.mail_pdf.deliver
       redirect_to parts_path
     else
       render :action => 'new'

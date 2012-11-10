@@ -1,5 +1,13 @@
 Pject::Application.routes.draw do
 
+  get "emails/index"
+
+  get "emails/new"
+
+  get "emails/create"
+
+  get "emails/destroy"
+
   resources :documents
   get 'tags/:tag', to: 'documents#index', as: :tag
 
@@ -11,6 +19,7 @@ Pject::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :workorders
   resources :comments
+  resources :emails, only: [:new, :create, :destroy, :index]
   
   resources :workorders do
     resources :comments
@@ -31,6 +40,7 @@ Pject::Application.routes.draw do
   
   match 'workorders/:id/complete', to: 'workorders#complete', :as => "complete_workorder"
   match 'bugs/:id/complete', to: 'bugs#complete', :as => "complete_bug"
+  match 'documents/:id/email', to: 'documents#email', :as => 'email_document_path'
   
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'

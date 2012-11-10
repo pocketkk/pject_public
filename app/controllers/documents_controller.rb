@@ -15,6 +15,12 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+    #PdfMailer.mail_pdf(@document, params[:email]).deliver
+  end
+  
+  def email
+    @document = Document.find(params[:id])
+    #PdfMailer.mail_pdf(@document, params[:email]).deliver   
   end
 
   def new
@@ -36,8 +42,15 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
+    params[:document][:emails_attributes].values.each do |document|
+      PdfMailer.mail_pdf(@document, document[:address],current_user).deliver unless document[:address].empty?
+    end if params[:document] and params[:document][:emails_attributes]
+    
+    ### Delete email attributes before saving ###
+    params[:document][:emails_attributes]=[]
+      
     if @document.update_attributes(params[:document])
-      redirect_to documents_path, :notice  => "Successfully updated document."
+        redirect_to documents_path, :notice  => "Successfully emailed document."
     else
       render :action => 'edit'
     end
