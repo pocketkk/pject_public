@@ -52,7 +52,7 @@
 		<%= m.select :name, Option::EQUIPMENT_MODELS %>
 		<%= m.label :serial, "Serial Number (If known)" %>
 		<%= m.text_field :serial %>
-		<% if current_user.role=="Branch Manager"||"Regional Manager"%>
+		<% if current_user.role=="Branch Manager"||"Regional Manager"||"Rebuilder"||"Installer"%>
 			<%= m.label :status, "Equipment Status"%>
 			<%= m.select :status, options_for_select(Workorder::ASSET_STATUS_OPTIONS, m.object.status) %>		
 			<%= m.label :ready, "Ready for Install?"%>
