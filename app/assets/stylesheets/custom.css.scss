@@ -210,6 +210,7 @@ aside {
 
 /* forms */
 
+/*
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -218,8 +219,16 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 15px;
   @include box_sizing;
 }
+*/
 
-
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+	height: auto;
+  padding: 5px;
+  margin-bottom: 10px;
+  @include box_sizing;
+}
 
 
 #error_explanation {
