@@ -3,14 +3,16 @@
 <h2>Open</h2>
 <table class="table table-bordered table-striped">
   <tr>
-    <th class="bugs-th">Type</th>
+    <th class="bugs-th-small">Type</th>
 	<th>Name</th>
+	<th class="bugs-th-small">Submitted by</th>
     <th class="bugs-th">Actions</th>
   </tr>
   <% for bug in @bugs %>
     <tr>
       <td><%= bug.request_type %></td>
 	  <td><%= bug.name %></td>
+		<td><%= bug.user.name.titleize %></td>
       <td><%= link_to "Edit", edit_bug_path(bug) %>  |  
 	  <%= link_to "Complete", complete_bug_path(bug)%>  |  
       <%= link_to "Destroy", bug, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -21,14 +23,18 @@
 <h2>Feature Requests</h2>
 <table class="table table-bordered table-striped">
   <tr>
-    <th class="bugs-th">Type</th>
+    <th class="bugs-th-small">Type</th>
 	<th>Name</th>
+	<th class="bugs-th-small">Submitted by</th>
     <th class="bugs-th">Actions</th>
   </tr>
   <% for bug in @feature_bugs %>
     <tr>
       <td><%= bug.request_type %></td>
 	  <td><%= bug.name %></td>
+	<td><% if bug.user %> 
+					<%= bug.user.name.titleize %>
+					<% end %></td>
       <td><%= link_to "Edit", edit_bug_path(bug) %>  |  
 	  <%= link_to "Complete", complete_bug_path(bug)%>  |  
       <%= link_to "Destroy", bug, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -39,14 +45,18 @@
 <h2>Completed</h2>
 <table class="table table-bordered table-striped">
   <tr>
-    <th class="bugs-th">Type</th>
+    <th class="bugs-th-small">Type</th>
 	<th>Name</th>
+	<th class="bugs-th-small">Submitted by</th>
     <th class="bugs-th">Actions</th>
   </tr>
   <% for bug in @completed_bugs %>
     <tr>
       <td><%= bug.request_type %></td>
 	  <td><%= bug.name %></td>
+	<td>	<% if bug.user %> 
+						<%= bug.user.name.titleize %>
+						<% end %></td>
       <td><%= link_to "Edit", edit_bug_path(bug) %>  |  
 	  <%= link_to "Complete", complete_bug_path(bug)%>  |  
       <%= link_to "Destroy", bug, :confirm => 'Are you sure?', :method => :delete %></td>

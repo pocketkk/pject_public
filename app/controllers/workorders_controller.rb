@@ -3,8 +3,7 @@ class WorkordersController < ApplicationController
   
   def index
     @search=Workorder.search(params[:q])
-    @workorders = params[:distinct].to_i.zero? ? @search.result : @search.result(distinct: true)
-   
+    @workorders = params[:distinct].to_i.zero? ? @search.result : @search.result(distinct: true)  
   end
   
   def calendar
@@ -118,7 +117,7 @@ class WorkordersController < ApplicationController
                    client.account.sms.messages.create(
                      from: TWILIO_CONFIG['from'],
                      to: user.phone_number,
-                     body: @workorder.customer.titleize << "'s " << @workorder.wo_type.downcase << " workorder has been completed! www.workordermachine.com"
+                     body: @workorder.customer.titleize << "'s " << @workorder.wo_type.downcase << " workorder has been completed! "  << url_for(@workorder)
                    )
           end
       end
