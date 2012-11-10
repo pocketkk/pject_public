@@ -32,6 +32,9 @@
       <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
 
 	  <% @user.updating_password = true %>
+	
+		<%= f.label :signature, "Add a signature for out-going emails."%>
+		<%= f.text_area :signature, :size => "30x5"%>
 
       <center><%= f.submit "Save changes", class: "btn btn-large btn-primary" %></center>
     <% end %>

@@ -43,7 +43,7 @@ class DocumentsController < ApplicationController
   def update
     @document = Document.find(params[:id])
     params[:document][:emails_attributes].values.each do |document|
-      PdfMailer.mail_pdf(@document, document[:address],current_user).deliver unless document[:address].empty?
+      PdfMailer.mail_pdf(@document, document[:address],current_user,document[:message]).deliver unless document[:address].empty?
     end if params[:document] and params[:document][:emails_attributes]
     
     ### Delete email attributes before saving ###

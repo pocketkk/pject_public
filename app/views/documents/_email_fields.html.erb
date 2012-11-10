@@ -1,5 +1,7 @@
 
 <%= f.label :address, "Email Address" %><br />
-<%= f.text_field :address %>
+<%= f.text_field :address %><br />
+<%= f.label :message, "Add Message"%><br />
+<%= f.text_area :message, :size=>"20x3"%><br />
 <center><%= f.submit "Email Document", class: "btn btn-small"%></center>
 
