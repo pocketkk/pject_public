@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
+  before_save :strip_whitespace
   
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -49,6 +50,11 @@ class User < ActiveRecord::Base
 
   def raw_phonenumber=(s)
     self.phone_number=s.gsub(/\D/, '')
+  end
+  
+  def strip_whitespace
+    self.name = self.name.strip
+    self.email = self.email.strip
   end
   
   private
