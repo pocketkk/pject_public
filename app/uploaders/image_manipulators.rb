@@ -31,7 +31,7 @@ module ImageManipulators
      end
 
      def paper_shape
-       manipulate!(:format => 'png') do |img|
+       manipulate! do |img|
          if img.rows*4 != img.columns*3
            width=img.columns
            height=img.columns/3*4

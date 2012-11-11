@@ -44,10 +44,9 @@ class PdfdocUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb_safari do
-     process :convert => 'jpg'
      process :resize_to_fit => [200, 200]
+     process :convert => 'jpg'
      process :paper_shape
-     process :strip
      def full_filename (for_file = model.logo.file)
         super.chomp(File.extname(super)) + '.jpg'
       end     
@@ -55,8 +54,8 @@ class PdfdocUploader < CarrierWave::Uploader::Base
 
   version :thumb do
      process :resize_to_fit => [200, 200]
+     process :convert => 'jpg'
      process :paper_shape
-     process :strip
      process :convert => 'jpg'
      
      def full_filename (for_file = model.logo.file)
