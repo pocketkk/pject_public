@@ -3,7 +3,7 @@
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.label :wo_type, "Workorder Category:"%>
 	<%= f.select :wo_type, Workorder::WORKORDER_TYPES%>
-    <%= f.label :customer, "Customer:" %>
+  <%= f.label :customer, "Customer:" %>
 	<%= f.text_field :customer %>
 	<%= f.label :street, "Street Address:" %>
 	<%= f.text_field :street %>
@@ -23,6 +23,10 @@
 	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
 	<%= f.label :branch, "Branch"%>
 	<%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
+	
+	<%= f.label :assigned_to, "To be completed by:"%>
+	<%= f.select :assigned_to, options_from_collection_for_select(@users, :id, :name, (@installer ? @installer.id : 1))%>
+	
 	<%= f.label :completed, "Completed?"%>
 	<%= f.select :completed, { "No" => false, "Yes" => true}%>
 

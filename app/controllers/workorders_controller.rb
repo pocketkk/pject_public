@@ -46,6 +46,7 @@ class WorkordersController < ApplicationController
       else
         flash[:error] = 'All fields must be filled to create a new workorder'
         #redirect_to :back
+        @users = User.where("current_branch=?",current_user.current_branch)
         render :action => 'new'
       end
     end
@@ -67,6 +68,8 @@ class WorkordersController < ApplicationController
     @json=@workorder.to_gmaps4rails
     @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
     
+    @installer=User.find(@workorder.assigned_to)
+    
     @commentable = @workorder
     @comments = @commentable.comments
     @comment = Comment.new
@@ -76,12 +79,14 @@ class WorkordersController < ApplicationController
   def edit
     @workorder=Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
+    @users = User.where("current_branch=?",current_user.current_branch)
+    @installer=User.find(@workorder.assigned_to)
 
   end
   
   def new
     @workorder=Workorder.new
-
+    @users = User.where("current_branch=?",current_user.current_branch)
   end
   
   def complete
@@ -168,6 +173,7 @@ class WorkordersController < ApplicationController
      
        
     else
+      @users = User.where("current_branch=?",current_user.current_branch)
       render :action => 'edit'
     end
   end

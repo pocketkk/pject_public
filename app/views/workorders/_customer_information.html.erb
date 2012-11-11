@@ -48,6 +48,14 @@
 			<%=@workorder.misc_notes%>
 		</td>
 	</tr>
+	<tr>
+  	<td>
+			ASSIGNED TO:
+		</td>
+		<td>
+			<%=@installer.name.titleize%>
+		</td>
+	</tr>
 
 </table>
 <%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},

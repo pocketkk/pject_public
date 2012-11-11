@@ -4,7 +4,7 @@ class Workorder < ActiveRecord::Base
   attr_accessible :customer, :street, :city, :state, :wo_date, 
                   :wo_duration, :chronic_wo_date, :phonenumber, :raw_phonenumber, 
                   :contact, :misc_notes, :assets_attributes, :branch, 
-                  :before_photos_attributes, :after_photos_attributes, :completed, :wo_type
+                  :before_photos_attributes, :after_photos_attributes, :completed, :wo_type, :assigned_to
   belongs_to :user
   has_many :assets
   has_many :before_photos
@@ -57,7 +57,6 @@ class Workorder < ActiveRecord::Base
  def googlemaps_link
    "http://maps.apple.com/maps?q=#{self.gmaps4rails_address.gsub(" ", "%20")}"
  end
-     
  
  def gmaps4rails_address
    "#{self.street}, #{self.city}, #{self.state}"

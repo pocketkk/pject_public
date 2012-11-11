@@ -47,7 +47,7 @@
 	</span><br />
 	
 	<span class="tiny">
-			Workorder opened by <%= workorder.user.name.titleize %>
+			Opened by <%= workorder.user.name.titleize %> | Assigned to <%= workorder.assigned_to ? name_of_user(workorder.assigned_to) : ""%>
 	</span>
 		<% workorder.assets.each do |a| %>
 				<div id="equipment"></div>
