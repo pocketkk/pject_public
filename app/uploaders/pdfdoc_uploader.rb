@@ -36,15 +36,14 @@ class PdfdocUploader < CarrierWave::Uploader::Base
   # end
 
   version :thumb do
-     process :convert => 'jpg'
+     process :convert => 'png'
      process :resize_to_fit => [200, 200]
      process :paper_shape
      process :strip
      process :colorspace => 'rgb'
     
-     
      def full_filename (for_file = model.logo.file)
-       super.chomp(File.extname(super)) + '.jpg'
+       super.chomp(File.extname(super)) + '.png'
      end     
   end
   
