@@ -2,6 +2,7 @@
     <h2>Workorders (<%= @workorders.count %>)</h2>
 	<% if @workorders.any? %>
        <%= render @workorders %>
+			<%= will_paginate @workorders %>
    <% end %>
 	<br />	
  </div>

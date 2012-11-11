@@ -3,7 +3,7 @@ class WorkordersController < ApplicationController
   
   def index
     @search=Workorder.search(params[:q])
-    @workorders = params[:distinct].to_i.zero? ? @search.result : @search.result(distinct: true)  
+    @workorders = params[:distinct].to_i.zero? ? @search.result.paginate(page: params[:page], :per_page => 6) : @search.result(distinct: true).paginate(page: params[:page], :per_page => 6)  
   end
   
   def calendar
