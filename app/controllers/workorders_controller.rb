@@ -68,7 +68,7 @@ class WorkordersController < ApplicationController
     @json=@workorder.to_gmaps4rails
     @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
     
-    @installer=User.find(@workorder.assigned_to)
+    @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
     
     @commentable = @workorder
     @comments = @commentable.comments
@@ -80,7 +80,8 @@ class WorkordersController < ApplicationController
     @workorder=Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
     @users = User.where("current_branch=?",current_user.current_branch)
-    @installer=User.find(@workorder.assigned_to)
+    
+    @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
 
   end
   

@@ -53,7 +53,7 @@
 			ASSIGNED TO:
 		</td>
 		<td>
-			<%=@installer.name.titleize%>
+			<%= @installer ? @installer.name.titleize : @no_one_assigned%>
 		</td>
 	</tr>
 
