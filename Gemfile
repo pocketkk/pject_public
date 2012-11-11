@@ -11,7 +11,7 @@ gem 'nested_form'
 gem 'simple_form'
 gem 'css3-progress-bar-rails'
 gem 'google-webfonts'
-gem 'carrierwave'
+gem 'carrierwave', '~> 0.7.1'
 gem 'fog', '~> 1.3.1'
 gem 'rmagick'
 gem 'rubylight'
@@ -22,6 +22,8 @@ gem 'gmaps4rails'
 gem 'thin'
 gem 'difference'
 gem 'acts-as-taggable-on'
+gem 'useragent'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

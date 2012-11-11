@@ -1,6 +1,8 @@
 class DocumentsController < ApplicationController
   def index
     @search = Document.search(params[:q])
+    @user_agent=UserAgent.parse(request.user_agent)
+    
     if params[:tag]
       @documents = Document.tagged_with(params[:tag])
       @page_title="Documents by Tag (" << params[:tag].upcase << ")"

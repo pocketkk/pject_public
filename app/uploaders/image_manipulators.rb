@@ -13,10 +13,6 @@ module ImageManipulators
 	   end
 	 end
 
-   def set_content_type(*args)
-       self.file.instance_variable_set(:@content_type, "image/jpeg")
-   end
-
    # Autoorients image according to exif
      def auto_orient
        manipulate! {|img| img.auto_orient! || img }
@@ -24,7 +20,7 @@ module ImageManipulators
 
      # Crops the biggest possible square from the image
      def biggest_square
-       manipulate! do |img|
+       manipulate!(:format => 'jpg') do |img|
          if img.rows != img.columns
            max = img.rows > img.columns ? img.columns : img.rows
            img.crop!(0,0,max,max,true)
@@ -35,7 +31,7 @@ module ImageManipulators
      end
 
      def paper_shape
-       manipulate! do |img|
+       manipulate!(:format => 'png') do |img|
          if img.rows*4 != img.columns*3
            width=img.columns
            height=img.columns/3*4

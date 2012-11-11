@@ -17,11 +17,17 @@
 	<table height=370 class="table-bordered table-condensed table-striped">
 	    	<tr>
 					<td width=175 align="center">
-						<%= link_to(image_tag(doc.pdfdoc_url(:thumb).to_s, :class=>"dropshadow", :size => "150x225"), doc.pdfdoc_url)%>
+						<% if @user_agent.browser.downcase == 'safari' %>
+						   <%= link_to(image_tag(doc.pdfdoc_url(:thumb_safari).to_s, :class=>"dropshadow", :size => "150x225"), doc.pdfdoc_url)%>
+						<% else %>
+							<%= link_to(image_tag(doc.pdfdoc_url(:thumb).to_s, :class=>"dropshadow", :size => "150x225"), doc.pdfdoc_url)%>
+							<% end %>
 					</td>
 				<tr>
 					<td align="center">
 						 <%= doc.description.upcase %>
+
+						
 					</td>
 				</tr>
 				<tr>

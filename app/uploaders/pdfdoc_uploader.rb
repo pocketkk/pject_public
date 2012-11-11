@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'carrierwave/processing/mime_types'
 
 class PdfdocUploader < CarrierWave::Uploader::Base
   include ImageManipulators
@@ -13,6 +14,7 @@ class PdfdocUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :fog
+  process :set_content_type
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -35,15 +37,30 @@ class PdfdocUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  version :thumb do
-     process :convert => 'png'
+  #def set_content_type(*args)
+  #    content_type = file.content_type == 'application/octet-stream' || file.content_type.blank? ? MIME::Types.type_for(original_filename).first.to_s : file.content_type
+
+  #    self.file.instance_variable_set(:@content_type, content_type)
+  # end
+
+  version :thumb_safari do
+     process :convert => 'jpg'
      process :resize_to_fit => [200, 200]
      process :paper_shape
      process :strip
-     process :colorspace => 'rgb'
-    
      def full_filename (for_file = model.logo.file)
-       super.chomp(File.extname(super)) + '.png'
+        super.chomp(File.extname(super)) + '.jpg'
+      end     
+   end
+
+  version :thumb do
+     process :resize_to_fit => [200, 200]
+     process :paper_shape
+     process :strip
+     process :convert => 'jpg'
+     
+     def full_filename (for_file = model.logo.file)
+       super.chomp(File.extname(super)) + '.jpg'
      end     
   end
   
