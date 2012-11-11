@@ -40,6 +40,7 @@ class PdfdocUploader < CarrierWave::Uploader::Base
      process :resize_to_fit => [200, 200]
      process :paper_shape
      process :strip
+     process :colorspace => 'rgb'
     
      
      def full_filename (for_file = model.logo.file)

@@ -76,5 +76,18 @@ module ImageManipulators
              img
            end
          end
+         
+         def colorspace(cs)
+             manipulate! do |img|
+               case cs
+               when 'rgb'
+                 img.colorspace = Magick::RGBColorspace
+               when 'cmyk'
+                 img.colorspace = Magick::CMYKColorspace
+               end
+               img = yield(img) if block_given?
+               img
+             end
+           end
 
 end
