@@ -13,7 +13,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :role, :password, :password_confirmation, 
-                  :current_branch, :phone_number, :raw_phonenumber, :texts, :signature
+                  :current_branch, :phone_number, :raw_phonenumber, :texts, :signature, :receive_mails
                   
   has_secure_password
   

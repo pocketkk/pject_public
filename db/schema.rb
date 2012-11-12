@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110235550) do
+ActiveRecord::Schema.define(:version => 20121111233052) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20121110235550) do
     t.string   "phone_number"
     t.boolean  "texts",           :default => false
     t.text     "signature"
+    t.boolean  "receive_mails",   :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

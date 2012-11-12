@@ -3,6 +3,7 @@ require 'net/https' # You can remove this if you don't need HTTPS
 require 'uri'
 
 class PdfMailer < ActionMailer::Base
+  include UsersHelper
   default from: "admin@workordermachine.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -24,5 +25,13 @@ class PdfMailer < ActionMailer::Base
     attachments['document.pdf'] = response.body
     mail to: email, subject: "Auto Chlor System - " << document.description.upcase
   end
+
+  def mail_workorder(workorder,user,type)
+    @user=user
+    @firstname=first_name(user)
+    @workorder=workorder
+    mail to: user.email, subject: "Workorder Machine - " << type.upcase << " | "   << @workorder.customer
+  end
+    
 
 end

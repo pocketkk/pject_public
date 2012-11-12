@@ -13,4 +13,9 @@ module UsersHelper
     "#{user.name}"
   end
   
+  def first_name(user)
+    first_name=user.name.split(/\W+/).first
+    "#{first_name.titleize}"
+  end
+  
 end

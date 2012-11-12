@@ -23,12 +23,20 @@ class WorkordersController < ApplicationController
         @update.feed_item=current_user.name << " created a " << @workorder.wo_type.downcase <<  " workorder for " << @workorder.customer.titleize << "."
         @update.save
         
+        @users_to_email_rebuilders=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Rebuilder')
+        @users_to_email_branch_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Branch Manager')
+        @users_to_email_regional_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Regional Manager')
+        @users_to_email=@users_to_email_rebuilders+@users_to_email_branch_manager+@users_to_email_regional_manager
+        
         @users_rebuilders=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Rebuilder')
         @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
         @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
         @users_to_text=@users_rebuilders + @users_branchmanagers + @users_regionalmanagers
         flash[:success] = "Workorder created!"
         
+        @users_to_email.each do |user|
+          PdfMailer.mail_workorder(@workorder,user,"New").deliver
+        end
         
         @users_to_text.each do |user|
             client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
@@ -101,6 +109,19 @@ class WorkordersController < ApplicationController
       
       @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
       @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
+      
+      @users_to_email_branch_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Branch Manager')
+      @users_to_email_regional_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Regional Manager')
+      @users_to_email=@users_to_email_branch_manager+@users_to_email_regional_manager
+      
+      if @workorder.user.receive_mails == true
+        PdfMailer.mail_workorder(@workorder,@workorder.user,"Completed").deliver
+      end
+      
+      @users_to_email.each do |user|
+        PdfMailer.mail_workorder(@workorder,user,"Completed").deliver
+      end
+      
       
       if @workorder.user.texts == true 
         client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
