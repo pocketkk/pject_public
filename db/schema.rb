@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111233052) do
+ActiveRecord::Schema.define(:version => 20121112010246) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -126,8 +126,11 @@ ActiveRecord::Schema.define(:version => 20121111233052) do
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "branch"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "part_number"
+    t.string   "po_number"
+    t.boolean  "ordered"
   end
 
   create_table "taggings", :force => true do |t|

@@ -11,6 +11,16 @@ class PartsController < ApplicationController
   def new
     @part = Part.new
   end
+  
+  def ordered
+    @part = Part.find(params[:id])
+    if @part.update_attributes(:ordered => true)
+      flash[:success] = "Part Ordered!"
+      redirect_to parts_path
+    else
+      render :action => 'edit'
+    end      
+  end
 
   def create
     @part = current_user.parts.build(params[:part])

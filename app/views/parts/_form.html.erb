@@ -1,21 +1,21 @@
+<div class="field">
 <%= form_for @part do |f| %>
-  <p>
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :qty %><br />
+    <%= f.label :part_number %>
+    <%= f.text_field :part_number %>
+    <%= f.label :qty %>
     <%= f.text_field :qty %>
-  </p>
-  <p>
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </p>
-  <p>
-    <%= f.label :branch %><br />
-    <%= f.select :branch, Workorder::BRANCH_OPTIONS %>
-  </p>
-  <p><%= f.submit %></p>
+    <%= f.label :po_number %>
+    <%= f.text_field :po_number %>
+    <%= f.label :comment %>
+    <%= f.text_area :comment, :size=>"20x2" %>
+	  <%= f.label :ordered, "Ordered?"%>
+	  <%= f.select :ordered, { "No" => false, "Yes" => true}%>
+    <%= f.label :branch %>
+    <%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
+	<center>
+	<%= f.submit "Add Part", class: "btn btn-large btn-primary" %>
+</center>
 <% end %>
-
-
+</div>

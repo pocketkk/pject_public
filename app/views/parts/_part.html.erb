@@ -8,7 +8,10 @@
 		
 		<% if current_user.role=='Branch Manager' || 'Regional Manager' %>
 			<%= link_to "Edit", edit_part_path(part) %>  |  
-			<%= link_to "Remove", part, :confirm => 'Are you sure?', :method => :delete %>
+			<%= link_to "Ordered", ordered_part_path(part)%>  |  
+			<% if current_user.admin? %>
+				<%= link_to "Remove", part, :confirm => 'Are you sure?', :method => :delete %>
+			<% end %>
 		<% end %>
 	<div class="part_user">
 		Requested by: <%=part.user.name%>

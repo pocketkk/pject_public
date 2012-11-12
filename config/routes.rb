@@ -40,6 +40,7 @@ Pject::Application.routes.draw do
   
   match 'workorders/:id/complete', to: 'workorders#complete', :as => "complete_workorder"
   match 'bugs/:id/complete', to: 'bugs#complete', :as => "complete_bug"
+  match 'parts/:id/ordered', to: 'parts#ordered', :as => "ordered_part"
   match 'documents/:id/email', to: 'documents#email', :as => 'email_document_path'
   
   match '/signup', to: 'users#new'
