@@ -1,6 +1,6 @@
 class PartsController < ApplicationController
   def index
-    @parts = Part.parts_current_branch(current_user.current_branch).ascending
+    @parts = Part.parts_current_branch(current_user.current_branch).where("ordered=?", false).ascending
     @part = current_user.parts.build if signed_in?
   end
 

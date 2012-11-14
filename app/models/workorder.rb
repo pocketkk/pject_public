@@ -4,7 +4,8 @@ class Workorder < ActiveRecord::Base
   attr_accessible :customer, :street, :city, :state, :wo_date, 
                   :wo_duration, :chronic_wo_date, :phonenumber, :raw_phonenumber, 
                   :contact, :misc_notes, :assets_attributes, :branch, 
-                  :before_photos_attributes, :after_photos_attributes, :completed, :wo_type, :assigned_to
+                  :before_photos_attributes, :after_photos_attributes, :completed,
+                  :wo_type, :assigned_to
   belongs_to :user
   has_many :assets
   has_many :before_photos
@@ -17,7 +18,8 @@ class Workorder < ActiveRecord::Base
   acts_as_gmappable
   
   #scope :current_branch, where("branch=350").order("wo_date ASC")
-  scope :wo_current_branch, lambda{ |branch_number| where('branch = ?', branch_number)  }
+  scope :wo_current_branch, lambda{ |branch_number| where('branch = ?',
+                            branch_number)  }
   scope :ascending, order("wo_date ASC")
   scope :descending, order("wo_date DESC")
   scope :wo_completed, where('completed = ?', true)
