@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
      @updates = Update.all(:order => 'created_at DESC', :limit => "15") if signed_in?
      @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0') if signed_in?
      @workorders_without_dates=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.wo_no_date.ascending if signed_in?
-     @parts = Part.parts_current_branch(current_user.current_branch).order("name ASC") if signed_in?
+     @parts = Part.parts_current_branch(current_user.current_branch).where("ordered=?", false).order("name ASC") if signed_in?
      @users = User.where("current_branch=?",current_user.current_branch) if signed_in?
    end
 
