@@ -1,6 +1,6 @@
 <% provide(:title, @workorder.customer) %>
 <div class="workorder_show_wrapper">
-	
+
 	<% if @workorder.wo_type == 'New Install' %>
 		<div class="work_bar_new"></div>
 	<% end %>
@@ -13,17 +13,17 @@
 	<% if @workorder.wo_type == 'Follow Up'%>
 		<div class='work_bar_follow_up'></div>
 	<% end %>
-		
+
 	<h1 class="show_workorder">
 	  <%= @workorder.customer.titleize %>
 	</h1>
-	
+
 	<h2 class="show_workorder2">
 	  <%= @workorder.wo_type %>
 	</h2>
-	
+
 	<hr />
-	
+
 	<div class="workorder_show_content">
 		<div class="row-fluid">
 			<table class="table table-bordered table-striped">
@@ -32,7 +32,7 @@
 			    <th>EQUIPMENT INFORMATION</th>
 			  </tr>
 			  <tr>
-			    <td><%= render :partial => 'customer_information' %></td>
+			    	<td><%= render :partial => 'customer_information' %></td>
 				<td><%= render :partial => 'equipment_information' %></td>
 			  </tr>
 			</table>
@@ -43,8 +43,14 @@
 		<div class="row-fluid">
 		  <%= render :partial => 'workorder_comments' %>
 	    </div>
+	    <div class="followup_workorder" style="display:none" >
+	    	<h2> Add Follow Up Workorder</h2>
+	    	<%= render :partial => 'shared/workorderpost_followup_form' %>
+	    </div>
+
 	</div>
-	
+
 	<br />
-	<center><%= link_to "Edit Workorder", edit_workorder_path(@workorder) %></center>
+	<center><%= link_to "Edit Current Workorder", edit_workorder_path(@workorder) %></center><br>
+	<center><%= link_to_function "Create Follow Up Workorder", "$('.followup_workorder').toggle()" %></center>
 </div>

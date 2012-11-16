@@ -11,7 +11,7 @@ $graySuperLight: #fafafa;
 $grayMediumLight: #cccccc;
 $grayDark: #333333;
 $grayLight: #eaeaea;
-$blueDark:  3486D0; 
+$blueDark:  3486D0;
 
 $workorderRed: #9d261d;
 $workorderBlue: #049cdb;
@@ -21,8 +21,8 @@ $workorderGreen: #45a546;
 
 
 @mixin box_sizing {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -260,7 +260,7 @@ input, textarea, select, .uneditable-input {
 	list-style: none;
 	margin: 0;
 	li {
-		padding: 10px 0;	
+		padding: 10px 0;
 		margin-bottom: -10px;
 		border-top: 1px solid $grayDarkest;
 	}
@@ -272,7 +272,7 @@ input, textarea, select, .uneditable-input {
 .workorders {
   list-style: none;
   margin: 10px 0 0 0;
- 
+
 }
 .workorder_today {
 	text-align: right;
@@ -317,7 +317,18 @@ input, textarea, select, .uneditable-input {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: 1px solid $grayMedium;
-	padding: 10px;	
+	padding: 10px;
+
+}
+
+.followup_workorder {
+  margin-left: 235px;
+  width: 400px;
+  background-color: white;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid $grayMedium;
+  padding: 10px;
 
 }
 
@@ -335,7 +346,7 @@ aside {
   textarea {
     height: 100px;
     margin-bottom: 5px;
-  } 
+  }
 }
 
 #chemicals_fields_blueprint {
@@ -603,13 +614,13 @@ div.fields {
 	margin-left: 5px;
 	margin-top: -5px;
 	font-size: .60em;
-	
+
 }
 .calendar_event {
 	margin-top: -5px;
 	font-size: .60em;
 	margin-left: 5px;
-	
+
 }
 
 // Place all the styles related to the articles controller here.
@@ -679,7 +690,7 @@ div.fields {
 .gravatar_workorder_feed {
 	padding-top: 0px;
 	margin-top: 1px;
-}	
+}
 
 .asset_options {
 	margin-left: 20px;
@@ -691,13 +702,13 @@ div.fields {
 	max-width: none;
 	}
 
-#map img { 
+#map img {
 	max-width: none;
 	}
-#map label { 
-	width: auto; display:inline; 
+#map label {
+	width: auto; display:inline;
 	}
-	
+
 .dropshadow{
 	 -moz-box-shadow: 1px 1px 2px $grayMedium;
 	 -webkit-box-shadow: 1px 1px 2px $grayMedium;
