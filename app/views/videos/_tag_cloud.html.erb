@@ -1,0 +1,12 @@
+<div id="tag_cloud" class="workorder_form">
+  <h2>
+    Search Videos
+  </h2>
+  <%= render 'search_form' %><hr />
+  <h2>
+    Tags
+  </h2>
+  <% tag_cloud Video.tag_counts, %w{s m l} do |tag, css_class| %>
+      <%= link_to tag.name, video_tags_path(tag.name), class: css_class %>
+  <% end %>
+</div>

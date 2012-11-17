@@ -1,0 +1,6 @@
+<%= search_form_for @search do |f| %>
+  <div>
+    <%= f.text_field :description_cont %>
+  </div>
+ <div class="actions"> <center><%= f.submit "Search", class: "btn btn-small" %></center></div>
+<% end %>

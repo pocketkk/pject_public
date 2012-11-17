@@ -43,7 +43,7 @@
 		<div class="row-fluid">
 		  <%= render :partial => 'workorder_comments' %>
 	    </div>
-	    <div class="followup_workorder" style="display:none" >
+	    <div class="lonely_form" id="followup_workorder" style="display:none" >
 	    	<h2> Add Follow Up Workorder</h2>
 	    	<%= render :partial => 'shared/workorderpost_followup_form' %>
 	    </div>
@@ -52,5 +52,5 @@
 
 	<br />
 	<center><%= link_to "Edit Current Workorder", edit_workorder_path(@workorder) %></center><br>
-	<center><%= link_to_function "Create Follow Up Workorder", "$('.followup_workorder').toggle()" %></center>
+	<center><%= link_to_function "Create Follow Up Workorder", "$('#followup_workorder').toggle()" %></center>
 </div>

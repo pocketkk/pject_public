@@ -1,0 +1,33 @@
+<div class="video_wrapper">
+        <table class="table-bordered table-condensed table-striped">
+        <tr>
+            <td>
+                <%= link_to (image_tag yt_client.my_video(video.yt_video_id).thumbnails.second.url), video_path(video) %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= video.title.upcase %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                 <%= video.description %>
+            </td>
+        </tr>
+        <tr>
+            <td width=175 class="tags">
+                Tags: <%= raw video.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+            </td>
+        </tr>
+        <% if current_user.admin? %>
+            <tr>
+                <td>
+                    <%= link_to "Show", video_path(video) %> |
+                    <%= link_to "Edit", edit_video_path(video) %> |
+                    <%= link_to "Delete", video_path(video), :method => :delete, :confirm => "Are you sure?" %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>

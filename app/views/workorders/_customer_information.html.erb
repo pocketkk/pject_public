@@ -53,7 +53,9 @@
             DATE/TIME:
 		</td>
 		<td>
-			<%=@workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
+			<% unless @workorder.wo_date.nil? %>
+                <%=@workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
+            <% end %>
 		</td>
 	</tr>
 	<tr>

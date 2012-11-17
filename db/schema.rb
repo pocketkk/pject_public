@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112010246) do
+ActiveRecord::Schema.define(:version => 20121117153051) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -175,6 +175,16 @@ ActiveRecord::Schema.define(:version => 20121112010246) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "videos", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "yt_video_id"
+    t.boolean  "is_complete", :default => false
+    t.integer  "user_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "workorders", :force => true do |t|
     t.string   "customer"

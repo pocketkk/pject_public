@@ -1,15 +1,8 @@
 Pject::Application.routes.draw do
 
-  get "emails/index"
-
-  get "emails/new"
-
-  get "emails/create"
-
-  get "emails/destroy"
-
   resources :documents
   get 'tags/:tag', to: 'documents#index', as: :tag
+  get 'video_tags/:tag', to: 'videos#index', as: :video_tags
 
   resources :parts
   resources :bugs
@@ -20,14 +13,20 @@ Pject::Application.routes.draw do
   resources :workorders
   resources :comments
   resources :emails, only: [:new, :create, :destroy, :index]
-  
+
   resources :workorders do
     resources :comments
   end
 
+  resources :videos do
+    new do
+        post :upload
+        get :save_video
+    end
+  end
 
   root to: 'passthrough#index'
-  
+
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
@@ -35,21 +34,21 @@ Pject::Application.routes.draw do
   match '/branchmanager', to: 'static_pages#home'
   match '/welcome', to: 'static_pages#home'
   match '/calendar', to: 'workorders#calendar'
-  
+
   match '/switchbranch', to: 'users#user_branch_switch'
-  
+
   match 'workorders/:id/complete', to: 'workorders#complete', :as => "complete_workorder"
   match 'bugs/:id/complete', to: 'bugs#complete', :as => "complete_bug"
   match 'parts/:id/ordered', to: 'parts#ordered', :as => "ordered_part"
   match 'documents/:id/email', to: 'documents#email', :as => 'email_document_path'
-  
+
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/search', to: 'workorders#index'
-  
 
-  
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

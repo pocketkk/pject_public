@@ -1,0 +1,13 @@
+<div class="row-fluid">
+<div class="tag_cloud_wrapper">
+  <%= render 'tag_cloud' %>
+</div>
+<div class="videos_wrapper">
+  <h2><%= @page_title %></h2>
+  <% @videos.each do |video| -%>
+        <%= render video%>
+  <% end %>
+
+  </div>
+</div>
+    <center><%= link_to "Add New Video", new_video_path %></center>

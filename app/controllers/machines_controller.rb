@@ -1,9 +1,12 @@
-class WorkordersController < ApplicationController
+require 'youtube_it'
+class MachinesController < ApplicationController
   before_filter :signed_in_user
-  
+
   def index
+
+
   end
-  
+
   def create
       @machine = current_user.workorders.machines.build(params[:machine])
       if @machine.save
@@ -14,7 +17,7 @@ class WorkordersController < ApplicationController
         redirect_to root_url
       end
     end
-  
+
   def destroy
   end
   def show

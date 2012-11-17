@@ -1,0 +1,11 @@
+common: &common
+  dev_key:   AI39si6aKfL5TS3-eOq1M8h-2sekZP-uALaod0Zk9wGiekBPOv3wTtQCXk95IOAKAaKLcN8DndYE3N0y5D2MfcNUyqHNnBaJNQ
+  username:  workordermachine@gmail.com
+  password:  abnoyilyopjfyejw
+
+test:
+  <<: *common
+development:
+  <<: *common
+production:
+  <<: *common

@@ -1,17 +1,17 @@
-<%= form_for @document, :html => { :class => 'form-vertical', :multipart => true } do |f| %>
-  <p>
-    <%= f.label :pdfdoc %><br />
-		<%= image_tag(f.object.pdfdoc_url) if f.object.pdfdoc? %>
-		<%= f.file_field :pdfdoc %>
-		<%= f.hidden_field :pdfdoc_cache%>
-  </p>
-  <p>
-    <%= f.label "Title" %><br />
-    <%= f.text_field :description %>
-  </p>
-	<p>
-		<%= f.label :tag_list, "Tags (separated by commas)" %><br />
-		<%= f.text_field :tag_list %>
-	</p>	
-  <p><%= f.submit %></p>
-<% end %>
+
+
+    <%= form_for @document, :html => { :class => 'form-vertical', :multipart => true } do |f| %><br />
+  		<%= image_tag(f.object.pdfdoc_url) if f.object.pdfdoc? %>
+  		<%= f.file_field :pdfdoc %>
+  		<%= f.hidden_field :pdfdoc_cache%>
+
+      <%= f.label "Title" %>      <%= f.text_field :description %>
+
+  		<%= f.label :tag_list, "Tags (separated by commas)" %>
+  		<%= f.text_field :tag_list %>
+
+    <center>
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+      </center>
+  <% end %>
+

@@ -1,0 +1,10 @@
+<div class="lonely_form">
+    <%= form_tag @upload_info[:url], :html => { :class => 'form-vertical'}, :multipart => true do %>
+            <%= hidden_field_tag :token, @upload_info[:token] %>
+            <%= label_tag :file, "Upload video file..." %>
+            <%= file_field_tag :file %>
+            <center>
+                <%= submit_tag "Upload video", class: "btn btn-large btn-primary" %>
+            <center>
+    <% end %>
+</div>
