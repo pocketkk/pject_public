@@ -1,8 +1,8 @@
-				
-<table class="table table-bordered table-striped">
-  <tr>
- 		<td width="35%">
-	  	RESTAURANT NAME:
+
+<table class= "table table-bordered table-striped">
+  	<tr>
+        <td width= "35%">
+        	RESTAURANT NAME:
 		</td>
 		<td>
 			<%= @workorder.customer.titleize%>
@@ -10,53 +10,60 @@
 	</tr>
 	<tr>
 		<td>
-			STREET:
+            STREET:
 		</td>
 		<td>
 			<%= @workorder.street %>
 		</td>
 	</tr>
 	<tr>
-  	<td>
-			CITY/STATE:
+	  	<td>
+            CITY/STATE:
 		</td>
 		<td>
 			<%= @workorder.city.titleize%>, <%= @workorder.state.upcase%>
 		</td>
 	</tr>
 	<tr>
-  	<td>
-			CONTACT:
+  		<td>
+            CONTACT:
 		</td>
 		<td>
 			<%= @workorder.contact.titleize%>
 		</td>
 	</tr>
 	<tr>
-  	<td>
-			PHONE:
+  		<td>
+            PHONE:
 		</td>
 		<td>
-			<%= number_to_phone(@workorder.phonenumber, :area_code => true)%>
+            <%= number_to_phone(@workorder.phonenumber,:area_code => true)%>
 		</td>
 	</tr>
 	<tr>
-  	<td>
-			MISC NOTES:
+  		<td>
+            MISC NOTES:
 		</td>
 		<td>
 			<%=@workorder.misc_notes%>
 		</td>
 	</tr>
 	<tr>
-  	<td>
-			ASSIGNED TO:
+  		<td>
+            DATE/TIME:
 		</td>
 		<td>
-			<%= @installer ? @installer.name.titleize : @no_one_assigned%>
+			<%=@workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
 		</td>
 	</tr>
-
+	<tr>
+  		<td>
+            ASSIGNED TO:
+		</td>
+		<td>
+            <%= @installer ? @installer.name.titleize : @no_one_assigned%>
+		</td>
+	</tr>
 </table>
 <%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
   "markers"=> {"data" => @json }}) %><br />

@@ -420,8 +420,6 @@ div.fields {
 	background-color: white;
 	textarea: #c0c0c0;
 	height: 100%;
-
-
 }
 
 .workorder_form {
@@ -444,7 +442,6 @@ div.fields {
 	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 10px;
-
 }
 
 .work_bar_new{
@@ -463,6 +460,7 @@ div.fields {
 	border: 1px solid #bbb;
 	background-color: $workorderGreen;
 }
+
 .work_bar_swap{
 	float: left;
 	position: absolute;
@@ -479,6 +477,7 @@ div.fields {
 	border: 1px solid #bbb;
 	background-color: $workorderBlack;
 }
+
 .work_bar_follow_up{
 	float: left;
 	position: absolute;
@@ -495,6 +494,7 @@ div.fields {
 	border: 1px solid #bbb;
 	background-color: $workorderBlue;
 }
+
 .work_bar_pull{
 	float: left;
 	position: absolute;
@@ -516,7 +516,6 @@ div.fields {
 .work_wrapper_small {
 	position: relative;
 	margin: 2px;
-
 	background-color: white;
 	-moz-border-top-right-radius: 5px;
 	border-top-right-radius: 5px;
@@ -524,7 +523,6 @@ div.fields {
 	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 7px;
-
 }
 
 .work_bar_new_small{
@@ -543,6 +541,7 @@ div.fields {
 	border: 1px solid #bbb;
 	background-color: $workorderGreen;
 }
+
 .work_bar_swap_small{
 	float: left;
 	position: absolute;
@@ -559,6 +558,7 @@ div.fields {
 	border: 1px solid #bbb;
 	background-color: $workorderBlack;
 }
+
 .work_bar_follow_up_small{
 	float: left;
 	position: absolute;
@@ -575,6 +575,7 @@ div.fields {
 	border: 1px solid #bbb;
 	background-color: $workorderBlue;
 }
+
 .work_bar_pull_small{
 	float: left;
 	position: absolute;
@@ -592,14 +593,13 @@ div.fields {
 	background-color: $workorderRed;
 }
 
-
 .work_content{
 	height: 100%;
 	margin-left: 10px;
 	padding-left: 5px;
 	padding-right: 5px;
-
 }
+
 #equipment {
 	margin-right: 10px;
 	font-size: .75em;
@@ -614,23 +614,17 @@ div.fields {
 	margin-left: 5px;
 	margin-top: -5px;
 	font-size: .60em;
-
 }
+
 .calendar_event {
 	margin-top: -5px;
 	font-size: .60em;
 	margin-left: 5px;
-
 }
-
-// Place all the styles related to the articles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
 #articles .calendar {
   border-collapse: collapse;
   width: 100%;
-
   td, th {
     font-family: "Lucida Grande", arial, helvetica, sans-serif;
     font-size: 15px;
@@ -694,20 +688,9 @@ div.fields {
 
 .asset_options {
 	margin-left: 20px;
-
 }
 
 // For Google Maps //
-.map_container img{
-	max-width: none;
-	}
-
-#map img {
-	max-width: none;
-	}
-#map label {
-	width: auto; display:inline;
-	}
 
 .dropshadow{
 	 -moz-box-shadow: 1px 1px 2px $grayMedium;
@@ -724,9 +707,7 @@ div.fields {
 	text-align: right;
 }
 
-
 .secondary_nav{
 	margin-left: 30px;
 	float: left;
 }
-

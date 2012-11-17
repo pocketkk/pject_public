@@ -17,10 +17,21 @@
 }
 
 .bing_map {
-   position: absolute;
-   top: 20;
-   left: 10;
-   width: 400px;
-   height: 400px;
-   border:#555555 2px solid;
+  position: absolute;
+  top: 20;
+  left: 10;
+  width: 400px;
+  height: 400px;
+  border:#555555 2px solid;
+}
+
+.map_container img{
+  max-width: none;
+  }
+
+#map img {
+  max-width: none;
+}
+#map label {
+  width: auto; display:inline;
 }

@@ -28,19 +28,19 @@ class Workorder < ActiveRecord::Base
   scope :wo_no_date, where('wo_date IS NULL')
   scope :wo_recently_completed, where('completed = ?', true).limit(4).order("wo_date DESC")
 
-  BRANCH_OPTIONS = ['310','320','330','340','350','360']
-  WORKORDER_TYPES = ['New Install','Pull','Swap','Follow Up']
-  WORKORDER_TYPES_SEARCH = ['','New Install','Pull','Swap','Follow Up']
-  ASSET_STATUS_OPTIONS =  {  "" => "",
-                             "Need to Order" => "0",
-                             "New - Ordered"    => "1" ,
-                             "New - On Site"    => "10" ,
-                             "New - Tested"     => "97" ,
-                             "Used - Ordered"   => "2"  ,
-                             "Used - On Site"   => "11" ,
-                             "Used - Torn Down" => "25" ,
-                             "Used - Rebuilt"   => "76" ,
-                             "Used - Tested"    => "98" ,
+  BRANCH_OPTIONS          = ['310','320','330','340','350','360']
+  WORKORDER_TYPES         = ['New Install','Pull','Swap','Follow Up']
+  WORKORDER_TYPES_SEARCH  = ['','New Install','Pull','Swap','Follow Up']
+  ASSET_STATUS_OPTIONS    = {  ""                   => "",
+                             "Need to Order"        => "0",
+                             "New - Ordered"        => "1" ,
+                             "New - On Site"        => "10" ,
+                             "New - Tested"         => "97" ,
+                             "Used - Ordered"       => "2"  ,
+                             "Used - On Site"       => "11" ,
+                             "Used - Torn Down"     => "25" ,
+                             "Used - Rebuilt"       => "76" ,
+                             "Used - Tested"        => "98" ,
                              "Delivered/Not Installed" => "99",
                              "Machine Installed" => "100"}
 
