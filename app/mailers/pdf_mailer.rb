@@ -11,13 +11,13 @@ class PdfMailer < ActionMailer::Base
   #
   #   en.pdf_mailer.mail_pdf.subject
   #
-  
-  def mail_pdf(document,email,user,message) 
+
+  def mail_pdf(document,email,user,message)
     @user=user
     @document=document
     @email=email
     @message=message
-    
+
     uri = URI.parse document.pdfdoc_url
     sock= Net::HTTP.new(uri.host, uri.port)
     sock.use_ssl=true
@@ -32,6 +32,5 @@ class PdfMailer < ActionMailer::Base
     @workorder=workorder
     mail to: user.email, subject: "Workorder Machine - " << type.upcase << " | "   << @workorder.customer
   end
-    
 
 end

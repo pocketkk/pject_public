@@ -1,14 +1,7 @@
 <div class="row-fluid">
-
-	<div id="tag_cloud" class="workorder_form">
-		<h2>Search Documents</h2>
-		<%= render 'search_form' %><hr />
-		<h2>Tags</h2>
-	  <% tag_cloud Document.tag_counts, %w{s m l} do |tag, css_class| %>
-	    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-	  <% end %>
-		
-	</div>
+<div class="tag_cloud_wrapper">
+	<%= render 'tag_cloud' %>
+</div>
 <div class="documents_wrapper">
 	<h2><%= @page_title %></h2>
 <% @documents.each do |doc| %>
@@ -27,7 +20,7 @@
 					<td align="center">
 						 <%= doc.description.upcase %>
 
-						
+
 					</td>
 				</tr>
 				<tr>
@@ -35,7 +28,7 @@
 						Tags: <%= raw doc.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 					</td>
 				</tr>
-				
+
 					<tr>
 						<td class="#" align="center">
 							<%= nested_form_for doc do |f| %>
@@ -44,7 +37,7 @@
 							<% end %>
 						</td>
 					</tr>
-				
+
 				<% if current_user.admin?%>
 				<tr>
 					<td align="center">
@@ -54,7 +47,7 @@
 				<% end %>
 	</table>
 	</div>
-	
+
 <% end %>
 </div>
 </div>
