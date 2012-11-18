@@ -1,10 +1,23 @@
 // Place all the styles related to the videos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/* mixins, variables, etc. */
+
+@import "custom";
 
 .video_wrapper {
   float: left;
   padding: 10px;
   width: 320px;
   height:  300px;
+}
+
+.youtube_show {
+  margin-left: 245px;
+  width: 425px;
+  background-color: white;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid $grayMedium;
+  padding: 10px;
 }
