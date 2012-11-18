@@ -17,6 +17,13 @@ Pject::Application.routes.draw do
   resources :workorders do
     resources :comments
   end
+  resources :documents do
+    resources :comments
+  end
+
+  resources :videos do
+    resources :comments
+  end
 
   resources :videos do
     new do

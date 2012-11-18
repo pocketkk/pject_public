@@ -1,4 +1,9 @@
-
-<div class='youtube_show'>
-    <%= raw yt_client.my_video(@video.yt_video_id).embed_html %>
+<div class="row-fluid">
+    <div class='youtube_show'>
+        <%= raw yt_client.my_video(@video.yt_video_id).embed_html %>
+    </div>
+</div>
+<div class="row-fluid">
+    <br />
+    <%= render :partial => 'comments/comments_module' %>
 </div>

@@ -4,6 +4,11 @@ class VideosController < ApplicationController
     @video = Video.create(params[:video])
     if @video
       @upload_info = Video.token_form(params[:video], save_video_new_video_url(:video_id => @video.id))
+
+      @update=current_user.updates.new
+      @update.feed_item=current_user.name << " uploaded a video. | " << @video.title.titleize
+      @update.save
+
     else
       respond_to do |format|
         format.html { render "/videos/new" }
@@ -52,6 +57,10 @@ class VideosController < ApplicationController
 
   def show
     @video=Video.find(params[:id])
+
+    @commentable = @video
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def save_video
@@ -69,6 +78,11 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     if Video.delete_video(@video)
       flash[:notice] = "Video successfully deleted!"
+
+      @update=current_user.updates.new
+      @update.feed_item=current_user.name << " removed a video. | " << @video.title.titleize
+      @update.save
+
     else
       flash[:error] = "Video unsuccessfully deleted!"
     end

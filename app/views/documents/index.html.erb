@@ -4,50 +4,8 @@
 </div>
 <div class="documents_wrapper">
 	<h2><%= @page_title %></h2>
-<% @documents.each do |doc| %>
-
-	<div class="documents">
-	<table height=370 class="table-bordered table-condensed table-striped">
-	    	<tr>
-					<td width=175 align="center">
-						<% if @user_agent.browser.downcase == 'safari' %>
-						   <%= link_to(image_tag(doc.pdfdoc_url(:thumb_safari).to_s, :class=>"dropshadow", :size => "150x225"), doc.pdfdoc_url)%>
-						<% else %>
-							<%= link_to(image_tag(doc.pdfdoc_url(:thumb).to_s, :class=>"dropshadow", :size => "150x225"), doc.pdfdoc_url)%>
-							<% end %>
-					</td>
-				<tr>
-					<td align="center">
-						 <%= doc.description.upcase %>
-
-
-					</td>
-				</tr>
-				<tr>
-					<td width=175 class="tags">
-						Tags: <%= raw doc.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-					</td>
-				</tr>
-
-					<tr>
-						<td class="#" align="center">
-							<%= nested_form_for doc do |f| %>
-								<%= f.fields_for :emails %>
-								<%= f.link_to_add "Email Document", :emails %>
-							<% end %>
-						</td>
-					</tr>
-
-				<% if current_user.admin?%>
-				<tr>
-					<td align="center">
-						<%= link_to "Show", doc %> | <%= link_to "Edit", edit_document_path(doc) %> | <%= link_to "Destroy", doc, :confirm => 'Are you sure?', :method => :delete %>
-					</td>
-				</tr>
-				<% end %>
-	</table>
-	</div>
-
+<% @documents.each do |document| %>
+	<%= render :partial => "document", :locals => {:document => document} %>
 <% end %>
 </div>
 </div>

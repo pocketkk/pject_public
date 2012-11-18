@@ -11,15 +11,18 @@ class PartsController < ApplicationController
   def new
     @part = Part.new
   end
-  
+
   def ordered
     @part = Part.find(params[:id])
     if @part.update_attributes(:ordered => true)
+      @update=current_user.updates.new
+      @update.feed_item=current_user.name << " ordered parts."
+      @update.save
       flash[:success] = "Part Ordered!"
       redirect_to parts_path
     else
       render :action => 'edit'
-    end      
+    end
   end
 
   def create

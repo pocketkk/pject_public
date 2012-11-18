@@ -13,6 +13,9 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(params[:comment])
     @comment.user_id = current_user.id
     if @comment.save
+
+      comment_update(@commentable, @comment.content)
+
       redirect_to @commentable, notice: "Comment created."
     else
       render :new

@@ -3,6 +3,8 @@ class Video < ActiveRecord::Base
   acts_as_taggable
 
   belongs_to :user
+  has_many :comments, as: :commentable
+
   scope :completes, where(:is_complete => true)
   scope :incompletes, where(:is_complete => false)
 

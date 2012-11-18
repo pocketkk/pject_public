@@ -1,0 +1,47 @@
+<div class="documents">
+	<table height=370 class="table-bordered table-condensed table-striped">
+	    	<tr>
+					<td width=175 align="center">
+						<% if @user_agent.browser.downcase == 'safari' %>
+						   <%= link_to(image_tag(document.pdfdoc_url(:thumb_safari).to_s, :class=>"dropshadow", :size => "150x225"), document.pdfdoc_url)%>
+						<% else %>
+							<%= link_to(image_tag(document.pdfdoc_url(:thumb).to_s, :class=>"dropshadow", :size => "150x225"), document.pdfdoc_url)%>
+							<% end %>
+					</td>
+				<tr>
+					<td align="center">
+						 <%= document.description.upcase %>
+
+
+					</td>
+				</tr>
+				<tr>
+					<td width=175 class="tags">
+						Tags: <%= raw document.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+					</td>
+				</tr>
+
+					<tr>
+						<td class="#" align="center">
+							<%= nested_form_for document do |f| %>
+								<%= f.fields_for :emails %>
+								<%= f.link_to_add "Email Document", :emails %>
+							<% end %>
+						</td>
+					</tr>
+
+				<% if current_user.admin?%>
+				<tr>
+					<td align="center">
+						<%= link_to "Show", document %> | <%= link_to "Edit", edit_document_path(document) %> | <%= link_to "Destroy", document, :confirm => 'Are you sure?', :method => :delete %>
+					</td>
+				</tr>
+				<% else %>
+				<tr>
+					<td align="center">
+						<%= link_to "View/Add Comments", document %>
+					</td>
+				</tr>
+				<% end %>
+	</table>
+</div>

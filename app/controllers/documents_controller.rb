@@ -2,7 +2,7 @@ class DocumentsController < ApplicationController
   def index
     @search = Document.search(params[:q])
     @user_agent=UserAgent.parse(request.user_agent)
-    
+
     if params[:tag]
       @documents = Document.tagged_with(params[:tag])
       @page_title="Documents by Tag (" << params[:tag].upcase << ")"
@@ -17,12 +17,18 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+    @user_agent=UserAgent.parse(request.user_agent)
+
+    @commentable = @document
+    @comments = @commentable.comments
+    @comment = Comment.new
+
     #PdfMailer.mail_pdf(@document, params[:email]).deliver
   end
-  
+
   def email
     @document = Document.find(params[:id])
-    #PdfMailer.mail_pdf(@document, params[:email]).deliver   
+    #PdfMailer.mail_pdf(@document, params[:email]).deliver
   end
 
   def new
@@ -33,6 +39,11 @@ class DocumentsController < ApplicationController
     @document = Document.new(params[:document])
     if @document.save
       redirect_to documents_path, :notice => "Successfully created document."
+
+      @update=current_user.updates.new
+      @update.feed_item=current_user.name << " uploaded a document. | " << @document.description.titleize
+      @update.save
+
     else
       render :action => 'new'
     end
@@ -47,11 +58,14 @@ class DocumentsController < ApplicationController
     params[:document][:emails_attributes].values.each do |document|
       PdfMailer.mail_pdf(@document, document[:address],current_user,document[:message]).deliver unless document[:address].empty?
     end if params[:document] and params[:document][:emails_attributes]
-    
+
     ### Delete email attributes before saving ###
     params[:document][:emails_attributes]=[]
-      
+
     if @document.update_attributes(params[:document])
+        @update=current_user.updates.new
+        @update.feed_item=current_user.name << " emailed a document."
+        @update.save
         redirect_to documents_path, :notice  => "Successfully emailed document."
     else
       render :action => 'edit'
@@ -60,6 +74,11 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document = Document.find(params[:id])
+
+    @update=current_user.updates.new
+    @update.feed_item=current_user.name << " removed a document. | " << @document.description.titleize
+    @update.save
+
     @document.destroy
     redirect_to documents_url, :notice => "Successfully destroyed document."
   end
