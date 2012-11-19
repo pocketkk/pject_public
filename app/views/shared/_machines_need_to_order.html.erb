@@ -1,8 +1,8 @@
 <div>
-		<%= render :partial => 'shared/unscheduled_workorders' %>
-
-<% if current_user.role=="Branch Manager" %>
-		<%= render :partial => 'shared/need_to_order' %>
-<% end %>	
+	<%= render :partial => 'shared/unscheduled_workorders' %>
+    <% if current_user.role=="Branch Manager" || "Regional Manager" || "Rebuilder"  %>
+	   <%= render :partial => 'shared/assets_without_serials' %>
+       <%= render :partial => 'shared/need_to_order' %>
+    <% end %>
 
 </div>

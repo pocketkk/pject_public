@@ -73,6 +73,18 @@ h1 {
 	margin-bottom:  30px;
 	text-align: center;
 }
+
+.small-fonts {
+    font-size: 10px;
+    font-weight: normal;
+    color: $grayDarkest;
+}
+
+.small-fonts-header {
+    font-size: 14px;
+    color: $grayDarkest;
+}
+
 .show_workorder {
 	font-size: 3em;
 }
@@ -677,7 +689,7 @@ div.fields {
 
 .workorder_feed_item {
 	margin-top: -1px;
-	font-size: 11px;
+	font-size: 10px;
 	color: $grayDarkest;
 }
 

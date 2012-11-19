@@ -1,11 +1,16 @@
 
-	<h2>Unscheduled</h2>
-	<table class="table table-bordered table-condensed">
-	<th>Workorders</th>
-  			<% @workorders_without_dates.each do |workorder| %>
-	<tr>	
-		<td><%=link_to workorder.customer.titleize, workorder_path(workorder)%></td>
-		<td><%= link_to "Schedule", edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %></td>
-	</tr>
+<h2 class='small-fonts-header'>Unscheduled</h2>
+<table class="table table-bordered table-condensed">
+	<th class='small-fonts'>
+        Workorders
+    </th>
+  		<% @workorders_without_dates.each do |workorder| %>
+	   <tr>
+    		<td class='small-fonts'>
+                <%=link_to workorder.customer.titleize, workorder_path(workorder)%>
+            </td>
+    		<td class='small-fonts'><%= link_to "Schedule", edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %>
+            </td>
+	   </tr>
 	<% end %>
 </table>
