@@ -23,10 +23,12 @@
 
 					<tr>
 						<td class="#" align="center">
-							<%= nested_form_for document do |f| %>
-								<%= f.fields_for :emails %>
-								<%= f.link_to_add "Email Document", :emails %>
+							<div class="email_doc" align="center">
+								<%= nested_form_for document do |f| %>
+									<%= f.fields_for :emails %>
+									<%= f.link_to_add "Email Document", :emails %>
 							<% end %>
+							</div>
 						</td>
 					</tr>
 
