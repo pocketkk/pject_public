@@ -3,7 +3,7 @@ CarrierWave.configure do |config|
     :provider               => 'AWS',       # required
     :aws_access_key_id      => 'AKIAJXND6PHGXG5WWFCQ',       # required
     :aws_secret_access_key  => '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',       # required
-    :region                 => 'us-east-1'  # optional, defaults to 'us-east-1'
+    :region                 => 'us-east-1',  # optional, defaults to 'us-east-1'
     :persistent             => false #required to keep from timing out on PUT requests
   }
   config.fog_directory  = 'workordermachine'               # required
