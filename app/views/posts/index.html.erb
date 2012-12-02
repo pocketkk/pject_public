@@ -16,8 +16,12 @@
             </div>
             <div class="post_comments">
                 <%=link_to "Comments (#{post.comments.count})", post_path(post)%>
-                </div>
-                <div class="credits"><%= post.user.name.titleize %> posted <%= time_ago_in_words(post.created_at) %> ago. </div>
+                <% if current_user.admin? %> |
+                <%=link_to "Edit", edit_post_path(post)%> | <%= link_to "Delete", post, :confirm => "Are you sure?", :method => :delete  %>
+                <% end %>
+            </div>
+            <div class="credits"><%= post.user.name.titleize %> posted <%= time_ago_in_words(post.created_at) %> ago.
+            </div>
 
         </div>
     <% end %>
