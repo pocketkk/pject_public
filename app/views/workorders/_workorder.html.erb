@@ -1,5 +1,5 @@
 
-<div class="work_wrapper">	
+<div class="work_wrapper">
 
 		<% if workorder.wo_type == 'New Install' %>
 			<div class="work_bar_new">	</div>
@@ -15,7 +15,7 @@
 		<% end %>
 
 	<div class="work_content">
-	
+
 	<% unless workorder.completed? || workorder.wo_date.nil? %>
 		<% if workorder.wo_date.to_date == Date.today %>
 			<div class="workorder_today">**Today**</div><br />
@@ -28,15 +28,15 @@
 		<% end %>
 	<% end %>
 	<span class="lead">
-		<%= link_to workorder.customer.titleize, workorder %><br />	
+		<%= link_to workorder.customer.titleize, workorder %><br />
 	</span>
 
 	<span class="timestamp">
 		<%= workorder.street.titleize%>,  <%= workorder.city.titleize%>, <%= workorder.state.upcase%>
 	</span><br />
-	
+
 	<span class="timestamp">
-    	Contact:  <%= workorder.contact.titleize %>  |  
+    	Contact:  <%= workorder.contact.titleize %>  |
 		Phone:  <%= number_to_phone(workorder.phonenumber, :area_code => true) %>
   	</span><br />
 
@@ -45,7 +45,7 @@
     	<%= workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
 		<% end %>
 	</span><br />
-	
+
 	<span class="tiny">
 			Opened by <%= workorder.user.name.titleize %> | Assigned to <%= workorder.assigned_to ? name_of_user(workorder.assigned_to) : ""%>
 	</span>
@@ -53,19 +53,21 @@
 				<div id="equipment"></div>
 				<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em> : Ready!</em><%end%></div>
 				<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
-				
+
 		<% end %>
-		
+
 		<br />
-	
+
   	<span class="edit_or_delete">
 		<center>
+			<%= link_to "Comments (#{workorder.comments.count})", workorder %>  |
 			<%= link_to "Edit", edit_workorder_path(workorder) %>
+
   			<% if current_user.admin==true %>
-				  |  
+				  |
 			<%= link_to "Remove", workorder, :confirm => 'Are you sure?', :method => :delete %><% end %>
 			<% unless workorder.completed?%>
-			  |  
+			  |
 			<%= link_to "Complete", complete_workorder_path(workorder), :confirm => "Don't forget to add After Photos to completed workorders."%>
 			<% end %>
 		</center>

@@ -1,5 +1,5 @@
 <div class="documents">
-	<table height=370 class="table-bordered table-condensed table-striped">
+	<table height=420 class="table-bordered table-condensed table-striped">
 	    	<tr>
 					<td width=175 align="center">
 						<% if @user_agent.browser.downcase == 'safari' %>
@@ -34,10 +34,16 @@
 
 				<% if current_user.admin?%>
 				<tr>
-					<td align="center">
+					<td align="center" class="edit_or_delete">
+						<%= link_to "Comments (#{document.comments.count})", document %>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" class="edit_or_delete">
 						<%= link_to "Show", document %> | <%= link_to "Edit", edit_document_path(document) %> | <%= link_to "Destroy", document, :confirm => 'Are you sure?', :method => :delete %>
 					</td>
 				</tr>
+
 				<% else %>
 				<tr>
 					<td align="center">
