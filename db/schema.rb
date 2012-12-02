@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117153051) do
+ActiveRecord::Schema.define(:version => 20121202175346) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -131,6 +131,14 @@ ActiveRecord::Schema.define(:version => 20121117153051) do
     t.string   "part_number"
     t.string   "po_number"
     t.boolean  "ordered"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.text     "content"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "taggings", :force => true do |t|

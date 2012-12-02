@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
         if commentable_object.kind_of?(Video)
             @update.feed_item=current_user.name << " commented on " << commentable_object.title.titleize << " video.  \" " << commentable_comment << " \""
         end
+        if commentable_object.kind_of?(Post)
+            @update.feed_item=current_user.name << " commented on " << commentable_object.title.titleize << " blog post.  \" " << commentable_comment << " \""
+        end
     @update.save
   end
 

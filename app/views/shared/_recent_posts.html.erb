@@ -1,0 +1,7 @@
+<h2 class='small-fonts-header'>Recent Blog Posts</h2>
+<% if @posts.any? %>
+    <% @posts.each do |post| %>
+    <span><%= link_to post.title.titleize, post_path(post) %></span><br />
+    <% end %>
+<% end %>
+<br />

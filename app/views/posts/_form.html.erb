@@ -1,0 +1,19 @@
+<h2>New Blog Post</h2>
+
+<%= form_for @post do |f| %>
+  <div class="field">
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :content, rows: 6 %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %>
+    <%= f.text_field :tag_list %>
+  </div>
+  <div class="actions">
+    <center><%= f.submit "Submit", class: "btn btn-small" %></center>
+  </div>
+
+<% end %>

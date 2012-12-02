@@ -3,6 +3,7 @@ Pject::Application.routes.draw do
   resources :documents
   get 'tags/:tag', to: 'documents#index', as: :tag
   get 'video_tags/:tag', to: 'videos#index', as: :video_tags
+  get 'post_tags/:tag', to: 'posts#index', as: :post_tags
 
   resources :parts
   resources :bugs
@@ -13,6 +14,10 @@ Pject::Application.routes.draw do
   resources :workorders
   resources :comments
   resources :emails, only: [:new, :create, :destroy, :index]
+
+  resources :posts do
+    resources :comments
+  end
 
   resources :workorders do
     resources :comments

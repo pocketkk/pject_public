@@ -1,0 +1,31 @@
+<div class="row-fluid">
+    <div class="leader">The Workorder Machine Blog</div>
+    <div class="tag_cloud_wrapper">
+        <%= render 'posts/tag_cloud' %>
+    </div>
+    <div class="posts_wrapper span8">
+        <div class="post_wrapper">
+            <div class="post_title"><%= @post.title.titleize %></div>
+
+            <div class="post">
+                <a href="<%= user_path(@post.user) %>">
+                    <%= gravatar_for @post.user, size: 50%>
+                </a>
+                <%= simple_format @post.content %>
+            </div>
+            <div class="post_comments">
+                <%=link_to "Comments (#{@post.comments.count})", post_path(@post)%>
+                </div>
+                <div class="credits"><%= @post.user.name.titleize %> posted <%= time_ago_in_words(@post.created_at) %> ago. </div>
+
+        </div>
+        <div class="row-fluid">
+          <%= render :partial => 'comments/comments_module' %>
+        </div>
+    </div>
+</div>
+<% if current_user.admin? %>
+    <center>
+        <%= link_to "New Post", new_post_path %>
+    </center>
+<% end %>

@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_many :parts
   has_many :comments
   has_many :videos
+  has_many :posts
 
   attr_accessor :updating_password
 
