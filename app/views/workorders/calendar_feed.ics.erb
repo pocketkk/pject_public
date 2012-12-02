@@ -13,7 +13,6 @@ DTSTART:<%= workorder.wo_date.strftime("%Y%m%dT%H%M%S") %>
 DTEND:<%= endtime.strftime("%Y%m%dT%H%M%S") %>
 LOCATION: <%= workorder.street.titleize %>\, <%= workorder.city.titleize %>\, <%=workorder.state.upcase%>
 URL:http://www.workordermachine.com/workorders/<%=workorder.id%>
-DESCRIPTION:Contact is <%=workorder.contact%>.  Phone number is <%= number_to_phone(@workorder.phonenumber, :area_code => true) %>
 END:VEVENT
 <% end %>
 END:VCALENDAR
