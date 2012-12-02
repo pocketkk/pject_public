@@ -1,14 +1,15 @@
 <div class="row-fluid">
 	<div class="span5">
 
-<%= render :partial => 'shared/unscheduled_workorders' %>
+	<%= render :partial => 'shared/unscheduled_workorders' %>
 </div>
+
 </div>
 
 <div id="articles">
 	<h2 id="month">
 	  <%= link_to "<", date: @date.prev_month %>
-	  <%= @date.strftime("%B %Y") %>   
+	  <%= @date.strftime("%B %Y") %>
 	  <%= link_to ">", date: @date.next_month %>
 	</h2>
   <%= calendar @date do |date| %>
@@ -37,19 +38,21 @@
 
  <em><%=workorder.wo_duration%> hr est.</em>
 		</div>
-		<div class="calendar_event">  
+		<div class="calendar_event">
 			<% workorder.assets.each do |asset| %>
 				|  <%=asset.name%> |
 			<% end %><br />
 		<div id="change_datetime_link">
-				
+
 		</div>
 		</div>
-	
+
 		</div>
       <% end %>
     </ul>
     <% end %>
   <% end %>
 </div>
+<br />
+<center><a href="ical:\\www.workordermachine.com\calendar_feed\#{current_user.current_branch\calendar_feed.ics">Subscribe to Calendar</a></center>
 
