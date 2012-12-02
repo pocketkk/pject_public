@@ -22,8 +22,7 @@
         </tr>
         <tr>
             <td class="edit_or_delete">
-                <%= link_to "Comments", video %>
-                ( <%= video.comments.count %> )
+                <%= link_to "Comments (#{video.comments.count})", video %>
             </td>
         </tr>
         <% if current_user.admin? %>

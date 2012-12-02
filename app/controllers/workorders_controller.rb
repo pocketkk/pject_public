@@ -15,6 +15,15 @@ class WorkordersController < ApplicationController
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
+  def calendar_feed
+    @workorders=Workorder.wo_current_branch(params[:id]).where('wo_date IS NOT NULL').ascending
+    @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    respond_to do |format|
+        format.ics
+      end
+  end
+
   def create
       @workorder = current_user.workorders.build(params[:workorder])
       if @workorder.save
