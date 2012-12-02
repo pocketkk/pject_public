@@ -1,8 +1,5 @@
 BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//workordermachine.com//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
+
 <% @workorders.each do |workorder| %>
 BEGIN:VEVENT
 SUMMARY:<%= workorder.customer.titleize %> - <%= workorder.wo_type.titleize %>
