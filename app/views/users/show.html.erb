@@ -1,13 +1,25 @@
 <% provide(:title, @user.name) %>
-
-  <div class="span4">
-    <% if @user.workorders.any? %>
-      <h3>Workorders(<%= @user.workorders.count %>)</h3>
+<div class="row-fluid">
+  <div class="span6">
+    <% if @workorders.any? %>
+      <h2>Open Workorders(<%= @user.workorders.count %>)</h2>
       <ol class="workorders">
         <%= render @workorders %>
       </ol>
       <%= will_paginate @workorders %>
     <% end %>
   </div>
+    <div class="span6">
+    <% if @completed_workorders.any? %>
+      <h2>Completed Workorders(<%= @completed_workorders.count %>)</h2>
+      <ol class="workorders">
+        <%= render @completed_workorders %>
+      </ol>
+      <%= will_paginate @completed_workorders %>
+      <% else %>
+      <h2>Completed Workorders</h2>
+      No Completed Workorders
+    <% end %>
+    </div>
 </div>
-</div>
+

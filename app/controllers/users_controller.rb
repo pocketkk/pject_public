@@ -2,10 +2,11 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user, only: :destroy
-  
+
   def show
     @user = User.find(params[:id])
-    @workorders = @user.workorders.paginate(page: params[:page])
+    @workorders = @user.workorders.wo_not_completed.paginate(page: params[:page], :per_page => 5)
+    @completed_workorders = @user.workorders.wo_completed.descending.paginate(page: params[:page], :per_page => 5)
   end
   def index
     @users = User.paginate(page: params[:page])
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
       flash[:success] = "User destroyed."
       redirect_to users_path
   end
-  
+
   def new
     @user = User.new
   end
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
         sign_in @user
         flash[:success] = "Welcome to Pject.us"
         redirect_to @user
-        
+
         ## send text message to admin to notify of a new user
         ## this is a protection against unauthorized access
       @admin_user.each do |admin|
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
                  body: @user.name << " has signed up for the www.workordermachine.com"
                )
         end
-      end  
+      end
       else
         render 'new'
     end
@@ -48,16 +49,16 @@ class UsersController < ApplicationController
   def edit
       @user = User.find(params[:id])
   end
-  
+
   def user_branch_switch
       @user = User.find(current_user)
   end
-  
+
   def update
         @user = User.find(params[:id])
         if @user.update_attributes(params[:user]) || current_user.admin?
           flash[:success] = "Profile updated"
-          if @user=current_user  
+          if @user=current_user
             sign_in (current_user)
             redirect_to root_path
           end
@@ -66,12 +67,12 @@ class UsersController < ApplicationController
       end
   end
 =begin
-  TODO 
+  TODO
   -Change redirect after admin edits a users account
   -Remove password from updated fields when edited by admin
-=end    
+=end
     private
-   
+
       def correct_user
         @user=User.find(params[:id])
         redirect_to(root_path) unless current_user?(@user) || current_user.admin?

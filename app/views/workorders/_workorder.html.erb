@@ -60,7 +60,7 @@
 
   	<span class="edit_or_delete">
 		<center>
-			<%= link_to "Comments (#{workorder.comments.count})", workorder %>  |
+			<%= link_to "Comments (#{workorder.comments.count})", workorder_path(workorder, :anchor=>"comments") %>  |
 			<%= link_to "Edit", edit_workorder_path(workorder) %>
 
   			<% if current_user.admin==true %>

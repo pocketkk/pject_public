@@ -1,12 +1,12 @@
 <div class="row-fluid">
-<div class="tag_cloud_wrapper">
-	<%= render 'documents/tag_cloud' %>
-</div>
-<div class="documents_wrapper">
-	<h2><%= @page_title %></h2>
-<% @documents.each do |document| %>
-	<%= render :partial => "document", :locals => {:document => document} %>
-<% end %>
-</div>
+    <div class="tag_cloud_wrapper">
+    	<%= render 'documents/tag_cloud' %>
+    </div>
+    <div class="documents_wrapper">
+    	<h2><%= @page_title %></h2>
+    <% @documents.each do |document| %>
+    	<%= render :partial => "document", :locals => {:document => document} %>
+    <% end %>
+    </div>
 </div>
 <center><%= link_to "Add New Document", new_document_path %></center>
