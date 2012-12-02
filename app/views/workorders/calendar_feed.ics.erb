@@ -12,7 +12,7 @@ DTSTART:<%= workorder.wo_date.strftime("%Y%m%dT%H%M%S") %>
 <% endtime=workorder.wo_date+workorder.wo_duration.hours %>
 DTEND:<%= endtime.strftime("%Y%m%dT%H%M%S") %>
 LOCATION: <%= workorder.street %>\, <%= workorder.city %>\, <%=workorder.state.upcase%>
-
+DESCRIPTION:Misc Notes-<%= workorder.misc_notes %> \n\n# of machines to install - <%= workorder.assets.count %>\n\n<% if workorder.comments.any? %>Comments:\n <% workorder.comments.each do |comment| %><%=comment.content %>\n<% end %> <% end %>
 END:VEVENT
 <% end %>
 END:VCALENDAR

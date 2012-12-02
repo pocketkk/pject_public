@@ -1,5 +1,5 @@
 class WorkordersController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, :except => :calendar_feed
 
   def index
     @search=Workorder.search(params[:q])
