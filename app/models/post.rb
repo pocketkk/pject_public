@@ -7,7 +7,8 @@ class Post < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
-  scope :recently_added, limit(10).order("created_at DESC")
+  scope :recently_added, limit(5).order("created_at DESC")
+  scope :descending, order("created_at DESC")
 
   validates :content, presence: true
   validates :title, presence: true

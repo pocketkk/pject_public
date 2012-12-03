@@ -1,3 +1,4 @@
+
 class PostsController < ApplicationController
 
     def index
@@ -9,7 +10,7 @@ class PostsController < ApplicationController
             @posts=@search.result
             @page_title="Posts by Search Result"
         else
-            @posts = Post.recently_added
+            @posts = Post.descending.paginate(page: params[:page], :per_page => 5) if signed_in?
             @page_title = "Recent Posts"
         end
     end

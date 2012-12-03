@@ -4,27 +4,30 @@
         <%= render 'posts/tag_cloud' %>
     </div>
     <div class="posts_wrapper span8">
-    <% @posts.each do |post| %>
-        <div class="post_wrapper">
-            <div class="post_title"><%= link_to post.title.titleize, post_path(post) %></div>
+        <% if @posts.any? %>
+            <% @posts.each do |post| %>
+                <div class="post_wrapper">
+                    <div class="post_title"><%= link_to post.title.titleize, post_path(post) %></div>
 
-            <div class="post">
-                <a href="<%= user_path(post.user) %>">
-                    <%= gravatar_for post.user, size: 50%>
-                </a>
-                <%= simple_format post.content %>
-            </div>
-            <div class="post_comments">
-                <%=link_to "Comments (#{post.comments.count})", post_path(post)%>
-                <% if current_user.admin? %> |
-                <%=link_to "Edit", edit_post_path(post)%> | <%= link_to "Delete", post, :confirm => "Are you sure?", :method => :delete  %>
-                <% end %>
-            </div>
-            <div class="credits"><%= post.user.name.titleize %> posted <%= time_ago_in_words(post.created_at) %> ago.
-            </div>
+                    <div class="post">
+                        <a href="<%= user_path(post.user) %>">
+                            <%= gravatar_for post.user, size: 50%>
+                        </a>
+                        <%= simple_format post.content %>
+                    </div>
+                    <div class="post_comments">
+                        <%=link_to "Comments (#{post.comments.count})", post_path(post)%>
+                        <% if current_user.admin? %> |
+                        <%=link_to "Edit", edit_post_path(post)%> | <%= link_to "Delete", post, :confirm => "Are you sure?", :method => :delete  %>
+                        <% end %>
+                    </div>
+                    <div class="credits"><%= post.user.name.titleize %> posted <%= time_ago_in_words(post.created_at) %> ago.
+                    </div>
 
-        </div>
-    <% end %>
+                </div>
+            <% end %>
+            <%= will_paginate @posts %>
+        <% end %>
     </div>
 </div>
 <% if current_user.admin? %>
