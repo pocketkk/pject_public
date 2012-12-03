@@ -10,7 +10,8 @@ BEGIN:VEVENT
 UID:<%=day_off.id%>
 SUMMARY:<%= day_off.user.name.titleize %> | <%= day_off.do_type %>
 DTSTART:<%= day_off.start_date.strftime("%Y%m%d") %>
-DTEND:<%= day_off.end_date.strftime("%Y%m%d") %>
+<% end_day=day_off.end_date + 1.day %>
+DTEND:<%= end_day.strftime("%Y%m%d") %>
 END:VEVENT
     <%end%>
 <% end %>
