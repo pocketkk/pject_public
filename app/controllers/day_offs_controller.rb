@@ -33,6 +33,13 @@ class DayOffsController < ApplicationController
     end
   end
 
+  def time_off_feed
+    @users=User.where("current_branch=?", params[:id])
+    respond_to do |format|
+        format.ics
+      end
+  end
+
   def destroy
     @day_off = DayOff.find(params[:id])
     @day_off.destroy

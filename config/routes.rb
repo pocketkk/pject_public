@@ -49,7 +49,9 @@ Pject::Application.routes.draw do
   match '/branchmanager', to: 'static_pages#home'
   match '/welcome', to: 'static_pages#home'
   match '/calendar', to: 'workorders#calendar'
+
   match '/calendar_feed/:id/calendar_feed', to: 'workorders#calendar_feed', :as => 'calendar_feed_path'
+  match '/time_off_feed/:id/time_off_feed', to: 'day_offs#time_off_feed', :as => 'time_off_feed_path'
 
   match '/switchbranch', to: 'users#user_branch_switch'
 
