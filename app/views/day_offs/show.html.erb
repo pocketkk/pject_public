@@ -1,0 +1,28 @@
+
+
+<p>
+  <strong>Start Date:</strong>
+  <%= @day_off.start_date %>
+</p>
+<p>
+  <strong>End Date:</strong>
+  <%= @day_off.end_date %>
+</p>
+<p>
+  <strong>Type:</strong>
+  <%= @day_off.do_type %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @day_off.user_id %>
+</p>
+<p>
+  <strong>Approved:</strong>
+  <%= @day_off.approved %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_day_off_path(@day_off) %> |
+  <%= link_to "Destroy", @day_off, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", day_offs_path %>
+</p>

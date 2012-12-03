@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :videos
   has_many :posts
+  has_many :day_offs
 
   attr_accessor :updating_password
 

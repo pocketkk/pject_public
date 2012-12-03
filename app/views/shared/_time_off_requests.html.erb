@@ -1,0 +1,32 @@
+<% if current_user.role == "Branch Manager" || "Regional Manager" %>
+
+    <h2 class="small-fonts-header">Time Off Requests to Review</h2>
+    <table class="table table-bordered table-condensed">
+        <th class="small-fonts">
+            Employee
+        </th>
+        <th class="small-fonts">
+            Days Off Requested
+        </th>
+            <% for user in @users %>
+                <% if user.day_offs.any? %>
+                    <% user.day_offs.each do |day_off| %>
+                        <% if day_off.start_date >= Date.today || Date.today <= day_off.end_date %>
+                                <% unless day_off.approved? %>
+                                   <tr>
+                                        <td class="small-fonts">
+                                            <%= link_to user.name, edit_day_off_path(day_off) %>
+                                        </td>
+                                        <td class="small-fonts">
+                                            <%= day_off.start_date.strftime("%m/%d/%y") %> - <%= day_off.end_date.strftime("%m/%d/%y") %>
+                                        </td>
+                                   </tr>
+                               <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            <% end %>
+    </table>
+<% end %>
+
+<center><%= link_to "Request Time-Off", new_day_off_path %></center><br />

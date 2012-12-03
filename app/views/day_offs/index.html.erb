@@ -1,0 +1,25 @@
+
+
+<table>
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Type</th>
+    <th>User</th>
+    <th>Approved</th>
+  </tr>
+  <% for day_off in @day_offs %>
+    <tr>
+      <td><%= day_off.start_date %></td>
+      <td><%= day_off.end_date %></td>
+      <td><%= day_off.do_type %></td>
+      <td><%= day_off.user_id %></td>
+      <td><%= day_off.approved %></td>
+      <td><%= link_to "Show", day_off %></td>
+      <td><%= link_to "Edit", edit_day_off_path(day_off) %></td>
+      <td><%= link_to "Destroy", day_off, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Day Off", new_day_off_path %></p>

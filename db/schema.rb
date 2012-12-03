@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202175346) do
+ActiveRecord::Schema.define(:version => 20121203010727) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -82,6 +82,16 @@ ActiveRecord::Schema.define(:version => 20121202175346) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "day_offs", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "user_id"
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "do_type"
+  end
+
   create_table "documents", :force => true do |t|
     t.string   "pdfdoc"
     t.text     "description"
@@ -111,6 +121,16 @@ ActiveRecord::Schema.define(:version => 20121202175346) do
     t.string   "misc_notes"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "off_days", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "start_day"
+    t.date     "end_day"
+    t.string   "type"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "approved",   :default => false
   end
 
   create_table "options", :force => true do |t|

@@ -14,6 +14,17 @@
 	</h2>
   <%= calendar @date do |date| %>
     <%= date.day %>
+
+	<div class="day_off">
+   	 	<% @users.each do |user| %>
+				<% user.day_offs.each do |day_off| %>
+				<% if date <= day_off.end_date && date >= day_off.start_date %>
+					<%=day_off.user.name%> | <% if day_off.approved? %><%=day_off.do_type%> <% else %> Request Pending <% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+
     <% if @workorders_by_date[date] %>
       <% @workorders_by_date[date].each do |workorder| %>
 		<div class= "work_wrapper_small">
@@ -48,6 +59,9 @@
 		</div>
 
 		</div>
+
+
+
       <% end %>
     </ul>
     <% end %>
@@ -57,5 +71,5 @@
 <center>
 	<%= link_to("Subscribe to Calendar", "webcal://www.workordermachine.com/calendar_feed/#{current_user.current_branch}/calendar_feed.ics" ) %>
 
-	</center>
+ | <%= link_to "Request Time-Off", new_day_off_path %></center>
 

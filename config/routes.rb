@@ -1,5 +1,7 @@
 Pject::Application.routes.draw do
 
+  resources :day_offs
+
   resources :documents
   get 'tags/:tag', to: 'documents#index', as: :tag
   get 'video_tags/:tag', to: 'videos#index', as: :video_tags
@@ -14,6 +16,7 @@ Pject::Application.routes.draw do
   resources :workorders
   resources :comments
   resources :emails, only: [:new, :create, :destroy, :index]
+  resources :off_days
 
   resources :posts do
     resources :comments

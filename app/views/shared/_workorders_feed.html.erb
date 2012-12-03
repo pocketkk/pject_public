@@ -1,6 +1,8 @@
 <div class="span3"><br/>
       <%= render :partial => 'shared/recent_posts' %>
-	  <%= render :partial => 'shared/machines_need_to_order' %>
+      <%= render :partial => 'shared/time_off_requests' %>
+      <%= render :partial => 'shared/machines_need_to_order' %>
+
      <h2 class='small-fonts-header'>Recent Activity</h2>
      <ol class="updates_feed">
        	<% @updates.each do |a| %>

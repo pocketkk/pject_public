@@ -12,6 +12,7 @@ class WorkordersController < ApplicationController
 
     ### workorder lookup for calendar
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
+    @users=User.where("current_branch=?",current_user.current_branch)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
