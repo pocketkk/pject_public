@@ -7,7 +7,7 @@ CALSCALE:GERGORIAN
 <% @users.each do |user| %>
     <% user.day_offs.each do |day_off| %>
 BEGIN:VEVENT
-DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ")
+DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ")%>
 UID:<%=day_off.id%>
 SUMMARY:<%= day_off.user.name.titleize %> | <%= day_off.do_type %>
 DTSTART:<%= day_off.start_date.strftime("%Y%m%d") %>
