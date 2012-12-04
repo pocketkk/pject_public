@@ -6,6 +6,7 @@ X-WR-CALNAME:Workorder Machine
 CALSCALE:GERGORIAN
 <% @workorders.each do |workorder| %>
 BEGIN:VEVENT
+DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ")
 UID:<%=workorder.id%>
 SUMMARY:<%= workorder.customer.titleize %> - <%= workorder.wo_type.titleize %>
 DTSTART:<%= workorder.wo_date.strftime("%Y%m%dT%H%M%S") %>
