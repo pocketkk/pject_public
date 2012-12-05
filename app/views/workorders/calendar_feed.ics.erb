@@ -1,18 +1,18 @@
 BEGIN:VCALENDAR
-VERSION:2.0\r\n
+VERSION:2.0
 METHOD:PUBLISH\r\n
-PRODID:-//Workorder Machine//EN\r\n
-X-WR-CALNAME:Workorder Machine\r\n
-CALSCALE:GERGORIAN\r\n
+PRODID:-//Workorder Machine//EN
+X-WR-CALNAME:Workorder Machine
+CALSCALE:GERGORIAN
 <% @workorders.each do |workorder| %>
 BEGIN:VEVENT
-DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ")%>\r\n
-UID:<%=workorder.id%>\r\n
-SUMMARY:<%= workorder.customer.titleize %> - <%= workorder.wo_type.titleize %>\r\n
-DTSTART:<%= workorder.wo_date.strftime("%Y%m%dT%H%M%S") %>\r\n
+DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ")%>
+UID:<%=workorder.id%>
+SUMMARY:<%= workorder.customer.titleize %> - <%= workorder.wo_type.titleize %>
+DTSTART:<%= workorder.wo_date.strftime("%Y%m%dT%H%M%S") %>
 <% endtime=workorder.wo_date+workorder.wo_duration.hours %>
-DTEND:<%= endtime.strftime("%Y%m%dT%H%M%S") %>\r\n
-LOCATION: <%= workorder.street.titleize %>\, <%= workorder.city.titleize %>\, <%=workorder.state.upcase%>\r\n
+DTEND:<%= endtime.strftime("%Y%m%dT%H%M%S") %>
+LOCATION: <%= workorder.street.titleize %>\, <%= workorder.city.titleize %>\, <%=workorder.state.upcase%>
 URL:http://www.workordermachine.com/workorders/<%=workorder.id%>
 END:VEVENT
 <% end %>

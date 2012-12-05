@@ -1,16 +1,19 @@
 BEGIN:VCALENDAR
-VERSION:2.0\r\n
-METHOD:PUBLISH\r\n
-PRODID:-//Workorder Machine/Time-Off//EN\r\n
-X-WR-CALNAME:Workorder Machine\r\n
-CALSCALE:GERGORIAN\r\n
+VERSION:2.0
+METHOD:PUBLISH
+PRODID:-//Workorder Machine/Time-Off//EN
+X-WR-CALNAME:Workorder Machine
+CALSCALE:GERGORIAN
+<% @users.each do |user| %>
+<% user.day_offs.each do |day_off| %>
 BEGIN:VEVENT
-CREATED:20121201T102030Z
-DTSTAMP:20081106T154911Z\r\n
-LAST-MODIFIED:20121203T000000Z
-UID:34
-SUMMARY:TEST
-DTSTART;VALUE=DATE:20121208
-DTEND;VALUE=DATE:20121209
+DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ")%>
+UID:<%=day_off.id%>
+SUMMARY:<%= day_off.user.name.titleize %> | <%= day_off.do_type %>
+DTSTART;VALUE=DATE:<%= day_off.start_date.strftime("%Y%m%d") %>
+<% end_day=day_off.end_date + 1.day %>
+DTEND;VALUE=DATE:<%= end_day.strftime("%Y%m%d") %>
 END:VEVENT
+<% end %>
+<% end %>
 END:VCALENDAR
