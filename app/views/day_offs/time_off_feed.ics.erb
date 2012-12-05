@@ -7,12 +7,12 @@ CALSCALE:GERGORIAN
 <% @users.each do |user| %>
 <% user.day_offs.each do |day_off| %>
 BEGIN:VEVENT
-DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ").squish%>
-UID:<%=day_off.id.to_s.squish%>
-SUMMARY:<%= day_off.user.name.titleize.squish %> | <%= day_off.do_type.squish %>
-DTSTART;VALUE=DATE:<%= day_off.start_date.strftime("%Y%m%d").squish %>
+DTSTAMP:<%=Time.now.strftime("%Y%m%dT%H%M%SZ")%>
+UID:<%=day_off.id%>
+SUMMARY:<%= day_off.user.name.titleize %> | <%= day_off.do_type %>
+DTSTART;VALUE=DATE:<%= day_off.start_date.strftime("%Y%m%d") %>
 <% end_day=day_off.end_date + 1.day %>
-DTEND;VALUE=DATE:<%= end_day.strftime("%Y%m%d").squish %>
+DTEND;VALUE=DATE:<%= end_day.strftime("%Y%m%d") %>
 END:VEVENT
 <% end %>
 <% end %>
