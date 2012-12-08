@@ -10,10 +10,8 @@
                     <div class="post_title"><%= link_to post.title.titleize, post_path(post) %></div>
 
                     <div class="post">
-                        <a href="<%= user_path(post.user) %>">
-                            <%= gravatar_for post.user, size: 50%>
-                        </a>
-                        <%= simple_format post.content %>
+
+                        <%= BlueCloth.new(post.content).to_html.html_safe %>
                     </div>
                     <div class="post_comments">
                         <%=link_to "Comments (#{post.comments.count})", post_path(post)%>

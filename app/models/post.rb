@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
+  before_save :render_content
+
   belongs_to :user
 
   has_many :comments, as: :commentable
@@ -12,4 +14,13 @@ class Post < ActiveRecord::Base
 
   validates :content, presence: true
   validates :title, presence: true
+
+  private
+    def render_content
+        require 'redcarpet'
+        renderer = Redcarpet::Render::HTML.new
+        extensions = {fenced_code_blocks: true}
+        redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+        self.rendered_content = redcarpet.render self.content
+    end
 end
