@@ -7,13 +7,11 @@
 <span id="role_title">
   <%= current_user.role.titleize%>
 </span>
+<span id="role_title">
+  Branch:  <%= link_to current_user.current_branch, switchbranch_path%>
+</span>
 
 <span id="role_title">
-  <%= pluralize(current_user.workorders.count, " Workorders") %>
+  <%= link_to "Request Time-Off", new_day_off_path %>
 </span>
-<span id="role_title">
-  Branch:  <%= current_user.current_branch%>
-</span>
-<span id="role_title">
-  <%= link_to("Switch Branch", switchbranch_path)%>
-</span>
+

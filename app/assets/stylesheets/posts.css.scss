@@ -18,7 +18,6 @@
 }
  .posts_wrapper {
     padding-left: -70px;
-
  }
 
 .post_wrapper {
@@ -37,7 +36,6 @@
     border-bottom-color: black;
     padding: 20px;
     border-bottom: 2px solid #c0c0c0;
-
  }
 
  .post {
@@ -67,5 +65,9 @@
 .markdown_instructions p {
     padding-left:10px;
     line-height: 14px;
+}
 
+.post_trunc {
+    font-size: .75em;
+    margin-left: 10px;
 }

@@ -2,6 +2,7 @@
 <% if @posts.any? %>
     <% @posts.each do |post| %>
     <span><%= link_to post.title.titleize, post_path(post) %></span><br />
+    <span class="post_trunc"><%= truncate(post.content)%></span><br />
     <% end %>
 <% end %>
 <br />

@@ -23,6 +23,14 @@
 	</div>
 	<div class="secondary_nav">
 		<table>
+		 <tr><td>Users</td></tr>
+		 <tr><td><%= link_to "Preferences", user_path(current_user) %>		  									</td></tr>
+		 <tr><td><%= link_to "Request Time-Off", new_day_off_path %>					  						</td></tr>
+
+    </table>
+	</div>
+	<div class="secondary_nav">
+		<table>
 		 <tr><td>Support</td></tr>
 		 <tr><td><%= link_to "Blog", posts_path %>		  									</td></tr>
 		 <tr><td><%= link_to "Help", "#" %>					  						</td></tr>
