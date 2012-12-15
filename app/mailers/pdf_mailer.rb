@@ -33,4 +33,10 @@ class PdfMailer < ActionMailer::Base
     mail to: user.email, subject: "Workorder Machine - " << type.upcase << " | "   << @workorder.customer
   end
 
+  def mail_alert(user)
+    @user=user
+    mail to: "admin@workordermachine.com", subject: "WOM Psst:  " << user.name << "signed in."
+  end
+
+
 end
