@@ -18,7 +18,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if signed_in?
+      sign_out
+      @user = User.new
+    else
+      @user = User.new
+    end
   end
   def create
     @user = User.new(params[:user])
