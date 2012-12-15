@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @admin_user = User.where('texts=?', true).where('admin=?', true)
       if @user.save
         sign_in @user
-        flash[:success] = "Welcome to Pject.us"
+        flash[:success] = "Welcome to Workorder Machine!"
         redirect_to @user
 
         ## send text message to admin to notify of a new user
