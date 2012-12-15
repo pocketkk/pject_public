@@ -35,7 +35,7 @@ class PdfMailer < ActionMailer::Base
 
   def mail_alert(user)
     @user=user
-    mail to: "admin@workordermachine.com", subject: "WOM Psst:  " << user.name << "signed in."
+    mail to: "admin@workordermachine.com", subject: "W.O.M. - Pssst: " << user.name << " signed in."
   end
 
 
