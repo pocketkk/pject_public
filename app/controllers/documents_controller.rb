@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  before_filter :signed_in_user
   def index
     @search = Document.search(params[:q])
     @user_agent=UserAgent.parse(request.user_agent)

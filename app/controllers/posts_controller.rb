@@ -1,6 +1,6 @@
 
 class PostsController < ApplicationController
-
+before_filter :signed_in_user
     def index
         @search=Post.search(params[:q])
         if params[:tag]
