@@ -30,7 +30,7 @@ class PdfMailer < ActionMailer::Base
     @user=user
     @firstname=first_name(user)
     @workorder=workorder
-    mail to: user.email, subject: "Workorder Machine - " << type.upcase << " | "   << @workorder.customer
+    mail to: user.email, content_type: 'text/html', subject: "Workorder Machine - " << type.upcase << " | "   << @workorder.customer
   end
 
   def mail_alert(user)
@@ -38,5 +38,11 @@ class PdfMailer < ActionMailer::Base
     mail to: "admin@workordermachine.com", subject: "W.O.M. - Pssst: " << user.name << " signed in."
   end
 
-
+  def mail_comment(workorder,user,comment,commenter)
+    @user=user
+    @workorder=workorder
+    @comment=comment
+    @commenter=commenter
+    mail to: user.email, content_type: 'text/html', subject: "WOM - New Comment on " << workorder.customer.titleize << "'s workorder."
+  end
 end

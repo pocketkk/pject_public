@@ -9,7 +9,27 @@ class ApplicationController < ActionController::Base
   def comment_update( commentable_object, commentable_comment )
     @update=current_user.updates.new
         if commentable_object.kind_of?(Workorder)
+            commenter=User.find(current_user)
             @update.feed_item=current_user.name << " commented on " << commentable_object.customer.titleize << "'s workorder.  \" " << commentable_comment << " \""
+
+            #Find users involved in workorder
+            workorder=Workorder.find(commentable_object.id)
+            installer=User.find(workorder.assigned_to) unless workorder.assigned_to.blank?
+            sales=User.find(workorder.user)
+
+
+            users_to_email=User.find(:all, :conditions=>['current_branch=? and receive_mails=? and role=?',current_user.current_branch, true, 'Branch Manager' || 'Regional Manager' || 'Rebuilder'])
+
+            #Email Users
+            users_to_email.each do |user|
+              unless user.blank?
+                  PdfMailer.mail_comment(workorder,user,commentable_comment,commenter).deliver
+              end
+            end
+
+            PdfMailer.mail_comment(workorder,installer,commentable_comment,commenter).deliver unless installer.nil? || installer.role=='Branch Manager' || 'Regional Manager' || 'Rebuilder'
+            PdfMailer.mail_comment(workorder,sales,commentable_comment,commenter).deliver unless sales.nil? || sales.role=='Branch Manager' || 'Regional Manager' || 'Rebuilder'
+
         end
         if commentable_object.kind_of?(Document)
             @update.feed_item=current_user.name << " commented on " << commentable_object.description.titleize << " document.  \" " << commentable_comment << " \""

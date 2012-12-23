@@ -1,0 +1,30 @@
+<style>
+.comment {
+    font-size: 1.25em;
+    color: #696969;
+}
+.footer {
+    font-size: .75em;
+    color: #adadad;
+}
+h1 {
+    font-size: 2em;
+    letter-spacing: -1px;
+    margin-bottom:  20px;
+    text-align: center;
+}
+h2{
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: normal;
+    color: #adadad;
+}
+</style>
+
+<center><h1>WORKORDER::MACHINE</h1></center>
+<p class="comment">Customer:  <%=@workorder.customer.titleize%></p>
+<hr />
+<p class="comment"><%=@commenter.name.titleize%> said <em>"<%=@comment%>"</em></p>
+<p class="comment"><a href="http://www.workordermachine.com<%=url_for(@workorder)%>#comments">Reply</a></p>
+<hr />
+<p class="footer">To turn off email notifications visit your settings and turn email notifications to no.  If you would rather have text message notifications make sure your account has a valid phone number where text messages can be received and set text message notifications to yes.</p>
