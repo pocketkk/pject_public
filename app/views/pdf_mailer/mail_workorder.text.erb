@@ -1,26 +1,25 @@
 <style>
 .comment {
-    font-size: 1.25em;
+    font-size: 1em;
     color: #696969;
 }
 .footer {
+    font-size: .50em;
+    color: #adadad;
+    text-align: justify;
+}
+.tiny {
     font-size: .75em;
     color: #adadad;
 }
-.tiny {
-    font-size: 1em;
-    color: #696969;
-    text-align: center;
-
-}
 h1 {
-    font-size: 2em;
+    font-size: 1.5em;
     letter-spacing: -1px;
     margin-bottom:  20px;
     text-align: center;
 }
 h2{
-    font-size: 1.5em;
+    font-size: 1.0em;
     margin-bottom: 10px;
     font-weight: normal;
     color: #adadad;
@@ -30,8 +29,8 @@ h2{
 <center><h1>WORKORDER::MACHINE</h1></center>
 <hr />
 <p class="comment">Customer: <%=@workorder.customer.titleize%></p>
-<p class="comment">Address: <%=@workorder.street%>, <%=@workorder.city%>, <%=@workorder.state.upcase%></p>
-<p class="comment">Contact: <%=@workorder.contact%></p>
+<p class="comment">Address: <%=@workorder.street.titleize%>, <%=@workorder.city.titleize%>, <%=@workorder.state.upcase%></p>
+<p class="comment">Contact: <%=@workorder.contact.titleize%></p>
 <p class="comment">Phone Number: <%=number_to_phone(@workorder.phonenumber, :area_code => true)%></p>
 <% unless @workorder.wo_date.nil? %>
     <p class="comment">Date/Time: <%=@workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%></p>
@@ -39,7 +38,7 @@ h2{
     <p class="comment">Date/Time: Unscheduled</p>
 <% end %>
 
-<p class="comment">Estimated Duration: <%=@workorder.wo_duration%></p>
+<p class="comment">Estimated Duration: <%=@workorder.wo_duration%> hours</p>
 
 <% unless @workorder.misc_notes.blank? %>
     <p class="comment">Notes: <%=@workorder.misc_notes%></p>
