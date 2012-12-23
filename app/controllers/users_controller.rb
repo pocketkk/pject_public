@@ -8,9 +8,11 @@ class UsersController < ApplicationController
     @workorders = @user.workorders.wo_not_completed.paginate(page: params[:page], :per_page => 5)
     @completed_workorders = @user.workorders.wo_completed.descending.paginate(page: params[:page], :per_page => 5)
   end
+
   def index
     @users = User.paginate(page: params[:page])
   end
+
   def destroy
       User.find(params[:id]).destroy
       flash[:success] = "User destroyed."
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
       @user = User.new
     end
   end
+
   def create
     @user = User.new(params[:user])
     @admin_user = User.where('texts=?', true).where('admin=?', true)
@@ -51,6 +54,7 @@ class UsersController < ApplicationController
         render 'new'
     end
   end
+
   def edit
       @user = User.find(params[:id])
   end
@@ -61,10 +65,14 @@ class UsersController < ApplicationController
 
   def update
         @user = User.find(params[:id])
+        @admin= User.find(current_user)
         if @user.update_attributes(params[:user]) || current_user.admin?
           flash[:success] = "Profile updated"
-          if @user=current_user
-            sign_in (current_user)
+          if current_user.admin? && @user != current_user
+            sign_in @admin
+            redirect_to root_path
+          else
+            sign_in @user
             redirect_to root_path
           end
         else

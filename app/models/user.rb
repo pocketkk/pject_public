@@ -13,7 +13,8 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :role, :password, :password_confirmation,
-                  :current_branch, :phone_number, :raw_phonenumber, :texts, :signature, :receive_mails
+                  :current_branch, :phone_number, :raw_phonenumber, :texts,
+                  :signature, :receive_mails
 
   has_secure_password
 
@@ -40,6 +41,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :role, presence: true
+  validates :current_branch, presence: true
   validates :password, presence: true, length: { minimum: 6 }, :if => :should_validate_password?
   validates :password_confirmation, presence: true, :if => :should_validate_password?
 
