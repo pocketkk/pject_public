@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @admin_user = User.where('texts=?', true).where('admin=?', true)
       if @user.save
+        PdfMailer.welcome_email(@user).deliver
         sign_in @user
         flash[:success] = "Welcome to Workorder Machine!"
         redirect_to @user

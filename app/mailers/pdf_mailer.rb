@@ -26,6 +26,11 @@ class PdfMailer < ActionMailer::Base
     mail to: email, subject: "Auto Chlor System - " << document.description.upcase
   end
 
+  def welcome_email(user)
+    @user=user
+    mail to: user.email, content_type: 'text/html', subject: "Welcome to Workorder Machine!"
+  end
+
   def mail_workorder(workorder,user,type)
     @user=user
     @firstname=first_name(user)
