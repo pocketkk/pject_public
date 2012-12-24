@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
             installer=User.find(workorder.assigned_to) unless workorder.assigned_to.blank?
             sales=User.find(workorder.user)
 
-
-            users_to_email=User.find(:all, :conditions=>['current_branch=? and receive_mails=? and role=?',current_user.current_branch, true, 'Branch Manager' || 'Regional Manager' || 'Rebuilder'])
+            users_to_email=User.find(:all, :conditions=>['current_branch=? and receive_mails=? and role=?',
+                current_user.current_branch, true, 'Branch Manager' || 'Regional Manager' || 'Rebuilder'])
 
             #Email Users
             users_to_email.each do |user|
@@ -27,8 +27,10 @@ class ApplicationController < ActionController::Base
               end
             end
 
-            PdfMailer.mail_comment(workorder,installer,commentable_comment,commenter).deliver unless installer.nil? || installer.role=='Branch Manager' || 'Regional Manager' || 'Rebuilder'
-            PdfMailer.mail_comment(workorder,sales,commentable_comment,commenter).deliver unless sales.nil? || sales.role=='Branch Manager' || 'Regional Manager' || 'Rebuilder'
+            PdfMailer.mail_comment(workorder,installer,commentable_comment,commenter).deliver unless installer.nil? ||
+                installer.role=='Branch Manager' || installer.role=='Regional Manager' || installer.role=='Rebuilder'
+            PdfMailer.mail_comment(workorder,sales,commentable_comment,commenter).deliver unless sales.nil? ||
+                sales.role=='Branch Manager' || sales.role=='Regional Manager' || sales.role=='Rebuilder'
 
         end
         if commentable_object.kind_of?(Document)
