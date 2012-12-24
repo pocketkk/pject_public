@@ -21,7 +21,16 @@
    	 	<% @users.each do |user| %>
 				<% user.day_offs.each do |day_off| %>
 				<% if date <= day_off.end_date && date >= day_off.start_date %>
-					<%=day_off.user.name%> | <% if day_off.approved? %><%=day_off.do_type%> <% else %> Request Pending <% end %>
+					<% if current_user.role=="Branch Manager" || current_user.role=="Regional Manager" %>
+					<%=link_to day_off.user.name, day_off_path(day_off)%> |
+					<% else %>
+						<%=day_off.user.name%> |
+					<% end %>
+					<% if day_off.approved? %>
+						<%=day_off.do_type%>
+					<% else %>
+						Pending
+					<% end %>
 				<% end %>
 			<% end %>
 		<% end %>

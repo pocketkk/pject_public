@@ -1,7 +1,7 @@
 class OffDaysController < ApplicationController
 
   def index
-    @off_days = Off_day.all
+    @users=User.where('current_branch=?', current_user.current_branch)
   end
 
   def show

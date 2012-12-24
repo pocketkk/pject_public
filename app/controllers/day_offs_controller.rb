@@ -9,10 +9,11 @@ class DayOffsController < ApplicationController
 
   def new
     @day_off = DayOff.new
+    @users=User.where('current_branch=?', current_user.current_branch)
   end
 
   def create
-    @day_off = current_user.day_offs.build(params[:day_off])
+    @day_off = DayOff.create(params[:day_off])
     if @day_off.save
       redirect_to root_url, :notice => "Successfully created day off."
     else
