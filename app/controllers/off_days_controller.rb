@@ -14,6 +14,7 @@ class OffDaysController < ApplicationController
 
   def create
     @off_day = current_user.off_day.build(params[:off_day])
+    @users=User.where('current_branch=?', current_user.current_branch)
     if @off_day.save
       redirect_to @off_day, :notice => "Successfully created off_day."
     else
@@ -23,6 +24,7 @@ class OffDaysController < ApplicationController
 
   def edit
     @off_day = Off_day.find(params[:id])
+    @users=User.where('current_branch=?', current_user.current_branch)
   end
 
   def update

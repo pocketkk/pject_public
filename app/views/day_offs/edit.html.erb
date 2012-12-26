@@ -2,9 +2,9 @@
 <h2>Time Off Request</h2>
 
 <%= render 'form' %>
-<% if current_user.role == "Branch Manager" || "Regional Manager" %>
+<% if current_user.role == "Branch Manager" || if current_user.role == "Regional Manager" %>
 As a manager if you choose to deny a time-off request, delete the request, otherwise change the status to approved above.  The time-off request will stay on your home page until either approved or deleted.<br />
 <center><%= link_to "Delete", @day_off, :confirm => 'Are you sure?', :method => :delete %></center>
 <% end %>
-
 </div>
+<% end %>

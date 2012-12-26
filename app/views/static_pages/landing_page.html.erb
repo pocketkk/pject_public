@@ -1,0 +1,21 @@
+<script>
+$(function(){$('#myCarousel').carousel({interval:5000,pause:"hover" });});
+
+
+
+</script>
+<div id="myCarousel" class="carousel slide">
+
+  <div id="carousel_wrapper">
+      <!-- Carousel items -->
+      <div class="carousel-inner workorder_carousel" >
+        <% workorder=@workorders.first %>
+        <div class="active item"><%= render :partial => 'workorders/workorder', :locals => {:workorder => workorder} %></div>
+        <% @workorders.each do |workorder| %>
+            <div class="item"><%= render :partial => 'workorders/workorder', :locals => {:workorder => workorder}  %></div>
+        <% end %>
+      </div>
+  </div>
+  <!-- Carousel nav -->
+
+</div>

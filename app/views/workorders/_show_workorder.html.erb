@@ -1,4 +1,3 @@
-<% provide(:title, @workorder.customer) %>
 <div class="workorder_show_wrapper">
 
 	<% if @workorder.wo_type == 'New Install' %>
@@ -24,7 +23,7 @@
 
 	<hr />
 
-	<div class="workorder_show_content" >
+	<div class="workorder_show_content" style="display:none">
 		<div class="row-fluid">
 			<table class="table table-bordered table-striped">
 			  <tr>
@@ -43,15 +42,10 @@
 		<a name="comments"></a>
 		<div class="row-fluid">
 		  <%= render :partial => 'comments/comments_module' %>
-	    </div>
-	    <div class="lonely_form" id="followup_workorder" style="display:none" >
-	    	<h2> Add Follow Up Workorder</h2>
-	    	<%= render :partial => 'shared/workorderpost_followup_form' %>
-	    </div>
 
 	</div>
 
 	<br />
 	<center><%= link_to "Edit Current Workorder", edit_workorder_path(@workorder) %></center><br>
-	<center><%= link_to_function "Create Follow Up Workorder", "$('#followup_workorder').toggle('slow')" %></center>
+
 </div>

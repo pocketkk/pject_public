@@ -1,5 +1,4 @@
 <%= form_for @day_off do |f| %>
-
 <% if current_user.role=='Branch Manager' || current_user.role=='Regional Manager'%>
     <%= f.label :user_id %>
     <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, current_user.id) %>
@@ -8,14 +7,11 @@
 <% end %>
     <%= f.label :start_date %>
     <%= f.date_select :start_date %>
-
     <%= f.label :end_date %>
     <%= f.date_select :end_date %>
-
     <%= f.label :do_type, "Vacation, Sick or Other" %>
     <%= f.select :do_type, { "Vacation" => "Vacation", "Floating Holiday" => "Floating Holiday", "Sick" => "Sick", "Other" => "Other"} %>
-
-    <% if current_user.role == 'Branch Manager' || 'Regional Manager' %>
+    <% if current_user.role == 'Branch Manager' || current_user.role == 'Regional Manager' %>
         <%= f.label :approved, "Approve Time Off" %>
         <%= f.select :approved, { "No" => false, "Yes" => true}%>
     <% end %>
