@@ -46,10 +46,6 @@ class Workorder < ActiveRecord::Base
 
   validates :wo_type, presence: true
   validates :user_id, presence: true
-  validates :customer, presence: true
-  validates :street, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
   validates :phonenumber, presence: true
   validates :contact, presence: true
 #  validates :wo_date, presence: true
