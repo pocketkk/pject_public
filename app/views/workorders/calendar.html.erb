@@ -22,7 +22,7 @@
 				<% user.day_offs.each do |day_off| %>
 				<% if date <= day_off.end_date && date >= day_off.start_date %>
 					<% if current_user.role=="Branch Manager" || current_user.role=="Regional Manager" %>
-					<%=link_to day_off.user.name, day_off_path(day_off)%> |
+					<%=link_to day_off.user.name, edit_day_off_path(day_off)%> |
 					<% else %>
 						<%=day_off.user.name%> |
 					<% end %>
