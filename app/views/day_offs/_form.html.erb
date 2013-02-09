@@ -1,7 +1,7 @@
 <%= form_for @day_off do |f| %>
 <% if current_user.role=='Branch Manager' || current_user.role=='Regional Manager'%>
     <%= f.label :user_id %>
-    <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, current_user.id) %>
+    <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, (@user ? @user.id : current_user.id)) %>
 <% else %>
     <%= f.hidden_field :user_id, :value=> current_user.id %>
 <% end %>
