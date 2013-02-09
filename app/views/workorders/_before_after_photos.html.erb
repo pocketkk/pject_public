@@ -5,10 +5,14 @@
 		  </tr>
 		  <tr>
 		    <td><% @workorder.before_photos.each do |photo| %>
-				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
+				<% unless photo.blank? %>
+					<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
+				<% end %>
 			<% end %></td>
 			  <td><% @workorder.after_photos.each do |photo| %>
+				<% unless photo.blank? %>
 				<%= link_to(image_tag(photo.photo_url(:thumb).to_s, :class=>"dropshadow"), photo.photo_url(:screen) )%>
+				<% end %>
 			<% end %></td>
 		    </tr>
 		</table>
