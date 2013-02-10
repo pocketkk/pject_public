@@ -6,7 +6,7 @@ class Option < ActiveRecord::Base
                       'Leg Extentions','VRX','Top-Mount','Quick Fill Kit',
                       'Pizza Conversion','Pumped Drain', 'Extra-long Power Cord',
                       'Internal Scrap Box','External Scrap Box', 'Other']
-  EQUIPMENT_MODELS = ['A4','A5','D2','D2C-R','D2C-L','AC-44','AC-66','AC Space-Maker'
+  EQUIPMENT_MODELS = ['A4','A5','D2','D2C-R','D2C-L','AC-44','AC-66','AC Space-Maker',
                       'ET','HT-25','U34','ASQ','U34-DD','UC-180',
                       'Dema 633','Dema 651','Dema 652','Dema 5in1',
                       'Bio-Flow','Titan', 'Other']
