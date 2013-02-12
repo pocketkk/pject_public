@@ -15,14 +15,26 @@
       <%= f.label :role %>
       <%= f.select :role, User::USER_ROLES %>
 
-	  <%= f.label :current_branch %>
-	  <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
+	    <%= f.label :current_branch %>
+	    <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
+
+      <%= f.label :raw_phonenumber, "Phone Number (Used to send text message alerts)" %>
+      <%= f.text_field :raw_phonenumber %>
+
+      <%= f.label :texts, "Do you wish to receive text message alerts?"%>
+      <%= f.select :texts, { "No" => false, "Yes" => true}%>
+
+      <%= f.label :receive_mails, "Do you wish to receive email messages about your workorders?"%>
+      <%= f.select :receive_mails, { "No" => false, "Yes" => true}%>
 
       <%= f.label :password %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
+
+      <%= f.label :signature, "Add a signature for out-going emails."%>
+      <%= f.text_area :signature, :size => "30x5"%>
 
       <center><%= f.submit "Create my account", class: "btn btn-large btn-primary" %></center>
     <% end %>
