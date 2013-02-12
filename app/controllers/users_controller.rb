@@ -20,11 +20,15 @@ class UsersController < ApplicationController
   end
 
   def new
+
     if signed_in?
-      sign_out
-      @user = User.new
+      if current_user.admin?
+        sign_out
+        @user = User.new
+      end
     else
-      @user = User.new
+      redirect_to root_path, :error => "New users can only be created by an administrator."
+      #@user = User.new
     end
   end
 
