@@ -15,7 +15,7 @@ class Workorder < ActiveRecord::Base
   accepts_nested_attributes_for :before_photos, :allow_destroy => true
   accepts_nested_attributes_for :after_photos, :allow_destroy => true
 
-  acts_as_gmappable
+  acts_as_gmappable :process_geocoding => false
 
   #scope :current_branch, where("branch=350").order("wo_date ASC")
   scope :wo_current_branch, lambda{ |branch_number| where('branch = ?',
