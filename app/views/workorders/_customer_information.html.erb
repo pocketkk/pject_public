@@ -67,6 +67,7 @@
 		</td>
 	</tr>
 </table>
-<%= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
+<%=image_tag(@workorder.googlemaps_image) %>
+<%#= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
   "markers"=> {"data" => @json }}) %><br />
 <center><%=link_to "Get Directions", @workorder.googlemaps_link%></center>
