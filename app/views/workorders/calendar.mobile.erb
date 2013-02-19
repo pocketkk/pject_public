@@ -1,0 +1,50 @@
+<div>
+<h2 id="month">
+	  <%= link_to "<", date: @date.prev_month %>
+	  <%= @date.strftime("%B %Y") %>
+	  <%= link_to ">", date: @date.next_month %>
+</h2>
+<br />
+
+<% date=@date.beginning_of_month %>
+<ul data-role="listview">
+<% while date <= @date.end_of_month %>
+		<% if date==Date.today %>
+			<li data-role="list-divider">
+		<% else %>
+			<li>
+		<% end %>
+			<hx><%=link_to date.strftime("%A, %B %d"), new_workorder_path%></hx>
+				<p></p>
+				<% @users.each do |user| %>
+					<% user.day_offs.each do |day_off| %>
+						<% if date <= day_off.end_date && date >= day_off.start_date %>
+							<% if current_user.role=="Branch Manager" || current_user.role=="Regional Manager" %>
+							<p>
+							<%=link_to day_off.user.name, edit_day_off_path(day_off)%> |
+							<% else %>
+							<p>	<%=day_off.user.name%> |
+							<% end %>
+							<% if day_off.approved? %>
+								<%=day_off.do_type%></p>
+							<% else %>
+								Pending</p>
+							<% end %>
+						<% end %>
+					<% end %>
+				<% end %>
+
+				<% if @workorders_by_date[date] %>
+		      				<% @workorders_by_date[date].each do |workorder| %>
+		      					<p>
+		      						<%=workorder.wo_date.strftime("%I:%M %p")%> - <%=link_to workorder.customer.titleize, workorder%>
+		      					</p>
+		      				<% end %>
+      			<% end %>
+  			</p>
+		</li>
+
+	<% date+=1 %>
+<% end %>
+	</ul>
+</div>

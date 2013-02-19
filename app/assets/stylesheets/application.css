@@ -10,5 +10,6 @@
 
  *= require_self
  *= require_tree
+ *= require 'jquery.mobile'
  *= require 'css3-progress-bar'
  */

@@ -1,0 +1,34 @@
+<h2>
+	<%=@workorder.wo_type.titleize%> Workorder
+</h2>
+
+<center>
+	<div data-role="controlgroup" data-type="horizontal">
+		<a href=<%=edit_workorder_path(@workorder)%> data-role="button" data-transition="slide" data-inline="true" >Edit</a>
+
+			<% if current_user.admin==true %>
+			  <a href=<%=workorder_path(@workorder)%> data-role="button" data-transition="pop" data-inline="true" data-ajax="false" data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="ui-link" >Delete</a>
+
+		<% end %>
+		<% unless @workorder.completed?%>
+		 	<a href=<%=complete_workorder_path(@workorder)%> data-role="button" data-transition="pop" ajax="false" data-inline="true" data-confirm="Don't forget to add After Photos to completed workorders." class="ui-link" >Done</a>
+
+		<% end %>
+	</div>
+</center>
+<%= render :partial => 'customer_information' %>
+<hr />
+<h2>
+	Equipment Information
+</h2>
+<%= render :partial => 'equipment_information' %>
+<h2>
+	Photos
+</h2>
+<hr />
+<%= render :partial => 'before_after_photos.html.erb' %>
+<hr />
+<h2>
+	Comments
+</h2>
+<%= render :partial => 'comments/comments_module_mobile' %>

@@ -1,0 +1,15 @@
+<hr />
+<h2>
+	Search Results (<%= @workorders.count %>)
+</h2>
+<br />
+<% if @workorders.any? %>
+	<ul data-role="listview">
+		<% @workorders.each do |workorder| %>
+			<li>
+		   		<%= render workorder %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+

@@ -6,7 +6,14 @@ class WorkordersController < ApplicationController
     @workorders = params[:distinct].to_i.zero? ? @search.result.paginate(page: params[:page], :per_page => 6) : @search.result(distinct: true).paginate(page: params[:page], :per_page => 6)
   end
 
+  def open
+    @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.ascending.paginate(page: params[:page], :per_page => 5) if signed_in?
+  end
+
   def calendar
+    ### Mobile Requests ###
+    @workorders_mobile=Workorder.wo_current_branch(current_user.current_branch).where('wo_date IS NOT NULL').ascending
+
     @workorders=Workorder.wo_current_branch(current_user.current_branch).where('wo_date IS NOT NULL').ascending
     @workorders_without_dates=Workorder.wo_current_branch(current_user.current_branch).wo_no_date.wo_not_completed.ascending if signed_in?
 
@@ -59,8 +66,12 @@ class WorkordersController < ApplicationController
                  )
               end
         end
+        respond_to do |format|
+          format.html { redirect_to root_url, :notice  => "Successfully created workorder." }
+          format.mobile {redirect_to root_url}
+          format.js
+        end
 
-        redirect_to root_url
       else
         flash[:error] = 'All fields must be filled to create a new workorder'
         #redirect_to :back
@@ -201,6 +212,7 @@ class WorkordersController < ApplicationController
       end
       respond_to do |format|
         format.html { redirect_to root_url, :notice  => "Successfully updated workorder." }
+        format.mobile {redirect_to root_url}
         format.js
       end
 

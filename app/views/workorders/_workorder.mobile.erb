@@ -1,0 +1,78 @@
+<div class="work_wrapper_mobile">
+
+	<% if workorder.wo_type == 'New Install' %>
+		<div class="work_bar_new">	</div>
+	<% end %>
+	<% if workorder.wo_type == 'Pull'%>
+		<div class='work_bar_pull'>	</div>
+	<% end %>
+	<% if workorder.wo_type == 'Swap'%>
+		<div class='work_bar_swap'>	</div>
+	<% end %>
+	<% if workorder.wo_type == 'Follow Up'%>
+		<div class='work_bar_follow_up'>	</div>
+	<% end %>
+
+	<div class="work_content">
+
+		<% unless workorder.completed? || workorder.wo_date.nil? %>
+			<% if workorder.wo_date.to_date == Date.today %>
+				<div class="workorder_today">**Today**</div><br />
+			<% end %>
+			<% if workorder.wo_date.to_date-1 == Date.today %>
+				<div class="workorder_tomorrow">**Tomorrow**</div><br />
+			<% end %>
+			<% if workorder.wo_date.to_date < Date.today %>
+				<div class="workorder_pastdue">**Past Due**</div><br />
+			<% end %>
+		<% end %>
+		<span class="lead">
+			<%= link_to workorder.customer.titleize, workorder%><br />
+		</span>
+
+		<span class="timestamp">
+			<%= workorder.street.titleize%>,  <%= workorder.city.titleize%>, <%= workorder.state.upcase%>
+		</span><br />
+
+		<span class="timestamp">
+	    	Contact:  <%= workorder.contact.titleize %>  |
+			Phone:  <%= number_to_phone(workorder.phonenumber, :area_code => true) %>
+	  	</span><br />
+
+		<span class="timestamp">
+			<% unless workorder.wo_date.nil? %>
+	    	<%= workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
+			<% end %>
+		</span><br />
+
+		<span class="tiny">
+				Opened by <%= workorder.user.name.titleize %> | Assigned to <%= workorder.assigned_to ? name_of_user(workorder.assigned_to) : ""%>
+		</span>
+			<% workorder.assets.each do |a| %>
+					<div id="equipment"></div>
+					<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em> : Ready!</em><%end%></div>
+					<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
+
+			<% end %>
+
+			<br />
+				<center>
+					<div data-role="controlgroup" data-type="horizontal">
+						<a href=<%=edit_workorder_path(workorder)%> data-role="button" data-transition="slide" data-inline="true" >Edit</a>
+
+			  			<% if current_user.admin==true %>
+							  <a href=<%=workorder_path(workorder)%> data-role="button" data-transition="pop" data-inline="true" data-ajax="false" data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="ui-link" >Delete</a>
+
+						<% end %>
+						<% unless workorder.completed?%>
+						 	<a href=<%=complete_workorder_path(workorder)%> data-role="button" data-transition="pop" ajax="false" data-inline="true" data-confirm="Don't forget to add After Photos to completed workorders." class="ui-link" >Done</a>
+
+						<% end %>
+					</div>
+				</center>
+
+  	
+	</div>
+</div>
+
+

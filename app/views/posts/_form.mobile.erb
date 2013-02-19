@@ -1,0 +1,13 @@
+
+<h2>Blog Post</h2>
+
+<%= form_for @post do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title%>
+    <%= f.label :content %>
+    <%= f.text_area :content, rows: 20 %>
+    <%= f.label :tag_list, "Tags (separated by commas)" %>
+    <%= f.text_field :tag_list %>
+    <center><%= f.submit "Submit", class: "btn btn-small" %></center>
+<% end %>
+<%= render 'shared/markup_instructions' %>

@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::Base
+  include Mobylette::RespondToMobileRequests
+
+  mobylette_config do |config|
+    config[:skip_xhr_requests] = false
+  end
+
   protect_from_forgery
 
   helper_method :yt_client, :comment_update
+
+
+
   def yt_client
     @yt_client ||= YouTubeIt::Client.new(:username => YouTubeITConfig.username , :password => YouTubeITConfig.password , :dev_key => YouTubeITConfig.dev_key)
   end

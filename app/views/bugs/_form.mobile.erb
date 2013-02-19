@@ -1,0 +1,12 @@
+<h2>Report a Bug/Feature Request</h2>
+<%= form_for @bug , :html => { :class => 'form-vertical'} do |f| %>
+    <%= f.label :type %><br />
+    <%= f.select :request_type, Bug::BUG_TYPES %>
+
+    <%= f.label :name, "Describe the issue or feature.  The more detail the better." %><br />
+    <%= f.text_area :name, :size => "20x6" %>
+
+	<%= f.hidden_field :complete, :value => false%>
+
+	<center><%= f.submit "Submit", class: "btn btn-large btn-primary" %></center>
+<% end %>

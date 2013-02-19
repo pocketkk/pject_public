@@ -1,12 +1,12 @@
 Pject::Application.routes.draw do
 
-  resources :day_offs
 
-  resources :documents
   get 'tags/:tag', to: 'documents#index', as: :tag
   get 'video_tags/:tag', to: 'videos#index', as: :video_tags
   get 'post_tags/:tag', to: 'posts#index', as: :post_tags
 
+  resources :day_offs
+  resources :documents
   resources :parts
   resources :bugs
   resources :updates
@@ -40,7 +40,7 @@ Pject::Application.routes.draw do
     end
   end
 
-  root to: 'passthrough#index'
+  root to: 'static_pages#home'
 
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
@@ -65,6 +65,7 @@ Pject::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/search', to: 'workorders#index'
+  match '/open', to: 'workorders#open', :as => 'open_workorders_path'
 
 
 

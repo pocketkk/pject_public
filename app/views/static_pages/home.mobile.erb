@@ -1,0 +1,24 @@
+<% if signed_in? %>
+<span><%=gravatar_for(current_user, :size => 75)%></span>
+<h2><%=current_user.name.upcase%></h2>
+<center><h3><%=current_user.role%></h3></center>
+<br />
+<br />
+<hr />
+
+<h2>Choose a task...</h2>
+	<a href=<%=new_workorder_path%> data-role="button" data-transition="slide">New Workorder</a>
+	<a href="/open" data-role="button" data-transition="slide">Open Workorders</a>
+	<a href=<%=new_part_path%> data-role="button" data-transition="slide">Part Needed</a>
+	<a href=<%=new_day_off_path%> data-role="button" data-transition="slide">Request Day Off</a>
+	<a href=<%=signout_path%> data-role="button" data-transition="slide", data-method="delete">Sign Out</a>
+
+<% else %>
+
+	<br />
+	<h2>Welcome to Workorder Machine.</h2>
+	<br />
+	<a href=<%=signin_path%> data-role="button" data-transition="slide">Sign In</a>
+
+
+<% end %>

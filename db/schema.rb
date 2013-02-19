@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(:version => 20121208193853) do
     t.string   "name"
     t.boolean  "fixed"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.text     "request_type"
-    t.boolean  "complete"
+    t.boolean  "complete",     :default => false
   end
 
   create_table "chemicals", :force => true do |t|

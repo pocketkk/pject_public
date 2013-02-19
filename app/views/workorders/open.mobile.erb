@@ -1,0 +1,13 @@
+
+<h2>Open Workorders</h2>
+<br />
+
+<ul data-role="listview">
+
+	<% @workorders.each do |workorder| %>
+		<li>
+			<%= render workorder %>
+		</li>
+
+	<% end %>
+</ul>

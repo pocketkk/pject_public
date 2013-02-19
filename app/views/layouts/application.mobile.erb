@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title><%= full_title(yield(:title))%></title>
+  		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<%= javascript_include_tag "application" %>		
+  		<%= csrf_meta_tags %>
+		<%#= google_webfonts_link_tag :electrolize %>
+		<link rel="apple-touch-icon" href="/iphone_icon.png"/>
+		<%= yield :head %>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+	</head>
+	<body>
+
+			<div data-role="page" data-add-back-btn="true">
+				<div data-role="header" data-position="fixed">
+					<h1 class="mobile_header">WO::Machine</h1>
+					<% if signed_in? %>
+					<div data-role="navbar">
+						<ul>
+							<li><a href="/" data-transition="slide">Home</a></li>
+							<li><a href="/workorders" data-transition="slide">Search</a></li>
+							<li><a href="/calendar"  data-transition="slide">Calendar</a></li>
+							<li><a href=<%=edit_user_path(current_user)%> data-transition="slide">Settings</a></li>
+						</ul>
+
+					</div>
+				<% end %>
+
+				</div>
+				
+				
+				<div data-role="content">
+    				<%= yield %>
+    			</div>
+    			<% if signed_in? %>
+
+	    			<div data-role="footer">
+	    				<div class="mobile_footer" data-role="navbar">
+		    				<ul>
+									<li><a href="/posts" data-transition="slide">Blog</a></li>
+									<li><a href="/documents" data-transition="slide">Docs</a></li>
+									<li><a href="/videos" data-transition="slide">Videos</a></li>
+									<li><a href="/bugs/new" data-transition="slide">Bugs</a></li>
+							</ul>
+						</div>
+	    			</div>
+	    		<% end %>
+  			</div>
+
+
+	</body>
+<%= yield :scripts %>
+</html>
+

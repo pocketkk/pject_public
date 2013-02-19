@@ -24,6 +24,8 @@ gem 'acts-as-taggable-on'
 gem 'useragent'
 gem 'youtube_it'
 gem 'bluecloth'
+gem 'jquery_mobile_rails'
+gem 'mobylette'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

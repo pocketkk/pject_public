@@ -1,0 +1,33 @@
+<h2>The Workorder Machine Blog</h2>
+
+        <% if @posts.any? %>
+            <% @posts.each do |post| %>
+                <div class="post_wrapper">
+                    <div class="post_title"><%= link_to post.title.titleize, post_path(post) %></div>
+
+                    <div class="post">
+
+                        <%= BlueCloth.new(post.content).to_html.html_safe %>
+                    </div>
+
+                    <div class="credits"><%= post.user.name.titleize %> posted <%= time_ago_in_words(post.created_at) %> ago.
+                    </div>
+                    <div class="post_comments">
+                        <%=link_to "Comments (#{post.comments.count})", post_path(post)%>
+                        <% if current_user.admin? %> |
+                        <%=link_to "Edit", edit_post_path(post)%> | <%= link_to "Delete", post, :confirm => "Are you sure?", :method => :delete  %>
+                        <% end %>
+                        <br />
+                    </div>
+
+                </div>
+            <% end %>
+            <%= will_paginate @posts %>
+        <% end %>
+
+<% if current_user.admin? %>
+    <center>
+        <a href=<%=new_post_path%> data-role="button" data-transition="slide" class="ui-link" >New Post</a>
+    </center>
+<% end %>
+
