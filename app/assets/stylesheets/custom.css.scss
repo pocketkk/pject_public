@@ -64,6 +64,7 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
 	line-height: 1;
 }
+
 h1 {
 	font-family: 'Electrolize', sans-serif;
 	font-size: 1em;
@@ -337,7 +338,6 @@ input, textarea, select, .uneditable-input {
   border-radius: 5px;
   border: 1px solid $grayMedium;
   padding: 10px;
-
 }
 
 .customer {
@@ -438,8 +438,8 @@ div.fields {
 	border-radius: 5px;
 	border: 1px solid $grayMedium;
 	padding: 10px;
-
 }
+
 .work_wrapper {
 	position: relative;
 	margin: 5px;

@@ -16,6 +16,111 @@ $workorderBlue: #049cdb;
 $workorderBlack: black;
 $workorderGreen: #45a546;
 
+.mobile_documents_wrapper {
+	text-align: center;
+
+}
+
+.mobile_documents {
+	text-align: center;
+	-moz-border-bottom-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border: 1px solid $grayMedium;
+	background-color: white;
+
+}
+
+.mobile_calendar {
+	list-style: none;
+	font-size: 1em;
+}
+
+.mobile_calendar_date a {
+	font-size: 1.25em;
+	color: $grayDarkest;
+	text-decoration: none;
+}
+
+.mobile_calendar_date {
+
+}
+
+.mobile_calendar_text {
+	font-size: .9em;
+
+}
+
+.mobile_day {
+	border-top: 1px solid $grayDarkest;
+	margin-left: -25px;
+	padding: 6px;
+	text-decoration: none;
+	font-size: 1em;
+	color: $grayDarkest;
+}
+
+.mobile_today, .mobile_today a {
+	font-size: 1.25em;
+	color: black;
+	text-decoration: none;
+}
+
+.mobile_before_today, .mobile_before_today a {
+	font-size: 1em;
+	color: $grayMedium;
+	text-decoration: none;
+}
+
+.mobile_after_today, .mobile_after_today a {
+	font-size: 1em;
+	color: $grayDarkest;
+	text-decoration: none;
+}
+
+.mobile_body {
+	max-width: 300px;
+}
+
+.mobile_button_block {
+	display: block;
+	width: 90%;
+	margin-bottom: 5px;
+}
+
+.mobile_container {
+	max-width: 310px;
+	text-align: center;
+}
+
+#mobile_logo {
+	font-family: 'Electrolize', sans-serif;
+	margin-right: 10px;
+	font-size: 1.5em;
+	color:  $grayMediumLight;
+	letter-spacing:  -1px;
+	padding-top:  3px;
+	line-height:  1;
+}
+
+.mobile_content_wrapper {
+  margin: 0px;
+  margin-top: -20px;
+  width: 100%;
+  background-color: $grayLightest;
+  padding: 10px;
+}
+
+.mobile_workorder_form {
+	width: 278px;
+	background-color: white;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid $grayMedium;
+	padding: 10px;
+}
+
 
 .mobile_header {
 	font-weight: normal;

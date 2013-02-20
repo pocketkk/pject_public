@@ -3,7 +3,9 @@
 <hr />
 <h2><%= @page_title %></h2>
     <% @documents.each do |document| %>
+    <div class="mobile_documents_wrapper">
     	<%= render :partial => "document", :locals => {:document => document} %>
+    </div>
     <% end %>
 
 <center><%= link_to "Add New Document", new_document_path %></center>

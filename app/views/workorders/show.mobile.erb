@@ -1,21 +1,21 @@
 <h2>
 	<%=@workorder.wo_type.titleize%> Workorder
 </h2>
+	<div style="width: 100%; text-align: center;">
 
-<center>
-	<div data-role="controlgroup" data-type="horizontal">
-		<a href=<%=edit_workorder_path(@workorder)%> data-role="button" data-transition="slide" data-inline="true" >Edit</a>
+		<a href=<%=edit_workorder_path(@workorder)%> type="button" class="btn btn-large" >Edit</a>
 
 			<% if current_user.admin==true %>
-			  <a href=<%=workorder_path(@workorder)%> data-role="button" data-transition="pop" data-inline="true" data-ajax="false" data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="ui-link" >Delete</a>
+			  <a href=<%=workorder_path(@workorder)%> type="button" class="btn btn-large" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
 
 		<% end %>
 		<% unless @workorder.completed?%>
-		 	<a href=<%=complete_workorder_path(@workorder)%> data-role="button" data-transition="pop" ajax="false" data-inline="true" data-confirm="Don't forget to add After Photos to completed workorders." class="ui-link" >Done</a>
+		 	<a href=<%=complete_workorder_path(@workorder)%> type="button" class="btn btn-large" data-confirm="Don't forget to add After Photos to completed workorders." >Complete</a>
 
 		<% end %>
+
 	</div>
-</center>
+<hr />
 <%= render :partial => 'customer_information' %>
 <hr />
 <h2>
@@ -32,3 +32,9 @@
 	Comments
 </h2>
 <%= render :partial => 'comments/comments_module_mobile' %>
+<div id="followup_workorder" style="display:none" >
+	<h2> Add Follow Up Workorder</h2>
+	<%= render :partial => 'shared/workorderpost_followup_form' %>
+</div>
+<div><center><%= link_to_function "Follow Up Workorder", "$('#followup_workorder').toggle('slow')", class: "btn btn-large"  %></center></div>
+

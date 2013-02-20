@@ -1,0 +1,108 @@
+<div class="mobile_workorder_form">
+<%= nested_form_for @workorder, :html => { :class => 'form-vertical', :multipart => true }  do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :wo_type, "Workorder Category:"%>
+    <%= f.select :wo_type, Workorder::WORKORDER_TYPES%>
+  <%= f.label :customer, "Customer:" %>
+    <%= f.text_field :customer %>
+    <%= f.label :street, "Street Address:" %>
+    <%= f.text_field :street %>
+    <%= f.label :city, "City:" %>
+    <%= f.text_field :city %>
+    <%= f.label :state, "State:"%>
+    <%= f.text_field :state %>
+    <%= f.label :raw_phonenumber, "Phone Number:" %>
+    <%= f.text_field :raw_phonenumber %>
+    <%= f.label :contact, "Contact:"%>
+    <%= f.text_field :contact %>
+    <%= f.label :chronic_wo_date, "Date and Time:" %>
+    <%= f.text_field :chronic_wo_date %>
+    <%= f.label :wo_duration, "Estimated duration in hours:" %>
+    <%= f.text_field :wo_duration %>
+    <%= f.label :misc_notes, "Additional notes:"%>
+    <%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
+    <%= f.label :branch, "Branch"%>
+    <%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
+
+    <%= f.label :assigned_to, "To be completed by:"%>
+    <%= f.select :assigned_to, options_from_collection_for_select(@users, :id, :name, (@installer ? @installer.id : 1))%>
+
+    <%= f.label :completed, "Completed?"%>
+    <%= f.select :completed, { "No" => false, "Yes" => true}%>
+
+    <br />
+    <h3>Photos</h3><br />
+    <%= f.fields_for :before_photos do |bp|%>
+        <%= image_tag(bp.object.photo_url) if bp.object.photo? %>
+        <%= bp.file_field :photo %>
+        <%= bp.hidden_field :photo_cache%>
+        <center><%= bp.link_to_remove "Remove Before-Photo" %></center>
+    <% end %>
+    <%=f.link_to_add "Add Before-Photo", :before_photos %>
+    <br /><br />
+    <%= f.fields_for :after_photos do |ap|%>
+        <%= image_tag(ap.object.photo_url) if ap.object.photo? %>
+        <%= ap.file_field :photo %>
+        <%= ap.hidden_field :photo_cache%>
+        <center><%= ap.link_to_remove "Remove After-Photo" %><center>
+    <% end %>
+    <%=f.link_to_add "Add After-Photo", :after_photos %>
+    <br /><br />
+
+    <h3>Equipment & Chemicals</h3><br />
+    <%= f.fields_for :assets do |m| %>
+        <%= m.label :name, "Model Number/Machine type"%>
+        <%= m.select :name, Option::EQUIPMENT_MODELS %>
+        <%= m.label :serial, "Serial Number (If known)" %>
+        <%= m.text_field :serial %>
+        <% if current_user.role=="Branch Manager"||"Regional Manager"||"Rebuilder"||"Installer"%>
+            <%= m.label :status, "Equipment Status"%>
+            <%= m.select :status, options_for_select(Workorder::ASSET_STATUS_OPTIONS, m.object.status) %>
+            <%= m.label :ready, "Ready for Install?"%>
+            <%= m.select :ready, { "No" => false, "Yes" => true}%>
+        <% end %>
+        <%= m.label :water_plumbing, "Water Connection"%>
+        <%= m.select :water_plumbing, Option::WATER_PLUMBING %>
+        <%= m.label :drain_plumbing, "Drain Connection"%>
+        <%= m.select :drain_plumbing, Option::DRAIN_PLUMBING %>
+        <%= m.label :electrical_option, "Electrical Connection"%>
+        <%= m.select :electrical_option, Option::ELECTRICAL_OPTIONS %>
+
+        <center><%= m.link_to_remove "Remove Equipment" %></center>
+        <%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>
+            <%= o.label :name, "Equipment Option" %>
+            <%= o.select :name, Option::EQUIPMENT_OPTIONS %>
+            <center><%= o.link_to_remove "Remove Option" %></center>
+
+        <% end %>
+        <br /><%= m.link_to_add "Add Equipment Option", :options%>
+        <%= m.fields_for :chemicals, :html => {:class => "chemical_post"} do |c| %>
+            <%= c.label :name, "Product" %>
+            <%= c.text_field :name %>
+            <%= c.label :quantity, "Quantity" %>
+            <%= c.text_field :quantity %>
+            <center><%= c.link_to_remove "Remove Product"%></center>
+        <% end %>
+          <br /><%= m.link_to_add "Add Product", :chemicals%>
+        <%= m.fields_for :assetnotes, :html => {:class => "chemical_post"} do |n| %>
+            <%= n.label :content, "Equipment Note" %>
+            <%= n.text_area :content %>
+            <center><%= n.link_to_remove "Remove Note"%></center>
+        <% end %>
+          <br /><%= m.link_to_add "Add Equipment Note", :assetnotes%>
+
+        <%= m.fields_for :asset_photos do |ap| %>
+            <%= image_tag(ap.object.photo_url) if ap.object.photo? %>
+            <%= ap.file_field :photo %>
+            <%= ap.hidden_field :photo_cache%>
+            <center><%= ap.link_to_remove "Remove Photo" %><center>
+        <% end %>
+        <br /><%=m.link_to_add "Add Photo of Current Equipment", :asset_photos %>
+
+    <% end %>
+<%=f.link_to_add "Add Equipment", :assets %>
+    <br /><br />
+    <center><%= f.submit "Submit", class: "btn btn-large mobile_button_block"%></center>
+<% end %>
+
+</div>

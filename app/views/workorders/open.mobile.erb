@@ -1,13 +1,11 @@
-
-<h2>Open Workorders</h2>
-<br />
-
-<ul data-role="listview">
-
-	<% @workorders.each do |workorder| %>
-		<li>
-			<%= render workorder %>
-		</li>
-
-	<% end %>
-</ul>
+    <h2>Open Workorders (<%= @workorders.count %>)</h2>
+    <% if @workorders.any? %>
+       <%= render @workorders %>
+     <%= will_paginate @workorders %>
+   <% end %>
+    <br />
+    <h2>Recently Completed</h2>
+    <% if @completed_workorders.any? %>
+       <%= render @completed_workorders %>
+   <% end %>
+ </div>

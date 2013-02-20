@@ -8,6 +8,7 @@ class WorkordersController < ApplicationController
 
   def open
     @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.ascending.paginate(page: params[:page], :per_page => 5) if signed_in?
+    @completed_workorders=Workorder.wo_current_branch(current_user.current_branch).wo_recently_completed if signed_in?
   end
 
   def calendar
