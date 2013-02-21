@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   include Mobylette::RespondToMobileRequests
 
+
   mobylette_config do |config|
     config[:skip_xhr_requests] = false
+    config[:skip_user_agents] = [:ipad]
   end
 
   protect_from_forgery
