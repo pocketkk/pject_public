@@ -5,7 +5,6 @@ $grayMedium: #adadad;
 $grayLightest: #e3e3e3;
 $graySuperLight: #fafafa;
 
-
 $grayMediumLight: #cccccc;
 $grayDark: #333333;
 $grayLight: #eaeaea;
@@ -18,7 +17,6 @@ $workorderGreen: #45a546;
 
 .mobile_documents_wrapper {
 	text-align: center;
-
 }
 
 .mobile_documents {
@@ -80,7 +78,7 @@ $workorderGreen: #45a546;
 }
 
 .mobile_body {
-	max-width: 300px;
+	width: 100%;
 }
 
 .mobile_button_block {
@@ -90,7 +88,7 @@ $workorderGreen: #45a546;
 }
 
 .mobile_container {
-	max-width: 310px;
+	width: 100%;
 	text-align: center;
 }
 
@@ -113,14 +111,13 @@ $workorderGreen: #45a546;
 }
 
 .mobile_workorder_form {
-	width: 278px;
+	width: 90%;
 	background-color: white;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: 1px solid $grayMedium;
 	padding: 10px;
 }
-
 
 .mobile_header {
 	font-weight: normal;
