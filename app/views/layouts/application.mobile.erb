@@ -3,6 +3,8 @@
 	<head>
   		<title><%= full_title(yield(:title))%></title>
   		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
 		<%= javascript_include_tag "application" %>
   		<%= csrf_meta_tags %>
 		<%#= google_webfonts_link_tag :electrolize %>
@@ -14,31 +16,33 @@
       	<div class="navbar navbar-fixed-top">
       		<div class="navbar-inner">
       			<div class="container">
-      				<ul class="nav">
-      					<li><%=link_to "W.O.M.", root_path%></li>
-      					<% if signed_in? %>
-	      					<li><%=link_to "Search", search_path%></li>
-	      					<li><%=link_to "Calendar", calendar_path%></li>
-	      					<li class="dropdown">
-			    				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			    					Other
-			    					<b class="caret"></b>
-			    				</a>
-			    				<ul class="dropdown-menu">
-			    					<% if signed_in? %>
-			    						<li><%=link_to "Docs", documents_path%></li>
-			    						<li class="divider"></li>
-				      					<li><%=link_to "Videos", videos_path%></li>
-				      					<li class="divider"></li>
-				      					<li><%=link_to "Blog", posts_path%></li>
-				      					<li class="divider"></li>
-				      					<li><%=link_to "Bugs", new_bug_path %></li>
-				      					<li class="divider"></li>
-				      					<li><%=link_to "Settings", edit_user_path(current_user)%></li>
-			    					<% end %>
-			    				</ul>
-	      				<% end %>
-      				</ul>
+                    <%=link_to "W.O.M.", root_path, :id => "mobile_logo"%>
+                    <nav>
+          				<ul class="nav mobile_menu">
+          					<% if signed_in? %>
+    	      					<li><%=link_to "Search", search_path%></li>
+    	      					<li><%=link_to "Calendar", calendar_path%></li>
+    	      					<li class="dropdown">
+    			    				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    			    					Other
+    			    					<b class="caret"></b>
+    			    				</a>
+    			    				<ul class="dropdown-menu mobile_menu">
+    			    					<% if signed_in? %>
+    			    						<li><%=link_to "Docs", documents_path%></li>
+    			    						<li class="divider"></li>
+    				      					<li><%=link_to "Videos", videos_path%></li>
+    				      					<li class="divider"></li>
+    				      					<li><%=link_to "Blog", posts_path%></li>
+    				      					<li class="divider"></li>
+    				      					<li><%=link_to "Bugs", new_bug_path %></li>
+    				      					<li class="divider"></li>
+    				      					<li><%=link_to "Settings", edit_user_path(current_user)%></li>
+    			    					<% end %>
+    			    				</ul>
+    	      				<% end %>
+      				    </ul>
+                    </nav>
       			</div>
       		</div>
       	</div>

@@ -1,3 +1,4 @@
+<div class="mobile_workorder_form">
 <h2>Search for Workorder</h2>
 <%= search_form_for @search do |f| %>
 	<%= f.label :customer_cont, "Customer" %>
@@ -6,6 +7,7 @@
 		<%= f.submit "Search", class: "btn btn-large btn-primary" %>
 	</center>
 <% end %>
-	
+
 
 <%= render 'results' %>
+</div>

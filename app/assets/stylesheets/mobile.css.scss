@@ -77,7 +77,7 @@ $workorderGreen: #45a546;
 }
 
 .mobile_body {
-	width: 95%;
+
 }
 
 .mobile_button_block {
@@ -88,12 +88,10 @@ $workorderGreen: #45a546;
 
 .mobile_container {
 	width: 100%;
-
 }
 
 #mobile_logo {
 	font-family: 'Electrolize', sans-serif;
-	margin-right: 10px;
 	font-size: 1.5em;
 	color:  $grayMediumLight;
 	letter-spacing:  -1px;
@@ -106,23 +104,20 @@ $workorderGreen: #45a546;
   margin-top: -20px;
   width: 100%;
   background-color: $grayLightest;
-  padding: 10px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 60px;
+  padding-top: 12px;
 }
 
 .mobile_workorder_form {
-	width: 90%;
+	width: 92%;
 	background-color: white;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border: 1px solid $grayMedium;
 	padding: 10px;
-}
-
-.mobile_header {
-	font-weight: normal;
-	text-transform: uppercase;
-	color: $grayMedium;
-	letter-spacing: 1.25px;
+	margin: auto;
 }
 
 .mobile_footer {
@@ -133,6 +128,26 @@ $workorderGreen: #45a546;
 #open_workorder {
 	margin-top: -10px;
 	padding-left: 15px;
+}
+
+.mobile_menu {
+	padding-left: 35px;
+}
+
+#mobile_logo, #mobile_logo a {
+	float: left;
+	font-family: 'Electrolize', sans-serif;
+	margin-left: 10px;
+	font-size: 1.7em;
+	color:  $grayMediumLight;
+	letter-spacing:  -1px;
+	padding-top:  9px;
+	line-height:  1;
+	text-decoration: none;
+}
+
+#mobile_logo:hover {
+	color: white;
 }
 
 .workorder_show_wrapper_mobile {
