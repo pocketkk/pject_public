@@ -1,17 +1,22 @@
 <% if signed_in? %>
-<span><%=gravatar_for(current_user, :size => 75)%></span>
-<h2><%=current_user.name.upcase%></h2>
-<center><h3><%=current_user.role%></h3></center>
-<br />
-<hr />
-
-<h2>Choose a task...</h2>
-<div style="text-align: center;">
-<a href=<%=new_workorder_path%> class="btn btn-large mobile_button_block" >New Workorder</a>
-<a href="/open" class='btn btn-large mobile_button_block' type="button">Open Workorders</a>
-<a href=<%=new_part_path%> class='btn btn-large mobile_button_block' type="button">Part Needed</a>
-<a href=<%=new_day_off_path%> class='btn btn-large mobile_button_block' type="button">Request Day Off</a>
-<a href=<%=signout_path%> class='btn btn-large mobile_button_block' type="button" data-method="delete">Sign Out</a>
+<div class="mobile_user_wrapper">
+    <div class="mobile_user_info">
+        <%=gravatar_for(current_user, :size => 75)%>
+        <div class="mobile_user">
+            <h2><%=current_user.name.upcase%></h2>
+            <center><h3><%=current_user.role%></h3></center>
+        </div>
+    </div>
+</div>
+<div class="mobile_home_page">
+    <h2>Choose a task...</h2>
+    <div style="text-align: center;">
+        <a href=<%=new_workorder_path%> class="btn btn-large mobile_button_block" >New Workorder</a>
+        <a href="/open" class='btn btn-large mobile_button_block' type="button">Open Workorders</a>
+        <a href=<%=new_part_path%> class='btn btn-large mobile_button_block' type="button">Part Needed</a>
+        <a href=<%=new_day_off_path%> class='btn btn-large mobile_button_block' type="button">Request Day Off</a>
+        <a href=<%=signout_path%> class='btn btn-large mobile_button_block' type="button" data-method="delete">Sign Out</a>
+    </div>
 </div>
 <% else %>
 

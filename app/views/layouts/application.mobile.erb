@@ -7,7 +7,7 @@
 
 		<%= javascript_include_tag "application" %>
   		<%= csrf_meta_tags %>
-		<%#= google_webfonts_link_tag :electrolize %>
+		<%= google_webfonts_link_tag :electrolize %>
 		<link rel="apple-touch-icon" href="/iphone_icon.png"/>
 		<%= yield :head %>
 		<%= stylesheet_link_tag    "application", :media => "all" %>
@@ -28,7 +28,6 @@
     			    					<b class="caret"></b>
     			    				</a>
     			    				<ul class="dropdown-menu mobile_menu">
-    			    					<% if signed_in? %>
     			    						<li><%=link_to "Docs", documents_path%></li>
     			    						<li class="divider"></li>
     				      					<li><%=link_to "Videos", videos_path%></li>
@@ -38,9 +37,12 @@
     				      					<li><%=link_to "Bugs", new_bug_path %></li>
     				      					<li class="divider"></li>
     				      					<li><%=link_to "Settings", edit_user_path(current_user)%></li>
-    			    					<% end %>
     			    				</ul>
-    	      				<% end %>
+    	      				<% else %>
+                                <li><a href=#>Blog</a></li>
+                                <li><a href=#>Contact Us</a></li>
+                                <li><a href=#>Help</a></li>
+                            <% end %>
       				    </ul>
                     </nav>
       			</div>
