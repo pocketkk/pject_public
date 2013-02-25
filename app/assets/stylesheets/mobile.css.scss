@@ -298,6 +298,7 @@ $calBlackLight: rgb(33,33,33);
 
 .li-cal-workorder {
 	font-family: 'Electrolize', sans-serif;
+	text-shadow: 1px 1px 1px #ccc;
 	padding: 5px;
 	margin-left: 10px;
 	font-size: 1em;
@@ -325,11 +326,11 @@ $calBlackLight: rgb(33,33,33);
 	width: 5px;
 	height: 5px;
 	margin-left: 2px;
-	background-image: -webkit-radial-gradient($workorderGreen,$calBlackLight);
-	background-image: -moz-radial-gradient($workorderGreen,$calBlackLight);
-	background-image: -o-radial-gradient($workorderGreen,$calBlackLight);
-	background-image: -ms-radial-gradient($workorderGreen,$calBlackLight);
-	background-image: radial-gradient($workorderGreen,$calBlackLight);
+	background-image: -webkit-radial-gradient($workorderGreen, $calBlackLight);
+	background-image: -moz-radial-gradient($workorderGreen, $calBlackLight);
+	background-image: -o-radial-gradient($workorderGreen, $calBlackLight);
+	background-image: -ms-radial-gradient($workorderGreen, $calBlackLight);
+	background-image: radial-gradient($workorderGreen, $calBlackLight);
 	position: absolute;
 	margin-top: -20px;
 	float: left;
