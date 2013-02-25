@@ -183,11 +183,11 @@ $calBlackLight: rgb(33,33,33);
 	cursor: pointer;
 }
 .event:hover, .event:focus {
-	background-image: -webkit-linear-gradient(rgb(106,154,12), rgb(198,245,110));
-	background-image: -moz-linear-gradient(rgb(106,154,12), rgb(198,245,110));
-	background-image: -o-linear-gradient(rgb(106,154,12), rgb(198,245,110));
-	background-image: -ms-linear-gradient(rgb(106,154,12), rgb(198,245,110));
-	background-image: linear-gradient(rgb(106,154,12), rgb(198,245,110));
+	background-image: -webkit-linear-gradient($workorderGreen, $calBlackLight);
+	background-image: -moz-linear-gradient($workorderGreen, $calBlackLight);
+	background-image: -o-linear-gradient($workorderGreen, $calBlackLight);
+	background-image: -ms-linear-gradient($workorderGreen, $calBlackLight);
+	background-image: linear-gradient($workorderGreen, $calBlackLight);
 	color: rgb(140,140,140);
 }
 
@@ -326,7 +326,11 @@ $calBlackLight: rgb(33,33,33);
 	width: 5px;
 	height: 5px;
 	margin-left: 2px;
-	background-color: $workorderGreen;
+	background-image: -webkit-radial-gradient($workorderGreen,$calBlackLight);
+	background-image: -moz-radial-gradient($workorderGreen,$calBlackLight);
+	background-image: -o-radial-gradient($workorderGreen,$calBlackLight);
+	background-image: -ms-radial-gradient($workorderGreen,$calBlackLight);
+	background-image: radial-gradient($workorderGreen,$calBlackLight);
 	position: absolute;
 	margin-top: -20px;
 	float: left;
@@ -336,7 +340,11 @@ $calBlackLight: rgb(33,33,33);
 	border-radius: 50%;
 	width: 5px;
 	height: 5px;
-	background-color: $workorderBlue;
+	background-image: -webkit-radial-gradient($workorderBlue,$calBlackLight);
+	background-image: -moz-radial-gradient($workorderBlue,$calBlackLight);
+	background-image: -o-radial-gradient($workorderBlue,$calBlackLight);
+	background-image: -ms-radial-gradient($workorderBlue,$calBlackLight);
+	background-image: radial-gradient($workorderBlue,$calBlackLight);
 	position: absolute;
 	margin-left: 2px;
 	margin-top: -1px;
