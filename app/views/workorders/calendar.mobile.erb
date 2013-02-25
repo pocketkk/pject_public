@@ -1,52 +1,211 @@
-<div>
-<h2 id="month">
-	  <%= link_to "<", date: @date.prev_month %>
-	  <%= @date.strftime("%B %Y") %>
-	  <%= link_to ">", date: @date.next_month %>
-</h2>
-<br />
+<div class="cal-container">
+	<table class="cal">
+		<thead>
+			<tr class="cal-header">
+				<th><%= link_to "<<", date: @date.prev_month, :class => "cal-nav prev" %></th>
+				<th colspan="5" class="cal-title"><%= @date.strftime("%B %Y") %></th>
+				<th><%= link_to ">>", date: @date.next_month, :class => "cal-nav next" %></th>
+			</tr>
+			<tr class="cal-day-names">
+				<th abbr="Sunday">sun</th>
+				<th abbr="Monday">mon</th>
+				<th abbr="Tuesday">tue</th>
+				<th abbr="Wednesday">wed</th>
+				<th abbr="Thursday">thu</th>
+				<th abbr="Friday">fri</th>
+				<th abbr="Saturday">sat</th>
+			</tr>
+		</thead>
+		<% date=@date.beginning_of_month.beginning_of_week(:sunday) %>
+		<% e_of_week=date.end_of_week(:sunday) %>
+			<tr class="week">
+				<% while date <= e_of_week %>
+					<% if date==@date %>
+						<td class="event">
+					<%elsif date==Date.today%>
+						<td class="today">
+					<% else %>
+						<td class="day">
+					<% end %>
 
-<% date=@date.beginning_of_month %>
-<ul class="mobile_calendar">
-<% while date <= @date.end_of_month %>
-		<% if date==Date.today %>
-			<li class="mobile_today mobile_day">
-		<% elsif date < Date.today%>
-			<li class="mobile_before_today mobile_day">
-		<% else %>
-			<li class="mobile_after_today mobile_day"
-		<% end %>
-			<hx class="mobile_calendar_date"><%=date.strftime("%A, %B %d")%></hx>
-				<p></p>
-				<% @users.each do |user| %>
-					<% user.day_offs.each do |day_off| %>
-						<% if date <= day_off.end_date && date >= day_off.start_date %>
-							<% if current_user.role=="Branch Manager" || current_user.role=="Regional Manager" %>
-							<p class="mobile_calendar_text">
-							<%=link_to day_off.user.name, edit_day_off_path(day_off)%> |
-							<% else %>
-							<p class="mobile_calendar_text">	<%=day_off.user.name%> |
-							<% end %>
-							<% if day_off.approved? %>
-								<%=day_off.do_type%></p>
-							<% else %>
-								Pending</p>
+						<time datetime=<%=date.strftime("%B %d")%>>
+
+						<%= link_to date.strftime("%d"), date: date, :class => "cal-nav next" %>
+
+					</td>
+					<% date += 1 %>
+				<% end %>
+			</tr>
+			<% e_of_week=date.end_of_week(:sunday) %>
+			<tr class="week">
+				<% while date <= e_of_week %>
+					<% if date==@date %>
+						<td class="event">
+					<%elsif date==Date.today%>
+						<td class="today">
+					<% else %>
+						<td class="day">
+					<% end %>
+
+						<time datetime=<%=date.strftime("%B %d")%>><%= link_to date.strftime("%d"), date: date, :class => "cal-nav next" %>
+						<% if @workorders_by_date[date] %>
+							<div class="small-green-circle"></div>
+						<% end %>
+						<% @users.each do |user| %>
+							<% user.day_offs.each do |day_off| %>
+								<% if date <= day_off.end_date && date >= day_off.start_date %>
+										<div class="small-blue-circle"></div>
+								<% end %>
 							<% end %>
 						<% end %>
-					<% end %>
+
+					</td>
+					<% date += 1 %>
 				<% end %>
+			</tr>
+			<% e_of_week=date.end_of_week(:sunday) %>
+			<tr class="week">
+				<% while date <= e_of_week %>
+					<% if date==@date %>
+						<td class="event">
+					<%elsif date==Date.today%>
+						<td class="today">
+					<% else %>
+						<td class="day">
+					<% end %>
 
-				<% if @workorders_by_date[date] %>
-		      				<% @workorders_by_date[date].each do |workorder| %>
-		      					<p class="mobile_calendar_text">
-		      						<%=workorder.wo_date.strftime("%I:%M %p")%> - <%=link_to workorder.customer.titleize, workorder%>
-		      					</p>
-		      				<% end %>
-      			<% end %>
-  			</p>
-		</li>
+						<time datetime=<%=date.strftime("%B %d")%>><%= link_to date.strftime("%d"), date: date, :class => "cal-nav next" %>
+						<% if @workorders_by_date[date] %>
+							<div class="small-green-circle"></div>
+						<% end %>
+						<% @users.each do |user| %>
+							<% user.day_offs.each do |day_off| %>
+								<% if date <= day_off.end_date && date >= day_off.start_date %>
+										<div class="small-blue-circle"></div>
+								<% end %>
+							<% end %>
+						<% end %>
 
-	<% date+=1 %>
-<% end %>
+					</td>
+					<% date += 1 %>
+				<% end %>
+			</tr>
+			<% e_of_week=date.end_of_week(:sunday) %>
+			<tr class="week">
+				<% while date <= e_of_week %>
+					<% if date==@date %>
+						<td class="event">
+					<%elsif date==Date.today%>
+						<td class="today">
+					<% else %>
+						<td class="day">
+					<% end %>
+
+						<time datetime=<%=date.strftime("%B %d")%>><%= link_to date.strftime("%d"), date: date, :class => "cal-nav next" %>
+							<% if @workorders_by_date[date] %>
+							<div class="small-green-circle"></div>
+						<% end %>
+						<% @users.each do |user| %>
+							<% user.day_offs.each do |day_off| %>
+								<% if date <= day_off.end_date && date >= day_off.start_date %>
+										<div class="small-blue-circle"></div>
+								<% end %>
+							<% end %>
+						<% end %>
+					</td>
+					<% date += 1 %>
+				<% end %>
+			</tr>
+			<% e_of_week=date.end_of_week(:sunday) %>
+			<tr class="week">
+				<% while date <= e_of_week %>
+					<% if date==@date %>
+						<td class="event">
+					<%elsif date==Date.today%>
+						<td class="today">
+					<% else %>
+						<td class="day">
+					<% end %>
+
+						<time datetime=<%=date.strftime("%B %d")%>><%= link_to date.strftime("%d"), date: date, :class => "cal-nav next" %>
+							<% if @workorders_by_date[date] %>
+							<div class="small-green-circle"></div>
+						<% end %>
+						<% @users.each do |user| %>
+							<% user.day_offs.each do |day_off| %>
+								<% if date <= day_off.end_date && date >= day_off.start_date %>
+										<div class="small-blue-circle"></div>
+								<% end %>
+							<% end %>
+						<% end %>
+					</td>
+					<% date += 1 %>
+				<% end %>
+			</tr>
+	</table>
+</div>
+<div class="cal-date-contents">
+	<ul class="ul-cal-date">
+		<li class="li-cal-date"><%= @date.strftime("%B %d, %Y") %></li>
+		<br />
+		<% @users.each do |user| %>
+				<% user.day_offs.each do |day_off| %>
+				<% if @date <= day_off.end_date && @date >= day_off.start_date %>
+					<li class="li-cal-dayoff">
+					<% if current_user.role=="Branch Manager" || current_user.role=="Regional Manager" %> Time Off:
+					<%=link_to day_off.user.name, edit_day_off_path(day_off)%> |
+					<% else %>
+						<%=day_off.user.name%> |
+					<% end %>
+					<% if day_off.approved? %>
+						<%=day_off.do_type%>
+					<% else %>
+						Pending
+					<% end %>
+				</li>
+				<hr />
+				<% end %>
+			<% end %>
+		<% end %>
+
+		<% if @workorders_by_date[@date] %>
+      		<% @workorders_by_date[@date].each do |workorder| %>
+				<li class="li-cal-workorder">
+      				<%= link_to workorder.wo_date.strftime("%I:%M %p"), edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %> - <%= link_to workorder.customer.titleize, workorder %>
+				</li>
+				<li class="li-cal-workorder-2">
+					<%=workorder.wo_type.titleize%>
+				</li>
+				<li class="li-cal-workorder-2">
+					<% if workorder.assets.any? %>
+						Equipment:
+						<% workorder.assets.each do |asset| %>
+							| <%=asset.name%> |
+						<% end %>
+					<% end %>
+				</li>
+				<li class="li-cal-workorder-2">
+						Assigned to: <%= workorder.assigned_to ? name_of_user(workorder.assigned_to) : ""%>
+				</li>
+				<hr />
+			<% end %>
+		<% end %>
+
 	</ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,6 +15,337 @@ $workorderBlue: #049cdb;
 $workorderBlack: black;
 $workorderGreen: #45a546;
 
+$calBlack: rgb(50,50,50);
+$calBlackLight: rgb(33,33,33);
+
+//MOBILE CALENDAR STYLING
+
+.cal-container {
+	width: 100%;
+	//width: 15.625em;
+	height: 16.25em;
+	margin: 0 auto;
+	//position: relative;
+}
+
+.cal {
+	font-family: 'Electrolize', sans-serif;
+	width: 100%;
+	height: 100%;
+	font-size: 81.25%;
+	text-align: center;
+	//border-radius: 10px 10px 0 0;
+	border-spacing: 0;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.cal a, .cal a:hover{
+	font-family: 'Electrolize', sans-serif;
+	color: $grayMedium;
+	text-decoration: none;
+	font-size: 81.25%;
+}
+
+.cal-header th:first-child {
+	//border-radius: 10px 0 0 0;
+}
+
+.cal-header th:last-child {
+	//border-radius: 0 10px 0 0;
+}
+
+.cal-header th {
+
+	padding: 5% 0;
+	height: 20%;
+	border-bottom: 1px solid rgb(20,20,20);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;
+	background-image: -webkit-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: -moz-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: -o-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: -ms-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: linear-gradient($calBlack, $calBlackLight 50%);
+}
+
+.cal td, .cal th {
+	font-weight: 400;
+	width: 12.5%;
+}
+
+.cal td {
+	text-shadow: 0 -1px 0 rgba(0,0,0,1.0);
+	border-top: 1px solid rgb(20,20,20);
+	border-left: 1px solid rgb(20,20,20);
+}
+
+.cal-nav {
+	display: block;
+	position: relative;
+	z-index: 2;
+	text-align: right;
+	color: silver;
+	font-weight: 700;
+	font-size: 150%;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,1.0);
+}
+
+.day {
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+}
+
+.prev {
+	text-align: left;
+	padding-left: 25%;
+}
+
+.next {
+	padding-right: 25%;
+}
+.prev:hover, .prev:focus, .next:hover, .next:focus {
+	color: $grayLight;
+}
+.cal-title {
+	width: 75%;
+	color: rgb(165,165,165);
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+	font-size: 150%;
+}
+.cal-day-names {
+	background-color: rgb(97,97,97);
+	background-image: -webkit-linear-gradient(rgb(97,97,97), rgb(68,68,68));
+	background-image: -moz-linear-gradient(rgb(97,97,97), rgb(68,68,68));
+	background-image: -o-linear-gradient(rgb(97,97,97), rgb(68,68,68));
+	background-image: -ms-linear-gradient(rgb(97,97,97), rgb(68,68,68));
+	background-image: linear-gradient(rgb(97,97,97), rgb(68,68,68));
+	border-top: 1px solid rgb(119,119,119);
+	border-bottom: 1px solid rgb(20,20,20);
+	color: rgb(157,157,157);
+	font-size: 90%;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.75);
+}
+.cal-day-names th {
+	line-height: 1.5;
+}
+.day {
+	background-image: -webkit-linear-gradient($calBlack, $calBlackLight);
+	background-image: -moz-linear-gradient($calBlack, $calBlackLight);
+	background-image: -o-linear-gradient($calBlack, $calBlackLight);
+	background-image: -ms-linear-gradient($calBlack, $calBlackLight);
+	background-image: linear-gradient($calBlack, $calBlackLight);
+	color: rgb(133,133,133);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+}
+.day:hover, .day:focus {
+	background-image: -webkit-linear-gradient(rgb(107,107,107), rgb(87,87,87));
+	background-image: -moz-linear-gradient(rgb(107,107,107), rgb(87,87,87));
+	background-image: -o-linear-gradient(rgb(107,107,107), rgb(87,87,87));
+	background-image: -ms-linear-gradient(rgb(107,107,107), rgb(87,87,87));
+	background-image: linear-gradient(rgb(107,107,107), rgb(87,87,87));
+	color: rgb(200,200,200);
+}
+	/* oom = out of month -> dates from previous/next month that are greyed out */
+.oom {
+	background-image: -webkit-linear-gradient(rgb(37,37,37), rgb(26,26,26));
+	background-image: -moz-linear-gradient(rgb(37,37,37), rgb(26,26,26));
+	background-image: -o-linear-gradient(rgb(37,37,37), rgb(26,26,26));
+	background-image: -ms-linear-gradient(rgb(37,37,37), rgb(26,26,26));
+	background-image: linear-gradient(rgb(37,37,37), rgb(26,26,26));
+	color: rgb(78,78,78);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 1px 0 0 rgba(255,255,255,0.05) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 1px 0 0 rgba(255,255,255,0.05) inset;
+}
+
+.today {
+	color: rgb(133,133,133);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	color: rgb(200,200,200);
+	background-image: -webkit-linear-gradient($calBlackLight, $grayDarkest);
+	background-image: -moz-linear-gradient($calBlackLight, $grayDarkest);
+	background-image: -o-linear-gradient($calBlackLight, $grayDarkest);
+	background-image: -ms-linear-gradient($calBlackLight, $grayDarkest);
+	background-image: linear-gradient($calBlackLight, $grayDarkest);
+	cursor: pointer;
+}
+
+	/* Events are highlighted */
+.event {
+
+	color: rgb(200,200,200);
+	background-image: -webkit-radial-gradient($grayDarkest,$calBlackLight);
+	background-image: -moz-radial-gradient($grayDarkest,$calBlackLight);
+	background-image: -o-radial-gradient($grayDarkest,$calBlackLight);
+	background-image: -ms-radial-gradient($grayDarkest,$calBlackLight);
+	background-image: radial-gradient($grayDarkest,$calBlackLight);
+	cursor: pointer;
+}
+.event:hover, .event:focus {
+	background-image: -webkit-linear-gradient(rgb(106,154,12), rgb(198,245,110));
+	background-image: -moz-linear-gradient(rgb(106,154,12), rgb(198,245,110));
+	background-image: -o-linear-gradient(rgb(106,154,12), rgb(198,245,110));
+	background-image: -ms-linear-gradient(rgb(106,154,12), rgb(198,245,110));
+	background-image: linear-gradient(rgb(106,154,12), rgb(198,245,110));
+	color: rgb(140,140,140);
+}
+
+	/* Calendar visual tweaks */
+
+	/* Remove double borders from perimeter */
+	.cal tbody tr td:nth-of-type(1) {
+		border-left: none;
+	}
+	.cal tbody tr td:nth-of-type(7) {
+		border-right: none;
+	}
+	.cal tbody tr:nth-of-type(6) td {
+		border-bottom: none;
+	}
+	/* Remove extra border on left hand table cells */
+	.cal tbody tr:nth-of-type(1n+1) td.day:first-child {
+		-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset;
+		box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset;
+	}
+	.cal tbody tr:nth-of-type(1n+1) td.oom:first-child {
+		-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset;
+		box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset;
+	}
+
+	/* Media Queries */
+
+	/* SMARTPHONE LANDSCAPE 480px */
+	@media only screen and (min-width: 20em) {
+		.cal-container {
+			margin-top: -15px;
+			margin-left: -5px;
+			margin-right: 100px;
+			width: 100%;
+			height: 18em; /* 288px */
+		}
+		.cal {
+			font-size: 87.5%; /* 14px */
+		}
+	}
+	/* TABLET 768px */
+	@media only screen and (min-width: 48em) {
+		.cal-container {
+			width: 20em; /* 320px */
+			height: 21.875em; /* 350px */
+		}
+		.cal {
+			font-size: 100%; /* 16px */
+		}
+	}
+	/* NETBOOK 1024px */
+	@media only screen and (min-width: 64em) {
+		.cal-container {
+			width: 26.5em; /* 424px */
+			height: 29em; /* 464px */
+		}
+		.cal {
+			font-size: 112.5%; /* 18px */
+		}
+	}
+	/* DESKTOP 1600px+ */
+	@media only screen and (min-width: 100em) {
+		.cal-container {
+			width: 33.125em; /* 530px */
+			height: 35em; /* 560px */
+		}
+		.cal {
+			font-size: 125%; /* 20px */
+		}
+	}
+
+.cal-date-contents {
+	width: 100%;
+	margin-left: -30px;
+}
+
+.cal-date-contents a{
+	text-decoration: none;
+	color: $grayDark;
+}
+
+.ul-cal-date {
+	list-style: none;
+	width: 100%;
+}
+
+.li-cal-date {
+	padding: 2% 0;
+	height: 20%;
+	text-align: center;
+	font-family: 'Electrolize', sans-serif;
+	font-size: 1.25em;
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;
+	background-image: -webkit-linear-gradient($grayLight, $grayMedium 50%);
+	background-image: -moz-linear-gradient($grayLight, $grayMedium 50%);
+	background-image: -o-linear-gradient($grayLight, $grayMedium 50%);
+	background-image: -ms-linear-gradient($grayLight, $grayMedium 50%);
+	background-image: linear-gradient($grayLight, $grayMedium 50%);
+}
+
+.li-cal-dayoff {
+	font-family: 'Electrolize', sans-serif;
+	padding: 2px;
+	margin-left: 13px;
+	font-size: 1em;
+	font-weight: 600;
+}
+
+.li-cal-workorder {
+	font-family: 'Electrolize', sans-serif;
+	padding: 5px;
+	margin-left: 10px;
+	font-size: 1em;
+	font-weight: 600;
+}
+
+.li-cal-workorder-2 {
+	margin-left: 40px;
+	margin-top: -2px;
+	font-style: italic;
+
+}
+
+.small-red-circle {
+	border-radius: 50%;
+	width: 5px;
+	height: 5px;
+	margin-left: 2px;
+	background-color: $workorderRed;
+	position: absolute;
+	float: left;
+}
+.small-green-circle {
+	border-radius: 50%;
+	width: 5px;
+	height: 5px;
+	margin-left: 2px;
+	background-color: $workorderGreen;
+	position: absolute;
+	margin-top: -20px;
+	float: left;
+}
+
+.small-blue-circle {
+	border-radius: 50%;
+	width: 5px;
+	height: 5px;
+	background-color: $workorderBlue;
+	position: absolute;
+	margin-left: 2px;
+	margin-top: -1px;
+	float: left;
+}
+
+//End of Mobile Calendar
+
 .mobile_documents_wrapper {
 	text-align: center;
 }
@@ -29,54 +360,8 @@ $workorderGreen: #45a546;
 	background-color: white;
 }
 
-.mobile_calendar {
-	list-style: none;
-	font-size: 1em;
-}
-
-.mobile_calendar_date a {
-	font-size: 1.25em;
-	color: $grayDarkest;
-	text-decoration: none;
-}
-
-.mobile_calendar_date {
-
-}
-
-.mobile_calendar_text {
-	font-size: .9em;
-}
-
-.mobile_day {
-	border-top: 1px solid $grayDarkest;
-	margin-left: -25px;
-	padding: 6px;
-	text-decoration: none;
-	font-size: 1em;
-	color: $grayDarkest;
-}
-
-.mobile_today, .mobile_today a {
-	font-size: 1.25em;
-	color: black;
-	text-decoration: none;
-}
-
-.mobile_before_today, .mobile_before_today a {
-	font-size: 1em;
-	color: $grayMedium;
-	text-decoration: none;
-}
-
-.mobile_after_today, .mobile_after_today a {
-	font-size: 1em;
-	color: $grayDarkest;
-	text-decoration: none;
-}
-
 .mobile_body {
-
+	width: 101%;
 }
 
 .mobile_button_block {
@@ -100,13 +385,10 @@ $workorderGreen: #45a546;
 }
 
 .mobile_content_wrapper {
-  margin: 0px;
   margin-top: -20px;
   width: 100%;
   background-color: $grayLightest;
   background: url(/pw_maze_white.png) repeat 0 0;
-  padding-left: 4px;
-  padding-right: 4px;
   padding-bottom: 60px;
   padding-top: 12px;
 }
@@ -139,8 +421,6 @@ $workorderGreen: #45a546;
 	margin-left: 20px;
 	padding-top: 20px;
 	margin-bottom: -20px;
-	opacity: 1;
-
 }
 
 .mobile_user {
