@@ -50,7 +50,6 @@ class WorkordersController < ApplicationController
         @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
         @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
         @users_to_text=@users_rebuilders + @users_branchmanagers + @users_regionalmanagers
-        flash[:success] = "Workorder created!"
 
         @users_to_email.each do |user|
           PdfMailer.mail_workorder(@workorder,user,"New").deliver

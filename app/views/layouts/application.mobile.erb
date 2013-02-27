@@ -52,6 +52,42 @@
 		<div class="mobile_content_wrapper">
 			<%= yield %>
 		</div>
+    <div class="mobile_footer">
+        <table>
+            <tr>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <div class="red-badge">6</div>
+                  <div class="mobile_footer_cell_text">Past Due Workorders</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <div class="red-badge">200</div>
+                  <div class="mobile_footer_cell_text">Equipment Unassigned</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <div class="red-badge">16</div>
+                  <div class="mobile_footer_cell_text">Equipment To Order</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <div class="red-badge">60</div>
+                  <div class="mobile_footer_cell_text">Parts To Order</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <div class="red-badge">6</div>
+                  <div class="mobile_footer_cell_text">Time Off Requests</div>
+                </div>
+              </td>
+            </tr>
+        </table>
+    </div>
 	</body>
 <%= yield :scripts %>
 </html>

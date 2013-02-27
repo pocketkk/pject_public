@@ -11,6 +11,7 @@ $grayLight: #eaeaea;
 $blueDark:  3486D0;
 
 $workorderRed: #9d261d;
+$workorderRedLight: rgb(254,103,103);
 $workorderBlue: #049cdb;
 $workorderBlack: black;
 $workorderGreen: #45a546;
@@ -55,7 +56,6 @@ $calBlackLight: rgb(33,33,33);
 }
 
 .cal-header th {
-
 	padding: 5% 0;
 	height: 20%;
 	border-bottom: 1px solid rgb(20,20,20);
@@ -383,6 +383,10 @@ $calBlackLight: rgb(33,33,33);
 	width: 100%;
 }
 
+.mobile_footer {
+
+}
+
 #mobile_logo {
 	font-family: 'Electrolize', sans-serif;
 	font-size: 1.5em;
@@ -412,8 +416,86 @@ $calBlackLight: rgb(33,33,33);
 }
 
 .mobile_footer {
-	font-weight: normal;
-	color: $grayMedium;
+	width: 100%;
+	height: 40px;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	font-family: 'Electrolize', sans-serif;
+	color:  $grayMediumLight;
+	font-size: .85em;
+	border-bottom: 1px solid rgb(20,20,20);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;
+	background-image: -webkit-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: -moz-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: -o-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: -ms-linear-gradient($calBlack, $calBlackLight 50%);
+	background-image: linear-gradient($calBlack, $calBlackLight 50%);
+}
+.mobile_footer table {
+	width: 100%;
+}
+
+
+
+.mobile_footer td, .mobile_footer th {
+	font-weight: 200;
+	width: 20%;
+	height: 40px;
+}
+
+.mobile_footer_cell {
+	background-image: -webkit-linear-gradient($calBlack, $calBlackLight);
+	background-image: -moz-linear-gradient($calBlack, $calBlackLight);
+	background-image: -o-linear-gradient($calBlack, $calBlackLight);
+	background-image: -ms-linear-gradient($calBlack, $calBlackLight);
+	background-image: linear-gradient($calBlack, $calBlackLight);
+	color: rgb(133,133,133);
+
+	line-height: 1em;
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+}
+
+.mobile_footer_cell_wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.mobile_footer_cell_text {
+	margin-top: 30px;
+	height: 100%;
+
+
+
+}
+
+.red-badge {
+	display: inline-block;
+	border-style: solid;
+	border-width: 2px;
+	border-color: white;
+	border-radius: 50%;
+	min-width: 14px;
+	height: 14px;
+	line-height: 1.5em;
+	padding: 2px;
+	color: white;
+	text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	background-image: -webkit-linear-gradient(red, $workorderRed);
+	background-image: -moz-linear-gradient(red, $workorderRed);
+	background-image: -o-linear-gradient(red, $workorderRed);
+	background-image: -ms-linear-gradient(red, $workorderRed);
+	background-image: linear-gradient(red, $workorderRed);
+	position: absolute;
+	top: -25px;
+	left: 5px;
+	-moz-box-shadow:    0px 2px 1px -1px black;
+  	-webkit-box-shadow: 0px 2px 1px -1px black;
+  	box-shadow:         0px 2px 1px -1px black;
 }
 
 .mobile_user_wrapper {
@@ -468,10 +550,5 @@ $calBlackLight: rgb(33,33,33);
 	position: relative;
 	margin: 5px;
 	background-color: white;
-	-moz-border-top-right-radius: 5px;
-	border-top-right-radius: 5px;
-	-moz-border-bottom-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border: 1px solid #bbb;
-	padding: 1px;
+
 }
