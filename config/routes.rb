@@ -56,6 +56,8 @@ Pject::Application.routes.draw do
 
   match '/switchbranch', to: 'users#user_branch_switch'
 
+  match 'toggle_mobile', to: 'static_pages#toggle_mobile', :as => "toggle_mobile"
+
   match 'workorders/:id/complete', to: 'workorders#complete', :as => "complete_workorder"
   match 'bugs/:id/complete', to: 'bugs#complete', :as => "complete_bug"
   match 'parts/:id/ordered', to: 'parts#ordered', :as => "ordered_part"

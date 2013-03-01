@@ -12,6 +12,10 @@
 </span>
 
 <span id="role_title">
-  <%= link_to "Request Time-Off", new_day_off_path %>
+    <% if is_mobile_request? %>
+        <%= link_to "Switch to Mobile View", toggle_mobile_path%>
+    <% else %>
+        <%= link_to "Request Time-Off", new_day_off_path %>
+    <% end %>
 </span>
 

@@ -8,16 +8,20 @@ class StaticPagesController < ApplicationController
      @posts = Post.recently_added if signed_in?
 
      @workorders_pastdue = 0
-     @workorders.each do |workorder|
+     if @workorders
+      @workorders.each do |workorder|
         @workorders_pastdue +=1 unless workorder.wo_date >= Date.today
-     end
+      end
+    end
 
-     @user_days_off_unapproved_count=0
-     @users.each do |user|
+     @user_days_off_unapproved_count=
+     if @users
+      @users.each do |user|
         user.day_offs.each do |day_off|
           @user_days_off_unapproved_count +=1 unless day_off.approved
         end
       end
+    end
      @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0') if signed_in?
      @workorders_without_dates=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.wo_no_date.ascending if signed_in?
 
@@ -36,6 +40,12 @@ class StaticPagesController < ApplicationController
   end
 
   def help
+  end
+
+  def toggle_mobile
+    session[:mobylette_override] = nil unless session[:mobylette_override] == nil
+    session[:mobylette_override] = :ignore_mobile unless session[:mobylette_override]==:ignore_mobile
+    redirect_to root_url, :notice  => "Toggled mobile view!"
   end
 
   def about
