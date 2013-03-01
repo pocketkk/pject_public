@@ -44,6 +44,10 @@ class StaticPagesController < ApplicationController
 
   def toggle_mobile
     session[:mobylette_override] = nil unless session[:mobylette_override] == nil
+    redirect_to root_url, :notice  => "Toggled mobile view!"
+  end
+
+  def toggle_normal
     session[:mobylette_override] = :ignore_mobile unless session[:mobylette_override]==:ignore_mobile
     redirect_to root_url, :notice  => "Toggled mobile view!"
   end
