@@ -18,6 +18,50 @@
         <a href=<%=signout_path%> class='btn btn-large mobile_button_block' type="button" data-method="delete">Sign Out</a>
     </div>
 </div>
+
+    <div class="mobile_footer">
+        <table>
+            <tr>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <% if @workorders_pastdue > 0 %>
+                  <div class="red-badge"><%=@workorders_pastdue %></div>
+                  <% end %>
+                  <div class="mobile_footer_cell_text">Past Due Workorders</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <% if @assets_without_serials.count > 0 %>
+                  <div class="red-badge"><%=@assets_without_serials.count %></div> <% end %>
+                  <div class="mobile_footer_cell_text">Equipment Unassigned</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <% if @workorders_without_dates.count > 0 %>
+                  <div class="red-badge"><%=@workorders_without_dates.count%></div> <% end %>
+                  <div class="mobile_footer_cell_text">Equipment To Order</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <% if @parts.count > 0 %>
+                  <div class="red-badge"><%=@parts.count%></div> <% end %>
+                  <div class="mobile_footer_cell_text">Parts To Order</div>
+                </div>
+              </td>
+              <td class="mobile_footer_cell">
+                <div class="mobile_footer_cell_wrapper">
+                  <% if @user_days_off_unapproved_count > 0 %>
+                    <div class="red-badge"><%= @user_days_off_unapproved_count %></div>
+                    <% end %>
+                  <div class="mobile_footer_cell_text">Time Off Requests</div>
+                </div>
+              </td>
+            </tr>
+        </table>
+    </div>
 <% else %>
 
 	<br />

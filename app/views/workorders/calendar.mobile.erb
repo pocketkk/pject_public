@@ -24,7 +24,9 @@
 						<td class="event">
 					<%elsif date==Date.today%>
 						<td class="today">
-					<% else %>
+					<% elsif date.month!=@date.month%>
+						<td class="oom">
+					<%else%>
 						<td class="day">
 					<% end %>
 
@@ -123,6 +125,8 @@
 						<td class="event">
 					<%elsif date==Date.today%>
 						<td class="today">
+					<% elsif date.month!=@date.month%>
+						<td class="oom">
 					<% else %>
 						<td class="day">
 					<% end %>

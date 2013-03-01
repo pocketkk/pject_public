@@ -58,6 +58,7 @@ $calBlackLight: rgb(33,33,33);
 .cal-header th {
 	padding: 5% 0;
 	height: 20%;
+	font-size: 2em;
 	border-bottom: 1px solid rgb(20,20,20);
 	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;
 	background-image: -webkit-linear-gradient($calBlack, $calBlackLight 50%);
@@ -423,6 +424,7 @@ $calBlackLight: rgb(33,33,33);
 	text-align: center;
 	font-family: 'Electrolize', sans-serif;
 	color:  $grayMediumLight;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.75);
 	font-size: .85em;
 	border-bottom: 1px solid rgb(20,20,20);
 	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;

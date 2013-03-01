@@ -8,7 +8,7 @@
 						<th>Options</th>
 						<th>Chemicals</th>
 					</tr>
-					
+
 					<tr>
 						<td valign="top">
 							<%=m.name%>
@@ -22,10 +22,10 @@
 								<tr>
 									<td>
 										<%= o.name %>
-									</td>	
+									</td>
 								</tr>
 								<% end %>
-							</table>	
+							</table>
 						</td>
 						<td>
 							<table class="table table-bordered table-condensed">
@@ -37,14 +37,14 @@
 									</td>
 									<td>
 										<%= c.quantity %>
-									</td>	
+									</td>
 								</tr>
 								<% end %>
 							</table>
-						</td>	
+						</td>
 					</tr>
 					</table>
-					
+
 					<table class="table table-bordered table-condensed">
 								<tr>
 									<th>Water</th>
@@ -55,9 +55,9 @@
 								<td ><%=m.water_plumbing%></td>
 								<td><%=m.drain_plumbing%></td>
 								<td><%=m.electrical_option%></td>
-							</tr>	
+							</tr>
 					</table>
-					
+
 					<table class="table table-bordered table-condensed">
 							<tr>
 								<th>
@@ -72,7 +72,7 @@
 							</tr>
 							<%end%>
 					</table>
-					
+
 					<table class="table table-bordered table-condensed">
 						<tr>
 							<th>
@@ -81,10 +81,12 @@
 						</tr>
 						<% m.asset_photos.each do |photo| %>
 							<tr class="info">
+								<% unless photo.photo_url.blank? %>
 								<td class="table info">
-									<%= link_to(image_tag(photo.photo_url(:thumb).to_s, 
+									<%= link_to(image_tag(photo.photo_url(:thumb).to_s,
 												{:class=>"dropshadow"}), photo.photo_url(:screen) )%>
 								</td>
+								<% end %>
 							</tr>
 							<%end%>
 					</table>

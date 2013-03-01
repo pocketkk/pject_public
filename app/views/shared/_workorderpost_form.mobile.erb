@@ -20,7 +20,7 @@
     <%= f.label :wo_duration, "Estimated duration in hours:" %>
     <%= f.text_field :wo_duration %>
     <%= f.label :misc_notes, "Additional notes:"%>
-    <%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
+    <%= f.text_area :misc_notes, :rows => "4",placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
     <%= f.label :branch, "Branch"%>
     <%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
 
@@ -86,7 +86,7 @@
           <br /><%= m.link_to_add "Add Product", :chemicals%>
         <%= m.fields_for :assetnotes, :html => {:class => "chemical_post"} do |n| %>
             <%= n.label :content, "Equipment Note" %>
-            <%= n.text_area :content %>
+            <%= n.text_area :content, :rows => "4" %>
             <center><%= n.link_to_remove "Remove Note"%></center>
         <% end %>
           <br /><%= m.link_to_add "Add Equipment Note", :assetnotes%>
