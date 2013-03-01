@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
       end
     end
 
-     @user_days_off_unapproved_count=
+     @user_days_off_unapproved_count = 0
      if @users
       @users.each do |user|
         user.day_offs.each do |day_off|
