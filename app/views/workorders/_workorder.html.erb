@@ -17,13 +17,13 @@
 	<div class="work_content">
 
 	<% unless workorder.completed? || workorder.wo_date.nil? %>
-		<% if workorder.wo_date.to_date == Date.today %>
+		<% if workorder.wo_date.to_date == Time.zone.now.to_date %>
 			<div class="workorder_today">**Today**</div><br />
 		<% end %>
-		<% if workorder.wo_date.to_date-1 == Date.today %>
+		<% if workorder.wo_date.to_date-1 == Time.zone.now.to_date %>
 			<div class="workorder_tomorrow">**Tomorrow**</div><br />
 		<% end %>
-		<% if workorder.wo_date.to_date < Date.today %>
+		<% if workorder.wo_date.to_date < Time.zone.now.to_date %>
 			<div class="workorder_pastdue">**Past Due**</div><br />
 		<% end %>
 	<% end %>

@@ -1,77 +1,66 @@
-<div class="work_wrapper">
-
-		<% if workorder.wo_type == 'New Install' %>
-			<div class="work_bar_new">	</div>
-		<% end %>
-		<% if workorder.wo_type == 'Pull'%>
-			<div class='work_bar_pull'>	</div>
-		<% end %>
-		<% if workorder.wo_type == 'Swap'%>
-			<div class='work_bar_swap'>	</div>
-		<% end %>
-		<% if workorder.wo_type == 'Follow Up'%>
-			<div class='work_bar_follow_up'>	</div>
-		<% end %>
-
-	<div class="work_content">
-
 	<% unless workorder.completed? || workorder.wo_date.nil? %>
 		<% if workorder.wo_date.to_date == Date.today %>
-			<div class="workorder_today">**Today**</div><br />
+			<div class="mobile_workorder_today">**Today**</div><br />
 		<% end %>
 		<% if workorder.wo_date.to_date-1 == Date.today %>
-			<div class="workorder_tomorrow">**Tomorrow**</div><br />
+			<div class="mobile_workorder_tomorrow">**Tomorrow**</div><br />
 		<% end %>
 		<% if workorder.wo_date.to_date < Date.today %>
-			<div class="workorder_pastdue">**Past Due**</div><br />
+			<div class="mobile_workorder_pastdue">**Past Due**</div><br />
 		<% end %>
 	<% end %>
-	<span class="lead">
-		<%= link_to workorder.customer.titleize, workorder %><br />
-	</span>
 
-	<span class="timestamp">
-		<%= workorder.street.titleize%>,  <%= workorder.city.titleize%>, <%= workorder.state.upcase%>
-	</span><br />
+<li class="li-cal-workorder">
+    <%= link_to workorder.wo_date.strftime("%I:%M %p"), edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %> - <%= link_to workorder.customer.titleize, workorder %>
+</li>
 
-	<span class="timestamp">
-    	Contact:  <%= workorder.contact.titleize %>  |
-		Phone:  <%= number_to_phone(workorder.phonenumber, :area_code => true) %>
-  	</span><br />
+				<li class="li-cal-workorder-2">
+					<%=workorder.wo_type.titleize%>
+				</li>
+				<li class="li-cal-workorder-3">
+					Address: <%=workorder.street.titleize%>, <%=workorder.city.titleize%>, <%=workorder.state.upcase%>
+				</li>
+				<li class="li-cal-workorder-3">
+						Contact: <%= workorder.contact.titleize%>
+				</li>
+				<li class="li-cal-workorder-3">
+						Phone Number: <%= number_to_phone(workorder.phonenumber, :area_code => true) %>
+				</li>
 
-	<span class="timestamp">
-		<% unless workorder.wo_date.nil? %>
-    	<%= workorder.wo_date.strftime("%A, %B %d, %Y at %I:%M %p")%>
-		<% end %>
-	</span><br />
-
-	<span class="tiny">
+	<li class="li-cal-workorder-small">
 			Opened by <%= workorder.user.name.titleize %> | Assigned to <%= workorder.assigned_to ? name_of_user(workorder.assigned_to) : ""%>
-	</span>
-		<% workorder.assets.each do |a| %>
+	</li>
+
+	<li class="li-cal-workorder-3">
+			<% workorder.assets.each do |a| %>
 				<div id="equipment"></div>
 				<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em> : Ready!</em><%end%></div>
 				<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
+		<% end %>
+	</li>
+	<li class="li-cal-workorder-buttons">
+
+		<a href=<%=edit_workorder_path(workorder)%> type="button" class="btn btn-large" >Edit</a>
+
+			<% if current_user.admin==true %>
+			  <a href=<%=workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+
+		<% end %>
+		<% unless workorder.completed?%>
+		 	<a href=<%=complete_workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Don't forget to add After Photos to completed workorders." >Complete</a>
 
 		<% end %>
 
-		<br />
+	</li>
 
-  	<span class="edit_or_delete">
-		<center>
-			<%= link_to "Comments (#{workorder.comments.count})", workorder_path(workorder, :anchor=>"comments") %>  |
-			<%= link_to "Edit", edit_workorder_path(workorder) %>
+<hr />
 
-  			<% if current_user.admin==true %>
-				  |
-			<%= link_to "Remove", workorder, :confirm => 'Are you sure?', :method => :delete %><% end %>
-			<% unless workorder.completed?%>
-			  |
-			<%= link_to "Complete", complete_workorder_path(workorder), :confirm => "Don't forget to add After Photos to completed workorders."%>
-			<% end %>
-		</center>
-	</span>
-</div>
-</div>
+
+
+
+
+
+
+
 
 

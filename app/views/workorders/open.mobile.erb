@@ -1,11 +1,16 @@
     <h2>Open Workorders (<%= @workorders.count %>)</h2>
+<div class="cal-date-contents">
     <% if @workorders.any? %>
+    <ul class="ul-cal-date">
        <%= render @workorders %>
+    </ul>
      <%= will_paginate @workorders %>
    <% end %>
     <br />
     <h2>Recently Completed</h2>
-    <% if @completed_workorders.any? %>
-       <%= render @completed_workorders %>
-   <% end %>
+    <ul class="ul-cal-date">
+        <% if @completed_workorders.any? %>
+          <%= render @completed_workorders %>
+        <% end %>
+      </ul>
  </div>

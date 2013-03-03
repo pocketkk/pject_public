@@ -312,6 +312,23 @@ $calBlackLight: rgb(33,33,33);
 	font-style: italic;
 
 }
+.li-cal-workorder-3 {
+	margin-left: 40px;
+	margin-top: -2px;
+	margin-right: 40px;
+
+}
+
+.li-cal-workorder-small {
+	margin-left: 40px;
+	margin-top: -2px;
+	font-size: .75em;
+}
+
+.li-cal-workorder-buttons {
+	margin-left: 40px;
+	margin-top: 10px;
+}
 
 .small-red-circle {
 	border-radius: 50%;
@@ -371,11 +388,36 @@ $calBlackLight: rgb(33,33,33);
 .mobile_body {
 	width: 100%;
 }
+.mobile_button_wrapper {
+	text-align: center;
+}
 
 .mobile_button_block {
-	display: block;
-	width: 90%;
-	margin-bottom: 5px;
+	position: relative;
+	padding: 50px;
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+}
+
+.mobile_workorder_today {
+	text-align: right;
+	color: $workorderGreen;
+	margin-bottom: -20px;
+
+}
+.mobile_workorder_tomorrow {
+	text-align: right;
+	color: $workorderBlue;
+	margin-bottom: -30px;
+
+}
+.mobile_workorder_pastdue {
+	text-align: right;
+	color: $workorderRed;
+	margin-bottom: -40px;
+	margin-right: 20px;
+
 }
 
 .mobile_container {
@@ -416,7 +458,7 @@ $calBlackLight: rgb(33,33,33);
 	margin: auto;
 }
 
-.mobile_footer {
+.mobile_footer{
 	width: 100%;
 	height: 40px;
 	position: fixed;
@@ -434,11 +476,10 @@ $calBlackLight: rgb(33,33,33);
 	background-image: -ms-linear-gradient($calBlack, $calBlackLight 50%);
 	background-image: linear-gradient($calBlack, $calBlackLight 50%);
 }
+
 .mobile_footer table {
 	width: 100%;
 }
-
-
 
 .mobile_footer td, .mobile_footer th {
 	font-weight: 200;
@@ -453,11 +494,17 @@ $calBlackLight: rgb(33,33,33);
 	background-image: -ms-linear-gradient($calBlack, $calBlackLight);
 	background-image: linear-gradient($calBlack, $calBlackLight);
 	color: rgb(133,133,133);
-
 	line-height: 1em;
 	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
 	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
 }
+
+.mobile_footer_cell a, .mobile_footer_cell a:hover{
+	text-decoration: none;
+	text-align: center;
+	color:  $grayMedium;
+}
+
 
 .mobile_footer_cell_wrapper {
 	position: relative;
@@ -468,9 +515,6 @@ $calBlackLight: rgb(33,33,33);
 .mobile_footer_cell_text {
 	margin-top: 30px;
 	height: 100%;
-
-
-
 }
 
 .red-badge {
@@ -498,6 +542,34 @@ $calBlackLight: rgb(33,33,33);
 	-moz-box-shadow:    0px 2px 1px -1px black;
   	-webkit-box-shadow: 0px 2px 1px -1px black;
   	box-shadow:         0px 2px 1px -1px black;
+}
+
+.mobile_home_button {
+	margin: auto;
+	height: 125px;
+	width: 125px;
+	text-align: center;
+	color:  $grayMediumLight;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.75);
+	font-size: .85em;
+	border: 1px solid $grayMedium;
+
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(255,255,255,0.15) inset;
+	background-image: -webkit-linear-gradient($grayLightest, $grayMedium 50%);
+	background-image: -moz-linear-gradient($grayLightest, $grayMedium 50%);
+	background-image: -o-linear-gradient($grayLightest, $grayMedium 50%);
+	background-image: -ms-linear-gradient($grayLightest, $grayMedium 50%);
+	background-image: linear-gradient($grayLightest, $grayMedium 50%);
+
+	border-radius: 10px;
+	float: left;
+
+}
+
+.temp {
+
+
 }
 
 .mobile_user_wrapper {
@@ -530,6 +602,17 @@ $calBlackLight: rgb(33,33,33);
 
 .mobile_menu {
 	padding-left: 35px;
+}
+
+.icon_in_button {
+	position: relative;
+	bottom: -20px;
+}
+
+.words_in_button {
+	position: relative;
+	top: 10px;
+
 }
 
 #mobile_logo, #mobile_logo a {

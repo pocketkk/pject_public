@@ -37,6 +37,8 @@
     				      					<li><%=link_to "Bugs", new_bug_path %></li>
     				      					<li class="divider"></li>
     				      					<li><%=link_to "Settings", edit_user_path(current_user)%></li>
+                            <li><%= link_to "Switch to Normal View", toggle_normal_path%></li>
+                            <li><%=link_to "Sign Out", signout_path%></li>
     			    				</ul>
     	      				<% else %>
                                 <li><a href=#>Blog</a></li>

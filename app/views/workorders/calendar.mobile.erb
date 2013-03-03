@@ -174,24 +174,7 @@
 
 		<% if @workorders_by_date[@date] %>
       		<% @workorders_by_date[@date].each do |workorder| %>
-				<li class="li-cal-workorder">
-      				<%= link_to workorder.wo_date.strftime("%I:%M %p"), edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %> - <%= link_to workorder.customer.titleize, workorder %>
-				</li>
-				<li class="li-cal-workorder-2">
-					<%=workorder.wo_type.titleize%>
-				</li>
-				<li class="li-cal-workorder-2">
-					<% if workorder.assets.any? %>
-						Equipment:
-						<% workorder.assets.each do |asset| %>
-							| <%=asset.name%> |
-						<% end %>
-					<% end %>
-				</li>
-				<li class="li-cal-workorder-2">
-						Assigned to: <%= workorder.assigned_to ? name_of_user(workorder.assigned_to) : ""%>
-				</li>
-				<hr />
+				<%= render workorder %>
 			<% end %>
 		<% end %>
 

@@ -9,14 +9,19 @@
     </div>
 </div>
 <div class="mobile_home_page">
-    <h2>Choose a task...</h2>
-    <div style="text-align: center;">
-        <a href=<%=new_workorder_path%> class="btn btn-large mobile_button_block" >New Workorder</a>
-        <a href="/open" class='btn btn-large mobile_button_block' type="button">Open Workorders</a>
-        <a href=<%=new_part_path%> class='btn btn-large mobile_button_block' type="button">Part Needed</a>
-        <a href=<%=new_day_off_path%> class='btn btn-large mobile_button_block' type="button">Request Day Off</a>
-        <a href=<%=signout_path%> class='btn btn-large mobile_button_block' type="button" data-method="delete">Sign Out</a>
-        <%= link_to "Switch to Normal View", toggle_normal_path, :class => "btn btn-large mobile_button_block" %>
+
+    <div class="mobile_button_wrapper">
+        <a href=<%=new_workorder_path%> class="btn btn-large mobile_button_block" >
+
+            <div class="words_in_button">
+               New Workorder
+            </div>
+            <div class="icon_in_button">
+                <%=image_tag "/icons/plus_32x32.png", :size => "32x32"%>
+            </div>
+        </a>
+        <a href="/open" class='btn btn-large mobile_button_block' type="button"><div class="words_in_button">Open Workorders</div><div class="icon_in_button"><%= image_tag "/icons/wrench_32x32.png", :size => "32x32"%></div></a>
+
     </div>
 </div>
 
@@ -49,7 +54,7 @@
                 <div class="mobile_footer_cell_wrapper">
                   <% if @parts.count > 0 %>
                   <div class="red-badge"><%=@parts.count%></div> <% end %>
-                  <div class="mobile_footer_cell_text">Parts To Order</div>
+                  <div class="mobile_footer_cell_text"><%=link_to "Parts", parts_path %></div>
                 </div>
               </td>
               <td class="mobile_footer_cell">
