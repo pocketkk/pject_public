@@ -10,7 +10,9 @@ class StaticPagesController < ApplicationController
      @workorders_pastdue = 0
      if @workorders
       @workorders.each do |workorder|
-        @workorders_pastdue +=1 unless workorder.wo_date >= Date.today
+        unless workorder.wo_date.nil?
+          @workorders_pastdue +=1 unless workorder.wo_date >= Date.today
+        end
       end
     end
 
