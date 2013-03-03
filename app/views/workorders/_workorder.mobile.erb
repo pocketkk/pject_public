@@ -32,25 +32,23 @@
 	</li>
 
 	<li class="li-cal-workorder-3">
-			<% workorder.assets.each do |a| %>
-				<div id="equipment"></div>
-				<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em> : Ready!</em><%end%></div>
-				<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
+		<% workorder.assets.each do |a| %>
+			<div id="equipment"></div>
+			<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em> : Ready!</em><%end%></div>
+			<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
 		<% end %>
 	</li>
+	<br />
 	<li class="li-cal-workorder-buttons">
 
 		<a href=<%=edit_workorder_path(workorder)%> type="button" class="btn btn-large" >Edit</a>
 
-			<% if current_user.admin==true %>
+		<% if current_user.admin==true %>
 			  <a href=<%=workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-
 		<% end %>
 		<% unless workorder.completed?%>
 		 	<a href=<%=complete_workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Don't forget to add After Photos to completed workorders." >Complete</a>
-
 		<% end %>
-
 	</li>
 
 <hr />
