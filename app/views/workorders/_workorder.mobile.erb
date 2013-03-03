@@ -18,7 +18,7 @@
 					<%=workorder.wo_type.titleize%>
 				</li>
 				<li class="li-cal-workorder-3">
-					Address: <%=workorder.street.titleize%>, <%=workorder.city.titleize%>, <%=workorder.state.upcase%>
+					<%=link_to "Address: #{workorder.street.titleize}, #{workorder.city.titleize}, #{workorder.state.upcase}", workorder.googlemaps_link%>
 				</li>
 				<li class="li-cal-workorder-3">
 						Contact: <%= workorder.contact.titleize%>
