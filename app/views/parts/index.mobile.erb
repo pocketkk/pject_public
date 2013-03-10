@@ -1,0 +1,7 @@
+<h2>Request Part</h2>
+<%= render 'form' %>
+<h2>Parts Needed (<%= @parts.count %>)</h2>
+<% if @parts.any? %>
+<%= render @parts %>
+<% end %>
+

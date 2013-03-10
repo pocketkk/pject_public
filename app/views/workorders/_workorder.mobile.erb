@@ -1,62 +1,101 @@
+<div class="li-workorder-wrapper">
+
 <% unless workorder.completed? || workorder.wo_date.nil? %>
 	<% if workorder.wo_date.to_date == Date.today %>
-		<div class="mobile_workorder_today">**Today**</div><br />
+		<div class="li-cal-status-wrapper">
+			<div class="li-cal-badge yellow">!</div><br />
+		</div>
 	<% end %>
 	<% if workorder.wo_date.to_date-1 == Date.today %>
-		<div class="mobile_workorder_tomorrow">**Tomorrow**</div><br />
+		<div class="li-cal-status-wrapper">
+			<div class="li-cal-badge yellow"></div><br />
+		</div>
 	<% end %>
 	<% if workorder.wo_date.to_date < Date.today %>
-		<div class="mobile_workorder_pastdue">**Past Due**</div><br />
+		<div class="li-cal-status-wrapper">
+			<div class="li-cal-badge pastdue">!</div><br />
+		</div>
 	<% end %>
 <% end %>
 
 <li class="li-cal-workorder">
-	<% unless workorder.wo_date.nil? %>
-    	<%= link_to workorder.wo_date.strftime("%I:%M %p"), edit_workorder_path(workorder), id: "change_datetime_#{workorder.id}", remote: true %> -
-    <% end %>
+	<% if workorder.wo_type == 'New Install' %>
+		<div class="li-wo-type new-install"></div>
+	<% end %>
+	<% if workorder.wo_type == 'Pull'%>
+		<div class="li-wo-type pull"></div>
+	<% end %>
+	<% if workorder.wo_type == 'Swap'%>
+		<div class="li-wo-type swap"></div>
+	<% end %>
+	<% if workorder.wo_type == 'Follow Up'%>
+		<div class="li-wo-type follow-up"></div>
+	<% end %>
+
     <%= link_to workorder.customer.titleize, workorder %>
 </li>
 
-<li class="li-cal-workorder-2">
-	<%=workorder.wo_type.titleize%>
-</li>
-<li class="li-cal-workorder-3">
-	<%=link_to "Address: #{workorder.street.titleize}, #{workorder.city.titleize}, #{workorder.state.upcase}", workorder.googlemaps_link%>
-</li>
-<li class="li-cal-workorder-3">
-	Contact: <%= workorder.contact.titleize%>
-</li>
-<li class="li-cal-workorder-3">
-	Phone Number: <%= number_to_phone(workorder.phonenumber, :area_code => true) %>
+<li class="li-workorder-date">
+	<div class="date-wrapper">
+		<div class="month-wrapper">
+			<%=workorder.wo_date.strftime("%^b")%>
+		</div>
+		<div class="day-wrapper">
+			<%=workorder.wo_date.strftime("%-d")%>
+		</div>
+		<div class="time-wrapper">
+			<%=workorder.wo_date.strftime("%l:%M%P")%>
+		</div>
+	</div>
+	<div class="li-workorder-address-wrapper">
+
+		<div class="li-workorder-address">
+			<%=workorder.street.titleize%><br />
+			<%=workorder.city.titleize%>, <%=workorder.state.upcase%><br />
+			<%= workorder.contact.titleize%>  <%= number_to_phone(workorder.phonenumber, :area_code => true) %><br />
+		</div>
+	</div>
 </li>
 
-<li class="li-cal-workorder-small">
+
+
+<li class="li-cal-workorder-3">
+	<% workorder.assets.each do |a| %>
+		<div id="equipment"></div>
+		<div id="equipment">
+			<%= a.name %> :
+			<%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%>
+			<% if a.ready==true%>
+				<em> : Ready!</em>
+			<%end%>
+		</div>
+		<div>
+			<%= progress_bar(a.status, :rounded => true, :tiny => true) %>
+		</div>
+	<% end %>
+</li>
+
+
+
+<li class="li-cal-workorder-buttons">
+
+	<a href=<%=edit_workorder_path(workorder)%> type="button" class="btn btn-large" >Edit</a>
+
+	<% if current_user.admin==true %>
+		  <a href=<%=workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+	<% end %>
+	<% unless workorder.completed?%>
+	 	<a href=<%=complete_workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Don't forget to add After Photos to completed workorders." >Complete</a>
+	<% end %>
+</li>
+
+
+	<li class="li-cal-workorder-small">
 	Opened by <%= workorder.user.name.titleize %> | Assigned to <%= workorder.assigned_to ? name_of_user(workorder.assigned_to) : ""%>
-</li>
-
-	<li class="li-cal-workorder-3">
-		<% workorder.assets.each do |a| %>
-			<div id="equipment"></div>
-			<div id="equipment"><%= a.name %> : <%= Workorder::ASSET_STATUS_OPTIONS.invert[a.status]%><% if a.ready==true%> <em> : Ready!</em><%end%></div>
-			<div><%= progress_bar(a.status, :color => 'blue', :rounded => true, :tiny => true) %></div>
-		<% end %>
-	</li>
-	<br />
-	<br />
-	<li class="li-cal-workorder-buttons">
-
-		<a href=<%=edit_workorder_path(workorder)%> type="button" class="btn btn-large" >Edit</a>
-
-		<% if current_user.admin==true %>
-			  <a href=<%=workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-		<% end %>
-		<% unless workorder.completed?%>
-		 	<a href=<%=complete_workorder_path(workorder)%> type="button" class="btn btn-large" data-confirm="Don't forget to add After Photos to completed workorders." >Complete</a>
-		<% end %>
 	</li>
 
 <hr />
-
+</div>
 
 
 

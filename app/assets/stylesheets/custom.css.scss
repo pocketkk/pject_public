@@ -232,13 +232,18 @@ input, textarea, select, .uneditable-input {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
-	height: auto;
+  margin-left: 5%;
+  width: 90%;
+  height: auto;
   padding: 5px;
   margin-bottom: 10px;
   @include box_sizing;
 }
 
+.workorder_form_photos_wrapper {
+    margin-left: 5%;
+    margin-right: 5%;
+}
 
 #error_explanation {
   color: #f00;
@@ -438,6 +443,11 @@ div.fields {
 	border-radius: 5px;
 	border: 1px solid $grayMedium;
 	padding: 10px;
+}
+
+.workorder_form_label {
+    font-size: 1.1em;
+    margin-left: 5%;
 }
 
 .work_wrapper {

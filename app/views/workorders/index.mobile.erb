@@ -1,13 +1,17 @@
-<div class="mobile_workorder_form">
+
 <h2>Search for Workorder</h2>
 <%= search_form_for @search do |f| %>
-	<%= f.label :customer_cont, "Customer" %>
+	<%= f.label :customer_cont, "Customer:", :class => "workorder_form_label" %>
 	<%= f.text_field :customer_cont %>
 	<center>
-		<%= f.submit "Search", class: "btn btn-large btn-primary" %>
+		<%= f.submit "Search", class: "btn btn-large" %>
 	</center>
 <% end %>
 
+<div class="cal-date-contents">
 
-<%= render 'results' %>
+    <ul class="ul-cal-date">
+       <%= render 'results' %>
+    </ul>
+
 </div>

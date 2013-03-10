@@ -1,0 +1,12 @@
+<h2>Search Videos</h2>
+  <%= render 'videos/search_form' %>
+<hr />
+<div class="mobile_videos_wrapper">
+  <h2><%= @page_title %></h2>
+  <% @videos.each do |video| -%>
+        <%= render :partial => 'video', :locals => {:video => video} %>
+  <% end %>
+</div><br />
+<br />
+<center><%= link_to "New Video", new_video_path %></center>
+

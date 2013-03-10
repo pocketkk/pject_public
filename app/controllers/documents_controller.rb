@@ -29,7 +29,7 @@ class DocumentsController < ApplicationController
 
   def email
     @document = Document.find(params[:id])
-    #PdfMailer.mail_pdf(@document, params[:email]).deliver
+    PdfMailer.mail_pdf(@document, params[:email]).deliver
   end
 
   def new

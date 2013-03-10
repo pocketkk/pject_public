@@ -1,0 +1,39 @@
+<div class="mobile_documents">
+        <table width="100%" class="table-bordered table-condensed table-striped">
+        <tr>
+            <td>
+                <%= raw yt_client.my_video(video.yt_video_id).embed_html({:width => '100%'}) %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= video.title.upcase %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                 <%= video.description %>
+            </td>
+        </tr>
+        <tr>
+            <td width=175 class="tags">
+                Tags: <%= raw video.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+            </td>
+        </tr>
+        <tr>
+            <td class="edit_or_delete">
+                <%= link_to "Comments (#{video.comments.count})", video %>
+            </td>
+        </tr>
+        <% if current_user.admin? %>
+            <tr>
+                <td class="edit_or_delete">
+                    <%= link_to "Show", video_path(video) %> |
+                    <%= link_to "Edit", edit_video_path(video) %> |
+                    <%= link_to "Delete", video_path(video), :method => :delete, :confirm => "Are you sure?" %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>
+

@@ -70,9 +70,10 @@ Pject::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/search', to: 'workorders#index'
   match '/open', to: 'workorders#open', :as => 'open_workorders_path'
-
-
-
+  match '/pastdue', to: 'workorders#past_due', :as => 'pastdue_workorders_path'
+  match '/unassigned', to: 'workorders#unassigned', :as => 'unassigned_path'
+  match '/need_to_order', to: 'workorders#need_to_order', :as => 'need_to_order_path'
+  match '/timeoff', to: 'workorders#timeoff', :as => 'timeoff'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

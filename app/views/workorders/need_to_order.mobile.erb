@@ -1,0 +1,10 @@
+<h2 class='small-fonts-header'>Need to Order</h2>
+<table class="table table-bordered table-condensed">
+    <th class='small-fonts'>Machines</th>
+            <% @assets_need_to_order.each do |asset| %>
+    <tr>
+        <td class='small-fonts'><%=link_to asset.workorder.customer.titleize, workorder_path(asset.workorder)%></td>
+        <td class='small-fonts'><%=asset.name%></td>
+    </tr>
+    <% end %>
+</table>

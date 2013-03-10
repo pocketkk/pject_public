@@ -14,13 +14,16 @@
         <a href=<%=new_workorder_path%> class="btn btn-large mobile_button_block" >
 
             <div class="words_in_button">
-               New Workorder
+               New <br /> Workorder
             </div>
             <div class="icon_in_button">
-                <%=image_tag "/icons/plus_32x32.png", :size => "32x32"%>
+                <%=image_tag "/icons/appbar.cog.png", :size => "32x32"%>
             </div>
         </a>
-        <a href="/open" class='btn btn-large mobile_button_block' type="button"><div class="words_in_button">Open Workorders</div><div class="icon_in_button"><%= image_tag "/icons/wrench_32x32.png", :size => "32x32"%></div></a>
+        <a href="/open" class='btn btn-large mobile_button_block' type="button"><div class="words_in_button">Open Workorders</div><div class="icon_in_button"><%= image_tag "/icons/appbar.column.one.png", :size => "32x32"%></div></a>
+        <a href="/workorders" class='btn btn-large mobile_button_block' type="button"><div class="words_in_button">Search Workorders</div><div class="icon_in_button"><%= image_tag "/icons/appbar.magnify.png", :size => "32x32"%></div></a>
+        <a href="/calendar" class='btn btn-large mobile_button_block' type="button"><div class="words_in_button"><br />Calendar</div><div class="icon_in_button"><%= image_tag "/icons/appbar.calendar.png", :size => "32x32"%></div></a>
+                <a href="/documents" class='btn btn-large mobile_button_block' type="button"><div class="words_in_button"><br />Documents</div><div class="icon_in_button"><%= image_tag "/icons/appbar.book.open.writing.png", :size => "32x32"%></div></a>        <a href="/videos" class='btn btn-large mobile_button_block' type="button"><div class="words_in_button"><br />Videos</div><div class="icon_in_button"><%= image_tag "/icons/appbar.film.png", :size => "32x32"%></div></a>
 
     </div>
 </div>
@@ -31,23 +34,23 @@
               <td class="mobile_footer_cell">
                 <div class="mobile_footer_cell_wrapper">
                   <% if @workorders_pastdue > 0 %>
-                  <div class="red-badge"><%=@workorders_pastdue %></div>
+                    <div class="red-badge"><%=@workorders_pastdue %></div>
                   <% end %>
-                  <div class="mobile_footer_cell_text">Past Due Workorders</div>
+                  <div class="mobile_footer_cell_text"><%=link_to "Past Due Workorders", '/pastdue' %></div>
                 </div>
               </td>
               <td class="mobile_footer_cell">
                 <div class="mobile_footer_cell_wrapper">
                   <% if @assets_without_serials.count > 0 %>
                   <div class="red-badge"><%=@assets_without_serials.count %></div> <% end %>
-                  <div class="mobile_footer_cell_text">Equipment Unassigned</div>
+                  <div class="mobile_footer_cell_text"><%=link_to "Equipment Unassigned", "/unassigned" %></div>
                 </div>
               </td>
               <td class="mobile_footer_cell">
                 <div class="mobile_footer_cell_wrapper">
                   <% if @workorders_without_dates.count > 0 %>
                   <div class="red-badge"><%=@workorders_without_dates.count%></div> <% end %>
-                  <div class="mobile_footer_cell_text">Equipment To Order</div>
+                  <div class="mobile_footer_cell_text"><%=link_to "Equipment To Order", '/need_to_order'%></div>
                 </div>
               </td>
               <td class="mobile_footer_cell">
@@ -62,7 +65,7 @@
                   <% if @user_days_off_unapproved_count > 0 %>
                     <div class="red-badge"><%= @user_days_off_unapproved_count %></div>
                     <% end %>
-                  <div class="mobile_footer_cell_text">Time Off Requests</div>
+                  <div class="mobile_footer_cell_text"><%=link_to "Time Off Requests", "/timeoff/"%></div>
                 </div>
               </td>
             </tr>

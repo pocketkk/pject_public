@@ -14,6 +14,7 @@ $workorderRed: #9d261d;
 $workorderRedLight: rgb(254,103,103);
 $workorderBlue: #049cdb;
 $workorderBlack: black;
+$workorderYellow: rgb(251,176,71);
 $workorderGreen: #45a546;
 
 $calBlack: rgb(50,50,50);
@@ -296,14 +297,245 @@ $calBlackLight: rgb(33,33,33);
 	font-size: 1em;
 	font-weight: 600;
 }
+.li-workorder-wrapper {
+	width: 100%;
+}
+
+.li-cal-status-wrapper {
+	position: relative;
+	margin-top: -30px;
+}
+.li-cal-badge {
+	display: inline-block;
+	border-style: solid;
+	border-width: 2px;
+	border-color: white;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	line-height: .95em;
+	text-align: center;
+	font-family: 'Stardos Stencil', cursive;
+	font-weight: 700;
+	font-size: 1.75em;
+	color: white;
+	text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 1px 0 0 rgba(255,255,255,0.15) inset;
+
+	position: absolute;
+	top: 30px;
+	right: 25px;
+	-moz-box-shadow:    0px 1px 1px -1px black;
+  	-webkit-box-shadow: 0px 1px 1px -1px black;
+  	box-shadow:         0px 1px 1px -1px black;
+}
+
+.pastdue {
+	background-image: -webkit-linear-gradient(red, $workorderRed);
+	background-image: -moz-linear-gradient(red, $workorderRed);
+	background-image: -o-linear-gradient(red, $workorderRed);
+	background-image: -ms-linear-gradient(red, $workorderRed);
+	background-image: linear-gradient(red, $workorderRed);
+
+}
+
+.yellow {
+
+	background-image: -webkit-linear-gradient(yellow, $workorderYellow);
+	background-image: -moz-linear-gradient(yellow, $workorderYellow);
+	background-image: -o-linear-gradient(yellow, $workorderYellow);
+	background-image: -ms-linear-gradient(yellow, $workorderYellow);
+	background-image: linear-gradient(yellow, $workorderYellow);
+}
+
+.li-wo-type {
+	position: relative;
+	border-radius: 1px;
+	margin-top: -1em;
+	margin-bottom: -8em;
+	left: -.75em;
+	top: .75em;
+	height: 9em;
+	width: .35em;
+}
+
+.new-install {
+background: -moz-linear-gradient(top,  rgba(69,165,70,1) 0%, rgba(40,204,22,0.16) 84%, rgba(40,204,22,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,165,70,1)), color-stop(84%,rgba(40,204,22,0.16)), color-stop(100%,rgba(40,204,22,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(69,165,70,1) 0%,rgba(40,204,22,0.16) 84%,rgba(40,204,22,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(69,165,70,1) 0%,rgba(40,204,22,0.16) 84%,rgba(40,204,22,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(69,165,70,1) 0%,rgba(40,204,22,0.16) 84%,rgba(40,204,22,0) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(69,165,70,1) 0%,rgba(40,204,22,0.16) 84%,rgba(40,204,22,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45a546', endColorstr='#0028cc16',GradientType=0 ); /* IE6-9 */
+}
+
+.pull {
+background: -moz-linear-gradient(top,  rgba(157,38,29,1) 0%, rgba(254,103,103,0.16) 84%, rgba(254,103,103,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(157,38,29,1)), color-stop(84%,rgba(254,103,103,0.16)), color-stop(100%,rgba(254,103,103,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(157,38,29,1) 0%,rgba(254,103,103,0.16) 84%,rgba(254,103,103,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(157,38,29,1) 0%,rgba(254,103,103,0.16) 84%,rgba(254,103,103,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(157,38,29,1) 0%,rgba(254,103,103,0.16) 84%,rgba(254,103,103,0) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(157,38,29,1) 0%,rgba(254,103,103,0.16) 84%,rgba(254,103,103,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9d261d', endColorstr='#00fe6767',GradientType=0 ); /* IE6-9 */
+}
+
+.swap {
+background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(0,0,0,0.16) 84%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(84%,rgba(0,0,0,0.16)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.16) 84%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.16) 84%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.16) 84%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,0.16) 84%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+.follow-up {
+background: -moz-linear-gradient(top,  rgba(4,156,219,1) 0%, rgba(88,180,216,0.16) 84%, rgba(88,180,216,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(4,156,219,1)), color-stop(84%,rgba(88,180,216,0.16)), color-stop(100%,rgba(88,180,216,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(4,156,219,1) 0%,rgba(88,180,216,0.16) 84%,rgba(88,180,216,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(4,156,219,1) 0%,rgba(88,180,216,0.16) 84%,rgba(88,180,216,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(4,156,219,1) 0%,rgba(88,180,216,0.16) 84%,rgba(88,180,216,0) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(4,156,219,1) 0%,rgba(88,180,216,0.16) 84%,rgba(88,180,216,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#049cdb', endColorstr='#0058b4d8',GradientType=0 ); /* IE6-9 */
+}
+
+.li-workorder-date {
+	position: relative;
+	width: 100%;
+}
+
+.li-workorder-address-wrapper {
+	position: relative;
+	margin-left: 85px;
+	margin-top: -53px;
+	border-radius: 2px;
+	width: 65%;
+	border: thin $grayMedium 1px;
+}
+
+.li-workorder-address {
+	margin-left: 5px;
+}
+
+.li-workorder-label {
+	position: absolute;
+	top: 20px;
+	left: -20px;
+	height: 20px;
+	width: 40px;
+	background-color: $grayMedium;
+	font-weight: 700;
+	text-align: center;
+	color: $grayLightest;
+
+	/* Safari */
+-webkit-transform: rotate(-90deg);
+
+/* Firefox */
+-moz-transform: rotate(-90deg);
+
+/* IE */
+-ms-transform: rotate(-90deg);
+
+/* Opera */
+-o-transform: rotate(-90deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+
+
+.date-wrapper {
+	position: relative;
+	margin-left: 25px;
+	height: 50px;
+	width: 50px;
+	border-radius: 2px;
+	border: solid $grayMedium 1px;
+}
+
+.month-wrapper {
+	width: 100%;
+	height: 15px;
+	font-size: 1em;
+	text-align: center;
+	vertical-align: top;
+	color: white;
+	margin-top: -1px;
+	background-color: $grayMedium;
+}
+
+.day-wrapper {
+	margin-top: 2px;
+	width: 100%;
+	height: 20px;
+	font-size: 2em;
+	background-color: white;
+	font-color: black;
+	text-align: center;
+	border-bottom: solid black 1px;
+}
+
+.time-wrapper {
+	margin-top: -3px;
+	height: 15px;
+	width: 100%;
+	font-size: .75em;
+	text-align: center;
+	background-color: white;
+
+
+}
+
+.li-cal-today {
+	position: relative;
+	font-family: 'Stardos Stencil', cursive;
+	font-weight: 700;
+	color: $workorderGreen;
+	bottom: -110px;
+	font-size: 4em;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+	filter: alpha(opacity=30);
+	opacity: .3;
+	margin-left: 60px;
+}
 
 .li-cal-workorder {
 	font-family: 'Electrolize', sans-serif;
-	text-shadow: 1px 1px 1px #ccc;
+	text-shadow: 0px 1px 2px #ccc;
 	padding: 5px;
-	margin-left: 10px;
-	font-size: 1em;
+	padding-bottom: 10px;
+	margin-top: 15px;
+	margin-left: 20px;
+	font-size: 1.5em;
 	font-weight: 600;
+}
+
+.li-cal-workorder a, .li-cal-workorder a:hover{
+	text-decoration: none;
+}
+
+.li-new-install-workorder {
+	height: 10px;
+	width: 100%;
+	background-image: -webkit-linear-gradient($workorderGreen, green 50%);
+	background-image: -moz-linear-gradient($workorderGreen, green 50%);
+	background-image: -o-linear-gradient($workorderGreen, green 50%);
+	background-image: -ms-linear-gradient($workorderGreen, green 50%);
+	background-image: linear-gradient($workorderGreen, green 50%);
+}
+
+.li-new-install-workorder-bottom {
+	margin-top: 10px;
+	height: 10px;
+	width: 100%;
+	background-image: -webkit-linear-gradient($workorderGreen, green 50%);
+	background-image: -moz-linear-gradient($workorderGreen, green 50%);
+	background-image: -o-linear-gradient($workorderGreen, green 50%);
+	background-image: -ms-linear-gradient($workorderGreen, green 50%);
+	background-image: linear-gradient($workorderGreen, green 50%);
 }
 
 .li-cal-workorder-2 {
@@ -313,21 +545,22 @@ $calBlackLight: rgb(33,33,33);
 
 }
 .li-cal-workorder-3 {
-	margin-left: 40px;
+	margin-left: 25px;
 	margin-top: -2px;
 	margin-right: 40px;
+	font-style: italic;
 
 }
 
 .li-cal-workorder-small {
-	margin-left: 40px;
-	margin-top: -2px;
+	margin-left: 27px;
+	margin-top: 10px;
 	font-size: .75em;
 }
 
 .li-cal-workorder-buttons {
-	margin-left: 40px;
-	margin-top: -10px;
+	margin-left: 25px;
+	margin-top: 20px;
 }
 
 .small-red-circle {
@@ -394,30 +627,35 @@ $calBlackLight: rgb(33,33,33);
 
 .mobile_button_block {
 	position: relative;
+	font-size: .5em;
 	padding: 50px;
 	display: inline-block;
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 }
 
 .mobile_workorder_today {
 	text-align: right;
 	color: $workorderGreen;
-	margin-bottom: -20px;
+	margin-bottom: -60px;
 
 }
 .mobile_workorder_tomorrow {
 	text-align: right;
 	color: $workorderBlue;
-	margin-bottom: -30px;
+	margin-bottom: -60px;
 
 }
 .mobile_workorder_pastdue {
 	text-align: right;
 	color: $workorderRed;
-	margin-bottom: -40px;
+	margin-bottom: -60px;
 	margin-right: 20px;
 
+}
+
+.margin-5 {
+	margin-left: 5%;
 }
 
 .mobile_container {
@@ -605,13 +843,19 @@ $calBlackLight: rgb(33,33,33);
 }
 
 .icon_in_button {
-	position: relative;
-	bottom: -20px;
+	position: absolute;
+	bottom: 3px;
+	left: 22px;
 }
 
 .words_in_button {
-	position: relative;
-	top: 10px;
+	position: absolute;
+	width: 100%;
+	font-weight: 700;
+	text-align: center;
+	top: 5px;
+	left: 0px;
+	font-size: 10px;
 
 }
 

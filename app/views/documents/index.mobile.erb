@@ -1,7 +1,6 @@
 
-<div class="mobile_workorder_form">
 <h2>Search Documents</h2>
-<center><%= render 'documents/search_form' %></center>
+<%= render 'documents/search_form' %>
 <hr />
 <h2><%= @page_title %></h2>
     <% @documents.each do |document| %>
@@ -11,4 +10,4 @@
     <% end %>
 
 <center><%= link_to "Add New Document", new_document_path %></center>
-</div>
+

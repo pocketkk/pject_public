@@ -11,6 +11,22 @@ class WorkordersController < ApplicationController
     @completed_workorders=Workorder.wo_current_branch(current_user.current_branch).wo_recently_completed if signed_in?
   end
 
+  def past_due
+    @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.where('wo_date between ? and ?', Date.today-100.years, Date.today-1).ascending.paginate(page: params[:page], :per_page => 5) if signed_in?
+  end
+
+  def unassigned
+    @assets_without_serials = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).serial_blank.order('workorders.wo_date ASC') if signed_in?
+  end
+
+  def need_to_order
+    @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0') if signed_in?
+  end
+
+  def timeoff
+    @users = User.where("current_branch=?",current_user.current_branch) if signed_in?
+  end
+
   def calendar
     ### Mobile Requests ###
     @workorders_mobile=Workorder.wo_current_branch(current_user.current_branch).where('wo_date IS NOT NULL').ascending

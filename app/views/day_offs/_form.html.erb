@@ -1,18 +1,18 @@
 <%= form_for @day_off do |f| %>
 <% if current_user.role=='Branch Manager' || current_user.role=='Regional Manager'%>
-    <%= f.label :user_id %>
+    <%= f.label :user_id, :class => "workorder_form_label" %>
     <%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, (@user ? @user.id : current_user.id)) %>
 <% else %>
     <%= f.hidden_field :user_id, :value=> current_user.id %>
 <% end %>
-    <%= f.label :start_date %>
+    <%= f.label :start_date, :class => "workorder_form_label" %>
     <%= f.date_select :start_date %>
-    <%= f.label :end_date %>
+    <%= f.label :end_date, :class => "workorder_form_label" %>
     <%= f.date_select :end_date %>
-    <%= f.label :do_type, "Vacation, Sick or Other" %>
+    <%= f.label :do_type, "Vacation, Sick or Other", :class => "workorder_form_label" %>
     <%= f.select :do_type, { "Vacation" => "Vacation", "Floating Holiday" => "Floating Holiday", "Sick" => "Sick", "Other" => "Other"} %>
     <% if current_user.role == 'Branch Manager' || current_user.role == 'Regional Manager' %>
-        <%= f.label :approved, "Approve Time Off" %>
+        <%= f.label :approved, "Approve Time Off", :class => "workorder_form_label" %>
         <%= f.select :approved, { "No" => false, "Yes" => true}%>
     <% end %>
 

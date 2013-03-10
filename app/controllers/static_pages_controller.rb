@@ -20,7 +20,9 @@ class StaticPagesController < ApplicationController
      if @users
       @users.each do |user|
         user.day_offs.each do |day_off|
-          @user_days_off_unapproved_count +=1 unless day_off.approved
+          if day_off.start_date >= Date.today || Date.today <= day_off.end_date
+            @user_days_off_unapproved_count +=1 unless day_off.approved
+          end
         end
       end
     end

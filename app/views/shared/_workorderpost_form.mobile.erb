@@ -1,91 +1,92 @@
-<div class="mobile_workorder_form">
+
 <%= nested_form_for @workorder, :html => { :class => 'form-vertical', :multipart => true }  do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <%= f.label :wo_type, "Workorder Category:"%>
+    <%= f.label :wo_type, "Workorder Category:", :class => "workorder_form_label"%>
     <%= f.select :wo_type, Workorder::WORKORDER_TYPES%>
-  <%= f.label :customer, "Customer:" %>
+  <%= f.label :customer, "Customer:", :class => "workorder_form_label" %>
     <%= f.text_field :customer %>
-    <%= f.label :street, "Street Address:" %>
+    <%= f.label :street, "Street Address:", :class => "workorder_form_label" %>
     <%= f.text_field :street %>
-    <%= f.label :city, "City:" %>
+    <%= f.label :city, "City:", :class => "workorder_form_label" %>
     <%= f.text_field :city %>
-    <%= f.label :state, "State:"%>
+    <%= f.label :state, "State:", :class => "workorder_form_label"%>
     <%= f.text_field :state %>
-    <%= f.label :raw_phonenumber, "Phone Number:" %>
+    <%= f.label :raw_phonenumber, "Phone Number:", :class => "workorder_form_label" %>
     <%= f.text_field :raw_phonenumber %>
-    <%= f.label :contact, "Contact:"%>
+    <%= f.label :contact, "Contact:", :class => "workorder_form_label"%>
     <%= f.text_field :contact %>
-    <%= f.label :chronic_wo_date, "Date and Time:" %>
+    <%= f.label :chronic_wo_date, "Date and Time:", :class => "workorder_form_label" %>
     <%= f.text_field :chronic_wo_date %>
-    <%= f.label :wo_duration, "Estimated duration in hours:" %>
+    <%= f.label :wo_duration, "Estimated duration in hours:", :class => "workorder_form_label" %>
     <%= f.text_field :wo_duration %>
-    <%= f.label :misc_notes, "Additional notes:"%>
+    <%= f.label :misc_notes, "Additional notes:", :class => "workorder_form_label"%>
     <%= f.text_area :misc_notes, :rows => "4",placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
-    <%= f.label :branch, "Branch"%>
+    <%= f.label :branch, "Branch", :class => "workorder_form_label"%>
     <%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
 
-    <%= f.label :assigned_to, "To be completed by:"%>
+    <%= f.label :assigned_to, "To be completed by:", :class => "workorder_form_label"%>
     <%= f.select :assigned_to, options_from_collection_for_select(@users, :id, :name, (@installer ? @installer.id : 1))%>
 
-    <%= f.label :completed, "Completed?"%>
+    <%= f.label :completed, "Completed?", :class => "workorder_form_label"%>
     <%= f.select :completed, { "No" => false, "Yes" => true}%>
 
     <br />
-    <h3>Photos</h3><br />
+
+    <h3 class="margin-5">Photos</h3><br />
     <%= f.fields_for :before_photos do |bp|%>
         <%= image_tag(bp.object.photo_url) if bp.object.photo? %>
-        <%= bp.file_field :photo %>
+        <%= bp.file_field :photo, :class => "margin-5" %>
         <%= bp.hidden_field :photo_cache%>
         <center><%= bp.link_to_remove "Remove Before-Photo" %></center>
     <% end %>
-    <%=f.link_to_add "Add Before-Photo", :before_photos %>
+    <%=f.link_to_add "Add Before-Photo", :before_photos, :class => "margin-5" %>
     <br /><br />
     <%= f.fields_for :after_photos do |ap|%>
         <%= image_tag(ap.object.photo_url) if ap.object.photo? %>
-        <%= ap.file_field :photo %>
+        <%= ap.file_field :photo, :class => "margin-5" %>
         <%= ap.hidden_field :photo_cache%>
         <center><%= ap.link_to_remove "Remove After-Photo" %><center>
     <% end %>
-    <%=f.link_to_add "Add After-Photo", :after_photos %>
+    <%=f.link_to_add "Add After-Photo", :after_photos, :class => "margin-5" %>
     <br /><br />
 
-    <h3>Equipment & Chemicals</h3><br />
+    <h3 class="margin-5">Equipment & Chemicals</h3><br />
     <%= f.fields_for :assets do |m| %>
-        <%= m.label :name, "Model Number/Machine type"%>
+        <%= m.label :name, "Model Number/Machine type", :class => "workorder_form_label"%>
         <%= m.select :name, Option::EQUIPMENT_MODELS %>
-        <%= m.label :serial, "Serial Number (If known)" %>
+        <%= m.label :serial, "Serial Number (If known)", :class => "workorder_form_label" %>
         <%= m.text_field :serial %>
         <% if current_user.role=="Branch Manager"||"Regional Manager"||"Rebuilder"||"Installer"%>
-            <%= m.label :status, "Equipment Status"%>
+            <%= m.label :status, "Equipment Status", :class => "workorder_form_label"%>
             <%= m.select :status, options_for_select(Workorder::ASSET_STATUS_OPTIONS, m.object.status) %>
-            <%= m.label :ready, "Ready for Install?"%>
+            <%= m.label :ready, "Ready for Install?", :class => "workorder_form_label"%>
             <%= m.select :ready, { "No" => false, "Yes" => true}%>
         <% end %>
-        <%= m.label :water_plumbing, "Water Connection"%>
+        <%= m.label :water_plumbing, "Water Connection", :class => "workorder_form_label"%>
         <%= m.select :water_plumbing, Option::WATER_PLUMBING %>
-        <%= m.label :drain_plumbing, "Drain Connection"%>
+        <%= m.label :drain_plumbing, "Drain Connection", :class => "workorder_form_label"%>
         <%= m.select :drain_plumbing, Option::DRAIN_PLUMBING %>
-        <%= m.label :electrical_option, "Electrical Connection"%>
+        <%= m.label :electrical_option, "Electrical Connection", :class => "workorder_form_label"%>
         <%= m.select :electrical_option, Option::ELECTRICAL_OPTIONS %>
 
         <center><%= m.link_to_remove "Remove Equipment" %></center>
         <%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>
-            <%= o.label :name, "Equipment Option" %>
+            <%= o.label :name, "Equipment Option", :class => "workorder_form_label" %>
             <%= o.select :name, Option::EQUIPMENT_OPTIONS %>
             <center><%= o.link_to_remove "Remove Option" %></center>
 
         <% end %>
         <br /><%= m.link_to_add "Add Equipment Option", :options%>
         <%= m.fields_for :chemicals, :html => {:class => "chemical_post"} do |c| %>
-            <%= c.label :name, "Product" %>
+            <%= c.label :name, "Product", :class => "workorder_form_label" %>
             <%= c.text_field :name %>
-            <%= c.label :quantity, "Quantity" %>
+            <%= c.label :quantity, "Quantity", :class => "workorder_form_label" %>
             <%= c.text_field :quantity %>
             <center><%= c.link_to_remove "Remove Product"%></center>
         <% end %>
           <br /><%= m.link_to_add "Add Product", :chemicals%>
         <%= m.fields_for :assetnotes, :html => {:class => "chemical_post"} do |n| %>
-            <%= n.label :content, "Equipment Note" %>
+            <%= n.label :content, "Equipment Note", :class => "workorder_form_label" %>
             <%= n.text_area :content, :rows => "4" %>
             <center><%= n.link_to_remove "Remove Note"%></center>
         <% end %>
@@ -100,9 +101,9 @@
         <br /><%=m.link_to_add "Add Photo of Current Equipment", :asset_photos %>
 
     <% end %>
-<%=f.link_to_add "Add Equipment", :assets %>
+<%=f.link_to_add "Add Equipment", :assets, :class => "margin-5" %>
     <br /><br />
-    <center><%= f.submit "Submit", class: "btn btn-large mobile_button_block"%></center>
+    <center><%= f.submit "Submit", class: "btn btn-large"%></center>
 <% end %>
 
-</div>
+

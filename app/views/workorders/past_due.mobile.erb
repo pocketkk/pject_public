@@ -1,0 +1,11 @@
+    <h2>Past Due Workorders (<%= @workorders.count %>)</h2>
+    <hr />
+<div class="cal-date-contents">
+    <% if @workorders.any? %>
+    <ul class="ul-cal-date">
+       <%= render @workorders %>
+    </ul>
+     <center><%= will_paginate @workorders %></center>
+   <% end %>
+    <br />
+ </div>
