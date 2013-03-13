@@ -36,18 +36,30 @@
 </li>
 
 <li class="li-workorder-date">
-	<% unless workorder.wo_date.nil? %>
-	<div class="date-wrapper">
-		<div class="month-wrapper">
-			<%=workorder.wo_date.strftime("%^b")%>
+	<% if workorder.wo_date.nil? %>
+		<div class="date-wrapper">
+			<div class="month-wrapper">
+
+			</div>
+			<div class="day-wrapper">
+
+			</div>
+			<div class="time-wrapper">
+				Not Scheduled
+			</div>
 		</div>
-		<div class="day-wrapper">
-			<%=workorder.wo_date.strftime("%-d")%>
+	<% else %>
+		<div class="date-wrapper">
+			<div class="month-wrapper">
+				<%=workorder.wo_date.strftime("%^b")%>
+			</div>
+			<div class="day-wrapper">
+				<%=workorder.wo_date.strftime("%-d")%>
+			</div>
+			<div class="time-wrapper">
+				<%=workorder.wo_date.strftime("%l:%M%P")%>
+			</div>
 		</div>
-		<div class="time-wrapper">
-			<%=workorder.wo_date.strftime("%l:%M%P")%>
-		</div>
-	</div>
 	<% end %>
 	<div class="li-workorder-address-wrapper">
 
