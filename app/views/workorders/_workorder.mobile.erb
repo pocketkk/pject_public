@@ -36,6 +36,7 @@
 </li>
 
 <li class="li-workorder-date">
+	<% unless workorder.wo_date.nil? %>
 	<div class="date-wrapper">
 		<div class="month-wrapper">
 			<%=workorder.wo_date.strftime("%^b")%>
@@ -47,6 +48,7 @@
 			<%=workorder.wo_date.strftime("%l:%M%P")%>
 		</div>
 	</div>
+	<% end %>
 	<div class="li-workorder-address-wrapper">
 
 		<div class="li-workorder-address">
