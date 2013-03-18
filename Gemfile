@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
-gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'chronic'
@@ -31,9 +30,7 @@ gem 'mobylette'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
-  gem 'sqlite3', '1.3.5'
-  gem 'rspec-rails','2.11.0'
-  gem 'nifty-generators'
+
 end
 
 # Gems used only for assets and not required
@@ -50,9 +47,21 @@ end
 
 
 
-group :test do
-  gem 'capybara', '1.1.2'
+group :test, :development do
+  gem 'sqlite3', '1.3.5'
+  gem 'rspec-rails','2.11.0'
+  gem 'nifty-generators'
+  gem 'capybara'
   gem 'factory_girl_rails', '1.4.0'
+  gem 'faker', '1.0.1'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'rb-fsevent', '~>0.9'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'spork-rails'
+  # gem 'guard-bundler'
+  # gem 'guard-livereload'
 end
 
 group :production do
@@ -74,4 +83,3 @@ end
 # To use debugger
 # gem 'debugger'
 
-gem "mocha", :group => :test

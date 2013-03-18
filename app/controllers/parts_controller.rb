@@ -32,8 +32,10 @@ class PartsController < ApplicationController
       @update.feed_item=current_user.name.titleize << " added " << @part.name.titleize << " to the parts list."
       @update.user_id=current_user.id
       @update.save
-      flash[:success] = "Added to Parts List!"
-      redirect_to parts_path
+      respond_to do |format|
+          format.html { redirect_to parts_url, :notice  => "Added Part." }
+          format.mobile {redirect_to parts_url, :notice  => "Added Part." }
+        end
     else
       render :action => 'new'
     end

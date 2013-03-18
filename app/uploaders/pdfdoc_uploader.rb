@@ -12,8 +12,11 @@ class PdfdocUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
-  storage :fog
+  if Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
   process :set_content_type
 
   # Override the directory where uploaded files will be stored.
@@ -49,7 +52,7 @@ class PdfdocUploader < CarrierWave::Uploader::Base
      process :paper_shape
      def full_filename (for_file = model.logo.file)
         super.chomp(File.extname(super)) + '.jpg'
-      end     
+      end
    end
 
   version :thumb do
@@ -57,14 +60,12 @@ class PdfdocUploader < CarrierWave::Uploader::Base
      process :convert => 'jpg'
      process :paper_shape
      process :convert => 'jpg'
-     
+
      def full_filename (for_file = model.logo.file)
        super.chomp(File.extname(super)) + '.jpg'
-     end     
+     end
   end
-  
- 
-  
+
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :scale => [50, 50]

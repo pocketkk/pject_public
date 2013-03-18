@@ -54,7 +54,6 @@ class Workorder < ActiveRecord::Base
   validates :state, presence: true
   validates :phonenumber, presence: true
   validates :contact, presence: true
-#  validates :wo_date, presence: true
   validates :wo_duration, presence: true
   validates_length_of :misc_notes, :maximum => 200
 
@@ -62,9 +61,9 @@ class Workorder < ActiveRecord::Base
    "http://maps.apple.com/maps?q=#{self.gmaps4rails_address.gsub(" ", "%20")}"
  end
 
-def googlemaps_image
+ def googlemaps_image
   "http://maps.googleapis.com/maps/api/staticmap?center=#{gmaps4rails_address}&zoom=14&size=400x400&markers=color:blue%7Clabel:A%7C#{gmaps4rails_address}&sensor=false"
-end
+ end
 
  def gmaps4rails_address
    "#{self.street}, #{self.city}, #{self.state}"

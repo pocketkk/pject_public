@@ -2,16 +2,13 @@ require 'spec_helper'
 
 describe User do
 
-    before :each do
-            @user = FactoryGirl.build(:user)
-    end
-
     it "has a valid factory" do
         expect(FactoryGirl.build(:user)).to be_valid
     end
 
     it "is valid with a name" do
-        expect(@user).to be_valid
+        user = FactoryGirl.build(:user)
+        expect(user).to be_valid
     end
 
     it "is invalid without a name" do
@@ -60,7 +57,7 @@ describe User do
         expect(user).to be_valid
     end
 
-    it "has username saved without spaces" do
+    it "has username saved with spaces stripped" do
         user = FactoryGirl.create(:user, name: " Jason Crump ")
         expect(user.name).to eq "Jason Crump"
     end

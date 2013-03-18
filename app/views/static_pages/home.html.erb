@@ -2,7 +2,7 @@
 <% if signed_in? %>
 
   <div class="row">
-	<aside class="span4">  
+	<aside class="span4">
 	<section>
 		<br/>
 		<h2>New Workorder</h2>
@@ -11,7 +11,7 @@
     </aside>
 		<%= render 'shared/workorders_display' %>
 		<%= render 'shared/workorders_feed'%>
-  </div>  
+  </div>
 <% else %>
 <div class="center hero-unit">
 	<h1>Work Order Machine</h1>
@@ -19,4 +19,4 @@
 		</p>
 	<%= link_to "Sign In", signin_path, class: "btn btn-large btn-primary" %>
 </div>
-<% end %> 
+<% end %>

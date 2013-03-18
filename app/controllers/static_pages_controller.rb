@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
      if @workorders
       @workorders.each do |workorder|
         unless workorder.wo_date.nil?
-          @workorders_pastdue +=1 unless workorder.wo_date >= Date.today
+          @workorders_pastdue +=1 unless workorder.wo_date >= Date.today - 1.day
         end
       end
     end
@@ -49,6 +49,11 @@ class StaticPagesController < ApplicationController
   def toggle_mobile
     session[:mobylette_override] = nil unless session[:mobylette_override] == nil
     redirect_to root_url, :notice  => "Toggled mobile view!"
+  end
+
+  def test_mobile
+    session[:mobylette_override] = :force_mobile
+    redirect_to root_url, :notice  => "Forced mobile view!"
   end
 
   def toggle_normal

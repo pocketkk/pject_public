@@ -84,7 +84,7 @@ class WorkordersController < ApplicationController
         end
         respond_to do |format|
           format.html { redirect_to root_url, :notice  => "Successfully created workorder." }
-          format.mobile {redirect_to root_url}
+          format.mobile {redirect_to root_url, :notice  => "Created workorder." }
           format.js
         end
 
@@ -228,7 +228,7 @@ class WorkordersController < ApplicationController
       end
       respond_to do |format|
         format.html { redirect_to root_url, :notice  => "Successfully updated workorder." }
-        format.mobile {redirect_to root_url}
+        format.mobile {redirect_to root_url, :notice  => "Updated workorder." }
         format.js
       end
 

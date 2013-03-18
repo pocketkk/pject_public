@@ -58,7 +58,7 @@ Pject::Application.routes.draw do
 
   match 'toggle_mobile', to: 'static_pages#toggle_mobile', :as => "toggle_mobile"
   match 'toggle_normal', to: 'static_pages#toggle_normal', :as => "toggle_normal"
-
+  match 'toggle_mobile_test', to: 'static_pages#test_mobile', :as => "toggle_mobile_test"
 
   match 'workorders/:id/complete', to: 'workorders#complete', :as => "complete_workorder"
   match 'bugs/:id/complete', to: 'bugs#complete', :as => "complete_bug"

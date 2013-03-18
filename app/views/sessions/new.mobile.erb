@@ -2,10 +2,10 @@
 <h2>Sign in</h2>
 
 <%= form_for(:session, url: sessions_path) do |f| %>
-	<%= f.label :email %>
+	<%= f.label :email, :class => "workorder_form_label" %>
 	<%= f.text_field :email %>
-	<%= f.label :password %>
+	<%= f.label :password, :class => "workorder_form_label" %>
 	<%= f.password_field :password %>
 	<br />
-    <center><%= f.submit "Sign In", class: "btn btn-large mobile_button_block"%></center>
+    <center><%= f.submit "Sign in", class: "btn btn-large mobile_button_block"%></center>
 <% end %>

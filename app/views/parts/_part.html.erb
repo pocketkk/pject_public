@@ -1,14 +1,14 @@
 <div class="part_wrapper">
 	<div class="gravatar_parts">
 		<a href="<%= user_path(part.user) %>">
-		  <%= gravatar_for part.user, size: 25%> 
+		  <%= gravatar_for part.user, size: 25%>
 		</a>
-	</div>	
+	</div>
 	<div class="part_item"><%=part.name.titleize%> | Qty: <%=part.qty%>  |
-		
-		<% if current_user.role=='Branch Manager' || 'Regional Manager' %>
-			<%= link_to "Edit", edit_part_path(part) %>  |  
-			<%= link_to "Ordered", ordered_part_path(part)%>  |  
+
+		<% if current_user.role=='Branch Manager' || current_user.role=='Regional Manager' %>
+			<%= link_to "Edit", edit_part_path(part) %>  |
+			<%= link_to "Ordered", ordered_part_path(part)%>  |
 			<% if current_user.admin? %>
 				<%= link_to "Remove", part, :confirm => 'Are you sure?', :method => :delete %>
 			<% end %>

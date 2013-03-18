@@ -56,7 +56,7 @@
 		<%= m.select :name, Option::EQUIPMENT_MODELS %>
 		<%= m.label :serial, "Serial Number (If known)", :class => "workorder_form_label" %>
 		<%= m.text_field :serial %>
-		<% if current_user.role=="Branch Manager"||"Regional Manager"||"Rebuilder"||"Installer"%>
+		<% if current_user.role=="Branch Manager"||current_user.role=="Regional Manager"||current_user.role=="Rebuilder"||current_user.role=="Installer"%>
 			<%= m.label :status, "Equipment Status", :class => "workorder_form_label"%>
 			<%= m.select :status, options_for_select(Workorder::ASSET_STATUS_OPTIONS, m.object.status) %>
 			<%= m.label :ready, "Ready for Install?", :class => "workorder_form_label"%>

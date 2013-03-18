@@ -6,7 +6,9 @@
     <%= f.text_field :qty %>
     <%= f.label :branch, :class => "workorder_form_label"  %>
     <%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
+    <%= f.hidden_field :ordered, :value => false%>
 	<center>
 	   <%= f.submit "Add Part", class: "btn btn-large" %>
     </center>
 <% end %>
+
