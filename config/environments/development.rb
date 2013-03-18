@@ -32,9 +32,9 @@ Pject::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  # Expands the lines which load the assets
-  config.assets.debug = true
-  
+  # Expands the lines which load the assets (I changed this to false)
+  config.assets.debug = false
+
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'workordermachine.com' }
   config.action_mailer.delivery_method = :smtp
@@ -51,5 +51,5 @@ Pject::Application.configure do
    #:user_name => ENV["MANDRILL_USERNAME"],
    #:password  => ENV["MANDRILL_API_KEY"]
   }
-  
+
 end
