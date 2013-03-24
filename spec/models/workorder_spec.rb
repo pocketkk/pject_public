@@ -94,4 +94,5 @@ describe Workorder do
         expect(workorder.after_photos.count).to eq(1)
     end
 
+
 end

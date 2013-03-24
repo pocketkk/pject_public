@@ -122,6 +122,8 @@ GEM
       multi_json (>= 1.0)
     launchy (2.2.0)
       addressable (~> 2.3)
+    letter_opener (1.1.0)
+      launchy (~> 2.2.0)
     listen (0.7.3)
     lumberjack (1.0.2)
     mail (2.4.4)
@@ -284,6 +286,7 @@ DEPENDENCIES
   jquery-rails (= 2.1.3)
   jquery_mobile_rails
   launchy
+  letter_opener
   mobylette
   nested_form
   nifty-generators

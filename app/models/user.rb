@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  admin      :boolean
-#  role       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :role, :password, :password_confirmation,
                   :current_branch, :phone_number, :raw_phonenumber, :texts,
@@ -30,7 +17,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :updating_password
 
-  USER_ROLES = ['Regional Manager', 'Branch Manager', 'Sales', 'SSR', 'Supervisor', 'Rebuilder', 'Office','Installer', 'Production']
+  USER_ROLES = ['Regional Manager', 'Branch Manager', 'Sales', 'SSR',
+                'Supervisor', 'Rebuilder', 'Office','Installer',
+                'Production']
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -42,8 +31,10 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :role, presence: true
   validates :current_branch, presence: true
-  validates :password, presence: true, length: { minimum: 6 }, :if => :should_validate_password?
-  validates :password_confirmation, presence: true, :if => :should_validate_password?
+  validates :password, presence: true, length: { minimum: 6 },
+    :if => :should_validate_password?
+  validates :password_confirmation, presence: true,
+    :if => :should_validate_password?
 
   def should_validate_password?
     updating_password || new_record?

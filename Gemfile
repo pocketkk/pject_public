@@ -30,6 +30,7 @@ gem 'mobylette'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
+  gem 'letter_opener'
 
 end
 
