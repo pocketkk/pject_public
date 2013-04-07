@@ -31,7 +31,6 @@ gem 'mobylette'
 
 group :development do
   gem 'letter_opener'
-
 end
 
 # Gems used only for assets and not required
@@ -49,7 +48,7 @@ end
 
 
 group :test, :development do
-  gem 'sqlite3', '1.3.5'
+  gem 'pg','0.12.2'
   gem 'rspec-rails','2.11.0'
   gem 'nifty-generators'
   gem 'capybara'

@@ -48,8 +48,8 @@
               </td>
               <td class="mobile_footer_cell">
                 <div class="mobile_footer_cell_wrapper">
-                  <% if @workorders_without_dates.count > 0 %>
-                  <div class="red-badge"><%=@workorders_without_dates.count%></div> <% end %>
+                  <% if @assets_need_to_order.count > 0 %>
+                  <div class="red-badge"><%=@assets_need_to_order.count%></div> <% end %>
                   <div class="mobile_footer_cell_text"><%=link_to "Equipment To Order", '/need_to_order'%></div>
                 </div>
               </td>
