@@ -14,61 +14,50 @@
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 	</head>
 	<body class="mobile_body">
-      	<div class="navbar navbar-fixed-top">
-      		<div class="navbar-inner">
-      			<div class="container">
-                    <%=link_to "W.O.M.", root_path, :id => "mobile_logo"%>
-                    <nav>
-          				<ul class="nav mobile_menu">
-          					<% if signed_in? %>
-    	      					<li><%=link_to "Search", search_path%></li>
-    	      					<li><%=link_to "Calendar", calendar_path%></li>
-    	      					<li class="dropdown">
-    			    				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    			    					Other
-    			    					<b class="caret"></b>
-    			    				</a>
-    			    				<ul class="dropdown-menu mobile_menu">
-    			    						<li><%=link_to "Docs", documents_path%></li>
-    			    						<li class="divider"></li>
-    				      					<li><%=link_to "Videos", videos_path%></li>
-    				      					<li class="divider"></li>
-    				      					<li><%=link_to "Blog", posts_path%></li>
-    				      					<li class="divider"></li>
-    				      					<li><%=link_to "Bugs", new_bug_path %></li>
-    				      					<li class="divider"></li>
-    				      					<li><%=link_to "Settings", edit_user_path(current_user)%></li>
-                            <li class="divider"></li>
-                            <li><%= link_to "Switch to Normal View", toggle_normal_path%></li>
-                            <li class="divider"></li>
-                            <li><%=link_to "Sign Out", signout_path, method: "delete"%></li>
-    			    				</ul>
-    	      				<% else %>
-                                <li><a href=#>Blog</a></li>
-                                <li><a href=#>Contact Us</a></li>
-                                <li><a href=#>Help</a></li>
-                            <% end %>
-      				    </ul>
-                    </nav>
-      			</div>
-      		</div>
-      	</div>
+    <div class="mobile_header">
+      <%=link_to "W.O.M.", root_path, :id => "mobile_logo"%>
+
+<!--           				<ul class="nav mobile_menu"> -->
+				<% if signed_in? %>
+          <div class="mobile_menu_right">
+              <%= link_to_function image_tag("/icons/Menu.png", :size =>"32x32", :mouseover => "/icons/Menu_MouseOver.png"), "$('#mobile_dropdown').toggle()"%>
+          </div>
+
+          <div id="mobile_dropdown" style="display:none">
+            <div id="mobile_menu_scrollable">
+              <% @icons=["Home", "New_workorder","Calendar", "Search", "Knowledge", "Videos", "Blog", "Bug",  "Desktop"] %>
+              <% @icons.each do |icon| %>
+                  <%= menu_item(icon) %>
+              <% end %>
+              <%= menu_item("Logout", true) %>
+           </div>
+
+            </div> -->
+          </div>
+    	  <% else %>
+
+        <% end %>
+
+    </div>
+
         <div class="mobile_content_wrapper">
-          <div class="row" id="flash_row">
-            <% flash.each do |key, value| %>
-              <div class="alert alert-<%= key %>"><a class="close" data-dismiss="alert">×</a><%= value %></div>
-            <% end %>
-        </div>
+          <% if flash.any? %>
+            <div class="row" id="flash_row">
+              <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>"><a class="close" data-dismiss="alert">×</a><%= value %></div>
+              <% end %>
+            </div>
+          <% end %>
 
             <%= yield %>
 
         </div>
-
+<!--
         <%= debug (params) if Rails.env.development? %>
       <hr />
       <%= debug(session) if Rails.env.development? %>
         <%= link_to "toggle_mobile", toggle_mobile_path if Rails.env.test? %>
-
+ -->
 	</body>
 <%= yield :scripts %>
 </html>
