@@ -909,7 +909,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 	color: white;
 }
 
-.mobile_icons_bottom a, a:hover{
+.mobile_icons_bottom a{
 	color: white;
 	text-decoration: none;
 	font-size: .75em;
@@ -918,7 +918,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 .mobile_icons_bottom a:hover{
 	color: white;
 	text-decoration: none;
-	font-size: .75em;
+	//font-size: .75em;
 }
 
 // #mobile_dropdown ul {
