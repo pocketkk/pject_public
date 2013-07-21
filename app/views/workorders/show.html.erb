@@ -21,7 +21,21 @@
 	<h2 class="show_workorder2">
 	  <%= @workorder.wo_type %>
 	</h2>
+	<br />
+	<div style="width: 100%; text-align: center;">
 
+		<a href=<%=edit_workorder_path(@workorder)%> type="button" class="btn btn-large" >Edit</a>
+
+			<% if current_user.admin==true %>
+			  <a href=<%=workorder_path(@workorder)%> type="button" class="btn btn-large" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+
+		<% end %>
+		<% unless @workorder.completed?%>
+		 	<a href=<%=complete_workorder_path(@workorder)%> type="button" class="btn btn-large" data-confirm="Don't forget to add After Photos to completed workorders." >Complete</a>
+
+		<% end %>
+
+	</div>
 	<hr />
 
 	<div class="workorder_show_content" >
