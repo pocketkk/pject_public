@@ -7,6 +7,19 @@ class StaticPagesController < ApplicationController
      @users = User.where("current_branch=?",current_user.current_branch) if signed_in?
      @posts = Post.recently_added if signed_in?
 
+     #Tasks
+    session[:context] = "All" unless session[:context]
+    if session[:context]=="All"
+      @incomplete_tasks = Task.tasks_current_user(current_user).task_not_completed if signed_in?
+    else
+      @incomplete_tasks = Task.tasks_current_user(current_user).task_not_completed.task_context(session[:context]) if signed_in?
+    end
+    @taskable = current_user if signed_in?
+
+    @completed_tasks = Task.tasks_current_user(current_user).task_completed.limit(5) if signed_in?
+    @tasks = @taskable.tasks if signed_in?
+    @task = Task.new
+
      @workorders_pastdue = 0
      if @workorders
       @workorders.each do |workorder|

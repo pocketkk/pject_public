@@ -8,6 +8,11 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar dropshadow")
   end
 
+  def task_gravatar(id, options = { size: 100})
+    user=User.find(id)
+    gravatar_for(user, options)
+  end
+
   def name_of_user(id)
     user=User.find(id)
     "#{user.name}"

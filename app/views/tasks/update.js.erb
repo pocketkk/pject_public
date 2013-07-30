@@ -1,0 +1,6 @@
+
+<% if @task.completed %>
+  $('#task_wrapper_<%= @task.id %>').removeClass('task_incomplete').addClass('task_completed').prependTo('#completed_tasks').effect('bounce');
+<% else %>
+  $('#task_wrapper_<%= @task.id %>').removeClass('task_completed').addClass('task_incomplete').appendTo('#incomplete_tasks').effect('bounce');
+<% end %>

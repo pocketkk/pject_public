@@ -1,0 +1,8 @@
+$('#incomplete_tasks').prepend('<%= j render (@task) %>').effect('bounce');
+$('#task_wrapper_<%= @task.id %>');
+$('#task_content').val("");
+$('#task_notes').val("");
+$('#datepicker').val("");
+$('#task_context').val("");
+
+$('#edit_task_<%= @task.id %>').submitOnCheck();

@@ -1,0 +1,19 @@
+<%= form_for @task, :html => {:class => "not_edit"} do |f| %>
+  <div class="task_field">
+    <%= f.label :content, "Title" %>
+    <%= f.text_field :content%>
+    <%= f.label :notes, "Notes" %>
+    <%= f.text_area :notes, rows: 3 %>
+    <%= f.label :branch, "Branch" %>
+    <%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>
+    <%= f.label :assigned_to, "Assign task to:" %>
+    <%= f.select :assigned_to, options_from_collection_for_select(@users, :id, :name, (@task.assigned_to ? @task.assigned_to : current_user))%>
+    <%= f.label :context, "Context:" %>
+    <%= f.select :context, Task::CONTEXT, :selected => ""%>
+    <%= f.label :chronic_due_date, "Due Date:" %>
+    <%= f.text_field :chronic_due_date, id: "datepicker" %>
+  </div>
+  <div class="actions">
+    <center><%= f.submit "Submit", class: "btn btn-small" %></center>
+  </div>
+<% end %>

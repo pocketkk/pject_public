@@ -32,6 +32,9 @@ Pject::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  # Force asset pipeline to look for precompiled assets where they don't exist
+  config.assets.prefix = "/assets_dev"
+
   # Expands the lines which load the assets (I changed this to false)
   config.assets.debug = false
 

@@ -17,6 +17,7 @@ Pject::Application.routes.draw do
   resources :comments
   resources :emails, only: [:new, :create, :destroy, :index]
   resources :off_days
+  resources :tasks
 
   resources :posts do
     resources :comments
@@ -31,6 +32,14 @@ Pject::Application.routes.draw do
 
   resources :videos do
     resources :comments
+  end
+
+  resources :users do
+    resources :tasks
+  end
+
+  resources :workorders do
+    resources :tasks
   end
 
   resources :videos do
@@ -74,6 +83,8 @@ Pject::Application.routes.draw do
   match '/unassigned', to: 'workorders#unassigned', :as => 'unassigned_path'
   match '/need_to_order', to: 'workorders#need_to_order', :as => 'need_to_order_path'
   match '/timeoff', to: 'workorders#timeoff', :as => 'timeoff'
+
+  match '/change_context', to: 'tasks#change_context', :as => 'change_context'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

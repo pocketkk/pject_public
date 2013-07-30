@@ -23,7 +23,7 @@ gem 'acts-as-taggable-on'
 gem 'useragent'
 gem 'youtube_it'
 gem 'bluecloth'
-gem 'jquery_mobile_rails'
+gem 'jquery-ui-rails'
 gem 'mobylette'
 
 # Bundle edge Rails instead:

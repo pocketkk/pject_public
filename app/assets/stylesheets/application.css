@@ -11,4 +11,5 @@
  *= require_self
  *= require_tree
  *= require 'css3-progress-bar'
+ *= require 'jquery.ui.datepicker'
  */

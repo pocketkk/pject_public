@@ -5,8 +5,14 @@
 	<aside class="span4">
 	<section>
 		<br/>
-		<h2>New Workorder</h2>
-		<%= render 'shared/workorderpost_form' %>
+                <span class="left_section"><%= link_to_function "Add Workorder", "$('#new_workorder').toggle('fast')" %>
+                <hr /></span>
+
+    <div id="new_workorder" style="display:none">
+        <%= render 'shared/workorderpost_form' %>
+    </div>
+        <%= render :partial => 'tasks/tasks_module_mobile' %>
+
       </section>
     </aside>
 		<%= render 'shared/workorders_display' %>

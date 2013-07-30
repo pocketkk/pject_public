@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :day_offs
 
+  has_many :tasks, as: :taskable
+
   attr_accessor :updating_password
 
   USER_ROLES = ['Regional Manager', 'Branch Manager', 'Sales', 'SSR',
@@ -35,6 +37,18 @@ class User < ActiveRecord::Base
     :if => :should_validate_password?
   validates :password_confirmation, presence: true,
     :if => :should_validate_password?
+
+  def completed_tasks
+    tasks.where(
+        {
+          :completed => true
+        }
+      )
+  end
+
+  def incomplete_tasks
+    tasks.where(:completed => false)
+  end
 
   def should_validate_password?
     updating_password || new_record?

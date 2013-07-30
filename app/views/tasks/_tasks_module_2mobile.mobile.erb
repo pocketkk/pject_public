@@ -1,0 +1,21 @@
+<span class="left_section"><%= link_to_function "Add Task", "$('#new_task').toggle('fast')" %><hr />
+</span>
+<div id="new_task" style="display:none">
+
+<%= render "tasks/form" %>
+</div>
+<span class="left_section">Tasks</span>
+<hr />
+<div class="tasks", id="incomplete_tasks">
+        <% @incomplete_tasks.each do |task| %>
+            <%= render task %>
+        <%end%>
+        <br />
+</div>
+<span class="left_section">Completed Tasks </span>
+<hr />
+<div class="tasks", id="completed_tasks">
+            <% @completed_tasks.each do |task| %>
+                <%= render task %>
+        <%end%>
+</div>
