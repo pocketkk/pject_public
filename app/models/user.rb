@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :role, :password, :password_confirmation,
                   :current_branch, :phone_number, :raw_phonenumber, :texts,
-                  :signature, :receive_mails
+                  :signature, :receive_mails, :active
 
   has_secure_password
 
@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true,
     :if => :should_validate_password?
 
-  def completed_tasks
+  scope :active_by_branch, lambda{ |branch| where(:active => true).where('current_branch = ?', branch) }
+  scope :inactive_by_branch, lambda{ |branch| where(:active => false).where('current_branch = ?', branch) }
+  scope :active, where(:active => true)
+  scope :inactive, where(:active => false)
+   def completed_tasks
     tasks.where(
         {
           :completed => true

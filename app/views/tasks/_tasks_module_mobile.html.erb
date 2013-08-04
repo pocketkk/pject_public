@@ -1,4 +1,4 @@
-<span class="left_section"><%= link_to_function "Add Task", "$('#new_task').toggle('fast')" %><hr />
+<span class="left_section"><%= link_to_function "Add Task", "$('#new_task').toggle('fast')" %>
 </span>
 <div id="new_task" style="display:none">
 
@@ -8,7 +8,6 @@
     <%= form_tag('/change_context') do %>
         <%= select_tag "context", options_for_select(Task::CONTEXT_OPTIONS, session[:context]), :onchange => "this.form.submit();"%>
     <% end %>
-    <hr />
 </div>
 
 <div class="tasks", id="incomplete_tasks">
@@ -16,9 +15,9 @@
             <%= render task %>
         <%end%>
         <br />
-
 </div>
-<div class="left_section">Completed Tasks <hr /></div>
+
+<div class="left_section">Completed Tasks</div>
 
 <div class="tasks", id="completed_tasks">
             <% @completed_tasks.each do |task| %>

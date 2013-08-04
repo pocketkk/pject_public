@@ -9,7 +9,7 @@ class DayOffsController < ApplicationController
 
   def new
     @day_off = DayOff.new
-    @users=User.where('current_branch=?', current_user.current_branch)
+    @users=User.active_by_branch(current_user.current_branch)
   end
 
   def create
@@ -23,7 +23,7 @@ class DayOffsController < ApplicationController
 
   def edit
     @day_off = DayOff.find(params[:id])
-    @users=User.where('current_branch=?', current_user.current_branch)
+    @users=User.active_by_branch(current_user.current_branch)
     @user=@day_off.user
   end
 

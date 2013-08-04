@@ -5,13 +5,13 @@
 	<aside class="span4">
 	<section>
 		<br/>
-                <span class="left_section"><%= link_to_function "Add Workorder", "$('#new_workorder').toggle('fast')" %>
-                <hr /></span>
+  <span class="left_section"><%= link_to_function "Add Workorder", "$('#new_workorder').toggle('fast')" %>
+  </span>
 
     <div id="new_workorder" style="display:none">
         <%= render 'shared/workorderpost_form' %>
     </div>
-        <%= render :partial => 'tasks/tasks_module_mobile' %>
+  <%= render :partial => 'tasks/tasks_module_mobile' %>
 
       </section>
     </aside>

@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.find(:all, :order=> 'current_branch')
+    @inactive_users = User.inactive.sort_by &:current_branch
   end
 
   def destroy

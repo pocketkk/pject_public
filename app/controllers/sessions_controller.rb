@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
       user = User.find_by_email(params[:session][:email].downcase.strip)
-      if user && user.authenticate(params[:session][:password])
+      if user && user.authenticate(params[:session][:password]) && user.active
          sign_in user
          flash[:success] = 'Welcome Back!'
         # Send me an email when users log in and create a new session

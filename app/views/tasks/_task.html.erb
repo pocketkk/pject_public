@@ -11,36 +11,39 @@
     <% end %>
         </div>
 
-        <div class="task_content lead">
-            <%=task.content%>
-        </div>
-
+        <div class="task_content">
+            <div>
+                <%=task.content%>
+                <%if task.context != "" %>
+                <font color="c0c0c0" size="-5px">
+                    (<%=task.context%>)</font>
+                    <% end %>
+            </div>
             <% if task.assigned_to != task.taskable_id %>
                 <% if task.assigned_to != current_user.id %>
-                <div class="task_gravatar">
-                Assigned to: <%= task_gravatar task.assigned_to, size: 15%><%= name_of_user(task.assigned_to) %>
-                </div>
+                    <div class="task_gravatar">
+                        Assigned to: <%= task_gravatar task.assigned_to, size: 15%><%= name_of_user(task.assigned_to) %>
+                    </div>
                 <% end %>
                 <% if task.taskable != current_user %>
                     <div class="task_gravatar">
-                    Assigned by: <%= task_gravatar task.taskable, size: 15 %><%= name_of_user(task.taskable) %>
+                        Assigned by: <%= task_gravatar task.taskable, size: 15 %><%= name_of_user(task.taskable) %>
                     </div>
                 <% end %>
             <% end %>
-
-
-        <div class="task_details_show">
-            <div class="task_float_left">
-                <% if task.due_date %>
-                    Due:  <%= task.due_date.strftime("%A, %B %d, %Y") %>
-                <% end %>
+            <div class="task_details_show">
+                <div class="task_float_left">
+                    <% if task.due_date %>
+                        Due:  <%= task.due_date.strftime("%A, %B %d, %Y") %>
+                    <% end %>
+                </div>
+                <div class="task_float_right">
+                    <%= link_to_function "(details)", "$('#task_details_#{task.id}').toggle('fast')" %>
+                </div>
             </div>
-            <div class="task_float_right">
-                <%= link_to_function "(details)", "$('#task_details_#{task.id}').toggle('fast')" %>
-            </div>
-
         </div>
-        <div id="task_details_<%=task.id%>" class="task_details" style="display:none">
+
+    <div id="task_details_<%=task.id%>" class="task_details" style="display:none">
             <div class="task_notes">
                 Notes: <%=task.notes%>
             </div>

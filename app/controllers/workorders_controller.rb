@@ -24,7 +24,7 @@ class WorkordersController < ApplicationController
   end
 
   def timeoff
-    @users = User.where("current_branch=?",current_user.current_branch) if signed_in?
+    @users = User.active_by_branch(current_user.current_branch) if signed_in?
   end
 
   def calendar
@@ -36,7 +36,7 @@ class WorkordersController < ApplicationController
 
     ### workorder lookup for calendar
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
-    @users=User.where("current_branch=?",current_user.current_branch)
+    @users=User.active_by_branch(current_user.current_branch)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
@@ -91,7 +91,7 @@ class WorkordersController < ApplicationController
       else
         flash[:error] = 'All fields must be filled to create a new workorder'
         #redirect_to :back
-        @users = User.where("current_branch=?",current_user.current_branch)
+        @users = User.active_by_branch(current_user.current_branch)
         render :action => 'new'
       end
     end
@@ -125,7 +125,7 @@ class WorkordersController < ApplicationController
   def edit
     @workorder=Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
-    @users = User.where("current_branch=?",current_user.current_branch)
+    @users = User.active_by_branch(current_user.current_branch)
 
     @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
 
@@ -133,7 +133,7 @@ class WorkordersController < ApplicationController
 
   def new
     @workorder=Workorder.new
-    @users = User.where("current_branch=?",current_user.current_branch)
+    @users = User.active_by_branch(current_user.current_branch)
   end
 
   def complete
@@ -234,7 +234,7 @@ class WorkordersController < ApplicationController
 
 
     else
-      @users = User.where("current_branch=?",current_user.current_branch)
+      @users = User.active_by_branch(current_user.current_branch)
       render :action => 'edit'
     end
   end

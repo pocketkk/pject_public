@@ -8,8 +8,8 @@ class Task < ActiveRecord::Base
   scope :task_not_completed, where('completed = ?', false)
   scope :task_context, lambda { |context| where('context = ?', context)}
 
-  CONTEXT = ["", "Office", "Phone", "Computer", "Home"]
-  CONTEXT_OPTIONS = ["All","Office", "Phone", "Computer", "Home", ""]
+  CONTEXT = ["", "Office", "Phone", "Collections", "Home"]
+  CONTEXT_OPTIONS = ["All","Office", "Phone", "Collections", "Home", ""]
 
   validates :content, presence: true
 

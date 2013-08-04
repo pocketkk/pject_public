@@ -1,10 +1,19 @@
 <% provide(:title, 'All users') %>
-<h1 class="show_workorder">All users</h1>
+<div class="row">
 
-<%= will_paginate %>
+    <h1 class="show_workorder">All users</h1>
+    <div class="users_left">
+    <h2> Active Users </h2>
 
-<ul class="users">
-  <%= render @users %>
-</ul>
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+    </div>
+    <div class="users_right">
+    <h2> Inactive Users </h2>
 
-<%= will_paginate %>
+    <ul class="users">
+        <%= render @inactive_users %>
+    </ul>
+    </div>
+</div>

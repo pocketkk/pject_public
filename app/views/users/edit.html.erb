@@ -1,4 +1,4 @@
-<% provide(:title, "Edit user") %> 
+<% provide(:title, "Edit user") %>
 <div class="signin_page_wrapper">
 <h1 "show_workorder">Update your profile</h1>
 
@@ -18,10 +18,10 @@
 
 	    <%= f.label :raw_phonenumber, "Phone Number (Used to send text message alerts)" %>
 	    <%= f.text_field :raw_phonenumber %>
-	
+
 	    <%= f.label :texts, "Do you wish to receive text message alerts?"%>
 	    <%= f.select :texts, { "No" => false, "Yes" => true}%>
-	
+
 	    <%= f.label :receive_mails, "Do you wish to receive email messages about your workorders?"%>
 	    <%= f.select :receive_mails, { "No" => false, "Yes" => true}%>
 
@@ -35,9 +35,16 @@
       <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
 
 	    <% @user.updating_password = true %>
-	
+
 		  <%= f.label :signature, "Add a signature for out-going emails."%>
 		  <%= f.text_area :signature, :size => "30x5"%>
+
+      <% if current_user.admin? %>
+
+      <%= f.label :active, "Active?" %>
+      <%= f.select :active, { "Yes" => true, "No" => false} %>
+
+      <% end %>
 
       <center><%= f.submit "Save changes", class: "btn btn-large btn-primary" %></center>
     <% end %>
