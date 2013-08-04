@@ -76,7 +76,7 @@ class UsersController < ApplicationController
           flash[:success] = "Profile updated"
           if current_user.admin? && @user != current_user
             sign_in @admin
-            redirect_to root_path
+            redirect_to users_path
           else
             sign_in @user
             redirect_to root_path
