@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.find(:all, :order=> 'current_branch')
+    @users = User.active.sort_by &:current_branch
     @inactive_users = User.inactive.sort_by &:current_branch
   end
 
