@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
-  attr_accessible :assigned_to, :content, :completed, :chronic_due_date, :branch, :notes, :due_date, :context
+  attr_accessible :assigned_to, :content, :completed, :chronic_due_date,
+   :branch, :notes, :due_date, :context, :sleep, :chronic_sleep
 
   belongs_to :taskable, polymorphic: true
 
@@ -10,7 +11,7 @@ class Task < ActiveRecord::Base
 
   CONTEXT = ["", "Office", "Phone", "Collections", "Home"]
   CONTEXT_OPTIONS = ["All","Office", "Phone", "Collections", "Home", ""]
-
+  SLEEP_OPTIONS = ["",1,2,3,7,14,28]
   validates :content, presence: true
 
   def chronic_due_date
@@ -20,6 +21,15 @@ class Task < ActiveRecord::Base
   def chronic_due_date=(s)
     Chronic.time_class=Time.zone
     self.due_date = Chronic.parse(s) if s
+  end
+
+  def chronic_sleep
+    self.sleep
+  end
+
+  def chronic_sleep=(s)
+    Chronic.time_class=Time.zone
+    self.sleep = Chronic.parse(Time.zone.now.to_date + s.to_i.days) if s
   end
 
 end

@@ -18,6 +18,17 @@
     width: 100px;
 }
 
+.task_sleep {
+    width: 240;
+    float: left;
+}
+
+.task_sleep select {
+    float: right;
+    height: 20px;
+    width: 100px;
+}
+
 #new_task label{
     font-size: 12px;
 }

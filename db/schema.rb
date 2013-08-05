@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730223543) do
+ActiveRecord::Schema.define(:version => 20130805003954) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20130730223543) do
     t.text     "notes"
     t.string   "context"
     t.date     "due_date"
+    t.date     "sleep"
   end
 
   add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"

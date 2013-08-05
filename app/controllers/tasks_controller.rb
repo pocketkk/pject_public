@@ -44,6 +44,7 @@ def update
     @task = Task.find(params[:id])
     @task.update_attributes!(params[:task])
     respond_to do |format|
+      format.mobile { redirect_to root_path}
       format.html { redirect_to root_path }
       format.js
     end

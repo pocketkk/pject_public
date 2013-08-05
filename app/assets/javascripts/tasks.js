@@ -13,7 +13,6 @@ $(function() {
     $('#datepicker').datepicker();
 });
 
-
 jQuery.fn.submitOnCheck = function () {
   this.find('input[type=submit]').remove();
   this.find('input[type=checkbox]').click(function () {

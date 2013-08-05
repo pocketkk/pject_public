@@ -12,7 +12,11 @@
 
 <div class="tasks", id="incomplete_tasks">
         <% @incomplete_tasks.each do |task| %>
-            <%= render task %>
+            <% if task.sleep %>
+                <%= render task if task.sleep <= Time.zone.now.to_date %>
+            <% else %>
+                <%= render task %>
+            <% end %>
         <%end%>
         <br />
 </div>
