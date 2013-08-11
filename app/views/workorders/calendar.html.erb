@@ -26,9 +26,9 @@
 						<%=day_off.user.name%> |
 					<% end %>
 					<% if day_off.approved? %>
-						<%=day_off.do_type%>
+						<%=day_off.do_type%><hr />
 					<% else %>
-						Pending
+						Pending<hr />
 					<% end %>
 				<% end %>
 			<% end %>
@@ -75,6 +75,23 @@
       <% end %>
     </ul>
     <% end %>
+
+	<div class="day_off">
+		<% @tasks.each do |task| %>
+			<% if task.reminder_date %>
+				<% if task.reminder_date.to_date == date %>
+					Task Reminder: <%= link_to task.content, root_path %><hr />
+				<% end %>
+			<% end %>
+			<% if task.due_date %>
+				<% if task.due_date == date %>
+					Task Due: <%= link_to task.content, root_path %> <hr />
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+
+
   <% end %>
   <br />
 	<h2 id="month">

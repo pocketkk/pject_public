@@ -531,14 +531,14 @@ div.fields {
 /* Calendar Workorders Display */
 .work_wrapper_small {
 	position: relative;
-	margin: 2px;
+	margin: 1px;
 	background-color: white;
 	-moz-border-top-right-radius: 5px;
 	border-top-right-radius: 5px;
 	-moz-border-bottom-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
-	padding: 7px;
+	padding: 5px;
 }
 
 .work_bar_new_small{
@@ -629,12 +629,13 @@ div.fields {
 .calendar_event_time {
 	margin-left: 5px;
 	margin-top: -5px;
-	font-size: .60em;
+    font-size: 9px;
 }
 
 .calendar_event {
 	margin-top: -5px;
-	font-size: .60em;
+    font-size: 9px;
+
 	margin-left: 5px;
 }
 
@@ -712,8 +713,13 @@ div.fields {
 }
 
 .day_off {
-    font-size: 8px;
-    text-transform: uppercase;
+    font-size: 9px;
+    line-height: 10px;
+
+    hr {
+        margin-bottom: 2px;
+        margin-top: 2px;
+    }
 }
 
 // For Google Maps //

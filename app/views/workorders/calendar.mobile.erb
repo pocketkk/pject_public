@@ -172,6 +172,21 @@
 			<% end %>
 		<% end %>
 
+		<% @tasks.each do |task| %>
+			<% if task.reminder_date %>
+				<% if task.reminder_date.to_date == @date %>
+					<li class="li-cal-dayoff">Task Reminder: <%= link_to task.content, root_path %></li><hr />
+				<% end %>
+			<% end %>
+			<% if task.due_date %>
+				<% if task.due_date == @date %>
+					<li class="li-cal-dayoff">Task Due: <%= link_to task.content, root_path %></li><hr />
+				<% end %>
+			<% end %>
+		<% end %>
+
+
+
 		<% if @workorders_by_date[@date] %>
       		<% @workorders_by_date[@date].each do |workorder| %>
 				<%= render workorder %>

@@ -38,6 +38,7 @@ class WorkordersController < ApplicationController
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
     @users=User.active_by_branch(current_user.current_branch)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @tasks = Task.tasks_current_user(current_user)
   end
 
   def calendar_feed
