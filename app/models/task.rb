@@ -34,7 +34,7 @@ class Task < ActiveRecord::Base
   end
 
   def chronic_reminder_time
-    self.reminder_time.strftime("(%A) %b %-d at %l:%M%p") unless self.reminder_time.nil?
+    self.reminder_time.strftime("(%A) %b %-d at %l:%M%p") if self.reminder_time
   end
 
   def chronic_reminder_time=(s)

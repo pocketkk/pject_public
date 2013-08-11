@@ -14,7 +14,9 @@
     <%= f.text_field :chronic_due_date, id: "datepicker" %>
     <%= f.label :chronic_reminder_time, "Reminder Date/Time: " %>
     <span class="example">(Example: next Friday at noon or 8/5/13 at 5pm)</span>
+
     <%= f.text_field :chronic_reminder_time %>
+    <span class="example">Reminders are checked and sent to the phone number in your user account on 10 minute intervals.</span>
   </div>
   <div class="actions">
     <center><%= f.submit "Submit", class: "btn btn-small" %></center>

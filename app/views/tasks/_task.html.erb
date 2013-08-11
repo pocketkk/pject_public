@@ -64,7 +64,7 @@
             </div>
             <div class="task_created_by">
                 Reminder Time:
-                <%=task.chronic_reminder_time%>
+                <%=task.chronic_reminder_time if task.chronic_reminder_time%>
             </div>
             <div class="task_sleep">
                 Hide for (# of days):
