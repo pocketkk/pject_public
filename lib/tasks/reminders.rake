@@ -8,7 +8,7 @@ task :send_reminders => :environment do
 
     tasks.each do |task|
         if task.reminder_time
-            if task.reminder_time >= Time.zone.now && task.reminder_time <= (Time.zone.now + 15.minutes)
+            if task.reminder_time >= Time.zone.now && task.reminder_time <= (Time.zone.now + 10.minutes)
                 puts "true dat"
                 puts "#{task.content}"
                 puts task.taskable.email
