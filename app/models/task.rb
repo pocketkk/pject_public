@@ -42,5 +42,9 @@ class Task < ActiveRecord::Base
     self.reminder_time = Chronic.parse(s) if s
   end
 
+  def reminder_msg
+    "#{self.context} | #{self.content} | Sent by WOM."
+  end
+
 
 end

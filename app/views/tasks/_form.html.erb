@@ -9,6 +9,7 @@
     <%= f.label :assigned_to, "Assign task to:" %>
     <%= f.select :assigned_to, options_from_collection_for_select(@users, :id, :name, (@task.assigned_to ? @task.assigned_to : current_user.id))%>
     <%= f.label :context, "Context:" %>
+    <span class="example">(Contexts are used to organize tasks by locations or concepts)</span>
     <%= f.select :context, Task::CONTEXT, :selected => ""%>
     <%= f.label :chronic_due_date, "Due Date:" %>
     <%= f.text_field :chronic_due_date, id: "datepicker" %>

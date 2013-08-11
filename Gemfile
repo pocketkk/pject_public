@@ -25,6 +25,7 @@ gem 'youtube_it'
 gem 'bluecloth'
 gem 'jquery-ui-rails'
 gem 'mobylette'
+gem 'foreman'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
