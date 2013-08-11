@@ -13,18 +13,35 @@ task :send_reminders => :environment do
                 puts "#{task.content}"
                 puts task.taskable.email
 
-                client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-              unless task.taskable.phone_number.nil?
-                 # Create and send an SMS message
-                 client.account.sms.messages.create(
-                   from: TWILIO_CONFIG['from'],
-                   to: task.taskable.phone_number,
-                   body: task.context << " | " << task.content << " | Sent by WOM."
-                 )
+                if task.assigned_to != task.taskable
+                  user=User.find(task.assigned_to)
+                  @users_to_text = [user, task.taskable]
+                else
+                  @users_to_text = task.taskable
+                end
+
+                @msg = task.context << " | " << task.content << " | Sent by WOM."
+
+                @users_to_text.each do |user|
+                  send_text(user, task, @msg)
+                end
+
+
+
             end
           end
         end
-    end
-
 end
 
+
+
+def send_text(user, task, msg)
+    client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token']) if user.phone_number
+                 # Create and send an SMS message
+                 client.account.sms.messages.create(
+                   from: TWILIO_CONFIG['from'],
+                   to: user.phone_number,
+                   body: msg
+                 ) if client
+
+end

@@ -1,7 +1,7 @@
-# development:
-#   from: '+1 657-888-9675'
-#   sid: 'AC16033314266482f9616053e36e5659d7'
-#   token: 'f82b9986bf22485606897f42c55c446c'
+development:
+  from: '+1 657-888-9675'
+  sid: 'AC16033314266482f9616053e36e5659d7'
+  token: 'f82b9986bf22485606897f42c55c446c'
 
 production:
   from: '+1 657-888-9675'
