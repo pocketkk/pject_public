@@ -62,9 +62,13 @@
                 Created by:
                 <%=name_of_user(task.taskable_id)%>
             </div>
+            <div class="task_created_by">
+                Reminder Time:
+                <%=task.chronic_reminder_time%>
+            </div>
             <div class="task_sleep">
-                Hide for (# of days): <%= task.sleep %>
-                <%= f.select :chronic_sleep, Task::SLEEP_OPTIONS, {}, :id => "sleep_select_#{task.id}", :class => "task_sleep_select", :onchange => "this.form.submit();" %>  Days.
+                Hide for (# of days):
+                <%= f.select :chronic_sleep, Task::SLEEP_OPTIONS, {}, :id => "sleep_select_#{task.id}", :class => "task_sleep_select", :onchange => "this.form.submit();" %>
             </div>
             <div class="task_delete">
                 <%= link_to "(edit)","/tasks/#{task.id}/edit" %> | <%= link_to "(delete)", [task.taskable, task], method: :delete, data: {confirm: "Are you sure?"}, remote: true %>

@@ -71,7 +71,7 @@ class Workorder < ActiveRecord::Base
  end
 
  def chronic_wo_date
-   self.wo_date
+   self.wo_date.strftime("(%A) %b %-d at %l:%M%p") unless self.wo_date.nil?
  end
 
  def chronic_wo_date=(s)

@@ -23,8 +23,15 @@
     float: left;
 }
 
+.example {
+    margin-top: -5px;
+    margin-bottom: 5px;
+    font-size: 9px;
+    color: $grayDarkest;
+}
 .task_sleep select {
     float: right;
+    margin-top: -18px;
     height: 20px;
     width: 100px;
 }

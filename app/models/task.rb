@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
   attr_accessible :assigned_to, :content, :completed, :chronic_due_date,
-   :branch, :notes, :due_date, :context, :sleep, :chronic_sleep
+   :branch, :notes, :due_date, :context, :sleep, :chronic_sleep,
+   :chronic_reminder_time
 
   belongs_to :taskable, polymorphic: true
 
@@ -31,5 +32,15 @@ class Task < ActiveRecord::Base
     Chronic.time_class=Time.zone
     self.sleep = Chronic.parse(Time.zone.now.to_date + s.to_i.days) if s
   end
+
+  def chronic_reminder_time
+    self.reminder_time.strftime("(%A) %b %-d at %l:%M%p") unless self.reminder_time.nil?
+  end
+
+  def chronic_reminder_time=(s)
+    Chronic.time_class=Time.zone
+    self.reminder_time = Chronic.parse(s) if s
+  end
+
 
 end
