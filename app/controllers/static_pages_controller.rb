@@ -7,6 +7,10 @@ class StaticPagesController < ApplicationController
      @users = User.active_by_branch(current_user.current_branch) if signed_in?
      @posts = Post.recently_added if signed_in?
 
+
+
+
+
      #Tasks
     session[:context] = "All" unless session[:context]
     if session[:context]=="All"
@@ -44,6 +48,13 @@ class StaticPagesController < ApplicationController
 
      @parts = Part.parts_current_branch(current_user.current_branch).where("ordered=?", false).order("name ASC") if signed_in?
      @assets_without_serials = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).serial_blank.order('workorders.wo_date ASC') if signed_in?
+
+
+
+
+
+
+
    end
 
    def rebuilder_view
