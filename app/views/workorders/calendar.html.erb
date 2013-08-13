@@ -78,8 +78,8 @@
 
 	<div class="day_off">
 		<% @tasks.each do |task| %>
-			<% if task.reminder_date %>
-				<% if task.reminder_date.to_date == date %>
+			<% if task.reminder_time %>
+				<% if task.reminder_time.to_date == date %>
 					Task Reminder: <%= link_to task.content, root_path %><hr />
 				<% end %>
 			<% end %>
