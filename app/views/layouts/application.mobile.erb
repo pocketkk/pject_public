@@ -17,8 +17,7 @@
     <div class="mobile_header">
       <%=link_to "W.O.M.", root_path, :id => "mobile_logo"%>
 
-<!--           				<ul class="nav mobile_menu"> -->
-				<% if signed_in? %>
+			<% if signed_in? %>
           <div class="mobile_menu_right">
               <%= link_to_function image_tag("/icons/Menu.png", :size =>"32x32", :mouseover => "/icons/Menu_MouseOver.png"), "$('#mobile_dropdown').toggle()"%>
           </div>
@@ -32,7 +31,7 @@
               <%= menu_item("Logout", true) %>
            </div>
 
-            </div> -->
+            </div>
           </div>
     	  <% else %>
 

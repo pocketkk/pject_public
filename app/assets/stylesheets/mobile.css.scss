@@ -17,8 +17,8 @@ $workorderBlack: black;
 $workorderYellow: rgb(251,176,71);
 $workorderGreen: #45a546;
 
-$calBlack: rgb(50,50,50);
-$calBlackLight: rgb(33,33,33);
+$calBlack: #323232;
+$calBlackLight: #212121;
 
 //MOBILE CALENDAR STYLING
 
@@ -680,10 +680,6 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 	width: 100%;
 }
 
-.mobile_footer {
-
-}
-
 #mobile_logo {
 	font-family: 'Electrolize', sans-serif;
 	font-size: 1.5em;
@@ -697,7 +693,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
   margin-top: -20px;
   width: 100%;
   background: url(/pw_maze_white.png) repeat 0 0;
-  padding-bottom: 60px;
+padding-bottom: 60px;
   padding-top: 12px;
 
 }
