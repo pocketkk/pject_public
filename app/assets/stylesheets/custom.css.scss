@@ -1,5 +1,3 @@
-@import "bootstrap";
-
 .navbar.navbar-inverse.navbar-fixed-top .navbar-inner {
     //background: url(/assets/navbar.png) repeat-x;
     box-shadow: none;
@@ -7,6 +5,10 @@
     -webkit-box-shadow: none;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
+
+@import "bootstrap";
+
 
 /* mixins, variables, etc. */
 
