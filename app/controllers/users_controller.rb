@@ -27,38 +27,19 @@ class UsersController < ApplicationController
   end
 
   def new
-
     if signed_in?
       if current_user.admin? || current_user.super_user?
         @user = User.new
       end
     else
       redirect_to root_path, :error => "New users can only be created by an administrators."
-      #@user = User.new
     end
   end
 
   def create
     @user = User.new(params[:user])
-    @admin_user = User.where('texts=?', true).where('admin=?', true)
       if @user.save
-        PdfMailer.welcome_email(@user).deliver
         redirect_to root_path
-
-        ## send text message to admin to notify of a new user
-        ## this is a protection against unauthorized access
-      @admin_user.each do |admin|
-        unless admin.phone_number.nil?
-          client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-
-               # Create and send an SMS message
-               client.account.sms.messages.create(
-                 from: TWILIO_CONFIG['from'],
-                 to: admin.phone_number,
-                 body: @user.name << " has signed up for the www.workordermachine.com"
-               )
-        end
-      end
       else
         render 'new'
     end

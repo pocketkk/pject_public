@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
   before_save :strip_whitespace
+  after_create :notify_admins
+  after_create :welcome_letter
 
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -44,16 +46,39 @@ class User < ActiveRecord::Base
     where('current_branch = ?', branch) }
   scope :active, where(:active => true)
   scope :inactive, where(:active => false)
-   def completed_tasks
-    tasks.where(
-        {
-          :completed => true
-        }
-      )
+  scope :admins, where(:admin => true)
+  scope :receives_texts, where(:texts => true)
+  scope :receives_emails, where(:receive_mails => true)
+
+  def notify_admins
+    @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+    # Create and send an SMS message
+    @admins=User.admins
+    @admins.each do |admin|
+      unless admin.phone_number.empty?
+        @client.account.sms.messages.create(
+                 from: TWILIO_CONFIG['from'],
+                 to: admin.phone_number,
+                 body: self.message
+               )
+      end
+    end
   end
 
-  def incomplete_tasks
-    tasks.where(:completed => false)
+  def message
+    "#{self.name.titleize} has signed up for Workorder Machine."
+  end
+
+  def welcome_letter
+    PdfMailer.welcome_email(self).deliver
+  end
+
+  def completed_tasks
+    tasks.where( :completed => true )
+  end
+
+    def incomplete_tasks
+    tasks.where( :completed => false )
   end
 
   def should_validate_password?
