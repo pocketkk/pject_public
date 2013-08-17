@@ -11,8 +11,8 @@ class UsersController < ApplicationController
 
   def index
     if current_user.admin?
-      @users = User.active.sort_by &:current_branch
-      @inactive_users = User.inactive.sort_by &:current_branch
+      @users = User.active.order('current_branch, name')
+      @inactive_users = User.inactive.order('current_branch, name')
     end
     if current_user.super_user? && !current_user.admin?
       @users = User.active_by_branch(current_user.current_branch).sort_by &:name
@@ -92,7 +92,9 @@ class UsersController < ApplicationController
 
       def correct_user
         @user=User.find(params[:id])
-        redirect_to(root_path) unless current_user?(@user) || current_user.admin? || current_user.super_user?
+        redirect_to(root_path) unless current_user?(@user) ||
+                                      current_user.admin?  ||
+                                      current_user.super_user?
       end
       def admin_user
         redirect_to(root_path) unless current_user.admin?
