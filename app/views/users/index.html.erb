@@ -4,16 +4,18 @@
     <h1 class="show_workorder">All users</h1>
     <div class="users_left">
     <h2> Active Users </h2>
+    <%= label_instructions("Users cannot be deleted.  If they are no longer working for Auto Chlor they should be changed to an inactive status.  This status will prevent them from logging in and clean up the branch user options") %>
 
-    <ul class="users">
+    <table class="table table-bordered table-condensed">
       <%= render @users %>
-    </ul>
+    </table>
     </div>
     <div class="users_right">
     <h2> Inactive Users </h2>
+    <%= label_instructions("Inactive users are not viewable for assignment and cannot log into Workorder Machine.  To change a user to active edit their profile using the edit link below and changing their status to Active.") %>
 
-    <ul class="users">
+    <table class="table table-bordered table-condensed">
         <%= render @inactive_users %>
-    </ul>
+    </table>
     </div>
 </div>

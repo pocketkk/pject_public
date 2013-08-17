@@ -20,9 +20,11 @@ module ApplicationHelper
 
   def icon(delete)
     if delete
-        link_to(image_tag("/icons/#{@menu_item}_128.png", :size => "40x40"), @icon_path, method: "delete")
+        link_to(image_tag("/icons/#{@menu_item}_128.png", :size => "40x40"),
+         @icon_path, method: "delete")
     else
-        link_to(image_tag("/icons/#{@menu_item}_128.png", :size => "40x40"), @icon_path)
+        link_to(image_tag("/icons/#{@menu_item}_128.png", :size => "40x40"),
+         @icon_path)
     end
   end
 
@@ -59,6 +61,12 @@ module ApplicationHelper
         when "New_workorder"
             @icon_path=new_workorder_path
         end
+  end
+
+  def label_instructions(text)
+    content_tag:div, :class => "label_instructions" do
+      text
+    end
   end
 
 end

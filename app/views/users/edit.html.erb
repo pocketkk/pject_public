@@ -39,10 +39,15 @@
 		  <%= f.label :signature, "Add a signature for out-going emails."%>
 		  <%= f.text_area :signature, :size => "30x5"%>
 
-      <% if current_user.admin? %>
+      <% if current_user.admin? || current_user.super_user?%>
 
       <%= f.label :active, "Active?" %>
+      <%= label_instructions("Employees no longer employeed should have their status changed to inactive.  This will prevent them from logging in and using Workorder Machine.") %>
       <%= f.select :active, { "Yes" => true, "No" => false} %>
+
+      <%= f.label :super_user, "Super User?" %>
+      <%= label_instructions("Super users are allowed to create new users and deactivate accounts") %>
+      <%= f.select :super_user, { "Yes" => true, "No" => false} %>
 
       <% end %>
 

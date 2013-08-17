@@ -15,7 +15,16 @@
       <%= f.label :role %>
       <%= f.select :role, User::USER_ROLES %>
 
-	    <%= f.label :current_branch %>
+
+      <% if current_user.admin? || current_user.super_user? %>
+
+        <%= f.label :super_user, "Super User?" %>
+        <span class="example">Super users are allowed to create new users and deactivate accounts</span>
+        <%= f.select :super_user, { "Yes" => true, "No" => false} %>
+
+      <% end %>
+
+      <%= f.label :current_branch %>
 	    <%= f.select :current_branch, Workorder::BRANCH_OPTIONS%>
 
       <%= f.label :raw_phonenumber, "Phone Number (Used to send text message alerts)" %>

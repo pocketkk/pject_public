@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806005115) do
+ActiveRecord::Schema.define(:version => 20130816013333) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20130806005115) do
     t.text     "signature"
     t.boolean  "receive_mails",   :default => true
     t.boolean  "active",          :default => true
+    t.boolean  "super_user",      :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

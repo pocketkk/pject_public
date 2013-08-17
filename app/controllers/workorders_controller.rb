@@ -74,7 +74,7 @@ class WorkordersController < ApplicationController
 
         @users_to_text.each do |user|
             client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-              unless user.phone_number.nil?
+              unless user.phone_number.blank?
                  # Create and send an SMS message
                  client.account.sms.messages.create(
                    from: TWILIO_CONFIG['from'],

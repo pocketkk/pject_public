@@ -1,9 +1,15 @@
-<li>
-  <%= link_to user.name, user %> | <%=user.current_branch %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>  |
-	<%= link_to "edit", edit_user_path(user) %>
-  <% end %>
-</li>
+<tr>
+    <td>
+        <%= link_to user.name, user %>
+    </td>
+    <td>
+        <%=user.current_branch %>
+    </td>
+
+    <% if current_user.admin?  || current_user.super_user? %>
+        <td>
+	       <%= link_to "edit", edit_user_path(user) %>
+        </td>
+    <% end %>
+</tr>
 

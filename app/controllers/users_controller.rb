@@ -10,8 +10,14 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.active.sort_by &:current_branch
-    @inactive_users = User.inactive.sort_by &:current_branch
+    if current_user.admin?
+      @users = User.active.sort_by &:current_branch
+      @inactive_users = User.inactive.sort_by &:current_branch
+    end
+    if current_user.super_user? && !current_user.admin?
+      @users = User.active_by_branch(current_user.current_branch).sort_by &:name
+      @inactive_users = User.inactive_by_branch(current_user.current_branch).sort_by &:name
+    end
   end
 
   def destroy
@@ -23,12 +29,11 @@ class UsersController < ApplicationController
   def new
 
     if signed_in?
-      if current_user.admin?
-        sign_out
+      if current_user.admin? || current_user.super_user?
         @user = User.new
       end
     else
-      redirect_to root_path, :error => "New users can only be created by an administrator."
+      redirect_to root_path, :error => "New users can only be created by an administrators."
       #@user = User.new
     end
   end
@@ -38,9 +43,7 @@ class UsersController < ApplicationController
     @admin_user = User.where('texts=?', true).where('admin=?', true)
       if @user.save
         PdfMailer.welcome_email(@user).deliver
-        sign_in @user
-        flash[:success] = "Welcome to Workorder Machine!"
-        redirect_to @user
+        redirect_to root_path
 
         ## send text message to admin to notify of a new user
         ## this is a protection against unauthorized access
@@ -72,10 +75,9 @@ class UsersController < ApplicationController
   def update
         @user = User.find(params[:id])
         @admin= User.find(current_user)
-        if @user.update_attributes(params[:user]) || current_user.admin?
+        if @user.update_attributes(params[:user])
           flash[:success] = "Profile updated"
-          if current_user.admin? && @user != current_user
-            sign_in @admin
+          if (current_user.admin? && @user != current_user) || (current_user.super_user? && @user != current_user)
             redirect_to users_path
           else
             sign_in @user
@@ -85,11 +87,7 @@ class UsersController < ApplicationController
           render 'edit'
       end
   end
-=begin
-  TODO
-  -Change redirect after admin edits a users account
-  -Remove password from updated fields when edited by admin
-=end
+
     private
 
       def correct_user
