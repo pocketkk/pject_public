@@ -75,8 +75,6 @@ FactoryGirl.define do
     workorder
   end
 
-
-
   factory :part do
     sequence(:name) { |n| "Part#{n} Name"}
     qty 10

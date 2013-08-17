@@ -12,6 +12,9 @@ class Workorder < ActiveRecord::Base
   has_many :after_photos
   has_many :comments, as: :commentable
   has_many :tasks, as: :taskables
+
+  after_create :text_users, :email_users, :update_updates
+
   accepts_nested_attributes_for :assets, :allow_destroy => true
   accepts_nested_attributes_for :before_photos, :allow_destroy => true
   accepts_nested_attributes_for :after_photos, :allow_destroy => true
@@ -57,6 +60,48 @@ class Workorder < ActiveRecord::Base
   validates :contact, presence: true
   validates :wo_duration, presence: true
   validates_length_of :misc_notes, :maximum => 200
+
+
+ def users_to_notify_by_text
+  User.active_by_branch(self.branch).receive_workorder_messages.receives_texts
+ end
+
+ def users_to_notify_by_email
+  User.active_by_branch(self.branch).receive_workorder_messages.receives_emails
+ end
+
+ def update_updates
+  update = self.user.updates.new
+  update.feed_item=self.update_msg
+  update.save
+ end
+
+def update_msg
+  "#{self.user.name.titleize} created a #{self.wo_type.downcase} workorder for #{self.customer.titleize}."
+end
+
+ def text_users
+  @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+  if users_to_notify_by_text
+    users_to_notify_by_text.each do |user|
+       unless user.phone_number.blank?
+         # Create and send an SMS message
+         @client.account.sms.messages.create(
+           from: TWILIO_CONFIG['from'],
+           to: user.phone_number,
+           body: "A #{self.wo_type.downcase} workorder for #{self.customer.titleize} has been created! www.workordermachine.com/workorders/#{self.id}")
+      end
+    end
+  end
+ end
+
+ def email_users
+  if users_to_notify_by_email
+    users_to_notify_by_email.each do |user|
+      PdfMailer.mail_workorder(self,user,"New").deliver
+    end
+  end
+ end
 
  def googlemaps_link
    "http://maps.apple.com/maps?q=#{self.gmaps4rails_address.gsub(" ", "%20")}"

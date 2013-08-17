@@ -51,60 +51,23 @@ class WorkordersController < ApplicationController
   end
 
   def create
-      @workorder = current_user.workorders.build(params[:workorder])
-      if @workorder.save
-
-        @update=current_user.updates.new
-        @update.feed_item=current_user.name << " created a " << @workorder.wo_type.downcase <<  " workorder for " << @workorder.customer.titleize << "."
-        @update.save
-
-        @users_to_email_rebuilders=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Rebuilder')
-        @users_to_email_branch_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Branch Manager')
-        @users_to_email_regional_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Regional Manager')
-        @users_to_email=@users_to_email_rebuilders+@users_to_email_branch_manager+@users_to_email_regional_manager
-
-        @users_rebuilders=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Rebuilder')
-        @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
-        @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
-        @users_to_text=@users_rebuilders + @users_branchmanagers + @users_regionalmanagers
-
-        @users_to_email.each do |user|
-          PdfMailer.mail_workorder(@workorder,user,"New").deliver
-        end
-
-        @users_to_text.each do |user|
-            client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-              unless user.phone_number.blank?
-                 # Create and send an SMS message
-                 client.account.sms.messages.create(
-                   from: TWILIO_CONFIG['from'],
-                   to: user.phone_number,
-                   body: "A " << @workorder.wo_type.downcase << " workorder for " << @workorder.customer.titleize << " has been created! " << url_for(@workorder)
-                 )
-              end
-        end
-        respond_to do |format|
-          format.html { redirect_to root_url, :notice  => "Successfully created workorder." }
-          format.mobile {redirect_to root_url, :notice  => "Created workorder." }
-          format.js
-        end
-
-      else
-        flash[:error] = 'All fields must be filled to create a new workorder'
-        #redirect_to :back
-        @users = User.active_by_branch(current_user.current_branch)
-        render :action => 'new'
+    @workorder = current_user.workorders.build(params[:workorder])
+    if @workorder.save
+      respond_to do |format|
+        format.html { redirect_to root_url, :notice  => "Successfully created workorder." }
+        format.mobile {redirect_to root_url, :notice  => "Created workorder." }
+        format.js
       end
+    else
+      flash[:error] = 'All fields must be filled to create a new workorder'
+      @users = User.active_by_branch(current_user.current_branch)
+      render :action => 'new'
     end
+  end
 
   def destroy
     @workorder=Workorder.find(params[:id])
-
-    @update=current_user.updates.new
-    @update.feed_item=current_user.name << " deleted the workorder for " << @workorder.customer.titleize << "."
-
     @workorder.destroy
-    @update.save
     flash[:success] = "Workorder Deleted"
     redirect_to root_path
   end
@@ -120,7 +83,6 @@ class WorkordersController < ApplicationController
     @commentable = @workorder
     @comments = @commentable.comments
     @comment = Comment.new
-
   end
 
   def edit

@@ -24,10 +24,8 @@ class User < ActiveRecord::Base
                 'Production']
 
   before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token
-  before_save :strip_whitespace
-  after_create :notify_admins
-  after_create :welcome_letter
+  before_save :create_remember_token, :strip_whitespace
+  after_create :notify_admins, :welcome_letter
 
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -49,13 +47,15 @@ class User < ActiveRecord::Base
   scope :admins, where(:admin => true)
   scope :receives_texts, where(:texts => true)
   scope :receives_emails, where(:receive_mails => true)
+  scope :receive_workorder_messages, where(role: ["Branch Manager",
+   "Regional Manager",  "Rebuilder", "Installer"] )
 
   def notify_admins
     @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
     # Create and send an SMS message
     @admins=User.admins
     @admins.each do |admin|
-      unless admin.phone_number.empty?
+      unless admin.phone_number.blank?
         @client.account.sms.messages.create(
                  from: TWILIO_CONFIG['from'],
                  to: admin.phone_number,
