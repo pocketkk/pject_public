@@ -111,6 +111,13 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
+    haml (4.0.3)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hike (1.2.1)
     httpauth (0.2.0)
     i18n (0.6.1)
@@ -288,6 +295,7 @@ DEPENDENCIES
   google-webfonts
   guard-rspec
   guard-spork
+  haml-rails (>= 0.3.4)
   jquery-rails (= 2.1.3)
   jquery-ui-rails
   launchy

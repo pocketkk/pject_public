@@ -32,6 +32,7 @@ gem 'foreman'
 
 group :development do
   gem 'letter_opener'
+  gem 'haml-rails', '>=0.3.4'
 end
 
 # Gems used only for assets and not required
