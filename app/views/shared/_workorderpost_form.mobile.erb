@@ -69,6 +69,34 @@
         <%= m.label :electrical_option, "Electrical Connection", :class => "workorder_form_label"%>
         <%= m.select :electrical_option, Option::ELECTRICAL_OPTIONS %>
 
+        <% [:disposition_existing_equipment, :electrical_panel_location,
+            :water_heater_type, :water_heater_capacity, :closest_account].each do |field| %>
+            <%= m.label field, :class => "workorder_form_label" %>
+            <%= m.text_field field %>
+
+        <% end %>
+
+        <div class="checkbox_group_wrapper">
+            <div class="checkbox_wrapper">
+                <%= m.check_box :lift_over_bar, :class =>"workorder_form_checkbox" %>
+                <%= m.label :lift_over_bar , :class => "workorder_form_checkbox_label"%>
+            </div>
+            <div class="checkbox_wrapper">
+                <%= m.check_box :stairs, :class =>"workorder_form_checkbox" %>
+                <%= m.label :stairs , :class => "workorder_form_checkbox_label"%>
+            </div>
+            <div class="checkbox_wrapper">
+                <%= m.check_box :open_for_business, :class =>"workorder_form_checkbox" %>
+                <%= m.label :open_for_business , :class => "workorder_form_checkbox_label"%>
+            </div>
+            <div class="checkbox_wrapper">
+                <%= m.check_box :under_permit, :class =>"workorder_form_checkbox" %>
+                <%= m.label :under_permit , :class => "workorder_form_checkbox_label"%>
+            </div>
+        </div>
+
+
+
         <center><%= m.link_to_remove "Remove Equipment" %></center>
         <%= m.fields_for :options, :html => {:class => "option_post"} do |o| %>
             <%= o.label :name, "Equipment Option", :class => "workorder_form_label" %>

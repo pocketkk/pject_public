@@ -59,6 +59,66 @@
 					</table>
 
 					<table class="table table-bordered table-condensed">
+								<tr>
+									<th>Hotwater Heater Type</th>
+									<th>Hotwater Heater Capacity</th>
+									<th>Electrical Panel Location</th>
+								</tr>
+							<tr class="info">
+								<td ><%=m.water_heater_type%></td>
+								<td><%=m.water_heater_capacity%></td>
+								<td><%=m.electrical_panel_location%></td>
+							</tr>
+					</table>
+
+					<table class="table table-bordered table-condensed">
+								<tr>
+									<th>Disposition of Existing Equipment</th>
+									<th>Closest Account</th>
+								</tr>
+							<tr class="info">
+								<td ><%=m.disposition_existing_equipment%></td>
+								<td><%=m.closest_account%></td>
+							</tr>
+					</table>
+
+					<table class="table table-bordered table-condensed">
+							<tr>
+								<th>
+									Additional Installation Notes
+								</th>
+							</tr>
+							<% if m.lift_over_bar? %>
+							<tr class="info">
+								<td class="table info">
+									Lift over bar ( 2 or more people needed )
+								</td>
+							</tr>
+							<%end%>
+							<% if m.stairs? %>
+							<tr class="info">
+								<td class="table info">
+									Stairs ( 2 or more people needed )
+								</td>
+							</tr>
+							<%end%>
+							<% if m.open_for_business? %>
+							<tr class="info">
+								<td class="table info">
+									Restaurant is open for business.
+								</td>
+							</tr>
+							<%end%>
+							<% if m.under_permit? %>
+							<tr class="info">
+								<td class="table info">
+									Restaurant is under permit.
+								</td>
+							</tr>
+							<%end%>
+					</table>
+
+					<table class="table table-bordered table-condensed">
 							<tr>
 								<th>
 									Notes

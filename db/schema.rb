@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816013333) do
+ActiveRecord::Schema.define(:version => 20130818211153) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -39,13 +39,22 @@ ActiveRecord::Schema.define(:version => 20130816013333) do
     t.string   "name"
     t.string   "serial"
     t.integer  "workorder_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.string   "status"
     t.boolean  "ready"
     t.string   "water_plumbing"
     t.string   "drain_plumbing"
     t.string   "electrical_option"
+    t.boolean  "lift_over_bar",                  :default => false
+    t.boolean  "stairs",                         :default => false
+    t.boolean  "open_for_business",              :default => false
+    t.boolean  "under_permit",                   :default => false
+    t.text     "disposition_existing_equipment"
+    t.text     "electrical_panel_location"
+    t.string   "water_heater_type"
+    t.string   "water_heater_capacity"
+    t.string   "closest_account"
   end
 
   create_table "before_photos", :force => true do |t|

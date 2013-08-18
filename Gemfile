@@ -33,6 +33,8 @@ gem 'foreman'
 group :development do
   gem 'letter_opener'
   gem 'haml-rails', '>=0.3.4'
+  gem 'pg','0.12.2'
+  gem 'nifty-generators'
 end
 
 # Gems used only for assets and not required
@@ -49,12 +51,12 @@ end
 
 
 
-group :test, :development do
+group :test do
   gem 'pg','0.12.2'
   gem 'rspec-rails','2.11.0'
   gem 'nifty-generators'
   gem 'capybara'
-  gem 'factory_girl_rails', '1.4.0'
+  gem 'factory_girl_rails', '1.4.0', :require => false
   gem 'faker', '1.0.1'
   gem 'database_cleaner'
   gem 'launchy'
@@ -65,6 +67,7 @@ group :test, :development do
   # gem 'guard-bundler'
   # gem 'guard-livereload'
 end
+
 
 group :production do
   gem 'pg','0.12.2'
