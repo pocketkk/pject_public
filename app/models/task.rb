@@ -9,6 +9,9 @@ class Task < ActiveRecord::Base
   scope :task_completed, where('completed = ?', true)
   scope :task_not_completed, where('completed = ?', false)
   scope :task_context, lambda { |context| where('context = ?', context)}
+  scope :due_today, where('due_date = ?', Time.zone.now.to_date)
+  scope :current_user, lambda{ |user| where('assigned_to = ? OR taskable_id = ?', user, user)  }
+
 
   CONTEXT = ["", "Office", "Phone", "Collections", "Home"]
   CONTEXT_OPTIONS = ["All","Office", "Phone", "Collections", "Home", ""]

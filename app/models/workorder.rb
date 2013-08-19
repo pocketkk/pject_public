@@ -30,6 +30,7 @@ class Workorder < ActiveRecord::Base
   scope :wo_not_completed, where('completed = ?', false)
   scope :wo_has_date, where('wo_date IS NOT NULL')
   scope :wo_no_date, where('wo_date IS NULL')
+  scope :today, where('wo_date BETWEEN ? AND ?', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
   scope :wo_recently_completed, where('completed = ?', true).limit(4).order("wo_date DESC")
 
   BRANCH_OPTIONS          = ['110','120','130','140','210','220','230','240',

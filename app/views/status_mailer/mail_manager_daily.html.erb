@@ -1,0 +1,80 @@
+<style>
+.comment {
+    font-size: 1em;
+    color: #696969;
+}
+.footer {
+    font-size: .8em;
+    color: #adadad;
+}
+h1 {
+    font-size: 1.5em;
+    letter-spacing: -1px;
+    margin-bottom:  20px;
+    text-align: center;
+}
+h2 {
+    font-size: 1.25em;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #696969;
+}
+h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    margin-top: -5px;
+    font-weight: bold;
+    color: #696969;
+}
+</style>
+
+<center><h1>WORKORDER::MACHINE</h1></center>
+<h2>Today's Workorders</h2>
+<h3><%= Time.zone.now.to_date.strftime("(%A) %b %-d, %Y") %> </h3>
+<hr />
+<% @todays_workorders.each do |workorder| %>
+<table>
+    <tr>
+        <td>Customer:</td><td><%= workorder.customer.titleize%></td>
+    </tr>
+    <tr>
+        <td>Address:</td><td>  <%= workorder.gmaps4rails_address %></td>
+    </tr>
+    <tr>
+        <td>Contact:  </td><td><%= workorder.contact.titleize %></td>
+    </tr>
+    <tr>
+        <td>Phone: </td><td> <%= number_to_phone(workorder.phonenumber) %></td>
+    </tr>
+    <tr>
+        <td>Equipment: </td><td> <% workorder.assets.each do |asset| %>
+        <%= asset.name %>
+    <% end %>
+    </td></tr>
+</table>
+<hr />
+<% end %>
+
+<h2>Tasks Due Today</h2>
+<h3><%= Time.zone.now.to_date.strftime("(%A) %b %-d, %Y") %> </h3>
+<hr />
+<% @todays_tasks.each do |task| %>
+<table>
+    <tr>
+        <td>Task:</td><td><%= task.content%></td>
+    </tr>
+    <tr>
+        <td>Notes:</td><td><%= task.notes %></td>
+    </tr>
+    <tr>
+        <td>Reminder:</td><td><%= task.reminder_time %></td>
+    </tr>
+    <tr>
+        <td>Assigned to: </td><td> <%= name_of_user(task.assigned_to)%></td>
+    </tr>
+</table>
+<hr />
+<% end %>
+
+
+<p class="footer">To turn off email notifications visit your settings and turn email notifications to no.  If you would rather have text message notifications make sure your account has a valid phone number where text messages can be received and set text message notifications to yes.</p>
