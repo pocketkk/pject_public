@@ -35,8 +35,6 @@ GEM
     bcrypt-ruby (3.0.1)
     bluecloth (2.2.0)
     bootstrap-sass (2.0.0)
-    bootstrap-will_paginate (0.0.6)
-      will_paginate
     builder (3.0.4)
     capybara (2.0.2)
       mime-types (>= 1.16)
@@ -279,7 +277,6 @@ DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bluecloth
   bootstrap-sass (= 2.0.0)
-  bootstrap-will_paginate (= 0.0.6)
   capybara
   carrierwave (~> 0.7.1)
   chronic

@@ -2,11 +2,11 @@
     <h2>Open Workorders (<%= @workorders.count %>)</h2>
 	<% if @workorders.any? %>
        <%= render @workorders %>
-     <%= will_paginate @workorders %>
+       <%= will_paginate(@workorders, :class=>"my_pagination") %>
    <% end %>
-	<br />
+   <br />
 	<h2>Recently Completed</h2>
 	<% if @completed_workorders.any? %>
        <%= render @completed_workorders %>
    <% end %>
- </div>
+</div>
