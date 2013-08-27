@@ -1,32 +1,5 @@
-.navbar.navbar-inverse.navbar-fixed-top .navbar-inner {
-    //background: url(/assets/navbar.png) repeat-x;
-    box-shadow: none;
-    border: none;
-    -webkit-box-shadow: none;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
-
-
 @import "bootstrap";
-
-
-/* mixins, variables, etc. */
-
-$grayDarkest: #696969;
-$grayMedium: #adadad;
-$grayLightest: #e3e3e3;
-$graySuperLight: #fafafa;
-
-
-$grayMediumLight: #cccccc;
-$grayDark: #333333;
-$grayLight: #eaeaea;
-$blueDark:  3486D0;
-
-$workorderRed: #9d261d;
-$workorderBlue: #049cdb;
-$workorderBlack: black;
-$workorderGreen: #45a546;
+@import "colors";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -468,6 +441,7 @@ div.fields {
 	border-bottom-right-radius: 5px;
 	border: 1px solid #bbb;
 	padding: 10px;
+    text-align: left;
 }
 
 .work_bar_new{
@@ -706,11 +680,13 @@ div.fields {
 	margin-top: -1px;
 	font-size: 10px;
 	color: $grayDarkest;
+    text-align: left;
 }
 
 .gravatar_workorder_feed {
 	padding-top: 0px;
 	margin-top: 1px;
+
 }
 
 .asset_options {
