@@ -1,8 +1,10 @@
 <h2 class='small-fonts-header'>Recent Blog Posts</h2>
+<div class='text_left'>
 <% if @posts.any? %>
     <% @posts.each do |post| %>
-    <span><%= link_to post.title.titleize, post_path(post) %></span><br />
-    <span class="post_trunc"><%= truncate(post.content)%></span><br />
+    <div class="text_left"><%= link_to post.title.titleize, post_path(post) %></div>
+    <div class="post_trunc"><%= truncate_markup(post.content)%></div><br />
     <% end %>
 <% end %>
+</div>
 <br />

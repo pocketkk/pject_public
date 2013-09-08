@@ -1,4 +1,8 @@
 <style>
+.body{
+    padding: 5px;
+}
+
 .comment {
     font-size: 1em;
     color: #696969;
@@ -26,34 +30,89 @@ h3 {
     font-weight: bold;
     color: #696969;
 }
-</style>
 
-<center><h1>WORKORDER::MACHINE</h1></center>
-<h2>Today's Workorders</h2>
-<h3><%= Time.zone.now.to_date.strftime("(%A) %b %-d, %Y") %> </h3>
-<hr />
-<% @todays_workorders.each do |workorder| %>
-<table>
-    <tr>
-        <td>Customer:</td><td><%= workorder.customer.titleize%></td>
-    </tr>
-    <tr>
-        <td>Address:</td><td>  <%= workorder.gmaps4rails_address %></td>
-    </tr>
-    <tr>
-        <td>Contact:  </td><td><%= workorder.contact.titleize %></td>
-    </tr>
-    <tr>
-        <td>Phone: </td><td> <%= number_to_phone(workorder.phonenumber) %></td>
-    </tr>
-    <tr>
-        <td>Equipment: </td><td> <% workorder.assets.each do |asset| %>
-        <%= asset.name %>
+a, a:visited {
+    color: blue;
+}
+
+a:hover {
+    color: red;
+}
+
+.text_left {
+    text-align: left;
+}
+
+.header {
+    width: 100%;
+    margin-left: -5px;
+    background-color: #333333;
+    padding: 5px;
+}
+
+.logo, .logo a, .logo a:visited{
+    color: #e3e3e3;
+}
+
+.logo a:hover {
+    color: white;
+}
+
+
+
+</style>
+<div class="body">
+<div class="header">
+<center><h1 class="logo"><a href='http://www.workordermachine.com'>WORKORDER::MACHINE</a></h1></center></div>
+
+<% counter=0 %>
+
+<% [@todays_workorders, @tomorrows_workorders, @pastdue_workorders].each do |workorders| %>
+
+    <% if counter == 0 %>
+        <h2>Today's Workorders</h2>
+        <h3><%= Time.zone.now.to_date.strftime("(%A) %b %-d, %Y") %> </h3>
+        <hr />
+    <% elsif counter == 1 %>
+        <h2>Tomorrow's Workorders</h2>
+
+        <h3><%= (Time.zone.now.to_date + 1.day).strftime("(%A) %b %-d, %Y") %> </h3>
+         <em>It's a good idea to confirm installation times and that the machine is ready to go and water tested.</em>
+        <hr />
+    <% else %>
+        <h2>Past Due Workorders</h2>
+        <em>These workorders need to be closed (completed) or rescheduled.</em>
+        <hr />
     <% end %>
-    </td></tr>
-</table>
-<hr />
+    <% counter += 1 %>
+
+    <% workorders.each do |workorder| %>
+        <table>
+            <tr>
+                <td>Customer:</td><td><a href='<%= url_for(host: 'www.workordermachine.com', controller: 'workorders', action: 'show', id: workorder.id)%>'><%=workorder.customer.titleize%></a> | <%=workorder.wo_type.titleize %></td>
+            </tr>
+            <tr>
+                <td>Address:</td><td>  <%= workorder.gmaps4rails_address %></td>
+            </tr>
+            <tr>
+                <td>Contact:  </td><td><%= workorder.contact.titleize %></td>
+            </tr>
+            <tr>
+                <td>Phone: </td><td> <%= number_to_phone(workorder.phonenumber) %></td>
+            </tr>
+            <tr>
+                <td>Date/Time: </td><td> <%= workorder.wo_date.strftime("%B %d, %Y at %I:%M %p") %></td>
+            </tr>
+            <tr>
+                <td>Equipment: </td><td> <% workorder.assets.each do |asset| %>
+                <%= asset.name %>
+            <% end %>
+            </td></tr>
+        </table>
+        <hr />
+    <% end %>
 <% end %>
+
 
 <h2>Tasks Due Today</h2>
 <h3><%= Time.zone.now.to_date.strftime("(%A) %b %-d, %Y") %> </h3>
@@ -75,6 +134,47 @@ h3 {
 </table>
 <hr />
 <% end %>
-
+<% counter = 0 %>
+<% @assets.each do |assets| %>
+<% if counter == 0 %>
+    <h2>Equipment- Unassigned</h2>
+    <em>The following machines are needed but have not been found and a serial number assigned to the equipment on the workorder.  If there is no equipment available change the equipment status to "Need to Order".  This task is usually completed by a rebuilder.</em>
+    <% else %>
+    <h2>Equipment - Need to Order</h2>
+    <em>The following machines are needed and were not found in inventory. If the equipment has been found and ordered change the equipment status to "Ordered".  This task is usually completed by a manager.</em>
+<% end %>
+    <% counter += 1 %>
+    <hr />
+    <table>
+        <th>
+            Customer
+        </th>
+        <th>
+            Machine
+        </th>
+        <th>
+            Install Date
+        </th>
+            <% for asset in assets %>
+           <tr>
+                <td class="small-fonts">
+                   <a href='<%= url_for(host: 'www.workordermachine.com', controller: 'workorders', action: 'edit', id: asset.workorder.id)%>'> <%= asset.workorder.customer.titleize %> </a>
+                </td>
+                <td class="small-fonts">
+                    <%= asset.name %>
+                </td>
+                <td class="small-fonts">
+                    <% unless asset.workorder.wo_date.nil? %>
+                        <%= asset.workorder.wo_date.strftime("%B %d, %Y at %I:%M %p") %>
+                    <% else %>
+                        Unscheduled
+                    <% end %>
+                </td>
+           </tr>
+        <% end %>
+    </table>
+<% end %>
 
 <p class="footer">To turn off email notifications visit your settings and turn email notifications to no.  If you would rather have text message notifications make sure your account has a valid phone number where text messages can be received and set text message notifications to yes.</p>
+
+</div>

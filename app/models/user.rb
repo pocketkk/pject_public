@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   scope :receives_emails, where(:receive_mails => true)
   scope :receive_workorder_messages, where(role: ["Branch Manager",
    "Regional Manager",  "Rebuilder", "Installer"] )
+  scope :managers, where(role: ["Branch Manager", "Regional Manager"])
 
   def notify_admins
     @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
@@ -63,6 +64,10 @@ class User < ActiveRecord::Base
                )
       end
     end
+  end
+
+  def past_due_workorders
+    Workorder.wo_current_branch(self.current_branch).wo_not_completed.past_due
   end
 
   def message

@@ -31,7 +31,10 @@ class Workorder < ActiveRecord::Base
   scope :wo_has_date, where('wo_date IS NOT NULL')
   scope :wo_no_date, where('wo_date IS NULL')
   scope :today, where('wo_date BETWEEN ? AND ?', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
+  scope :tomorrow, where('wo_date BETWEEN ? AND ?', Time.zone.now.beginning_of_day+1.day, Time.zone.now.end_of_day+1.day)
   scope :wo_recently_completed, where('completed = ?', true).limit(4).order("wo_date DESC")
+  scope :past_due, where('wo_date < ?', Time.zone.now.beginning_of_day).where('completed = ?', false)
+
 
   BRANCH_OPTIONS          = ['110','120','130','140','210','220','230','240',
                             '310','320','330','340','350','360','410','420',
@@ -61,7 +64,6 @@ class Workorder < ActiveRecord::Base
   validates :contact, presence: true
   validates :wo_duration, presence: true
   validates_length_of :misc_notes, :maximum => 200
-
 
  def users_to_notify_by_text
   User.active_by_branch(self.branch).receive_workorder_messages.receives_texts
