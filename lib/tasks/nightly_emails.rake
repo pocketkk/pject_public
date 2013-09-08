@@ -4,7 +4,7 @@ task :send_daily_emails => :environment do
 
   puts "Checking for users to send emails to"
 
-  users=User.managers.receives_emails
+  users=User.active.managers.receives_emails
 
   puts users
 
