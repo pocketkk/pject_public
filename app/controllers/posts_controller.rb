@@ -32,9 +32,6 @@ before_filter :signed_in_user
         @post = current_user.posts.build(params[:post])
         if @post.save
             redirect_to @post, :notice => "Blog post created."
-            @update=current_user.updates.new
-            @update.feed_item=current_user.name << " created a new blog post. | " << @post.title.titleize
-            @update.save
         else
             render :action => 'new'
         end

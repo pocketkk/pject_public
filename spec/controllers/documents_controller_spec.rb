@@ -1,57 +1,20 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe DocumentsController do
-  fixtures :all
-  render_views
 
-  it "index action should render index template" do
-    get :index
-    response.should render_template(:index)
-  end
+render_views
 
-  it "show action should render show template" do
-    get :show, :id => Document.first
-    response.should render_template(:show)
-  end
+    before(:each) do
+        @user=FactoryGirl.create(:user)
+        test_sign_in @user
+    end
 
-  it "new action should render new template" do
-    get :new
-    response.should render_template(:new)
-  end
+    describe "POST create" do
+        it "should create a new update" do
+            expect {
+                post :create, document: Factory.attributes_for(:document)
+            }.to change(Update, :count).by(1)
+        end
+    end
 
-  it "create action should render new template when model is invalid" do
-    Document.any_instance.stubs(:valid?).returns(false)
-    post :create
-    response.should render_template(:new)
-  end
-
-  it "create action should redirect when model is valid" do
-    Document.any_instance.stubs(:valid?).returns(true)
-    post :create
-    response.should redirect_to(document_url(assigns[:document]))
-  end
-
-  it "edit action should render edit template" do
-    get :edit, :id => Document.first
-    response.should render_template(:edit)
-  end
-
-  it "update action should render edit template when model is invalid" do
-    Document.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Document.first
-    response.should render_template(:edit)
-  end
-
-  it "update action should redirect when model is valid" do
-    Document.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Document.first
-    response.should redirect_to(document_url(assigns[:document]))
-  end
-
-  it "destroy action should destroy model and redirect to index action" do
-    document = Document.first
-    delete :destroy, :id => document
-    response.should redirect_to(documents_url)
-    Document.exists?(document.id).should be_false
-  end
 end

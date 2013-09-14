@@ -53,6 +53,7 @@ class WorkordersController < ApplicationController
   def create
     @workorder = current_user.workorders.build(params[:workorder])
     if @workorder.save
+      Updater.new(@workorder, update_type: :new)
       respond_to do |format|
         format.html { redirect_to root_url, :notice  => "Successfully created workorder." }
         format.mobile {redirect_to root_url, :notice  => "Created workorder." }
@@ -101,12 +102,11 @@ class WorkordersController < ApplicationController
 
   def complete
     @workorder = Workorder.find(params[:id])
-    if @workorder.update_attributes(:completed => true)
+    if @workorder.complete!
+
+      Updater.new(@workorder, update_type: :update, user: current_user, message: @workorder.complete_message(current_user))
+
       redirect_to root_path, :notice => "Workorder Completed!"
-      @update=Update.new
-      @update.feed_item="The workorder for " << @workorder.customer.titleize << " has been completed."
-      @update.user_id=current_user.id
-      @update.save
 
       @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
       @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
@@ -149,53 +149,39 @@ class WorkordersController < ApplicationController
                    )
           end
       end
-
     else
       redirect_to root_path, :error => "Workorder status not updated."
     end
   end
 
   def update_on_calendar
-     @workorder= Workorder.find(params[:id])
-      @workorder_comparison=Workorder.find(params[:id])
-      if @workorder.update_attributes(params[:workorder])
-        @workorder_changes=@workorder.differs_from @workorder_comparison,
-                :ignore_attributes=>['id', 'created_at', 'updated_at', 'latitude','longitude','gmaps']
-        @workorder_changes.each do |key, value|
-          @update=current_user.updates.new
-          @update.feed_item=current_user.name << " changed " << @workorder.customer.titleize << " from #{value.last} to #{value.first}."
-          @update.save
-        end
-        respond_to do |format|
-          format.html { redirect_to calendar_url, :notice  => "Successfully updated workorder." }
-          format.js
-        end
-
-
-      else
-        render :action => 'edit'
+    @workorder= Workorder.find(params[:id])
+    @original_workorder = Workorder.find(params[:id])
+    @workorder_comparison=Workorder.find(params[:id])
+    if @workorder.update_attributes(params[:workorder])
+      @workorder.update_update(current_user, @original_workorder)
+      respond_to do |format|
+        format.html { redirect_to calendar_url,
+          :notice  => "Successfully updated workorder." }
+        format.js
       end
-
+    else
+      render :action => 'edit'
+    end
   end
 
   def update
     @workorder= Workorder.find(params[:id])
-    @workorder_comparison=Workorder.find(params[:id])
+    @original_workorder = Workorder.find(params[:id])
     if @workorder.update_attributes(params[:workorder])
-      @workorder_changes=@workorder.differs_from @workorder_comparison,
-              :ignore_attributes=>['id', 'created_at', 'updated_at', 'latitude','longitude','gmaps']
-      @workorder_changes.each do |key, value|
-        @update=current_user.updates.new
-        @update.feed_item=current_user.name << " changed " << @workorder.customer.titleize << " from #{value.last} to #{value.first}."
-        @update.save
-      end
+      @workorder.update_update(current_user, @original_workorder)
       respond_to do |format|
-        format.html { redirect_to root_url, :notice  => "Successfully updated workorder." }
-        format.mobile {redirect_to root_url, :notice  => "Updated workorder." }
+        format.html { redirect_to root_url,
+          :notice  => "Successfully updated workorder." }
+        format.mobile {redirect_to root_url,
+          :notice  => "Updated workorder." }
         format.js
       end
-
-
     else
       @users = User.active_by_branch(current_user.current_branch)
       render :action => 'edit'

@@ -11,4 +11,20 @@ class Document < ActiveRecord::Base
 
   scope :recently_added, limit(10).order("created_at DESC")
 
+  def new_update(user)
+    Updater.new(self, user: user, :update_type => :new)
+  end
+
+  def new_message
+    "A new document (#{description}) has been uploaded."
+  end
+
+  def update_update(user)
+    Updater.new(self, update_type: :update, user: user)
+  end
+
+  def update_message
+    "A user emailed #{description} pdf."
+  end
+
 end

@@ -2,6 +2,7 @@
 <%= form_for [@commentable, @comment] do |f| %>
 
   <div class="field">
+    <span class="example"><center>(Limit of 200 characters.)</center></span>
     <%= f.text_area :content, rows: 3 %>
   </div>
   <div class="actions">

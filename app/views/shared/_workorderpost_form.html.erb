@@ -20,6 +20,7 @@
 	<%= f.label :wo_duration, "Estimated duration in hours:", :class => "workorder_form_label" %>
 	<%= f.text_field :wo_duration %>
 	<%= f.label :misc_notes, "Additional notes:", :class => "workorder_form_label"%>
+	<span class="example">(Limit of 200 characters.  For larger notes use the notes field under equipment.)</span>
 	<%= f.text_area :misc_notes, placeholder: "Add additional information for contacting customer, parking, key location, etc..." %><br />
 	<%= f.label :branch, "Branch", :class => "workorder_form_label"%>
 	<%= f.select :branch, Workorder::BRANCH_OPTIONS, :selected => current_user.current_branch %>

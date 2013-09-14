@@ -17,7 +17,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: pject_development
+  database: pject_test
   pool: 5
   username: pocketkk
   password:

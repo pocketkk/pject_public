@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token, :strip_whitespace
-  after_create :notify_admins, :welcome_letter
+  after_create :notify_admins, :welcome_letter, :new_update
 
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -70,7 +70,11 @@ class User < ActiveRecord::Base
     Workorder.wo_current_branch(self.current_branch).wo_not_completed.past_due
   end
 
-  def message
+  def new_update
+    Updater.new(self, user: self, :update_type => :new)
+  end
+
+  def new_message
     "#{self.name.titleize} has signed up for Workorder Machine."
   end
 

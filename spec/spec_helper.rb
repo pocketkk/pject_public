@@ -11,6 +11,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
+  require 'factory_girl'
   require 'capybara/rspec'
   require 'rspec/autorun'
   require 'mobylette/helmet'
@@ -43,6 +44,10 @@ Spork.prefork do
     # Testing controls for Mobylette
 
     config.include Rails.application.routes.url_helpers
+
+    def test_sign_in(user)
+      controller.sign_in(user)
+    end
 
 
     # If true, the base class of anonymous controllers will be inferred

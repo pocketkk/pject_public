@@ -1,6 +1,10 @@
 require 'chronic'
 
 class Workorder < ActiveRecord::Base
+
+  include ActionView::Helpers
+  include UsersHelper
+
   attr_accessible :customer, :street, :city, :state, :wo_date,
                   :wo_duration, :chronic_wo_date, :phonenumber, :raw_phonenumber,
                   :contact, :misc_notes, :assets_attributes, :branch,
@@ -13,7 +17,7 @@ class Workorder < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :tasks, as: :taskables
 
-  after_create :text_users, :email_users, :update_updates
+  after_create :text_users, :email_users
 
   accepts_nested_attributes_for :assets, :allow_destroy => true
   accepts_nested_attributes_for :before_photos, :allow_destroy => true
@@ -37,6 +41,9 @@ class Workorder < ActiveRecord::Base
 
 
   BRANCH_OPTIONS          = ['110','120','130','140','210','220','230','240',
+                            '310','320','330','340','350','360','410','420',
+                            '430','440','450','710']
+  BRANCH_OPTIONS_WITH_BLANK= ['','110','120','130','140','210','220','230','240',
                             '310','320','330','340','350','360','410','420',
                             '430','440','450','710']
   WORKORDER_TYPES         = ['New Install','Pull','Swap','Follow Up']
@@ -73,15 +80,90 @@ class Workorder < ActiveRecord::Base
   User.active_by_branch(self.branch).receive_workorder_messages.receives_emails
  end
 
- def update_updates
-  update = self.user.updates.new
-  update.feed_item=self.update_msg
-  update.save
+ def changes
+  workorder_changes=self.differs_from @object,
+              :ignore_attributes=>['id', 'created_at', 'updated_at',
+                'latitude','longitude','gmaps']
  end
 
-def update_msg
-  "#{self.user.name.titleize} created a #{self.wo_type.downcase} workorder for #{self.customer.titleize}."
-end
+ def changes_message
+  @msg = []
+  self.changes.each do |key, value|
+    if key == :completed
+      @msg << self.complete_message
+      break
+    else
+      case key
+      when :customer
+        @msg << changes_message_template("customer name", value)
+      when :wo_type
+        @msg << changes_message_template("type", value)
+      when :street, :city, :state
+        @msg << changes_message_template("address", value)
+      when :contact
+        @msg << changes_message_template("contact", value)
+      when :phonenumber
+        value.map!{ |val| number_to_phone(val) unless val.blank?}
+        @msg << changes_message_template("phone number", value)
+      when :assigned_to
+        value.map!{ |val| name_of_user(val) unless val.blank? }
+        @msg << changes_message_template("installer", value)
+      when :wo_date
+        value.map!{ |val| val.strftime("(%A) %b %-d at %l:%M%P") unless val.blank?}
+        @msg << changes_message_template("installation time", value)
+      else
+        @msg << self.customer.titleize + " workorder has been changed from #{value.last} to #{value.first}."
+      end
+    end
+  end
+  @msg
+ end
+
+ def changes_message_template(key_name, value)
+  self.customer.titleize + " workorder's #{key_name} has been changed from #{value.last} to #{value.first}."
+ end
+
+ def complete!
+  self.completed=true
+  self.save
+ end
+
+ def completed?
+  self.completed
+ end
+
+ def complete_message(user)
+  self.customer.titleize << " workorder has been completed by #{user.name.titleize}."
+ end
+
+ def new_update
+  Updater.new(self, :update_type => :new)
+ end
+
+ def update_update(user, object)
+  @object=object
+  @user=user
+  updates_to_send = self.changes_message || []
+  updates_to_send.each do |message|
+    Updater.new(self, update_type: :update, message: message, user: @user)
+  end
+ end
+
+ def destroy_update
+  Updater.new(self, update_type: :destroy)
+ end
+
+ def new_message
+  self.user.name.titleize << " created a " << self.wo_type.titleize << " workorder for " << self.customer.titleize << "."
+ end
+
+ def update_message
+  customer.titleize << " workorder has been changed."
+ end
+
+ def destroy_message
+  customer.titleize << " workorder has been deleted."
+ end
 
  def text_users
   @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
@@ -119,7 +201,7 @@ end
  end
 
  def chronic_wo_date
-   self.wo_date.strftime("(%A) %b %-d at %l:%M%p") unless self.wo_date.nil?
+   self.wo_date.strftime("(%A) %b %-d at %l:%M%P") unless self.wo_date.nil?
  end
 
  def chronic_wo_date=(s)
@@ -134,5 +216,8 @@ end
  def raw_phonenumber=(s)
    self.phonenumber=s.gsub(/\D/, '')
  end
+
+private
+
 
 end

@@ -39,12 +39,8 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(params[:document])
     if @document.save
+      @document.new_update(current_user)
       redirect_to documents_path, :notice => "Successfully created document."
-
-      @update=current_user.updates.new
-      @update.feed_item=current_user.name << " uploaded a document. | " << @document.description.titleize
-      @update.save
-
     else
       render :action => 'new'
     end

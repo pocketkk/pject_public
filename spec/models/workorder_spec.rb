@@ -94,5 +94,75 @@ describe Workorder do
         expect(workorder.after_photos.count).to eq(1)
     end
 
+    # it "should reply with changes prior to save" do
+    #     workorder = FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     updated_workorder = Workorder.find(workorder.id)
+    #     updated_workorder.customer = "Changed Name"
+    #     updated_workorder.changes[:customer].should == ["Changed Name", workorder.customer]
+    # end
+
+    # it "should create update for changed workorders" do
+    #     workorder = FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     updated_workorder = Workorder.find(workorder.id)
+    #     updated_workorder.customer = "Changed Name"
+    #     message = updated_workorder.changes_message.first
+    #     updated_workorder.save
+    #     Update.last.feed_item.should == message
+    # end
+
+    # it "should create update for deleted workorders" do
+    #     workorder = FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     workorder.destroy
+    #     Update.last.feed_item.should == workorder.destroy_message
+    # end
+
+    # it "should create an update for completed workorders" do
+    #     workorder=FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     workorder.complete!
+    #     Update.last.feed_item.should == workorder.complete_message
+    # end
+
+    # it "workorder updates with changes to phone number should be formatted" do
+    #     workorder=FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     workorder.phonenumber = 9254527867
+    #     message = workorder.changes_message.first
+    #     workorder.save
+    #     Update.last.feed_item.should == message
+    # end
+
+    # it "workorder updates with changes to assigned_to should be formatted" do
+    #     workorder=FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     workorder.assigned_to = 1
+    #     message = workorder.changes_message.first
+    #     workorder.save
+    #     Update.last.feed_item.should == message
+    # end
+
+    # it "workorder updates with changes to date/time should be formatted" do
+    #     workorder=FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     workorder.wo_date = Time.zone.now + 1.days
+    #     message = workorder.changes_message.first
+    #     workorder.save
+    #     Update.last.feed_item.should == message
+    # end
+
+    # it "workorder with multiple updates should include all changes formatted" do
+    #     workorder=FactoryGirl.create(:workorder)
+    #     workorder.save
+    #     workorder.wo_date = Time.zone.now + 1.days
+    #     workorder.contact = "The bomb"
+    #     first_message = workorder.changes_message.first
+    #     last_message = workorder.changes_message.last
+    #     workorder.save
+    #     Update.last.feed_item.should == last_message
+    # end
+
 
 end

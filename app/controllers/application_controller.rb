@@ -15,10 +15,12 @@ class ApplicationController < ActionController::Base
   end
 
   def comment_update( commentable_object, commentable_comment )
-    @update=current_user.updates.new
+
         if commentable_object.kind_of?(Workorder)
             commenter=User.find(current_user)
-            @update.feed_item=current_user.name << " commented on " << commentable_object.customer.titleize << "'s workorder.  \" " << commentable_comment << " \""
+
+            message=current_user.name.titleize + " commented on " + commentable_object.customer.titleize + "'s workorder. - \" " + commentable_comment + " \""
+            Updater.new(commentable_comment, update_type: new, message: message, user: current_user)
 
             #Find users involved in workorder
             workorder=Workorder.find(commentable_object.id)
@@ -42,15 +44,18 @@ class ApplicationController < ActionController::Base
 
         end
         if commentable_object.kind_of?(Document)
-            @update.feed_item=current_user.name << " commented on " << commentable_object.description.titleize << " document.  \" " << commentable_comment << " \""
+            message=current_user.name.titleize << " commented on " << commentable_object.description.titleize << " document. - \" " << commentable_comment << " \""
+            Updater.new(commentable_comment, update_type: new, message: message, user: current_user)
         end
         if commentable_object.kind_of?(Video)
-            @update.feed_item=current_user.name << " commented on " << commentable_object.title.titleize << " video.  \" " << commentable_comment << " \""
+            message=current_user.name.titleize << " commented on " << commentable_object.title.titleize << " video. - \" " << commentable_comment << " \""
+            Updater.new(commentable_comment, update_type: new, message: message, user: current_user)
         end
         if commentable_object.kind_of?(Post)
-            @update.feed_item=current_user.name << " commented on " << commentable_object.title.titleize << " blog post.  \" " << commentable_comment << " \""
+            message=current_user.name.titleize << " commented on " << commentable_object.title.titleize << " blog post. - \" " << commentable_comment << " \""
+            Updater.new(commentable_comment, update_type: new, message: message, user: current_user)
         end
-    @update.save
+
   end
 
 

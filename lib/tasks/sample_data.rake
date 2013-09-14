@@ -1,6 +1,7 @@
 # to run -> bundle exec rake db:populate
 # user, role="Sales", quantity=1
 
+
 def create_seed_workorder(args)
 
   user = args[:user]
@@ -116,6 +117,7 @@ end
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+    require 'faker'
     admin = User.create!(name: "Jason Crump",
                  email: "pocketkk@gmail.com",
                  role: "Branch Manager",
