@@ -66,6 +66,14 @@
             <%= @installer ? @installer.name.titleize : @no_one_assigned%>
 		</td>
 	</tr>
+    <tr>
+        <td>
+            CREATED BY:
+        </td>
+        <td>
+            <%= @workorder.user.name.titleize%>
+        </td>
+    </tr>
 </table>
 <%=image_tag(@workorder.googlemaps_image) %>
 <%#= gmaps({"map_options" => {"auto_adjust" => true, "auto_zoom" => false, "zoom" => 14},
