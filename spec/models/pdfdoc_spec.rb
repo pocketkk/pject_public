@@ -14,6 +14,7 @@ describe PdfdocUploader do
 
     after do
         PdfdocUploader.enable_processing = false
+        @uploader.remove!
     end
 
     it "has a valid factory" do

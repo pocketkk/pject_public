@@ -14,6 +14,7 @@ describe BeforePhoto do
 
     after do
         BeforePhotoUploader.enable_processing = false
+        @uploader.remove!
     end
 
     it "has a valid factory" do

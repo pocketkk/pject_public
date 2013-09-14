@@ -14,6 +14,7 @@ describe AssetPhoto do
 
     after do
         AssetPhotoUploader.enable_processing = false
+        @uploader.remove!
     end
 
     it "has a valid factory" do

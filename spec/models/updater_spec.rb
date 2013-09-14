@@ -61,21 +61,4 @@ describe Updater do
     Update.last.feed_item.should == part.update_message
   end
 
-  # it "should create update for new documents" do
-  #   document=Document.new
-  #   document.description = "Test"
-  #   document.pdfdoc = File.open(Rails.root.join('public', 'image.pdf'))
-  #   document.save
-  #   Update.last.feed_item.should == document.new_message
-  # end
-
-  # it "should create update for new documents" do
-  #   document=Document.new
-  #   document.description = "Test"
-  #   document.update_update
-  #   Update.last.feed_item.should == document.update_message
-  # end
-
-
-
 end
