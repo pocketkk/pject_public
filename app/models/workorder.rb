@@ -217,7 +217,4 @@ class Workorder < ActiveRecord::Base
    self.phonenumber=s.gsub(/\D/, '')
  end
 
-private
-
-
 end

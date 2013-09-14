@@ -2,7 +2,8 @@ class BugsController < ApplicationController
   def index
     @bugs = Bug.where("complete=?",false).where("request_type=?","Bug")
     @completed_bugs = Bug.where("complete=?",true)
-    @feature_bugs = Bug.where("complete=?", false).where("request_type=?", "Feature Request")
+    @feature_bugs = Bug.where("complete=?", false).where("request_type=?",
+     "Feature Request")
   end
 
   def show
@@ -16,11 +17,8 @@ class BugsController < ApplicationController
   def create
     @bug = current_user.bugs.build(params[:bug])
     if @bug.save
-      redirect_to root_path, :notice => "Bug or feature request added to the list!"
-      @update=Update.new
-      @update.feed_item=current_user.name << " added a bug/feature request!"
-      @update.user_id=current_user.id
-      @update.save
+      redirect_to root_path,
+      :notice => "Bug or feature request added to the list!"
     else
       render :action => 'new'
     end
@@ -44,18 +42,17 @@ class BugsController < ApplicationController
     @bug.destroy
     redirect_to bugs_url, :notice => "Successfully destroyed bug."
   end
-  
+
   def complete
     @bug = Bug.find(params[:id])
     if @bug.update_attributes(:complete => true)
+      Updater.new(@bug, update_type: :update,
+        user: current_user, message: @bug.update_message(current_user))
       redirect_to bugs_path, :notice => "Bug squashed!"
-      @update=Update.new
-      @update.feed_item="Squashed a bug!"
-      @update.user_id=current_user.id
-      @update.save
-    else 
-      redirect_to bugs_path, :error => "Oops something went wrong, bug is still alive and kicking."
+    else
+      redirect_to bugs_path,
+      :error => "Oops something went wrong, bug is still alive and kicking."
     end
   end
-  
+
 end

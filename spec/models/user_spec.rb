@@ -88,4 +88,10 @@ describe User do
         expect(workorder).to be_valid
     end
 
+    it "sends email to welcome new users" do
+        expect {
+            user=Factory.create(:user)
+        }.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
+
 end
