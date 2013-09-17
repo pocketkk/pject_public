@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
         @client.account.sms.messages.create(
                  from: TWILIO_CONFIG['from'],
                  to: admin.phone_number,
-                 body: self.message
+                 body: self.new_message
                )
       end
     end
