@@ -1,9 +1,0 @@
-one:
-  name: MyString
-  quantity: 1
-  asset_id: 1
-
-two:
-  name: MyString
-  quantity: 1
-  asset_id: 1

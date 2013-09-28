@@ -22,3 +22,6 @@ doc/
 .DS_Store
 .idea
 bundler_stubs/
+
+#Ignore uploaded files
+/public/uploads/
