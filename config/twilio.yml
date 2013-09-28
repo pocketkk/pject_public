@@ -1,10 +1,10 @@
 development:
-  from: '+1 500-555-0006'
+  from: '+15005550006'
   sid: 'ACf62a8da88e651286fa397a9ae2a2ec29'
   token: '23a7a8c72615e9eb85ff811e027ff501'
 
 staging:
-  from: '+1 500-555-0006'
+  from: '+15005550006'
   sid: 'ACf62a8da88e651286fa397a9ae2a2ec29'
   token: '23a7a8c72615e9eb85ff811e027ff501'
 
