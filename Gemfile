@@ -34,6 +34,9 @@ group :development do
   gem 'haml-rails', '>=0.3.4'
   gem 'pg','0.12.2'
   gem 'nifty-generators'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 # Gems used only for assets and not required

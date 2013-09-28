@@ -14,6 +14,7 @@ describe AfterPhoto do
 
     after do
         AfterPhotoUploader.enable_processing = false
+        @uploader.remove!
     end
 
     it "has a valid factory" do

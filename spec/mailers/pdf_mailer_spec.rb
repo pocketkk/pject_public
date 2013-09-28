@@ -1,18 +1,30 @@
-require "spec_helper"
+require 'spec_helper'
+require 'carrierwave/test/matchers'
 
 describe PdfMailer do
-  describe "mail_pdf" do
-    let(:mail) { PdfMailer.mail_pdf }
 
-    it "renders the headers" do
-      mail.subject.should eq("Mail pdf")
-      mail.to.should eq(["to@example.org"])
-      mail.from.should eq(["from@example.com"])
+    include CarrierWave::Test::Matchers
+
+    before do
+        PdfdocUploader.enable_processing = true
+        @document = FactoryGirl.build(:document)
     end
 
-    it "renders the body" do
-      mail.body.encoded.should match("Hi")
+    after do
+        PdfdocUploader.enable_processing = false
     end
-  end
+
+    it "has a valid factory" do
+        @document.class.name.should == "Document"
+    end
+
+    it "has a valid factory that is a valid document" do
+        # @document.new_update
+        # Document.all.count.should == 1
+    end
+
+
+
+
 
 end
