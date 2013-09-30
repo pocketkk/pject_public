@@ -6,27 +6,6 @@ class WorkordersController < ApplicationController
     @workorders = params[:distinct].to_i.zero? ? @search.result.paginate(page: params[:page], :per_page => 6) : @search.result(distinct: true).paginate(page: params[:page], :per_page => 6)
   end
 
-  def open
-    @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.ascending.paginate(page: params[:page], :per_page => 5) if signed_in?
-    @completed_workorders=Workorder.wo_current_branch(current_user.current_branch).wo_recently_completed if signed_in?
-  end
-
-  def past_due
-    @workorders=Workorder.wo_current_branch(current_user.current_branch).wo_not_completed.where('wo_date between ? and ?', Date.today-100.years, Date.today-1).ascending.paginate(page: params[:page], :per_page => 5) if signed_in?
-  end
-
-  def unassigned
-    @assets_without_serials = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).serial_blank.order('workorders.wo_date ASC') if signed_in?
-  end
-
-  def need_to_order
-    @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0') if signed_in?
-  end
-
-  def timeoff
-    @users = User.active_by_branch(current_user.current_branch) if signed_in?
-  end
-
   def calendar
     ### Mobile Requests ###
     @workorders_mobile=Workorder.wo_current_branch(current_user.current_branch).where('wo_date IS NOT NULL').ascending
@@ -100,6 +79,12 @@ class WorkordersController < ApplicationController
     @users = User.active_by_branch(current_user.current_branch)
   end
 
+  def toggle_follower
+    @workorder=Workorder.find(params[:id])
+    @workorder.toggle_follower(current_user)
+    redirect_to @workorder, notice: "Changed following status"
+  end
+
   def complete
     @workorder = Workorder.find(params[:id])
     if @workorder.complete!
@@ -108,46 +93,23 @@ class WorkordersController < ApplicationController
 
       redirect_to root_path, :notice => "Workorder Completed!"
 
-      @users_branchmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Branch Manager')
-      @users_regionalmanagers=User.where('current_branch=?', current_user.current_branch).where('texts=?', true).where('role=?','Regional Manager')
+      @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
 
-      @users_to_email_branch_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Branch Manager')
-      @users_to_email_regional_manager=User.where('current_branch=?', current_user.current_branch).where('receive_mails=?', true).where('role=?', 'Regional Manager')
-      @users_to_email=@users_to_email_branch_manager+@users_to_email_regional_manager
-
-      if @workorder.user.receive_mails == true
-        PdfMailer.mail_workorder(@workorder,@workorder.user,"Completed").deliver
-      end
-
-      @users_to_email.each do |user|
-        PdfMailer.mail_workorder(@workorder,user,"Completed").deliver
-      end
-
-
-      if @workorder.user.texts == true
-        client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-
-             # Create and send an SMS message
-             client.account.sms.messages.create(
+      @workorder.followers.each do |follower|
+        user=follower.user
+        if user.receive_mails == true
+          PdfMailer.mail_workorder(@workorder,user,"Completed").deliver
+        end
+        if user.texts == true
+          unless user.phone_number.blank?
+            # Create and send an SMS message
+             @client.account.sms.messages.create(
                from: TWILIO_CONFIG['from'],
                to: @workorder.user.phone_number,
                body: @workorder.customer.titleize << "'s workorder has been completed! " << url_for(@workorder)
              )
-      end
-
-      @users_to_text=@users_branchmanagers + @users_regionalmanagers
-
-      @users_to_text.each do |user|
-          unless user==@workorder.user
-              client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-
-                   # Create and send an SMS message
-                   client.account.sms.messages.create(
-                     from: TWILIO_CONFIG['from'],
-                     to: user.phone_number,
-                     body: @workorder.customer.titleize << "'s " << @workorder.wo_type.downcase << " workorder has been completed! "  << url_for(@workorder)
-                   )
           end
+        end
       end
     else
       redirect_to root_path, :error => "Workorder status not updated."

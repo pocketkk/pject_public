@@ -4,6 +4,7 @@ class Workorder < ActiveRecord::Base
 
   include ActionView::Helpers
   include UsersHelper
+  include Followable
 
   attr_accessible :customer, :street, :city, :state, :wo_date,
                   :wo_duration, :chronic_wo_date, :phonenumber, :raw_phonenumber,
@@ -16,8 +17,9 @@ class Workorder < ActiveRecord::Base
   has_many :after_photos
   has_many :comments, as: :commentable
   has_many :tasks, as: :taskables
+  has_many :followers, as: :followable
 
-  after_create :text_users, :email_users
+  after_create :default_followers, :text_users, :email_users
 
   accepts_nested_attributes_for :assets, :allow_destroy => true
   accepts_nested_attributes_for :before_photos, :allow_destroy => true
@@ -84,6 +86,14 @@ class Workorder < ActiveRecord::Base
   workorder_changes=self.differs_from @object,
               :ignore_attributes=>['id', 'created_at', 'updated_at',
                 'latitude','longitude','gmaps']
+ end
+
+ def default_followers
+  users=User.active_by_branch(self.branch).stake_holders
+  users.each do |user|
+    self.add_follower(user) unless already_following?(user)
+  end
+  add_follower(self.user) unless already_following?(user)
  end
 
  def changes_message
@@ -167,9 +177,10 @@ class Workorder < ActiveRecord::Base
 
  def text_users
   @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-  if users_to_notify_by_text
-    users_to_notify_by_text.each do |user|
-       unless user.phone_number.blank?
+  followers.each do |follower|
+    user=follower.user
+    if user.texts
+      unless user.phone_number.blank?
          # Create and send an SMS message
          @client.account.sms.messages.create(
            from: TWILIO_CONFIG['from'],
@@ -181,8 +192,9 @@ class Workorder < ActiveRecord::Base
  end
 
  def email_users
-  if users_to_notify_by_email
-    users_to_notify_by_email.each do |user|
+  followers.each do |follower|
+    user=follower.user
+    if user.receive_mails
       PdfMailer.mail_workorder(self,user,"New").deliver
     end
   end

@@ -26,10 +26,18 @@
 
 		<a href=<%=edit_workorder_path(@workorder)%> type="button" class="btn btn-large btn-primary" >Edit</a>
 
-			<% if current_user.admin==true %>
+		<% if current_user.admin==true %>
 			  <a href=<%=workorder_path(@workorder)%> type="button" class="btn btn-large btn-primary" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
 
 		<% end %>
+
+			<a href=<%=toggle_follower_path(@workorder)%> type="button" class="btn btn-large btn-primary" >
+				<% if @workorder.already_following?(current_user) %>    Unfollow
+				<% else %>
+					Follow
+				<% end %>
+			</a>
+
 		<% unless @workorder.completed?%>
 		 	<a href=<%=complete_workorder_path(@workorder)%> type="button" class="btn btn-large btn-primary" data-confirm="Don't forget to add After Photos to completed workorders." >Complete</a>
 

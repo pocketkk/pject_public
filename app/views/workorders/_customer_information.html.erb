@@ -68,6 +68,17 @@
 	</tr>
     <tr>
         <td>
+            FOLLOWED BY:
+        </td>
+        <td>
+            |
+            <% @workorder.followers.each do |follower| %>
+              <%= follower.user.name.titleize%> |
+            <% end %>
+        </td>
+    </tr>
+    <tr>
+        <td>
             CREATED BY:
         </td>
         <td>

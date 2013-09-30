@@ -49,6 +49,8 @@ class User < ActiveRecord::Base
   scope :receives_emails, where(:receive_mails => true)
   scope :receive_workorder_messages, where(role: ["Branch Manager",
    "Regional Manager",  "Rebuilder", "Installer"] )
+  scope :stake_holders, where(role: ["Branch Manager",
+   "Regional Manager",  "Rebuilder", "Installer"] )
   scope :managers, where(role: ["Branch Manager", "Regional Manager"])
 
   def notify_admins

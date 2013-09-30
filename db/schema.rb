@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818211153) do
+ActiveRecord::Schema.define(:version => 20130930193721) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -114,6 +114,14 @@ ActiveRecord::Schema.define(:version => 20130818211153) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "message"
+  end
+
+  create_table "followers", :force => true do |t|
+    t.integer  "followable_id"
+    t.text     "followable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "user_id"
   end
 
   create_table "fulfillments", :force => true do |t|
