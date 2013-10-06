@@ -33,12 +33,14 @@
                     </div>
                 <% end %>
             <% end %>
-            <div class="task_gravatar" id="followers_<%=task.id%>" >
-                Followers: |
-                <% task.followers.each do |follower| %>
-                    <%= name_of_user(follower.user_id) %> |
+            <% if task.followers.any? %>
+                <div class="task_gravatar" id="followers_<%=task.id%>" >
+                    Followers: |
+                    <% task.followers.each do |follower| %>
+                        <%= name_of_user(follower.user_id) %> |
+                    <% end %>
+                </div>
             <% end %>
-            </div>
             <div class="task_details_show">
                 <div class="task_float_left">
                     <% if task.due_date %>
