@@ -26,12 +26,19 @@
                         Assigned to: <%= task_gravatar task.assigned_to, size: 15%><%= name_of_user(task.assigned_to) %>
                     </div>
                 <% end %>
+
                 <% if task.taskable != current_user %>
                     <div class="task_gravatar">
                         Assigned by: <%= task_gravatar task.taskable, size: 15 %><%= name_of_user(task.taskable) %>
                     </div>
                 <% end %>
             <% end %>
+            <div class="task_gravatar" id="followers_<%=task.id%>" >
+                Followers: |
+                <% task.followers.each do |follower| %>
+                    <%= name_of_user(follower.user_id) %> |
+            <% end %>
+            </div>
             <div class="task_details_show">
                 <div class="task_float_left">
                     <% if task.due_date %>

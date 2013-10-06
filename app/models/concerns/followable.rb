@@ -23,6 +23,14 @@ module Followable
       is_following
     end
 
+    def followers_as_users
+      follower_users = []
+      followers.each do |follower|
+        follower_users << follower.user
+      end
+      follower_users
+    end
+
     def unique_follower?(user)
      unique=true
      followers.each do |follower|

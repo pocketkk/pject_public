@@ -1,7 +1,7 @@
 include ActionDispatch::TestProcess
 
 FactoryGirl.define do
-  factory :user do
+  factory :user, aliases: [:taskable] do
     name     "Robot Tester"
     sequence(:email) { |n| "email#{n}@test.com"}
     password "foobar"
@@ -13,6 +13,12 @@ FactoryGirl.define do
     factory :admin do
         admin true
     end
+  end
+
+  factory :task do
+    content     "My Task"
+    branch      350
+    taskable
   end
 
   factory :asset do

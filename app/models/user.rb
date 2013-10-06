@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
    "Regional Manager",  "Rebuilder", "Installer"] )
   scope :managers, where(role: ["Branch Manager", "Regional Manager"])
 
+
+
   def notify_admins
     @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
     # Create and send an SMS message

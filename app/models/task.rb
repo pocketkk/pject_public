@@ -1,9 +1,15 @@
 class Task < ActiveRecord::Base
+
+  include Followable
+
   attr_accessible :assigned_to, :content, :completed, :chronic_due_date,
    :branch, :notes, :due_date, :context, :sleep, :chronic_sleep,
-   :chronic_reminder_time
+   :chronic_reminder_time, :followers_for
 
   belongs_to :taskable, polymorphic: true
+  has_many :followers, as: :followable
+
+  after_save :update_followers
 
   scope :tasks_current_user, lambda{ |user| where('assigned_to = ? OR taskable_id = ?', user, user)  }
   scope :task_completed, where('completed = ?', true)
@@ -11,15 +17,51 @@ class Task < ActiveRecord::Base
   scope :task_context, lambda { |context| where('context = ?', context)}
   scope :due_today, where('due_date = ?', Time.zone.now.to_date)
   scope :current_user, lambda{ |user| where('assigned_to = ? OR taskable_id = ?', user, user)  }
+  scope :asleep, where('sleep > ?', Time.zone.now.to_date)
+  scope :not_asleep, where('sleep <= ?', Time.zone.now.to_date)
+  scope :follows_for, lambda {|user| joins(:followers).where('user_id=?', user).task_not_completed}
 
+  CONTEXT = ["", "Office", "Phone", "Collections", "Fire-Call", "Sales-Lead", "Hand-Lead", "Home"]
+  CONTEXT_OPTIONS = ["All","Office", "Phone", "Collections", "Fire-Call", "Sales-Lead", "Hand-Lead","Home", ""]
+  SLEEP_OPTIONS = ["",1,2,3,7,14,28,365]
 
-  CONTEXT = ["", "Office", "Phone", "Collections", "Home"]
-  CONTEXT_OPTIONS = ["All","Office", "Phone", "Collections", "Home", ""]
-  SLEEP_OPTIONS = ["",1,2,3,7,14,28]
   validates :content, presence: true
 
   def chronic_due_date
     self.due_date
+  end
+
+  def update_followers
+    @default_followers ||= []
+    @default_followers.each do |new_follower|
+      add_follower(new_follower) unless followers_as_users.include?(new_follower)
+    end
+    followers_as_users.each do |old_follower|
+      remove_follower(old_follower) unless @default_followers.include?(old_follower)
+    end
+  end
+
+  def followers_for=(users) #take user id and add user to follower list
+    @default_followers = []
+    users.each do |id|
+      unless id.blank?
+        user=User.find(id)
+        @default_followers << user
+      end
+    end
+  end
+
+  def followers_for # need to return an array of user ids
+    @default_follower_ids ||= []
+    followers.each do |follower|
+      @default_follower_ids << follower.user_id
+    end
+    @default_follower_ids
+  end
+
+  def complete!
+    completed=true
+    save
   end
 
   def chronic_due_date=(s)
