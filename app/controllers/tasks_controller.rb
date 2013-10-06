@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  before_filter :load_taskable, :except => [:update, :change_context, :edit]
+  before_filter :load_taskable, :except => [:create, :update, :change_context, :edit]
 
   def index
     @tasks = @taskable.tasks
@@ -19,10 +19,21 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(params[:task])
     @task.completed=false
-    @task.save
-    session[:return_to] ||= request.referer
+    if @task.save
+      @task.followers_as_users.each do |user|
+        if user.receive_mails == true
+          PdfMailer.mail_task(@task,user,"New").deliver
+        end
+      end
+      if @task.assigned_to
+        user=User.find(@task.assigned_to)
+        if user.receive_mails == true
+          PdfMailer.mail_task(@task,user,"New").deliver
+        end
+      end
+    end
     respond_to do |format|
-      format.html { redirect_to session[:return_to], notice: "Task created." }
+      format.html { redirect_to root_path, notice: "Task created." }
       format.js
     end
   end
@@ -42,11 +53,28 @@ class TasksController < ApplicationController
 
 def update
     @task = Task.find(params[:id])
-    @task.update_attributes!(params[:task])
-    respond_to do |format|
-      format.mobile { redirect_to root_path}
-      format.html { redirect_to root_path }
-      format.js
+    if @task.update_attributes!(params[:task])
+      if params[:task][:completed] == true
+        @task.followers_as_users.each do |user|
+          if user.receive_mails == true
+            PdfMailer.mail_task(@task,user,"Completed").deliver
+          end
+        end
+        if @task.assigned_to
+          user=User.find(@task.assigned_to)
+          if user.receive_mails == true
+            PdfMailer.mail_task(@task,user,"Completed").deliver
+          end
+        end
+        if @task.taskable.receive_mails == true
+          PdfMailer.mail_task(@task,user,"Completed").deliver
+        end
+      end
+      respond_to do |format|
+        format.mobile { redirect_to root_path}
+        format.html { redirect_to root_path }
+        format.js
+      end
     end
 end
 

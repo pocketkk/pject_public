@@ -41,6 +41,10 @@ group :development do
   gem 'meta_request'
 end
 
+group :development, :staging do
+  gem 'rack-mini-profiler'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

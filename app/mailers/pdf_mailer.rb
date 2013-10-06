@@ -38,6 +38,13 @@ class PdfMailer < ActionMailer::Base
     mail to: user.email, content_type: 'text/html', subject: "WOM - " << type.upcase << " | "   << @workorder.customer
   end
 
+  def mail_task(task, user, type)
+    @user=user
+    @firstname=first_name(user)
+    @task=task
+    mail to: user.email, content_type: 'text/html', subject: "WOM Task - " << type.upcase << " Task "
+  end
+
   def mail_alert(user)
     @user=user
     mail to: "admin@workordermachine.com", subject: "W.O.M. - Pssst: " << user.name << " signed in."

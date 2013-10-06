@@ -2,12 +2,11 @@ class ApplicationController < ActionController::Base
   include Mobylette::RespondToMobileRequests
 
   mobylette_config do |config|
-
     config[:skip_user_agents] = [:ipad]
   end
 
   protect_from_forgery
-
+  before_filter :miniprofiler
   helper_method :yt_client, :comment_update
 
   def yt_client
@@ -58,6 +57,11 @@ class ApplicationController < ActionController::Base
 
   end
 
+
+private
+def miniprofiler
+  Rack::MiniProfiler.authorize_request if current_user.admin?
+end
 
   include SessionsHelper
 
