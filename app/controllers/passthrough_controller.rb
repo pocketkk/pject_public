@@ -16,10 +16,8 @@ class PassthroughController < ApplicationController
               else
                 path = branchmanager_path
               end
-
       end
       redirect_to path
-
   end
 
 

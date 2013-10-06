@@ -41,6 +41,8 @@ GEM
     bluecloth (2.2.0)
     bootstrap-sass (2.0.0)
     builder (3.0.4)
+    bullet (4.6.0)
+      uniform_notifier
     callsite (0.0.11)
     capybara (2.0.2)
       mime-types (>= 1.16)
@@ -271,6 +273,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    uniform_notifier (1.3.0)
     useragent (0.4.13)
     websocket (1.0.7)
     will_paginate (3.0.3)
@@ -294,6 +297,7 @@ DEPENDENCIES
   binding_of_caller
   bluecloth
   bootstrap-sass (= 2.0.0)
+  bullet
   capybara
   carrierwave (~> 0.7.1)
   chronic

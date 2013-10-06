@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130930193721) do
+ActiveRecord::Schema.define(:version => 20131006151158) do
 
   create_table "after_photos", :force => true do |t|
     t.integer  "workorder_id"
@@ -201,8 +201,8 @@ ActiveRecord::Schema.define(:version => 20130930193721) do
     t.integer  "taskable_id"
     t.string   "taskable_type"
     t.integer  "assigned_to"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "branch"
     t.boolean  "completed"
     t.text     "notes"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20130930193721) do
     t.date     "sleep"
     t.date     "reminder_date"
     t.datetime "reminder_time"
+    t.integer  "followers_count", :default => 0
   end
 
   add_index "tasks", ["taskable_id", "taskable_type"], :name => "index_tasks_on_taskable_id_and_taskable_type"

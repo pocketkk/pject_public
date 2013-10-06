@@ -20,6 +20,8 @@ class Task < ActiveRecord::Base
   scope :asleep, where('sleep > ?', Time.zone.now.to_date)
   scope :not_asleep, where('sleep <= ?', Time.zone.now.to_date)
   scope :follows_for, lambda {|user| joins(:followers).where('user_id=?', user).task_not_completed}
+  scope :for, lambda{ |user| where('assigned_to = ? OR taskable_id = ?', user, user)  }
+  scope :include_followers, includes(:followers)
 
   CONTEXT = ["", "Office", "Phone", "Collections", "Fire-Call", "Sales-Lead", "Hand-Lead", "Home"]
   CONTEXT_OPTIONS = ["All","Office", "Phone", "Collections", "Fire-Call", "Sales-Lead", "Hand-Lead","Home", ""]
