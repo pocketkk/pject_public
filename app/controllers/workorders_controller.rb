@@ -53,10 +53,10 @@ class WorkordersController < ApplicationController
   end
 
   def show
-    @workorder=Workorder.find(params[:id])
+    @workorder=Workorder.find(params[:id], :include => [:assets, :followers])
     @followup_workorder=Workorder.new
     @json=@workorder.to_gmaps4rails
-    @assets_need_to_order = Asset.joins(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
+    @assets_need_to_order = Asset.includes(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
     @users = User.where("current_branch=?",current_user.current_branch)
     @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
 
