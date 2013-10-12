@@ -90,7 +90,7 @@ class Task < ActiveRecord::Base
   end
 
   def reminder_msg
-    "#{self.context} | #{self.content} | http://www.workordermachine.com"
+    "#{self.context} | #{self.content} | http://ac.workordermachine.com"
   end
 
 

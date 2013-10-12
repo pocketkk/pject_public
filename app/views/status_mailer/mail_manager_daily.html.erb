@@ -63,7 +63,7 @@ a:hover {
 </style>
 <div class="body">
 <div class="header">
-<center><h1 class="logo"><a href='http://www.workordermachine.com'>WORKORDER::MACHINE</a></h1></center></div>
+<center><h1 class="logo"><a href='http://ac.workordermachine.com'>WORKORDER::MACHINE</a></h1></center></div>
 
 <% counter=0 %>
 
@@ -89,7 +89,7 @@ a:hover {
     <% workorders.each do |workorder| %>
         <table>
             <tr>
-                <td>Customer:</td><td><a href='<%= url_for(host: 'www.workordermachine.com', controller: 'workorders', action: 'show', id: workorder.id)%>'><%=workorder.customer.titleize%></a> | <%=workorder.wo_type.titleize %></td>
+                <td>Customer:</td><td><a href='<%= url_for(host: 'ac.workordermachine.com', controller: 'workorders', action: 'show', id: workorder.id)%>'><%=workorder.customer.titleize%></a> | <%=workorder.wo_type.titleize %></td>
             </tr>
             <tr>
                 <td>Address:</td><td>  <%= workorder.gmaps4rails_address %></td>
@@ -158,7 +158,7 @@ a:hover {
             <% for asset in assets %>
            <tr>
                 <td class="small-fonts">
-                   <a href='<%= url_for(host: 'www.workordermachine.com', controller: 'workorders', action: 'edit', id: asset.workorder.id)%>'> <%= asset.workorder.customer.titleize %> </a>
+                   <a href='<%= url_for(host: 'ac.workordermachine.com', controller: 'workorders', action: 'edit', id: asset.workorder.id)%>'> <%= asset.workorder.customer.titleize %> </a>
                 </td>
                 <td class="small-fonts">
                     <%= asset.name %>

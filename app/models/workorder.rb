@@ -185,7 +185,7 @@ class Workorder < ActiveRecord::Base
          @client.account.sms.messages.create(
            from: TWILIO_CONFIG['from'],
            to: user.phone_number,
-           body: "A #{self.wo_type.downcase} workorder for #{self.customer.titleize} has been created! www.workordermachine.com/workorders/#{self.id}")
+           body: "A #{self.wo_type.downcase} workorder for #{self.customer.titleize} has been created! ac.workordermachine.com/workorders/#{self.id}")
       end
     end
   end
