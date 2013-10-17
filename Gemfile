@@ -32,10 +32,11 @@ gem 'foreman'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
-  gem 'letter_opener'
+
   gem 'haml-rails', '>=0.3.4'
   gem 'pg','0.12.2'
   gem 'nifty-generators'
+  gem 'letter_opener'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
