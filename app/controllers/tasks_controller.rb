@@ -27,7 +27,7 @@ class TasksController < ApplicationController
       end
       if @task.assigned_to
         user=User.find(@task.assigned_to)
-        if user.receive_mails == true
+        if user.receive_mails == true && @task.taskable != user
           PdfMailer.mail_task(@task,user,"New").deliver
         end
       end
