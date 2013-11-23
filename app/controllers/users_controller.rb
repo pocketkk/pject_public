@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         @user = User.new
       end
     else
-      redirect_to root_path, :error => "New users can only be created by an administrators."
+      redirect_to root_path, :error => "New users can only be created by administrators."
     end
   end
 
