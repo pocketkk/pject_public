@@ -20,4 +20,10 @@ describe 'roster' do
     roster.users.count.should == 3
   end
 
+  it "should not include inactive users" do
+    user=Factory.create(:user)
+    user2=Factory.create(:user, active: false)
+    roster=Roster.new(user).users.count.should == 1
+  end
+
 end

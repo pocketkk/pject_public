@@ -25,11 +25,7 @@ module Assignable
   end
 
   def branches_to_a
-    branches_array = []
-    branches.each do |branch|
-      branches_array << branch.branch_number
-    end
-    branches_array
+    branches.map { |b| b.branch_number }
   end
 
 end

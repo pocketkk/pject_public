@@ -1,6 +1,7 @@
 class Roster
   def initialize(user)
     @user = user
+    @roster ||= []
   end
 
   def users
@@ -9,9 +10,9 @@ class Roster
 
   def users_combined_by_branch
     roster = @user.locations.map do |branch|
-      Branch.includes(:user).where(branch_number: branch).all
+      Branch.includes(:user).where(branch_number: branch).merge(User.active)
     end
-    combine_roster(roster.flatten)
+    @roster = combine_roster(roster.flatten)
   end
 
   def combine_roster(roster)

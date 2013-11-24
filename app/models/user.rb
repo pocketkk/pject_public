@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true,
     :if => :should_validate_password?
 
+
+  default_scope { where(active: true) }
   scope :active_by_branch, lambda{ |branch| where(:active => true).
     where('current_branch = ?', branch) }
   scope :inactive_by_branch, lambda{ |branch| where(:active => false).
