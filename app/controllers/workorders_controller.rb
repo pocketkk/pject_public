@@ -15,7 +15,7 @@ class WorkordersController < ApplicationController
 
     ### workorder lookup for calendar
     @workorders_by_date=@workorders.group_by{|i| i.wo_date.to_date}
-    @users=User.active_by_branch(current_user.current_branch)
+    @users=user_roster
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @tasks = Task.tasks_current_user(current_user)
   end
@@ -40,7 +40,7 @@ class WorkordersController < ApplicationController
       end
     else
       flash[:error] = 'All fields must be filled to create a new workorder'
-      @users = User.active_by_branch(current_user.current_branch)
+      @users = user_roster
       render :action => 'new'
     end
   end
@@ -57,7 +57,7 @@ class WorkordersController < ApplicationController
     @followup_workorder=Workorder.new
     @json=@workorder.to_gmaps4rails
     @assets_need_to_order = Asset.includes(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
-    @users = User.where("current_branch=?",current_user.current_branch)
+    @users = user_roster
     @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
 
     @commentable = @workorder
@@ -68,7 +68,7 @@ class WorkordersController < ApplicationController
   def edit
     @workorder=Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
-    @users = User.active_by_branch(current_user.current_branch)
+    @users = user_roster
 
     @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
 
@@ -76,7 +76,7 @@ class WorkordersController < ApplicationController
 
   def new
     @workorder=Workorder.new
-    @users = User.active_by_branch(current_user.current_branch)
+    @users = user_roster
   end
 
   def toggle_follower
@@ -145,7 +145,7 @@ class WorkordersController < ApplicationController
         format.js
       end
     else
-      @users = User.active_by_branch(current_user.current_branch)
+      @users = user_roster
       render :action => 'edit'
     end
   end

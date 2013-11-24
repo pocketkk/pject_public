@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Mobylette::RespondToMobileRequests
   include SessionsHelper
+  include RostersHelper
 
   mobylette_config do |config|
     config[:skip_user_agents] = [:ipad]

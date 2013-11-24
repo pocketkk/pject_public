@@ -8,9 +8,7 @@ class StaticPagesController < ApplicationController
         current_branch).wo_recently_completed.includes(:user).includes(:assets) if signed_in?
      @updates = Update.all(:order => 'created_at DESC',
         :limit => "15", :include => :user) if signed_in?
-     @users=Roster.new(current_user).users if signed_in?
-     # @users = User.active_by_branch(current_user.
-     #    current_branch).includes(:day_offs) if signed_in?
+     @users=user_roster if signed_in?
      @posts = Post.recently_added if signed_in?
 
      #Tasks

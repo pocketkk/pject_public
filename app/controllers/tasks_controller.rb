@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @taskable=current_user
-    @users = User.active_by_branch(current_user.current_branch)
+    @users = user_roster
   end
 
   def create
