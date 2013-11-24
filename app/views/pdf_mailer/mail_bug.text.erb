@@ -1,0 +1,36 @@
+<style>
+.comment {
+    font-size: 1em;
+    color: #696969;
+}
+.footer {
+    font-size: .5em;
+    color: #adadad;
+}
+h1 {
+    font-size: 1.5em;
+    letter-spacing: -1px;
+    margin-bottom:  20px;
+    text-align: center;
+}
+h2 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #696969;
+}
+h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #696969;
+}
+</style>
+
+<center><h1>WORKORDER::MACHINE</h1></center>
+
+<h3>New Bug Report</h3>
+<p class="comment"><%=@bug.user.name.titleize%> submitted a <%=@bug.request_type%>: <em>"<%=@bug.name%>"</em></p>
+
+<hr />
+<p class="footer">To turn off email notifications visit your settings and turn email notifications to no.  If you would rather have text message notifications make sure your account has a valid phone number where text messages can be received and set text message notifications to yes.</p>

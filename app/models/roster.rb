@@ -18,4 +18,9 @@ class Roster
   def combine_roster(roster)
     roster.map(&:user)
   end
+
+  def branches
+    @user.locations
+  end
+
 end

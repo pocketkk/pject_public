@@ -17,6 +17,7 @@ class BugsController < ApplicationController
   def create
     @bug = current_user.bugs.build(params[:bug])
     if @bug.save
+      PdfMailer.mail_bug(@bug, "pocketkk@gmail.com").deliver
       redirect_to root_path,
       :notice => "Bug or feature request added to the list!"
     else
