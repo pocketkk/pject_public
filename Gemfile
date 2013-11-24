@@ -13,7 +13,7 @@ gem 'css3-progress-bar-rails'
 gem 'google-webfonts'
 gem 'carrierwave', '~> 0.7.1'
 gem 'fog', '~> 1.3.1'
-gem 'rmagick'
+gem 'rmagick', '~> 2.13.2'
 gem 'jquery-rails', '2.1.3'
 gem 'ransack'
 gem 'twilio-ruby'
@@ -34,7 +34,7 @@ gem 'foreman'
 group :development do
 
   gem 'haml-rails', '>=0.3.4'
-  gem 'pg','0.12.2'
+  gem 'pg','~>0.12.2'
   gem 'nifty-generators'
   gem 'letter_opener'
   gem 'better_errors'
@@ -56,7 +56,7 @@ group :assets do
 end
 
 group :test do
-  gem 'pg','0.12.2'
+  gem 'pg','~>0.12.2'
   gem 'rspec-rails','2.11.0'
   gem 'nifty-generators'
   gem 'capybara'
@@ -74,7 +74,7 @@ end
 
 
 group :production do
-  gem 'pg','0.12.2'
+  gem 'pg','~>0.12.2'
 end
 
 # To use ActiveModel has_secure_password

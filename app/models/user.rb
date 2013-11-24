@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :role, :super_user, :password, :password_confirmation,
-                  :current_branch, :phone_number, :raw_phonenumber, :texts,
-                  :signature, :receive_mails, :active
+  attr_accessible :email, :name, :role, :super_user, :password,
+                  :password_confirmation, :current_branch, :phone_number,
+                  :raw_phonenumber, :texts, :signature, :receive_mails, :active
 
   has_secure_password
+
+  include Assignable
 
   has_many :workorders
   has_many :updates
@@ -14,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :videos
   has_many :posts
   has_many :day_offs
+  has_many :branches
 
   has_many :tasks, as: :taskable
 
@@ -25,7 +28,7 @@ class User < ActiveRecord::Base
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token, :strip_whitespace
-  after_create :notify_admins, :welcome_letter, :new_update
+  after_create :notify_admins, :welcome_letter, :new_update, :assign_to_branch
 
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -52,8 +55,6 @@ class User < ActiveRecord::Base
   scope :stake_holders, where(role: ["Branch Manager",
    "Regional Manager",  "Rebuilder", "Installer"] )
   scope :managers, where(role: ["Branch Manager", "Regional Manager"])
-
-
 
   def notify_admins
     @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
@@ -109,6 +110,14 @@ class User < ActiveRecord::Base
   def strip_whitespace
     self.name = self.name.strip
     self.email = self.email.strip
+  end
+
+  def locations
+    branches_to_a
+  end
+
+  def assign_to_branch(branch = self.current_branch)
+    self.add_branch(branch)
   end
 
   private

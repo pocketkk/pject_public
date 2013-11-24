@@ -20,8 +20,4 @@ module SessionMacros
     click_button "Add Part"
   end
 
-  def build_workorder(user)
-
-  end
-
 end

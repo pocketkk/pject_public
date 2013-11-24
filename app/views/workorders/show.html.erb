@@ -28,11 +28,11 @@
 
 		<% if current_user.admin==true %>
 			  <a href=<%=workorder_path(@workorder)%> type="button" class="btn btn-large btn-primary" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-
 		<% end %>
 
 			<a href=<%=toggle_follower_path(@workorder)%> type="button" class="btn btn-large btn-primary" >
-				<% if @workorder.already_following?(current_user) %>    Unfollow
+				<% if @workorder.already_following?(current_user) %>
+					Unfollow
 				<% else %>
 					Follow
 				<% end %>

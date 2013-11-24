@@ -47,6 +47,7 @@ class UsersController < ApplicationController
 
   def edit
       @user = User.find(params[:id])
+      @assigned_branches = @user.locations
   end
 
   def user_branch_switch

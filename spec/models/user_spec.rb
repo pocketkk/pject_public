@@ -94,4 +94,38 @@ describe User do
         }.to change(ActionMailer::Base.deliveries, :count).by(1)
     end
 
+    it "should assign branch to user" do
+        user = Factory.create(:user)
+        user.add_branch(350)
+        user.branches.count.should == 1
+    end
+
+    it "should remove branch from user" do
+        user = Factory.create(:user)
+        user.add_branch(350)
+        user.remove_branch(350)
+        user.branches.count.should ==0
+    end
+
+    describe "#already_assigned?" do
+        it "should return false" do
+            user = Factory.create(:user)
+            user.already_assigned?(300).should == false
+        end
+    end
+
+    describe "#branches_to_a" do
+        it "should return an array of branches" do
+            user = Factory.create(:user)
+            user.add_branch(350)
+            user.add_branch(340)
+            user.branches_to_a.should == [350,340]
+        end
+    end
+
+    it "should assign user to branch when created" do
+        user=Factory.create(:user)
+        user.branches.count.should == 1
+    end
+
 end
