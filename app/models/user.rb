@@ -30,32 +30,34 @@ class User < ActiveRecord::Base
   before_save :create_remember_token, :strip_whitespace
   after_create :notify_admins, :welcome_letter, :new_update, :assign_to_branch
 
-  validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :name, presence: true, length: {maximum: 50}
+ 
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :role, presence: true
   validates :current_branch, presence: true
   validates :password, presence: true, length: { minimum: 6 },
-    :if => :should_validate_password?
+            :if => :should_validate_password?
   validates :password_confirmation, presence: true,
-    :if => :should_validate_password?
+            :if => :should_validate_password?
 
 
   scope :active_by_branch, lambda{ |branch| where(:active => true).
-    where('current_branch = ?', branch) }
+         where('current_branch = ?', branch) }
   scope :inactive_by_branch, lambda{ |branch| where(:active => false).
-    where('current_branch = ?', branch) }
+         where('current_branch = ?', branch) }
   scope :active, where(:active => true)
   scope :inactive, where(:active => false)
   scope :admins, where(:admin => true)
   scope :receives_texts, where(:texts => true)
   scope :receives_emails, where(:receive_mails => true)
   scope :receive_workorder_messages, where(role: ["Branch Manager",
-   "Regional Manager",  "Rebuilder", "Installer"] )
+        "Regional Manager",  "Rebuilder", "Installer"] )
   scope :stake_holders, where(role: ["Branch Manager",
-   "Regional Manager",  "Rebuilder", "Installer"] )
+        "Regional Manager",  "Rebuilder", "Installer"] )
   scope :managers, where(role: ["Branch Manager", "Regional Manager"])
+  scope :boss, where(role: ["Branch Manager", "Regional Manager"])
 
   def notify_admins
     @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
