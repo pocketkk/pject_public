@@ -32,7 +32,6 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true, length: {maximum: 50}
- 
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :role, presence: true
@@ -41,7 +40,6 @@ class User < ActiveRecord::Base
             :if => :should_validate_password?
   validates :password_confirmation, presence: true,
             :if => :should_validate_password?
-
 
   scope :active_by_branch, lambda{ |branch| where(:active => true).
          where('current_branch = ?', branch) }
@@ -94,7 +92,7 @@ class User < ActiveRecord::Base
     tasks.where( :completed => true )
   end
 
-    def incomplete_tasks
+  def incomplete_tasks
     tasks.where( :completed => false )
   end
 

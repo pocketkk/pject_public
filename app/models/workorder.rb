@@ -41,7 +41,6 @@ class Workorder < ActiveRecord::Base
   scope :wo_recently_completed, where('completed = ?', true).limit(4).order("wo_date DESC")
   scope :past_due, where('wo_date < ?', Time.zone.now.beginning_of_day).where('completed = ?', false)
 
-
   BRANCH_OPTIONS          = ['110','120','130','140','210','220','230','240',
                             '310','320','330','340','350','360','410','420',
                             '430','440','450','710']
