@@ -38,6 +38,13 @@ class PdfMailer < ActionMailer::Base
     mail to: user.email, content_type: 'text/html', subject: "WOM - " << type.upcase << " | "   << @workorder.customer
   end
 
+  def mail_time_off(time_off, user, type)
+    @user = user
+    @time_off = time_off
+    @yea_or_nay = type
+    mail to: user.email, content_type: 'text/html', subject: "WOM - Time off request was: " << type.upcase
+  end
+
   def mail_task(task, user, type)
     @user=user
     @firstname=first_name(user)

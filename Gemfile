@@ -36,6 +36,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'bullet'
+  gem 'railroady'
 end
 
 group :development, :staging do

@@ -15,6 +15,13 @@ FactoryGirl.define do
     end
   end
 
+  factory :day_off do
+    start_date Date.today + 1.days
+    end_date Date.today + 3.days
+    do_type "Vacation"
+    user
+  end
+
   factory :task do
     content     "My Task"
     branch      350

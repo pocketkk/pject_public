@@ -23,8 +23,4 @@ describe PdfMailer do
         # Document.all.count.should == 1
     end
 
-
-
-
-
 end

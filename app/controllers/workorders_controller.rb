@@ -149,5 +149,13 @@ class WorkordersController < ApplicationController
       render :action => 'edit'
     end
   end
-
+  def unassigned
+    @assets_without_serials = Asset.serial_nil.serial_blank
+  end
+  def need_to_order
+    @assets_need_to_order = Asset.where(status: "need_to_order")
+  end
+  def timeoff
+    @users=User.where(current_branch: current_user.current_branch)
+  end
 end

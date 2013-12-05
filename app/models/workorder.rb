@@ -37,7 +37,8 @@ class Workorder < ActiveRecord::Base
   scope :wo_has_date, where('wo_date IS NOT NULL')
   scope :wo_no_date, where('wo_date IS NULL')
   scope :today, where('wo_date BETWEEN ? AND ?', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)
-  scope :tomorrow, where('wo_date BETWEEN ? AND ?', Time.zone.now.beginning_of_day+1.day, Time.zone.now.end_of_day+1.day)
+  scope :tomorrow, where('wo_date BETWEEN ? AND ?', Time.zone.now.beginning_of_day+1.day,
+                         Time.zone.now.end_of_day+1.day)
   scope :wo_recently_completed, where('completed = ?', true).limit(4).order("wo_date DESC")
   scope :past_due, where('wo_date < ?', Time.zone.now.beginning_of_day).where('completed = ?', false)
 
@@ -163,7 +164,8 @@ class Workorder < ActiveRecord::Base
  end
 
  def new_message
-  self.user.name.titleize << " created a " << self.wo_type.titleize << " workorder for " << self.customer.titleize << "."
+  self.user.name.titleize << " created a " << self.wo_type.titleize << " workorder for " <<
+  self.customer.titleize << "."
  end
 
  def update_message
