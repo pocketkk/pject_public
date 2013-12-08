@@ -177,20 +177,20 @@ class Workorder < ActiveRecord::Base
  end
 
  def text_users
-  @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
   followers.each do |follower|
     user=follower.user
     if user.texts
       unless user.phone_number.blank?
-         # Create and send an SMS message
-         @client.account.sms.messages.create(
-           from: TWILIO_CONFIG['from'],
-           to: user.phone_number,
-           body: "A #{self.wo_type.downcase} workorder for #{self.customer.titleize} has been created! ac.workordermachine.com/workorders/#{self.id}")
+        Sms.send(user.phone_number, new_workorder_message)
       end
     end
   end
  end
+
+  def new_workorder_message
+   "A #{self.wo_type.downcase} workorder for #{self.customer.titleize} has been created!"\
+   " ac.workordermachine.com/workorders/#{self.id}"
+  end
 
  def email_users
   followers.each do |follower|
