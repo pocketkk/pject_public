@@ -118,19 +118,4 @@ describe Workorder do
         Follower.count.should == 4
     end
 
-    it "should text users when new workorder is created" do
-      workorder= Factory.create(:workorder)
-      expect(Sms.sent_smses.count).to eq(1)
-    end
-    
-    context "#text_users" do
-      it "should text users" do
-        user = Factory.create(:user)
-        workorder = Factory.create(:workorder)
-        workorder.add_follower(user)
-        workorder.text_users
-        expect(Sms.sent_smses.count).to eq(1)
-      end
-    end
-
 end
