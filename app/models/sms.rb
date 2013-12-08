@@ -5,7 +5,7 @@ class Sms
     cattr_accessor :sent_smses
   end
 
-  def send(to, message)
+  def send_sms(to, message)
     if Rails.env == "production"
       @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
       @client.account.sms.messages.create(from: TWILIO_CONFIG['from'], to: to, body: message)

@@ -181,7 +181,7 @@ class Workorder < ActiveRecord::Base
     user=follower.user
     if user.texts
       unless user.phone_number.blank?
-        Sms.send(user.phone_number, new_workorder_message)
+        Sms.send_sms(user.phone_number, new_workorder_message)
       end
     end
   end
