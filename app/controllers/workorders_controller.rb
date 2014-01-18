@@ -92,9 +92,8 @@ class WorkordersController < ApplicationController
         end
         if user.texts == true
           unless user.phone_number.blank?
-            @message = @workorder.customer.titleize << "'s workorder has been completed! " << url_for(@workorder)
-            # Create and send an SMS message
-            Sms.new.send_sms(phone_number: @workorder.user.phonenumber, message: @message)
+            Sms.new.send_sms(phone_number: @workorder.user.phone_number,
+                             message: @workorder.complete_message(current_user))
           end
         end
       end
