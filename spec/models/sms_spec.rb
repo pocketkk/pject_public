@@ -17,7 +17,8 @@ describe "Sms" do
 
     it "should accept a hash of params" do
       client = Sms.new
-      expect { client.send_sms(phone_number: 9254527867, message: "Hi there") }.to change{ Sms.sent_smses.count }.by(1)
+      expect { client.send_sms(phone_number: 9254527867, message: "Hi there") }.
+        to change{ Sms.sent_smses.count }.by(1)
     end    
 
     it "should raise an error if no phone number present" do

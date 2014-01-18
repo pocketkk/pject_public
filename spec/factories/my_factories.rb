@@ -9,6 +9,9 @@ FactoryGirl.define do
     role "Sales"
     current_branch 350
     admin false
+    phone_number 1234567890
+    texts true
+    receive_mails true
 
     factory :admin do
         admin true
