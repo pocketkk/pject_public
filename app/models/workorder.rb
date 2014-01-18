@@ -100,7 +100,7 @@ class Workorder < ActiveRecord::Base
   @msg = []
   self.changes.each do |key, value|
     if key == :completed
-      @msg << self.complete_message
+      @msg << self.completed_message
       break
     else
       case key
@@ -166,6 +166,10 @@ class Workorder < ActiveRecord::Base
  def new_message
   self.user.name.titleize << " created a " << self.wo_type.titleize << " workorder for " <<
   self.customer.titleize << "."
+ end
+
+ def completed_message
+   customer.titleize << " workorder has been completed."
  end
 
  def update_message

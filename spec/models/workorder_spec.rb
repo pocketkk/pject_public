@@ -117,5 +117,6 @@ describe Workorder do
         }.to change{ActionMailer::Base.deliveries.count}.by(5)
         Follower.count.should == 4
     end
+    
 
 end
