@@ -88,13 +88,8 @@ class WorkordersController < ApplicationController
   def complete
     @workorder = Workorder.find(params[:id])
     if @workorder.complete!
-
       Updater.new(@workorder, update_type: :update, user: current_user, message: @workorder.complete_message(current_user))
-
       redirect_to root_path, :notice => "Workorder Completed!"
-
-      @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-
       @workorder.followers.each do |follower|
         user=follower.user
         if user.receive_mails == true
@@ -103,11 +98,8 @@ class WorkordersController < ApplicationController
         if user.texts == true
           unless user.phone_number.blank?
             # Create and send an SMS message
-             @client.account.sms.messages.create(
-               from: TWILIO_CONFIG['from'],
-               to: @workorder.user.phone_number,
-               body: @workorder.customer.titleize << "'s workorder has been completed! " << url_for(@workorder)
-             )
+            Sms.new.send_sms(user.phone_number, @workorder.customer.titleize <<
+                             "'s workorder has been completed! " << url_for(@workorder))
           end
         end
       end
