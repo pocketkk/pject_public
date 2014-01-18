@@ -85,10 +85,6 @@ class WorkordersController < ApplicationController
     @workorder = Workorder.find(params[:id])
     if @workorder.complete!
       Updater.new(@workorder, update_type: :update, user: current_user, message: @workorder.complete_message(current_user))
-<<<<<<< HEAD
-=======
-      redirect_to root_path, :notice => "Workorder Completed!"
->>>>>>> 0321d96913c9dd25fb3f67fa355f2eda8a7fdc65
       @workorder.followers.each do |follower|
         user=follower.user
         if user.receive_mails == true
@@ -98,12 +94,7 @@ class WorkordersController < ApplicationController
           unless user.phone_number.blank?
             @message = @workorder.customer.titleize << "'s workorder has been completed! " << url_for(@workorder)
             # Create and send an SMS message
-<<<<<<< HEAD
             Sms.new.send_sms(phone_number: @workorder.user.phonenumber, message: @message)
-=======
-            Sms.new.send_sms(user.phone_number, @workorder.customer.titleize <<
-                             "'s workorder has been completed! " << url_for(@workorder))
->>>>>>> 0321d96913c9dd25fb3f67fa355f2eda8a7fdc65
           end
         end
       end
