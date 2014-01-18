@@ -9,7 +9,6 @@ class WorkordersController < ApplicationController
   def calendar
     ### Mobile Requests ###
     @workorders_mobile=Workorder.wo_current_branch(current_user.current_branch).where('wo_date IS NOT NULL').ascending
-
     @workorders=Workorder.wo_current_branch(current_user.current_branch).where('wo_date IS NOT NULL').ascending
     @workorders_without_dates=Workorder.wo_current_branch(current_user.current_branch).wo_no_date.wo_not_completed.ascending if signed_in?
 
@@ -59,7 +58,6 @@ class WorkordersController < ApplicationController
     @assets_need_to_order = Asset.includes(:workorder).where("workorders.branch=?",current_user.current_branch).where('workorders.completed=?',false).where('status=?','0')
     @users = user_roster
     @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
-
     @commentable = @workorder
     @comments = @commentable.comments
     @comment = Comment.new
@@ -69,9 +67,7 @@ class WorkordersController < ApplicationController
     @workorder=Workorder.find(params[:id])
     @workorder_comparison=Workorder.find(params[:id])
     @users = user_roster
-
     @workorder.assigned_to ? @installer=User.find(@workorder.assigned_to) : @no_one_assigned="No one assigned"
-
   end
 
   def new
@@ -88,13 +84,7 @@ class WorkordersController < ApplicationController
   def complete
     @workorder = Workorder.find(params[:id])
     if @workorder.complete!
-
       Updater.new(@workorder, update_type: :update, user: current_user, message: @workorder.complete_message(current_user))
-
-      redirect_to root_path, :notice => "Workorder Completed!"
-
-      @client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
-
       @workorder.followers.each do |follower|
         user=follower.user
         if user.receive_mails == true
@@ -102,15 +92,13 @@ class WorkordersController < ApplicationController
         end
         if user.texts == true
           unless user.phone_number.blank?
+            @message = @workorder.customer.titleize << "'s workorder has been completed! " << url_for(@workorder)
             # Create and send an SMS message
-             @client.account.sms.messages.create(
-               from: TWILIO_CONFIG['from'],
-               to: @workorder.user.phone_number,
-               body: @workorder.customer.titleize << "'s workorder has been completed! " << url_for(@workorder)
-             )
+            Sms.new.send_sms(phone_number: @workorder.user.phonenumber, message: @message)
           end
         end
       end
+      redirect_to root_path, :notice => "Workorder Completed!"
     else
       redirect_to root_path, :error => "Workorder status not updated."
     end

@@ -93,5 +93,4 @@ class Task < ActiveRecord::Base
     "#{self.context} | #{self.content} | http://ac.workordermachine.com"
   end
 
-
 end
