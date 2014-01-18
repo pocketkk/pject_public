@@ -169,7 +169,7 @@ class Workorder < ActiveRecord::Base
  end
 
  def completed_message
-   customer.titleize << " workorder has been completed."
+   customer.titleize << " workorder has had its completed status changed."
  end
 
  def update_message
