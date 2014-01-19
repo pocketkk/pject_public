@@ -5,8 +5,8 @@ describe WorkordersController do
     render_views
 
     before(:each) do
-       @user=FactoryGirl.create(:user)
-       test_sign_in @user
+      @user=FactoryGirl.create(:user)
+      test_sign_in @user
     end
 
     describe "GET index" do
@@ -24,11 +24,9 @@ describe WorkordersController do
 
     describe "complete#workorder" do
       it "should complete workorder when visited" do
-        @workorder=Factory.create(:workorder, user: @user)
-        expect {
-          visit "/workorders/#{@workorder.id}/complete"
-          @workorder_after = Workorder.find(@workorder.id)
-        }.to change { Sms.sent_smses.count }.by(1)
+        workorder=Factory.create(:workorder)
+        expect { visit "/workorders/#{workorder.id}/complete" }.
+          to change{ Sms.sent_smses.count }.by(2)
       end
     end
 

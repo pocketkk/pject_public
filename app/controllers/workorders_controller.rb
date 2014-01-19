@@ -136,6 +136,13 @@ class WorkordersController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+  def past_due
+    @workorders=Workorder.wo_current_branch(current_user.current_branch).
+         wo_not_completed.where('wo_date between ? and ?', Date.today-100.years, Date.today-1).
+         ascending.paginate(page: params[:page], :per_page => 5) if signed_in?
+  end
+
   def unassigned
     @assets_without_serials = Asset.serial_nil.serial_blank
   end
