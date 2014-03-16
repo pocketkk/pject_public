@@ -25,8 +25,9 @@ describe WorkordersController do
     describe "complete#workorder" do
       it "should complete workorder when visited" do
         workorder=Factory.create(:workorder)
-        expect { visit "/workorders/#{workorder.id}/complete" }.
-          to change{ Sms.sent_smses.count }.by(2)
+        visit "/workorders/#{workorder.id}/complete"
+        workorder2=Workorder.find(workorder.id)
+        workorder2.completed.should == true
       end
     end
 
