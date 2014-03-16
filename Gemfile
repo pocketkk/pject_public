@@ -27,6 +27,7 @@ gem 'bluecloth'
 gem 'jquery-ui-rails'
 gem 'mobylette'
 gem 'foreman'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'pg','~>0.12.2'
