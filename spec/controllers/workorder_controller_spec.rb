@@ -25,6 +25,7 @@ describe WorkordersController do
     describe "complete#workorder" do
       it "should complete workorder when visited" do
         workorder=Factory.create(:workorder)
+        workorder.save
         visit "/workorders/#{workorder.id}/complete"
         workorder2=Workorder.find(workorder.id)
         workorder2.completed.should == true

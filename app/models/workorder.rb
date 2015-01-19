@@ -44,10 +44,10 @@ class Workorder < ActiveRecord::Base
 
   BRANCH_OPTIONS          = ['110','120','130','140','210','220','230','240',
                             '310','320','330','340','350','360','410','420',
-                            '430','440','450','710']
+                            '430','440','450','710','840']
   BRANCH_OPTIONS_WITH_BLANK= ['','110','120','130','140','210','220','230','240',
                             '310','320','330','340','350','360','410','420',
-                            '430','440','450','710']
+                            '430','440','450','710','840']
   WORKORDER_TYPES         = ['New Install','Pull','Swap','Follow Up']
   WORKORDER_TYPES_SEARCH  = ['','New Install','Pull','Swap','Follow Up']
   ASSET_STATUS_OPTIONS    = {  ""                   => "",
