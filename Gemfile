@@ -4,6 +4,7 @@ ruby "1.9.3"
 
 gem 'rails', '3.2.17'
 gem 'bootstrap-sass', '2.0.0'
+gem 'pg','~>0.12.2'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'chronic'
@@ -30,7 +31,6 @@ gem 'foreman'
 gem 'newrelic_rpm'
 
 group :development do
-  gem 'pg','~>0.12.2'
   gem 'nifty-generators'
   gem 'letter_opener'
   gem 'better_errors'
@@ -51,7 +51,6 @@ group :assets do
 end
 
 group :test do
-  gem 'pg','~>0.12.2'
   gem 'rspec-rails','2.11.0'
   gem 'nifty-generators'
   gem 'capybara'
@@ -64,9 +63,3 @@ group :test do
   gem 'guard-spork'
   gem 'spork-rails'
 end
-
-
-group :production do
-  gem 'pg','~>0.12.2'
-end
-
