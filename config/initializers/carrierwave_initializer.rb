@@ -7,7 +7,7 @@ else
   CarrierWave.configure do |config|
     config.fog_credentials = {
       :provider               => 'AWS',       # required
-      :aws_access_key_id      => 'AKIAJQVSMTORGRSHS2BA  ',       # required
+      :aws_access_key_id      => 'AKIAJQVSMTORGRSHS2BA',       # required
       :aws_secret_access_key  => '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',       # required
       :region                 => 'us-east-1',  # optional, defaults to 'us-east-1'
       :persistent             => false #required to keep from timing out on PUT requests
