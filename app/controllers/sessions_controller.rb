@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
          sign_in user
          flash[:success] = 'Welcome Back!'
         # Send me an email when users log in and create a new session
-        PdfMailer.mail_alert(user).deliver
+        # PdfMailer.mail_alert(user).deliver
         redirect_to root_path
       else
         flash.now[:error] = 'Invalid email/password combination'
